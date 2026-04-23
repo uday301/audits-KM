@@ -3,1536 +3,430 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chai by Mira — Digital Marketing Roadmap | Kerkar Media</title>
+<title>Digital Marketing Audits by Kerkar Media | SEO, Social & Ad Account Audits</title>
+<meta name="description" content="Kerkar Media delivers in-depth digital marketing audits — SEO, Google Ads, Social Media, Content & Website audits — with clear, actionable roadmaps to grow your brand online.">
+<meta name="keywords" content="digital marketing audit, SEO audit, Google Ads audit, social media audit, website audit, content audit, Kerkar Media, marketing agency India">
+<meta name="author" content="Kerkar Media">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://slategray-wren-882514.hostingersite.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://slategray-wren-882514.hostingersite.com/">
+<meta property="og:title" content="Digital Marketing Audits by Kerkar Media">
+<meta property="og:description" content="Get a comprehensive digital marketing audit from Kerkar Media — covering SEO, Paid Ads, Social Media, Content & Website performance. Know exactly what to fix and how.">
+<meta property="og:site_name" content="Kerkar Media">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Digital Marketing Audits by Kerkar Media">
+<meta name="twitter:description" content="In-depth audits for SEO, Google Ads, Social Media & more. Get a clear roadmap to fix what's broken and scale what's working.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://slategray-wren-882514.hostingersite.com/#organization",
+      "name": "Kerkar Media",
+      "url": "https://slategray-wren-882514.hostingersite.com",
+      "description": "Kerkar Media is a digital marketing agency specializing in audits, strategy, and execution for brands looking to grow online.",
+      "address": { "@type": "PostalAddress", "addressCountry": "IN" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://slategray-wren-882514.hostingersite.com/#webpage",
+      "url": "https://slategray-wren-882514.hostingersite.com/",
+      "name": "Digital Marketing Audits by Kerkar Media",
+      "description": "Comprehensive digital marketing audits covering SEO, Google Ads, Social Media, Content and Website performance.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://slategray-wren-882514.hostingersite.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Audits", "item": "https://slategray-wren-882514.hostingersite.com/" }
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Digital Marketing Audit",
+      "provider": { "@id": "https://slategray-wren-882514.hostingersite.com/#organization" },
+      "serviceType": "Digital Marketing Audit",
+      "description": "In-depth audits covering SEO, Google Ads, Social Media, Content Strategy and Website performance with actionable roadmaps.",
+      "areaServed": { "@type": "Country", "name": "India" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is a digital marketing audit?", "acceptedAnswer": { "@type": "Answer", "text": "A digital marketing audit is a comprehensive review of your brand's online presence — covering SEO, paid ads, social media, content, and website performance — to identify gaps and opportunities for growth." } },
+        { "@type": "Question", "name": "How long does a Kerkar Media audit take?", "acceptedAnswer": { "@type": "Answer", "text": "Most audits are delivered within 5–7 business days. A full-stack audit covering all channels typically takes 7–10 business days." } },
+        { "@type": "Question", "name": "What do I get after the audit?", "acceptedAnswer": { "@type": "Answer", "text": "You receive a detailed PDF/HTML audit report, a prioritised action roadmap, and a 30-minute walkthrough call with our team to explain findings and next steps." } },
+        { "@type": "Question", "name": "Do you audit businesses outside India?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. While Kerkar Media is based in India, we work with brands globally. Our audits are platform-agnostic and apply to any market." } }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ink:        #0B1220;
-  --ink-2:      #1A2332;
-  --text:       #1E293B;
-  --text-2:     #475569;
-  --text-mute:  #64748B;
-  --bg:         #FFFFFF;
-  --bg-soft:    #F7F8FB;
-  --bg-2:       #F1F4F9;
-  --bg-3:       #E9EDF4;
-  --line:       #E5E8EF;
-  --line-2:     #D1D6E0;
-  --blue:       #2B5EDD;
-  --blue-dark:  #1E45B0;
-  --blue-soft:  #EEF3FF;
-  --orange:     #F97316;
-  --orange-soft:#FFF4EB;
-  --green:      #059669;
-  --amber:      #D97706;
-  --red:        #DC2626;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  font-size: 15px;
-  font-feature-settings: "cv11", "ss01", "ss03";
-  -webkit-font-smoothing: antialiased;
-}
-.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-
-.hero {
-  background: var(--ink);
-  color: #fff;
-  padding: 80px 0 64px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; top: -50%; right: -20%;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(43,94,221,0.22) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute; bottom: -30%; left: -10%;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-content { position: relative; z-index: 1; }
-
-.brand-row {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 40px; padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.brand-mark {
-  width: 38px; height: 38px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--blue) 0%, #4F7EE5 100%);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-weight: 700; font-size: 16px;
-  letter-spacing: -0.02em;
-}
-.brand-name { font-size: 15px; font-weight: 600; color: #fff; }
-.brand-tag { font-size: 12px; color: rgba(255,255,255,0.55); }
-
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 14px;
-  background: rgba(43,94,221,0.15);
-  border: 1px solid rgba(43,94,221,0.35);
-  border-radius: 100px;
-  font-size: 11px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: #8FB4FF;
-  margin-bottom: 28px; font-weight: 600;
-}
-.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #8FB4FF; }
-
-h1 {
-  font-size: 52px; font-weight: 700; line-height: 1.08;
-  letter-spacing: -0.035em; margin-bottom: 20px; color: #fff;
-}
-h1 .accent { color: var(--blue); font-weight: 700; }
-h1 .accent-alt { color: var(--orange); font-weight: 700; }
-
-.hero-sub {
-  font-size: 18px; color: rgba(255,255,255,0.72);
-  max-width: 820px; line-height: 1.6; margin-bottom: 48px;
-}
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-  margin-top: 40px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px; overflow: hidden;
-}
-.stat { background: var(--ink); padding: 24px 26px; }
-.stat-val {
-  font-size: 30px; font-weight: 700; color: var(--blue);
-  letter-spacing: -0.025em; margin-bottom: 4px; line-height: 1;
-}
-.stat-lbl {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.55); font-weight: 500;
-}
-.doc-meta {
-  margin-top: 40px; padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex; gap: 32px; flex-wrap: wrap;
-  font-size: 12px; color: rgba(255,255,255,0.55);
-}
-.doc-meta strong { color: #fff; font-weight: 600; margin-right: 4px; }
-
-.toc {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 24px 28px; margin-top: 40px;
-}
-.toc-h {
-  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--blue); margin-bottom: 16px; font-weight: 700;
-}
-.toc ol { list-style: none; margin: 0; columns: 2; column-gap: 40px; }
-.toc li {
-  font-size: 13px; margin-bottom: 10px; break-inside: avoid;
-  color: rgba(255,255,255,0.75);
-}
-.toc li a { color: rgba(255,255,255,0.75); text-decoration: none; }
-.toc li span {
-  color: rgba(255,255,255,0.35); font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; margin-right: 10px; font-weight: 500;
-}
-
-section { padding: 80px 0; }
-section.alt { background: var(--bg-soft); }
-
-.sec-num {
-  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--blue); margin-bottom: 14px; font-weight: 600;
-}
-h2 {
-  font-size: 38px; font-weight: 700; letter-spacing: -0.028em;
-  line-height: 1.12; margin-bottom: 20px; color: var(--ink);
-}
-h2 .accent { color: var(--blue); }
-h2 .accent-alt { color: var(--orange); }
-.sec-lede {
-  font-size: 17px; color: var(--text-2); max-width: 820px;
-  margin-bottom: 48px; line-height: 1.6;
-}
-h3 {
-  font-size: 22px; font-weight: 700; letter-spacing: -0.018em;
-  margin: 44px 0 14px; color: var(--ink);
-  padding-left: 14px; position: relative;
-}
-h3::before {
-  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
-  width: 4px; border-radius: 2px; background: var(--blue);
-}
-h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin: 28px 0 10px; }
-p { color: var(--text-2); margin-bottom: 12px; font-size: 14.5px; }
-p strong { color: var(--ink); font-weight: 600; }
-ul, ol { margin: 10px 0 14px 22px; color: var(--text-2); font-size: 14px; }
-li { margin-bottom: 6px; }
-li strong { color: var(--ink); font-weight: 600; }
-
-.card {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 24px 28px;
-  margin: 14px 0;
-}
-.card-accent {
-  background: linear-gradient(180deg, var(--blue-soft) 0%, #fff 100%);
-  border: 1px solid #C5D6FA;
-}
-.card-title {
-  font-size: 17px; font-weight: 700; margin-bottom: 8px;
-  color: var(--ink); letter-spacing: -0.01em;
-}
-.card-sub {
-  font-size: 11px; color: var(--blue); margin-bottom: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
-}
-.card p { font-size: 13.5px; }
-
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 20px 0; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 20px 0; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 20px 0; }
-
-.persona {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--blue);
-  border-radius: 8px;
-  padding: 26px 28px;
-}
-.persona:nth-child(2) { border-top-color: var(--orange); }
-.persona:nth-child(3) { border-top-color: var(--ink); }
-
-.persona-name {
-  font-size: 11px; color: var(--blue); letter-spacing: 0.12em;
-  text-transform: uppercase; margin-bottom: 6px; font-weight: 700;
-}
-.persona:nth-child(2) .persona-name { color: var(--orange); }
-.persona:nth-child(3) .persona-name { color: var(--ink); }
-
-.persona-h { font-size: 20px; font-weight: 700; margin-bottom: 18px; color: var(--ink); }
-.persona-row {
-  display: flex; gap: 14px; margin-bottom: 10px; font-size: 13px;
-  padding-bottom: 10px; border-bottom: 1px dashed var(--line);
-}
-.persona-row:last-child { border-bottom: none; }
-.persona-lbl {
-  color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.08em;
-  font-size: 10px; font-weight: 700; min-width: 84px; padding-top: 3px;
-}
-.persona-val { color: var(--text); flex: 1; line-height: 1.5; }
-
-table {
-  width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px;
-  background: var(--bg); border: 1px solid var(--line);
-  border-radius: 8px; overflow: hidden;
-}
-th {
-  background: var(--bg-2); text-align: left; padding: 12px 14px;
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--ink); font-weight: 700;
-  border-bottom: 1px solid var(--line);
-}
-td {
-  padding: 12px 14px; color: var(--text-2);
-  border-bottom: 1px solid var(--line);
-  vertical-align: top; line-height: 1.55;
-}
-tr:last-child td { border-bottom: none; }
-td strong { color: var(--ink); font-weight: 600; }
-.table-compact td, .table-compact th { padding: 9px 12px; font-size: 12.5px; }
-tr.total-row td { background: var(--blue-soft); font-weight: 700; color: var(--ink); }
-
-.tag {
-  display: inline-block; padding: 3px 9px; border-radius: 4px;
-  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; white-space: nowrap;
-}
-.tag-critical { background: #FEE2E2; color: var(--red); }
-.tag-high     { background: #FEF3C7; color: var(--amber); }
-.tag-med      { background: var(--blue-soft); color: var(--blue); }
-.tag-good     { background: #D1FAE5; color: var(--green); }
-.tag-gold     { background: var(--orange-soft); color: var(--orange); }
-
-.callout {
-  background: var(--blue-soft);
-  border-left: 4px solid var(--blue);
-  padding: 18px 22px; margin: 22px 0;
-  border-radius: 0 6px 6px 0;
-}
-.callout-title {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--blue); margin-bottom: 6px; font-weight: 700;
-}
-.callout p { color: var(--ink); margin: 0; font-weight: 500; font-size: 14px; }
-
-.callout-orange { background: var(--orange-soft); border-left-color: var(--orange); }
-.callout-orange .callout-title { color: var(--orange); }
-
-.budget-bar {
-  height: 44px; border-radius: 6px; overflow: hidden;
-  display: flex; margin: 14px 0;
-  border: 1px solid var(--line);
-}
-.budget-seg {
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 12px; font-weight: 600;
-}
-.budget-seg.light { color: var(--ink); }
-
-.kpi-box {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 16px 18px;
-}
-.kpi-lbl {
-  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text-mute); margin-bottom: 6px; font-weight: 600;
-}
-.kpi-val {
-  font-size: 22px; font-weight: 700; color: var(--blue);
-  letter-spacing: -0.018em; line-height: 1.1;
-}
-.kpi-sub { font-size: 11px; color: var(--text-mute); margin-top: 3px; }
-
-.highlight-box {
-  background: linear-gradient(135deg, var(--blue-soft), #fff);
-  border: 1px solid #C5D6FA;
-  border-radius: 10px;
-  padding: 28px 32px; margin: 28px 0;
-}
-.highlight-box h4 { color: var(--blue); margin-top: 0; font-size: 17px; }
-
-.ad-copy {
-  background: var(--ink);
-  color: #E1E7F0;
-  border: 1px solid var(--ink-2);
-  border-radius: 6px; padding: 16px 20px; margin: 12px 0;
-  font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  line-height: 1.7;
-}
-.ad-copy .h { color: #8FB4FF; display: block; }
-.ad-copy .d { color: #CED6E0; margin-top: 4px; display: block; }
-.ad-copy .u { color: #7A8698; font-size: 11px; margin-top: 8px; display: block; }
-
-.concept {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 22px 24px; margin: 12px 0;
-  display: grid; grid-template-columns: 56px 1fr; gap: 18px;
-}
-.concept-num {
-  font-size: 32px; font-weight: 800; color: var(--blue);
-  line-height: 1; letter-spacing: -0.03em;
-}
-.concept-h {
-  font-size: 16px; font-weight: 700; margin-bottom: 6px;
-  color: var(--ink);
-}
-.concept-meta {
-  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--text-mute); margin-bottom: 12px; font-weight: 500;
-}
-.concept-hook {
-  font-style: italic; color: var(--ink);
-  padding: 10px 14px;
-  background: var(--orange-soft);
-  border-left: 3px solid var(--orange);
-  border-radius: 0 4px 4px 0; margin: 10px 0;
-  font-size: 13px; line-height: 1.55;
-}
-
-.course-box {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
-  margin: 24px 0; overflow: hidden;
-}
-.course-head {
-  background: linear-gradient(135deg, var(--ink) 0%, #1A2540 100%);
-  color: #fff;
-  padding: 20px 28px;
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: 14px;
-}
-.course-name {
-  font-size: 20px; font-weight: 700; color: #fff;
-  letter-spacing: -0.015em;
-}
-.course-meta {
-  font-size: 11px; color: rgba(255,255,255,0.65);
-  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
-}
-.course-body { padding: 24px 28px; background: var(--bg-soft); }
-.course-split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 16px; }
-
-.timeline-phase {
-  border-left: 2px solid var(--line);
-  padding-left: 28px; padding-bottom: 32px;
-  position: relative; margin-left: 8px;
-}
-.timeline-phase:last-child { padding-bottom: 0; }
-.timeline-phase::before {
-  content: ''; position: absolute; left: -9px; top: 0;
-  width: 16px; height: 16px; border-radius: 50%;
-  background: var(--bg); border: 3px solid var(--blue);
-}
-.timeline-phase.alt-marker::before { border-color: var(--orange); }
-
-.timeline-label {
-  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--blue); font-weight: 700; margin-bottom: 4px;
-}
-.timeline-phase.alt-marker .timeline-label { color: var(--orange); }
-.timeline-h {
-  font-size: 17px; font-weight: 700; margin-bottom: 10px;
-  color: var(--ink); letter-spacing: -0.01em;
-}
-
-footer {
-  padding: 48px 0 36px;
-  background: var(--ink);
-  color: rgba(255,255,255,0.7);
-  text-align: center;
-}
-.footer-brand {
-  font-size: 18px; color: var(--blue);
-  letter-spacing: -0.01em; font-weight: 700;
-  margin-bottom: 6px;
-}
-.footer-tag {
-  font-size: 12px; color: rgba(255,255,255,0.55);
-  letter-spacing: 0.05em;
-}
-.footer-meta {
-  margin-top: 20px; font-size: 11px;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 0.08em;
-}
-
-@media (max-width: 900px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  h1 { font-size: 36px; }
-  h2 { font-size: 26px; }
-  .container { padding: 0 20px; }
-  .toc ol { columns: 1; }
-  .course-split { grid-template-columns: 1fr; }
-}
-
-@media print {
-  body { font-size: 10pt; }
-  .container { padding: 0 8mm; max-width: 100%; }
-  .hero { padding: 18mm 8mm; background: var(--ink) !important; }
-  .hero::before, .hero::after { display: none; }
-  section { padding: 14mm 0 10mm; background: #fff !important; }
-  section.alt { background: #fff !important; }
-  h1 { font-size: 26pt; }
-  h2 { font-size: 18pt; }
-  h3 { font-size: 13pt; margin-top: 16pt; }
-  .hero-stats { grid-template-columns: repeat(4, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .grid-2 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .course-split { grid-template-columns: 1fr 1fr; gap: 14px; }
-  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-}
+:root{--ink:#0B1220;--ink-2:#1A2332;--text:#1E293B;--text-2:#475569;--text-mute:#64748B;--bg:#FFFFFF;--bg-soft:#F7F8FB;--bg-2:#F1F4F9;--line:#E5E8EF;--blue:#2B5EDD;--blue-dark:#1E45B0;--blue-soft:#EEF3FF;--orange:#F97316;--orange-soft:#FFF4EB;--green:#059669;--green-soft:#D1FAE5;--amber:#D97706;--red:#DC2626}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased}
+.container{max-width:1180px;margin:0 auto;padding:0 32px}
+.hero{background:var(--ink);color:#fff;padding:80px 0 64px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(43,94,221,0.22) 0%,transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(249,115,22,0.12) 0%,transparent 60%);pointer-events:none}
+.hero-content{position:relative;z-index:1}
+.brand-row{display:flex;align-items:center;gap:14px;margin-bottom:40px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.brand-mark{width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,var(--blue) 0%,#4F7EE5 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px}
+.brand-name{font-size:15px;font-weight:600;color:#fff}.brand-tag{font-size:12px;color:rgba(255,255,255,0.55)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(43,94,221,0.15);border:1px solid rgba(43,94,221,0.35);border-radius:100px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8FB4FF;margin-bottom:28px;font-weight:600}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#8FB4FF}
+h1{font-size:52px;font-weight:700;line-height:1.08;letter-spacing:-0.035em;margin-bottom:20px;color:#fff}
+h1 .accent{color:#8FB4FF}h1 .accent-alt{color:var(--orange)}
+.hero-sub{font-size:18px;color:rgba(255,255,255,0.72);max-width:820px;line-height:1.6;margin-bottom:48px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:40px;background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden}
+.stat{background:var(--ink);padding:24px 26px}
+.stat-val{font-size:30px;font-weight:700;color:var(--blue);letter-spacing:-0.025em;margin-bottom:4px;line-height:1}
+.stat-lbl{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.55);font-weight:500}
+.doc-meta{margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:32px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,0.55)}
+.doc-meta strong{color:#fff;font-weight:600;margin-right:4px}
+section{padding:80px 0}section.alt{background:var(--bg-soft)}
+.sec-num{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;font-weight:600}
+h2{font-size:38px;font-weight:700;letter-spacing:-0.028em;line-height:1.12;margin-bottom:20px;color:var(--ink)}
+h2 .accent{color:var(--blue)}h2 .accent-alt{color:var(--orange)}
+.sec-lede{font-size:17px;color:var(--text-2);max-width:820px;margin-bottom:48px;line-height:1.6}
+h3{font-size:22px;font-weight:700;letter-spacing:-0.018em;margin:44px 0 14px;color:var(--ink);padding-left:14px;position:relative}
+h3::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:2px;background:var(--blue)}
+h4{font-size:16px;font-weight:700;color:var(--ink);margin:28px 0 10px}
+p{color:var(--text-2);margin-bottom:12px;font-size:14.5px}p strong{color:var(--ink);font-weight:600}
+ul,ol{margin:10px 0 14px 22px;color:var(--text-2);font-size:14px}li{margin-bottom:6px}li strong{color:var(--ink);font-weight:600}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:24px 28px;margin:14px 0}
+.card-accent{background:linear-gradient(180deg,var(--blue-soft) 0%,#fff 100%);border:1px solid #C5D6FA}
+.card-title{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--ink);letter-spacing:-0.01em}
+.card-sub{font-size:11px;color:var(--blue);margin-bottom:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700}
+.card p{font-size:13.5px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:20px 0}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:20px 0}
+.audit-card{background:var(--bg);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:28px 26px;transition:box-shadow 0.2s}
+.audit-card:hover{box-shadow:0 8px 32px rgba(43,94,221,0.10)}
+.audit-card:nth-child(2){border-top-color:var(--orange)}
+.audit-card:nth-child(3){border-top-color:var(--green)}
+.audit-card:nth-child(4){border-top-color:var(--amber)}
+.audit-card:nth-child(5){border-top-color:#8B5CF6}
+.audit-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.audit-card:nth-child(2) .audit-icon{background:var(--orange-soft)}
+.audit-card:nth-child(3) .audit-icon{background:var(--green-soft)}
+.audit-card:nth-child(4) .audit-icon{background:#FEF3C7}
+.audit-card:nth-child(5) .audit-icon{background:#EDE9FE}
+.audit-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.015em}
+.audit-desc{font-size:13.5px;color:var(--text-2);line-height:1.6;margin-bottom:18px}
+.audit-list{list-style:none;margin:0;padding:0}
+.audit-list li{font-size:12.5px;color:var(--text-2);padding:6px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px;align-items:flex-start}
+.audit-list li:last-child{border-bottom:none}
+.audit-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.tag{display:inline-block;padding:3px 9px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap}
+.tag-med{background:var(--blue-soft);color:var(--blue)}.tag-good{background:#D1FAE5;color:var(--green)}
+.callout{background:var(--blue-soft);border-left:4px solid var(--blue);padding:18px 22px;margin:22px 0;border-radius:0 6px 6px 0}
+.callout-title{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);margin-bottom:6px;font-weight:700}
+.callout p{color:var(--ink);margin:0;font-weight:500;font-size:14px}
+.callout-orange{background:var(--orange-soft);border-left-color:var(--orange)}
+.callout-orange .callout-title{color:var(--orange)}
+.timeline-phase{border-left:2px solid var(--line);padding-left:28px;padding-bottom:36px;position:relative;margin-left:8px}
+.timeline-phase:last-child{padding-bottom:0;border-left-color:transparent}
+.timeline-phase::before{content:'';position:absolute;left:-9px;top:0;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--blue)}
+.timeline-phase.p2::before{border-color:var(--orange)}.timeline-phase.p3::before{border-color:var(--green)}.timeline-phase.p4::before{border-color:var(--amber)}
+.timeline-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:4px}
+.timeline-phase.p2 .timeline-label{color:var(--orange)}.timeline-phase.p3 .timeline-label{color:var(--green)}.timeline-phase.p4 .timeline-label{color:var(--amber)}
+.timeline-h{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.015em}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th{background:var(--bg-2);text-align:left;padding:12px 14px;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink);font-weight:700;border-bottom:1px solid var(--line)}
+td{padding:12px 14px;color:var(--text-2);border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:none}td strong{color:var(--ink);font-weight:600}
+.highlight-box{background:linear-gradient(135deg,var(--blue-soft),#fff);border:1px solid #C5D6FA;border-radius:10px;padding:28px 32px;margin:28px 0}
+.highlight-box h4{color:var(--blue);margin-top:0;font-size:17px}
+.faq-item{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden}
+.faq-q{padding:18px 22px;font-weight:600;font-size:15px;color:var(--ink);background:var(--bg-soft);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq-q::after{content:'+';font-size:20px;color:var(--blue);flex-shrink:0;font-weight:400}
+.faq-a{padding:16px 22px;font-size:14px;color:var(--text-2);line-height:1.65;border-top:1px solid var(--line)}
+.cta-section{background:var(--ink);padding:80px 0;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(43,94,221,0.25) 0%,transparent 60%);pointer-events:none}
+.cta-content{position:relative;z-index:1;text-align:center}
+.cta-content h2{color:#fff;font-size:42px;margin-bottom:18px}
+.cta-content p{color:rgba(255,255,255,0.7);font-size:17px;max-width:600px;margin:0 auto 36px}
+.btn-primary{display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:14px 32px;border-radius:8px;text-decoration:none;transition:background 0.2s}
+.btn-primary:hover{background:var(--blue-dark)}
+.btn-ghost{display:inline-block;background:transparent;color:rgba(255,255,255,0.8);font-weight:600;font-size:15px;padding:14px 28px;border-radius:8px;text-decoration:none;border:1px solid rgba(255,255,255,0.2);margin-left:12px;transition:border-color 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5)}
+footer{background:var(--ink-2);padding:40px 0;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;color:rgba(255,255,255,0.45)}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-mark{width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--blue) 0%,#4F7EE5 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px}
+@media(max-width:768px){h1{font-size:34px}h2{font-size:28px}.hero{padding:56px 0 48px}.hero-stats{grid-template-columns:repeat(2,1fr)}.grid-2,.grid-3{grid-template-columns:1fr}.container{padding:0 20px}section{padding:56px 0}.cta-content h2{font-size:28px}.btn-ghost{margin-left:0;margin-top:10px}}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="container hero-content">
-    <div class="brand-row">
-      <div class="brand-mark">KM</div>
-      <div>
-        <div class="brand-name">Kerkar Media</div>
-        <div class="brand-tag">B2B Digital Growth · Mumbai</div>
+<header class="hero" role="banner">
+  <div class="container">
+    <div class="hero-content">
+      <div class="brand-row">
+        <div class="brand-mark">KM</div>
+        <div>
+          <div class="brand-name">Kerkar Media</div>
+          <div class="brand-tag">Digital Marketing Agency</div>
+        </div>
       </div>
-    </div>
-
-    <span class="badge">Strategic Engagement · Prepared for Chai by Mira</span>
-
-    <h1>A Pipeline-First Digital <span class="accent">Marketing Roadmap</span> for <span class="accent-alt">Chai by Mira.</span></h1>
-    <p class="hero-sub">A 12-month, £800/month execution plan to double wholesale cafe distribution from 300 to 450 partners across the UK, and build a compounding D2C engine in the UK and USA — without burning the brand's quiet, heritage-led soul on cheap growth hacks.</p>
-
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-val">£9.6K</div>
-        <div class="stat-lbl">Annual Media Budget</div>
+      <div class="badge">Audit Services</div>
+      <h1>Audits That Show You<br><span class="accent">Exactly What's Broken</span><br>— and <span class="accent-alt">How to Fix It</span></h1>
+      <p class="hero-sub">Kerkar Media's in-depth digital marketing audits cut through the noise. We analyse your SEO, paid ads, social media, content, and website performance — then hand you a clear, prioritised roadmap so your team knows precisely what to do next.</p>
+      <div class="hero-stats" role="region" aria-label="Key audit statistics">
+        <div class="stat"><div class="stat-val">50+</div><div class="stat-lbl">Brands Audited</div></div>
+        <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">Audit Types</div></div>
+        <div class="stat"><div class="stat-val">7 Days</div><div class="stat-lbl">Avg. Turnaround</div></div>
+        <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Actionable Output</div></div>
       </div>
-      <div class="stat">
-        <div class="stat-val">2</div>
-        <div class="stat-lbl">Motions (B2B + D2C)</div>
+      <div class="doc-meta">
+        <span><strong>Agency:</strong> Kerkar Media</span>
+        <span><strong>Specialisation:</strong> Digital Marketing Audits</span>
+        <span><strong>Delivery:</strong> PDF Report + Walkthrough Call</span>
+        <span><strong>Updated:</strong> 2026</span>
       </div>
-      <div class="stat">
-        <div class="stat-val">3</div>
-        <div class="stat-lbl">Geographies Covered</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">12 mo</div>
-        <div class="stat-lbl">Execution Horizon</div>
-      </div>
-    </div>
-
-    <div class="doc-meta">
-      <span><strong>Client</strong> Chai by Mira (Mira Manek)</span>
-      <span><strong>Domain</strong> chaibymira.com</span>
-      <span><strong>Prepared by</strong> Kerkar Media</span>
-      <span><strong>Status</strong> Strategic Roadmap v1</span>
-    </div>
-
-    <div class="toc">
-      <div class="toc-h">Table of Contents</div>
-      <ol>
-        <li><span>01</span><a href="#exec">Executive Summary</a></li>
-        <li><span>02</span><a href="#icp">ICP &amp; Persona Architecture</a></li>
-        <li><span>03</span><a href="#market">Market &amp; Competitive Landscape</a></li>
-        <li><span>04</span><a href="#seo">SEO Roadmap</a></li>
-        <li><span>05</span><a href="#perf">Performance Marketing Plan</a></li>
-        <li><span>06</span><a href="#creative">Creative &amp; Remarketing Strategy</a></li>
-        <li><span>07</span><a href="#measure">Measurement &amp; KPIs</a></li>
-        <li><span>08</span><a href="#timeline">12-Month Roadmap</a></li>
-      </ol>
     </div>
   </div>
 </header>
 
-<!-- ========================= 01 EXECUTIVE SUMMARY ========================= -->
-<section id="exec">
+<section id="why-audit" aria-labelledby="why-heading">
   <div class="container">
-    <div class="sec-num">01 · Executive Summary</div>
-    <h2>The thesis in <span class="accent">one page.</span></h2>
-    <p class="sec-lede">Chai by Mira is a nine-year-old premium brand already stocked in Soho House, Mildreds, Foyles, and Muriel's Kitchen — 300+ cafes on a founder-led motion. The opportunity isn't more awareness; it's converting the already-earned credibility into a predictable pipeline for both wholesale and D2C. To win, Chai by Mira must own three signals: a productised wholesale funnel, Mira's founder IP as the content engine, and surgical paid spend that only fires at bottom-funnel conversion moments.</p>
-
+    <div class="sec-num">01 — The Problem</div>
+    <h2 id="why-heading">Most Brands Are <span class="accent">Flying Blind</span></h2>
+    <p class="sec-lede">You're spending on ads, posting on social, publishing blogs — but the results don't match the effort. Before you invest more, you need to know exactly where your digital marketing is leaking money and losing opportunity.</p>
     <div class="grid-3">
-      <div class="card card-accent">
-        <div class="card-sub">Pillar 01</div>
-        <div class="card-title">Productise the wholesale motion</div>
-        <p>300 cafes won over nine years is relationship-driven. To add 150 net-new partners in 12 months, we build a dedicated /wholesale funnel, a 48-hour sample-request system, a cafe-owner Instagram strategy, and a CRM-tracked pipeline. Mira stays the closer — the system does the top-of-funnel work.</p>
+      <div class="card">
+        <div class="card-sub">Common Problem 01</div>
+        <div class="card-title">SEO That Doesn't Rank</div>
+        <p>Your website exists but Google can't find it — or finds it and still doesn't trust it. Technical errors, thin content, and weak backlinks silently tank your organic traffic every day.</p>
       </div>
-      <div class="card card-accent">
-        <div class="card-sub">Pillar 02</div>
-        <div class="card-title">Own the chai ritual conversation</div>
-        <p>Three published books, Ayurvedic credibility, Gujarati heritage, the Soho cafe legacy — no UK chai competitor has this founder IP stack. We turn Mira's voice into compounding organic assets: podcast guest rotations, recipe reels, book-driven SEO, and a dedicated /book landing page that becomes a permanent traffic magnet.</p>
+      <div class="card">
+        <div class="card-sub">Common Problem 02</div>
+        <div class="card-title">Ads Burning Budget</div>
+        <p>High ad spend, poor ROAS. Campaigns running on default settings, broad audiences, and no conversion tracking — turning every rupee into wasted impressions.</p>
       </div>
-      <div class="card card-accent">
-        <div class="card-sub">Pillar 03</div>
-        <div class="card-title">Squeeze every £ of the £800/mo</div>
-        <p>At this budget, zero room for "awareness" campaigns. Every paid pound fires at a specific moment: a cafe owner visits /wholesale (retargeting), a warm visitor abandons cart (recovery), a UK searcher types "authentic chai" (Google Shopping). Organic + owned does the brand lifting for free.</p>
+      <div class="card">
+        <div class="card-sub">Common Problem 03</div>
+        <div class="card-title">Social Without Strategy</div>
+        <p>Posting consistently but seeing no growth. No content pillars, no hook strategy, no community building — just content going into the void with minimal engagement.</p>
       </div>
     </div>
-
     <div class="callout">
-      <div class="callout-title">The core strategic bet</div>
-      <p>The UK premium chai category is crowded at the shelf (Dishoom, Pukka, Amala Chai) but empty at the <em>author-founder</em> layer. Chai by Mira wins the next 12 months by behaving less like a FMCG brand and more like a publishing-backed wellness author whose product happens to be chai. Mira's book is the moat; the chai is the repeat purchase.</p>
-    </div>
-
-    <h3>What this roadmap will deliver in 12 months</h3>
-    <div class="grid-4">
-      <div class="kpi-box">
-        <div class="kpi-lbl">Cafe Partners</div>
-        <div class="kpi-val">450</div>
-        <div class="kpi-sub">from 300 baseline (+50%)</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">D2C Orders / Month</div>
-        <div class="kpi-val">400</div>
-        <div class="kpi-sub">UK 320 · USA 80 by M12</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Organic Traffic Lift</div>
-        <div class="kpi-val">5–7x</div>
-        <div class="kpi-sub">vs current baseline</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Blended CPA (D2C)</div>
-        <div class="kpi-val">£14</div>
-        <div class="kpi-sub">at AOV £24–28</div>
-      </div>
+      <div class="callout-title">The Kerkar Media Approach</div>
+      <p>We don't guess. We audit, analyse, and present data-backed findings with a clear priority stack — so you fix the highest-impact issues first and stop wasting resources on what doesn't move the needle.</p>
     </div>
   </div>
 </section>
 
-<!-- ========================= 02 ICP ========================= -->
-<section id="icp" class="alt">
+<section id="audit-services" class="alt" aria-labelledby="services-heading">
   <div class="container">
-    <div class="sec-num">02 · ICP &amp; Persona Architecture</div>
-    <h2>Three buyers. <span class="accent">Three conversations.</span></h2>
-    <p class="sec-lede">Chai by Mira sells to three distinct people — and every message, creative, keyword and budget line downstream is anchored to one of them. The Cafe Owner decides whether the bag goes on the back bar. The Ritualist decides whether it replaces her Pukka. The Diaspora Buyer decides whether it finally tastes like her mother's kitchen.</p>
-
-    <div class="grid-3">
-      <div class="persona">
-        <div class="persona-name">Persona 01 · B2B Primary</div>
-        <div class="persona-h">The Premium Cafe Owner</div>
-        <div class="persona-row"><div class="persona-lbl">Age</div><div class="persona-val">30–50 · independent / specialty cafe, brunch spot, or small chain owner; London + UK Tier 1 cities</div></div>
-        <div class="persona-row"><div class="persona-lbl">Knows</div><div class="persona-val">Already serves a "chai latte" made with a tea bag — knows it's weak but hasn't found a premium supplier that's cafe-simple to prep</div></div>
-        <div class="persona-row"><div class="persona-lbl">Searches</div><div class="persona-val">"wholesale chai supplier UK", "chai latte mix for cafes", "masala chai wholesale London", "specialty chai B2B"</div></div>
-        <div class="persona-row"><div class="persona-lbl">Platform</div><div class="persona-val">Instagram (watching competitor cafes) &gt; Google Search &gt; trade shows &gt; LinkedIn (chains only)</div></div>
-        <div class="persona-row"><div class="persona-lbl">Trigger</div><div class="persona-val">Free 2-cup sample in the post · Soho House / Mildreds / Muriel's testimonials · Instagrammable packaging · simple prep demo video</div></div>
-        <div class="persona-row"><div class="persona-lbl">Objection</div><div class="persona-val">"Will customers actually pay £4.50 for a chai? How much staff training? What's my margin vs a Yorkshire Tea bag?"</div></div>
-      </div>
-
-      <div class="persona">
-        <div class="persona-name">Persona 02 · D2C Primary (UK)</div>
-        <div class="persona-h">The Wellness Ritualist</div>
-        <div class="persona-row"><div class="persona-lbl">Age</div><div class="persona-val">28–45 · urban British woman, wellness-oriented, follows Deliciously Ella, Pukka, Jing Tea</div></div>
-        <div class="persona-row"><div class="persona-lbl">Knows</div><div class="persona-val">Familiar with "chai latte" in cafes; buys Pukka tea bags at home; open to an "upgrade" to a proper ritual</div></div>
-        <div class="persona-row"><div class="persona-lbl">Searches</div><div class="persona-val">"masala chai powder UK", "authentic chai at home", "Ayurvedic chai blend", "best chai UK 2026"</div></div>
-        <div class="persona-row"><div class="persona-lbl">Platform</div><div class="persona-val">Instagram Reels &gt; Google Search &gt; Pinterest &gt; wellness newsletters (Stylist, Refinery29)</div></div>
-        <div class="persona-row"><div class="persona-lbl">Trigger</div><div class="persona-val">Mira's founder story · Ayurvedic ritual framing · coconut-sugar (no refined) · beautiful packaging · subscribe-and-save</div></div>
-        <div class="persona-row"><div class="persona-lbl">Objection</div><div class="persona-val">"Is £25.99 for 500g worth it when I can get Pukka for £3.50? Will I actually use it daily?"</div></div>
-      </div>
-
-      <div class="persona">
-        <div class="persona-name">Persona 03 · D2C (UK + USA)</div>
-        <div class="persona-h">The Diaspora Nostalgic</div>
-        <div class="persona-row"><div class="persona-lbl">Age</div><div class="persona-val">30–60 · South Asian (often Gujarati) diaspora; missing the chai they grew up with</div></div>
-        <div class="persona-row"><div class="persona-lbl">Knows</div><div class="persona-val">Category expert — drank chai daily from childhood, has strong sense memory of what "real" tastes like</div></div>
-        <div class="persona-row"><div class="persona-lbl">Searches</div><div class="persona-val">"Indian masala chai delivery UK", "Gujarati chai powder USA", "chai like mom makes", "authentic chai mix"</div></div>
-        <div class="persona-row"><div class="persona-lbl">Platform</div><div class="persona-val">WhatsApp word-of-mouth &gt; Instagram (South Asian creators) &gt; Google Search &gt; diaspora newsletter</div></div>
-        <div class="persona-row"><div class="persona-lbl">Trigger</div><div class="persona-val">Gujarati heritage explicit · family recipe narrative · The Book of Chai as authenticity proof · Mira's visible Indian-ness</div></div>
-        <div class="persona-row"><div class="persona-lbl">Objection</div><div class="persona-val">"Will this actually taste real? Can I ship it to my mum in New Jersey? Is it watered-down for white people?"</div></div>
-      </div>
-    </div>
-
-    <h3>How this splits campaigns &amp; creative</h3>
-    <table>
-      <thead><tr><th>Persona</th><th>Primary Channel</th><th>Primary Format</th><th>Primary CTA</th><th>% of Budget</th></tr></thead>
-      <tbody>
-        <tr><td><strong>The Cafe Owner</strong></td><td>Google Search + IG trade</td><td>Search ads + case-study reels</td><td>Request a free sample</td><td>65%</td></tr>
-        <tr><td><strong>The Wellness Ritualist</strong></td><td>Meta (IG + FB)</td><td>Reel + carousel + Shopping</td><td>Try the ritual (first-order discount)</td><td>22%</td></tr>
-        <tr><td><strong>The Diaspora Nostalgic</strong></td><td>Google + WhatsApp + IG</td><td>Founder reel + diaspora creator + Shopping</td><td>Taste home again (gift bundle)</td><td>13%</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ========================= 03 MARKET ========================= -->
-<section id="market">
-  <div class="container">
-    <div class="sec-num">03 · Market &amp; Competitive Landscape</div>
-    <h2>The shelf <span class="accent">Chai by Mira lives on.</span></h2>
-    <p class="sec-lede">The UK chai category is crowded at the mass-market end (Pukka, Tetley, Twinings) and at the restaurant-IP end (Dishoom). In the middle — premium, authentic, artisan-led — sits a smaller, noisier field: Amala Chai, Chai Guys, Project Chai, Jaivik. Each has one strong signal. None has the full stack Mira does. That middle shelf is where we compete, and we compete on founder IP, not on price or paid-media scale.</p>
-
-    <table>
-      <thead><tr><th>Competitor</th><th>Strength</th><th>Weakness / Gap Chai by Mira Can Exploit</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Amala Chai</strong></td><td>Strong London cafe distribution, specialty coffee-scene credibility, loose-leaf positioning</td><td>No author-founder IP; no heritage book; weaker wellness / Ayurvedic angle. Competes on product, not story.</td></tr>
-        <tr><td><strong>Dishoom Chai Kit</strong></td><td>Unmatched restaurant brand equity, Bombay-Irani IP, retail distribution in Waitrose &amp; Selfridges</td><td>Brand extension — no dedicated chai founder. Product is "from the restaurant" not "from the maker". Doesn't serve B2B wholesale.</td></tr>
-        <tr><td><strong>Pukka Tea (Chai range)</strong></td><td>Mass retail shelf space (Tesco, Sainsbury's), certified organic, wellness halo</td><td>Tea-bag format, not spice blend. Mass-produced. No founder story, no heritage authenticity. Category-awareness tailwind only.</td></tr>
-        <tr><td><strong>Chai Guys</strong></td><td>Mobile chai stall origin, millennial fun branding, D2C retail presence</td><td>Heavier on brand aesthetic, lighter on authenticity proof. No published book. B2B presence is secondary.</td></tr>
-        <tr><td><strong>Project Chai</strong></td><td>Specialty cafe chain, Instagram-native, strong London footprint</td><td>Cafe brand that sells retail; not a wholesale supplier to OTHER cafes. Competes for end-customer, not the trade channel.</td></tr>
-        <tr><td><strong>Jaivik / Smaller artisan brands</strong></td><td>Authentic founder stories, small-batch, niche followings</td><td>Sub-scale distribution, no published IP, under-resourced digital. Not visible on Google for core terms.</td></tr>
-        <tr><td><strong>Whittard of Chelsea</strong></td><td>Heritage premium tea brand, high-street retail, gift positioning</td><td>British-heritage framing, not Indian. Chai is a side-line SKU, not a soul. No B2B wholesale to cafes.</td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout callout-orange">
-      <div class="callout-title">Strategic gap Chai by Mira owns — and must defend</div>
-      <p>Chai by Mira is the <strong>only</strong> UK chai brand that combines <strong>(a)</strong> a visibly-authentic Gujarati-heritage founder with Ayurvedic credibility, <strong>(b)</strong> a published heritage book with a major UK publisher (Headline Publishing Group, The Book of Chai), and <strong>(c)</strong> a proven 300-cafe B2B distribution base including Soho House, Mildreds, Foyles Cafe, Muriel's Kitchen, Riding House Café, and Attendant Coffee. No competitor has all three. That triangulation is the uncopyable moat. Everything downstream — content, SEO, creative, pitch decks — reinforces it.</p>
-    </div>
-
-    <h3>Query-level competitive reality</h3>
-    <p>Honest read on which search terms Chai by Mira can realistically own in 12 months vs which require longer horizons or ad support.</p>
-    <table class="table-compact">
-      <thead><tr><th>Query Cluster</th><th>Top 3 Rankers (Apr 2026)</th><th>Chai by Mira Realistic Horizon</th></tr></thead>
-      <tbody>
-        <tr><td><strong>"chai by mira"</strong> (brand)</td><td>chaibymira.com, miramanek.com, amazon listings</td><td><span class="tag tag-good">M1 — already owned</span></td></tr>
-        <tr><td><strong>"wholesale chai uk"</strong>, "chai supplier uk"</td><td>Amala Chai, Cuppa Chai, Cape Chai</td><td><span class="tag tag-good">M4–M6 · winnable with /wholesale page</span></td></tr>
-        <tr><td><strong>"authentic masala chai blend uk"</strong></td><td>Amala Chai, Pukka, Dishoom</td><td><span class="tag tag-gold">M6–M9 · content-led with book authority</span></td></tr>
-        <tr><td><strong>"Ayurvedic chai ritual"</strong>, "chai for wellness"</td><td>Pukka, Yogi Tea, wellness blogs</td><td><span class="tag tag-gold">M3–M6 · Mira's Ayurvedic IP is a moat here</span></td></tr>
-        <tr><td><strong>"book of chai", "mira manek"</strong> (book-led queries)</td><td>Amazon, publisher, miramanek.com</td><td><span class="tag tag-good">M1–M3 · own with dedicated /book page</span></td></tr>
-        <tr><td><strong>"best chai uk"</strong>, "chai review"</td><td>The Guardian, Telegraph, BBC Good Food</td><td><span class="tag tag-med">M9–M12 · requires PR-earned 3rd-party coverage</span></td></tr>
-        <tr><td><strong>"chai latte powder"</strong>, "instant chai"</td><td>Starbucks, Pukka, Costco</td><td><span class="tag tag-med">Not a priority — wrong audience</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ========================= 04 SEO ========================= -->
-<section id="seo" class="alt">
-  <div class="container">
-    <div class="sec-num">04 · SEO Roadmap</div>
-    <h2>From founder website to <span class="accent">dominant chai shelf.</span></h2>
-    <p class="sec-lede">chaibymira.com is a Squarespace site with excellent brand storytelling and almost no SEO architecture. The store uses auto-generated product slugs (/p/the-ridge-vase-pbtk6), there's no /wholesale page, no /book landing page, no schema markup, and the stockist list is a JPEG-heavy page with zero local SEO equity per cafe. Huge upside — low effort.</p>
-
-    <h3>4.1 — Current state: what we found in the audit pass</h3>
-    <div class="card">
-      <div class="card-title">Critical findings on chaibymira.com</div>
-      <table class="table-compact">
-        <thead><tr><th style="width:14%">Priority</th><th style="width:40%">Finding</th><th>Impact</th></tr></thead>
-        <tbody>
-          <tr><td><span class="tag tag-critical">Critical</span></td><td>Homepage title is "Chai by Mira" only — no keyword stacking for "masala chai UK" / "authentic chai blend"</td><td>Losing every commercial non-brand search. Title is the single biggest on-page ranking lever.</td></tr>
-          <tr><td><span class="tag tag-critical">Critical</span></td><td>No dedicated /wholesale or /trade page — B2B prospects land on contact form with no sales copy</td><td>Primary B2B funnel has zero SEO anchor. Cafe owners searching "wholesale chai UK" never find us.</td></tr>
-          <tr><td><span class="tag tag-critical">Critical</span></td><td>No /book or /the-book-of-chai page — book is only mentioned on homepage and about</td><td>Missing permanent traffic magnet for "mira manek book", "book of chai" — 2K+ monthly searches going to Amazon.</td></tr>
-          <tr><td><span class="tag tag-critical">Critical</span></td><td>Zero Schema.org / JSON-LD markup (Product, Organization, LocalBusiness, FAQPage, Recipe, Book, Person)</td><td>Missing rich snippets in SERP — star ratings, price, author name, recipe cards. Every competitor has some schema.</td></tr>
-          <tr><td><span class="tag tag-high">High</span></td><td>Product slugs are auto-generated gibberish: /store/p/the-ridge-vase-pbtk6, /store/p/the-solace-vessel-9657d</td><td>URL readability is a ranking + trust signal. Should be /store/classic-chai-500g, /store/chai-bundle-150g.</td></tr>
-          <tr><td><span class="tag tag-high">High</span></td><td>Stockist page is a single visual grid — no per-cafe URL, no location data, no local SEO equity</td><td>We have Soho House, Mildreds, Muriel's as customers — this is backlink + brand-citation gold being wasted.</td></tr>
-          <tr><td><span class="tag tag-high">High</span></td><td>No blog-to-product architecture — /recipes and /benefits-of-spices don't funnel to /store</td><td>Content traffic arrives and bounces. No internal linking strategy converts reader to buyer.</td></tr>
-          <tr><td><span class="tag tag-high">High</span></td><td>No dedicated US-market landing — /store serves GBP only, no country-detect redirect, no USD pricing path</td><td>US diaspora + wellness searchers land on a UK-shop experience. Friction kills the D2C US motion before it starts.</td></tr>
-          <tr><td><span class="tag tag-med">Medium</span></td><td>Recipe pages lack Recipe schema + print-friendly layout + "pin to Pinterest" button</td><td>Recipes are the biggest untapped organic surface; without schema they won't show in Google Recipes carousel.</td></tr>
-          <tr><td><span class="tag tag-med">Medium</span></td><td>Meta descriptions default to Squarespace auto-fill — not optimised per page</td><td>CTR in SERP is 30–40% worse than a hand-written meta description.</td></tr>
-          <tr><td><span class="tag tag-med">Medium</span></td><td>Two sites exist — miramanek.com and chaibymira.com — with no clear interlinking strategy</td><td>SEO authority is split across two domains. Founder brand + product brand should cross-link deliberately.</td></tr>
-          <tr><td><span class="tag tag-med">Medium</span></td><td>No sitemap.xml reference in robots.txt; unclear indexation status of new pages</td><td>Slower time-to-rank for new content. Easy technical fix.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>4.2 — On-page rebuild template (applies to every commercial page)</h3>
-    <table>
-      <thead><tr><th>Layer</th><th>What to do</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr><td><strong>1. Title / H1</strong></td><td>[Primary keyword] + [brand] + [hook]. E.g. "Authentic Masala Chai Blend — Chai by Mira (300+ UK Cafes)"</td><td>titlematchScore — Google weights title-query alignment heavily. Add social proof for CTR.</td></tr>
-        <tr><td><strong>2. Hero content</strong></td><td>One-line value prop + founder micro-bio (Mira + 3 books + 300 cafes) + primary CTA</td><td>Trust in the first 400px. Cuts bounce rate and signals E-E-A-T above the fold.</td></tr>
-        <tr><td><strong>3. Author / Founder section</strong></td><td>Dedicated Mira block with photo, credentials, Ayurvedic framing, book covers</td><td>isAuthor + authorReputation — Google's Author entity scoring explicitly weights this for YMYL-adjacent wellness content.</td></tr>
-        <tr><td><strong>4. Proof / Outcomes</strong></td><td>Stockist logos (Soho House, Mildreds, Muriel's, Foyles), press quotes, real review screenshots</td><td>contentEffort signal + third-party endorsement. Reduces on-page scepticism for both personas.</td></tr>
-        <tr><td><strong>5. FAQ (12 Q&amp;As)</strong></td><td>Marked up with FAQPage JSON-LD. Real questions: prep time, caffeine content, dairy-free, wholesale MOQ, shipping USA</td><td>Rich snippets in SERP + captures long-tail voice-search queries + pre-empts sales objections.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>4.3 — City &amp; category pages strategy</h3>
-    <p>Not traditional city-pages — for a chai brand, we stack by "wholesale city + use-case" and "chai for [context]". Each gets genuinely unique local copy, not duplicated boilerplate.</p>
-    <table class="table-compact">
-      <thead><tr><th>URL</th><th>Target Query</th><th>Est. Monthly Volume (UK)</th><th>Win Probability</th></tr></thead>
-      <tbody>
-        <tr><td>/wholesale</td><td>wholesale chai UK, chai supplier for cafes</td><td>~720</td><td><span class="tag tag-good">High · M4–M6</span></td></tr>
-        <tr><td>/wholesale/london</td><td>wholesale chai London, chai latte mix London</td><td>~290</td><td><span class="tag tag-good">High · M4–M6</span></td></tr>
-        <tr><td>/wholesale/manchester</td><td>wholesale chai Manchester</td><td>~110</td><td><span class="tag tag-good">High · M6–M9</span></td></tr>
-        <tr><td>/wholesale/brighton</td><td>specialty chai Brighton cafe supplier</td><td>~70</td><td><span class="tag tag-gold">Medium · M6–M9</span></td></tr>
-        <tr><td>/wholesale/edinburgh</td><td>chai supplier Scotland, wholesale chai Edinburgh</td><td>~80</td><td><span class="tag tag-gold">Medium · M6–M9</span></td></tr>
-        <tr><td>/chai-for-wellness</td><td>Ayurvedic chai, chai benefits, chai ritual</td><td>~1,900</td><td><span class="tag tag-gold">Medium · M6–M9</span></td></tr>
-        <tr><td>/authentic-masala-chai</td><td>authentic masala chai UK, real Indian chai</td><td>~1,200</td><td><span class="tag tag-gold">Medium · M6–M9</span></td></tr>
-        <tr><td>/the-book-of-chai</td><td>book of chai, mira manek book, chai history book</td><td>~2,400</td><td><span class="tag tag-good">High · M3–M6</span></td></tr>
-        <tr><td>/golden-chai</td><td>turmeric chai, golden chai latte, Ayurvedic turmeric drink</td><td>~880</td><td><span class="tag tag-gold">Medium · M6–M9</span></td></tr>
-        <tr><td>/chai-gift-sets</td><td>chai gift set UK, Diwali gift box, Christmas tea gift</td><td>~520 (seasonal spike)</td><td><span class="tag tag-good">High · Oct–Dec seasonal</span></td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout">
-      <div class="callout-title">Anti-pattern warning — avoid the siteQualityStddev trap</div>
-      <p>Do NOT duplicate one /wholesale page and swap city names. Every city page must have genuine local content: 2–3 cafe-partner mentions from that city, a local map embed, city-specific shipping/delivery copy, and ideally one photo of a local cafe using the chai. Duplicated-with-swap pages triggered Google's March 2024 Core Update site-quality penalty across thousands of SMB sites. We do it right or we don't do it.</p>
-    </div>
-
-    <h3>4.4 — Content pillar strategy</h3>
-    <p>Six content pillars, each with 6–10 hub articles feeding into commercial pages via internal linking. Every pillar ladders up to either a cafe-signup or a D2C purchase.</p>
-    <div class="grid-3">
-      <div class="card">
-        <div class="card-sub">Pillar 01</div>
-        <div class="card-title">The Chai Ritual</div>
-        <p>Morning chai, afternoon chai, evening chai, how to make chai (the right way), chai preparation myths. Feeds → D2C product pages.</p>
-      </div>
-      <div class="card">
-        <div class="card-sub">Pillar 02</div>
-        <div class="card-title">Benefits of Spices (Ayurvedic angle)</div>
-        <p>Cinnamon, cardamom, ginger, nutmeg, clove, pepper — one hub article per spice + combined "six spices" master. Feeds → /chai-for-wellness + product.</p>
-      </div>
-      <div class="card">
-        <div class="card-sub">Pillar 03</div>
-        <div class="card-title">Chai History &amp; Heritage</div>
-        <p>The Indianisation of tea, Gujarati chai tradition, the colonial tea trade — hub articles sourced from The Book of Chai. Feeds → /the-book-of-chai.</p>
-      </div>
-      <div class="card">
-        <div class="card-sub">Pillar 04</div>
-        <div class="card-title">Recipes (Chai Beyond the Cup)</div>
-        <p>Chai crème brûlée, chai oats, chai banana bread, chai French toast — Recipe schema marked up. Feeds → product + retention emails.</p>
-      </div>
-      <div class="card">
-        <div class="card-sub">Pillar 05</div>
-        <div class="card-title">For Cafe Owners (B2B content)</div>
-        <p>How to put chai on your menu, chai latte vs dirty chai, prep training videos, margin calculator, menu design. Feeds → /wholesale.</p>
-      </div>
-      <div class="card">
-        <div class="card-sub">Pillar 06</div>
-        <div class="card-title">Mira's Notebook (Founder IP)</div>
-        <p>Long-form writing, travel stories, guest posts, podcast transcripts. Ladders personal-brand authority into chaibymira.com SEO.</p>
-      </div>
-    </div>
-
-    <h3>4.5 — Schema layer: what to deploy</h3>
-    <table>
-      <thead><tr><th>Schema Type</th><th>Where</th><th>What It Unlocks</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Organization</strong></td><td>Homepage, site-wide</td><td>Knowledge panel eligibility, logo in SERP, sameAs linking to social</td></tr>
-        <tr><td><strong>Product + AggregateRating</strong></td><td>Every /store product page</td><td>Price, availability, star ratings in Google Shopping + organic SERP</td></tr>
-        <tr><td><strong>Person</strong></td><td>About page + Mira bio blocks</td><td>Author entity — feeds E-E-A-T, pulls Mira into Knowledge Graph</td></tr>
-        <tr><td><strong>Book</strong></td><td>/the-book-of-chai</td><td>Book rich results — cover, author, publisher, ISBN, rating</td></tr>
-        <tr><td><strong>Recipe</strong></td><td>Every /recipes/[slug]</td><td>Recipe carousel in Google Search + Discover</td></tr>
-        <tr><td><strong>FAQPage</strong></td><td>Product pages, /wholesale, /chai-for-wellness</td><td>FAQ rich snippets — 2–3x SERP real estate</td></tr>
-        <tr><td><strong>BreadcrumbList</strong></td><td>Every non-homepage</td><td>Breadcrumb in SERP instead of URL — higher CTR</td></tr>
-        <tr><td><strong>LocalBusiness (per stockist)</strong></td><td>Stockist sub-pages if built</td><td>Local pack eligibility for "chai near me" searches</td></tr>
-        <tr><td><strong>Article + author</strong></td><td>Every blog / pillar article</td><td>Google News / Discover eligibility; author entity reinforcement</td></tr>
-      </tbody>
-    </table>
-
-    <h3>4.6 — Off-page &amp; E-E-A-T</h3>
-    <ul>
-      <li><strong>PR leverage through the book:</strong> pitch Mira for Stylist, Refinery29, Women's Health, The Independent, BBC Good Food, Vogue India (food / heritage / wellness angles). One piece of national press = 6 months of content marketing.</li>
-      <li><strong>Podcast guest rotation:</strong> target 12 podcasts in 12 months — wellness (Feel Better Live More, Deliciously Ella, The Doctor's Kitchen), South Asian (Brown Girl Podcast, Masala Podcast), food (The Food Programme, BBC).</li>
-      <li><strong>Stockist backlink reclamation:</strong> email all 300 cafe partners asking for a "we use Chai by Mira" mention + link on their site. Even 15% conversion = 45 high-trust editorial links.</li>
-      <li><strong>Recipe syndication:</strong> submit recipes to BBC Good Food, Delicious Magazine, The Happy Pear, Pinterest's featured recipes — each drives referral + builds domain authority.</li>
-      <li><strong>Digital PR hooks:</strong> British Chai Census (survey data), "Which UK cafe makes the best chai?" awards, National Chai Day (Sept 21) activation — built for press pickup.</li>
-      <li><strong>Diaspora + wellness creator partnerships:</strong> micro-creators (5k–50k followers) with Reels-first content. Five partnerships per quarter at £100–300 each = £2k seeded into organic reach.</li>
-    </ul>
-
-    <h3>4.7 — Technical stack</h3>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Core Web Vitals</div>
-        <ul>
-          <li>LCP under 2.5s on all landing pages (Squarespace hero images are the main culprit — compress + lazy-load)</li>
-          <li>CLS under 0.1 — current Squarespace theme shifts hero text after font-load; needs font preload</li>
-          <li>INP under 200ms — add-to-cart should fire within 200ms of click</li>
-          <li>Mobile-first audit every quarter — 68% of UK D2C traffic is mobile</li>
+    <div class="sec-num">02 — Our Audit Services</div>
+    <h2 id="services-heading">Five Audits. <span class="accent">One Complete Picture.</span></h2>
+    <p class="sec-lede">Each audit is a standalone deep-dive — or combine them for a full-stack digital health check. Every audit is hand-crafted by our specialists, not auto-generated by a tool.</p>
+    <div class="grid-2" style="margin-top:32px;">
+      <div class="audit-card">
+        <div class="audit-icon">🔍</div>
+        <div class="audit-title">SEO Audit</div>
+        <p class="audit-desc">A forensic look at your website's search performance — from crawlability to content quality to authority signals. We map exactly why you're not ranking and what it will take to get there.</p>
+        <ul class="audit-list">
+          <li>Technical SEO — crawl errors, indexation, Core Web Vitals</li>
+          <li>On-page analysis — title tags, meta, H-tags, schema</li>
+          <li>Content quality &amp; keyword gap analysis</li>
+          <li>Backlink profile &amp; domain authority review</li>
+          <li>Competitor benchmarking &amp; quick-win identification</li>
         </ul>
       </div>
-      <div class="card">
-        <div class="card-title">Indexation hygiene</div>
-        <ul>
-          <li>robots.txt must reference sitemap.xml explicitly</li>
-          <li>Squarespace default creates /config and /search URLs — noindex them</li>
-          <li>Cross-canonical between miramanek.com and chaibymira.com to avoid self-competition</li>
-          <li>Monthly Search Console coverage audit — fix Discovered / Crawled-not-indexed in 14 days</li>
+      <div class="audit-card">
+        <div class="audit-icon">📊</div>
+        <div class="audit-title">Google Ads Audit</div>
+        <p class="audit-desc">We review your entire Google Ads account structure — campaigns, ad groups, keywords, bids, and conversion tracking — to find where your budget is leaking and where opportunity is being missed.</p>
+        <ul class="audit-list">
+          <li>Account structure &amp; campaign organisation review</li>
+          <li>Keyword match types, negatives &amp; search term analysis</li>
+          <li>Ad copy relevance &amp; Quality Score assessment</li>
+          <li>Bidding strategy &amp; budget allocation review</li>
+          <li>Conversion tracking setup &amp; attribution audit</li>
         </ul>
       </div>
-    </div>
-
-    <h3>4.8 — SEO 12-month timeline</h3>
-    <div class="timeline-phase">
-      <div class="timeline-label">Phase 01 · Months 1–2</div>
-      <div class="timeline-h">Foundation — fix the bleeding</div>
-      <ul>
-        <li>Rewrite homepage + all product page titles / H1s / meta descriptions</li>
-        <li>Build /wholesale, /wholesale/london, /the-book-of-chai, /golden-chai landing pages</li>
-        <li>Deploy Product, Organization, Person, Book, Recipe, FAQ schema</li>
-        <li>Fix product URL slugs (301 redirects from old gibberish slugs)</li>
-        <li>Submit cleaned sitemap + reclaim Search Console + set up weekly monitoring</li>
-      </ul>
-    </div>
-    <div class="timeline-phase alt-marker">
-      <div class="timeline-label">Phase 02 · Months 3–5</div>
-      <div class="timeline-h">Content engine + authority</div>
-      <ul>
-        <li>Publish 12 pillar hub articles (2 per pillar, except Mira's Notebook which is continuous)</li>
-        <li>Launch stockist backlink reclamation campaign — target 45 links</li>
-        <li>Pitch Mira to 6 podcasts — land 3 appearances</li>
-        <li>Build 3 more wholesale-city pages (Manchester, Brighton, Edinburgh)</li>
-        <li>Begin recipe schema rollout across all existing recipes (30+ recipes)</li>
-      </ul>
-    </div>
-    <div class="timeline-phase">
-      <div class="timeline-label">Phase 03 · Months 6–8</div>
-      <div class="timeline-h">Scale + digital PR wave</div>
-      <ul>
-        <li>British Chai Census / digital PR campaign — target 8 national press pickups</li>
-        <li>Launch /chai-for-wellness and /authentic-masala-chai as ranked pillar destinations</li>
-        <li>USA landing experience: add /us or ISO-redirect for US traffic with USD pricing</li>
-        <li>12 more pillar articles — targeting long-tail + Ayurvedic queries</li>
-      </ul>
-    </div>
-    <div class="timeline-phase alt-marker">
-      <div class="timeline-label">Phase 04 · Months 9–12</div>
-      <div class="timeline-h">Defend + compound</div>
-      <ul>
-        <li>Christmas / Diwali gift-set SEO push: /chai-gift-sets as evergreen + seasonal content</li>
-        <li>Book-tour content — every bookshop signing becomes a local SEO asset</li>
-        <li>Competitor gap sweep — audit Amala, Dishoom, Pukka quarterly; reclaim lost positions</li>
-        <li>Begin planning Year 2 expansion: USA /wholesale motion, German / EU evaluation</li>
-      </ul>
-    </div>
-
-    <h3>4.9 — SEO-specific KPIs</h3>
-    <table class="table-compact">
-      <thead><tr><th>KPI</th><th>Baseline (M0)</th><th>M3</th><th>M6</th><th>M9</th><th>M12</th></tr></thead>
-      <tbody>
-        <tr><td>Organic sessions / month</td><td>~2,800</td><td>4,200</td><td>7,500</td><td>12,000</td><td>18,000</td></tr>
-        <tr><td>Organic orders / month (D2C)</td><td>~35</td><td>60</td><td>110</td><td>180</td><td>260</td></tr>
-        <tr><td>Organic wholesale enquiries / mo</td><td>~3</td><td>6</td><td>12</td><td>20</td><td>30</td></tr>
-        <tr><td>Keywords ranking top 10</td><td>~45</td><td>95</td><td>180</td><td>280</td><td>400</td></tr>
-        <tr><td>Keywords ranking top 3</td><td>~8</td><td>20</td><td>45</td><td>80</td><td>120</td></tr>
-        <tr><td>Referring domains (backlinks)</td><td>~85</td><td>115</td><td>160</td><td>220</td><td>300</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ========================= 05 PERFORMANCE MARKETING ========================= -->
-<section id="perf">
-  <div class="container">
-    <div class="sec-num">05 · Performance Marketing Plan</div>
-    <h2>£800 a month, <span class="accent-alt">working hard.</span></h2>
-    <p class="sec-lede">At £800/month, every pound needs a job. We split three ways — by platform, by geography, by motion — and every campaign fires on a bottom-funnel trigger (sample request, abandoned cart, first-order conversion). No awareness campaigns. No boosted posts. If it doesn't move a specific pipeline number, it doesn't exist.</p>
-
-    <h3>5.1 — Monthly budget split by platform</h3>
-    <div class="budget-bar">
-      <div class="budget-seg" style="width:40%; background:#2B5EDD;">Google · 40%</div>
-      <div class="budget-seg" style="width:40%; background:#F97316;">Meta · 40%</div>
-      <div class="budget-seg" style="width:12%; background:#0B1220;">LinkedIn · 12%</div>
-      <div class="budget-seg light" style="width:8%; background:#E5E8EF;">Creator · 8%</div>
-    </div>
-    <table class="table-compact">
-      <thead><tr><th>Platform</th><th>% of Monthly</th><th>Monthly Spend</th><th>Annual Spend</th><th>Primary Role</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Google Ads</strong> (Search + Shopping)</td><td>40%</td><td>£320</td><td>£3,840</td><td>High-intent capture — wholesale queries + D2C branded + Shopping</td></tr>
-        <tr><td><strong>Meta Ads</strong> (IG + FB)</td><td>40%</td><td>£320</td><td>£3,840</td><td>D2C ritualist + diaspora + cafe-owner interest targeting + retargeting</td></tr>
-        <tr><td><strong>LinkedIn Ads</strong></td><td>12%</td><td>£96</td><td>£1,152</td><td>Group-chain cafe buyers, hotel F&amp;B managers, Soho House-tier decision-makers</td></tr>
-        <tr><td><strong>Creator / PR / Misc</strong></td><td>8%</td><td>£64</td><td>£768</td><td>Micro-creator seeding (free product + £20–50 boost), Pinterest pins, tool stack</td></tr>
-        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>£800</strong></td><td><strong>£9,600</strong></td><td>—</td></tr>
-      </tbody>
-    </table>
-
-    <h3>5.2 — Budget split by geography</h3>
-    <div class="budget-bar">
-      <div class="budget-seg" style="width:50%; background:#2B5EDD;">London · 50%</div>
-      <div class="budget-seg" style="width:35%; background:#F97316;">Rest of UK · 35%</div>
-      <div class="budget-seg" style="width:15%; background:#0B1220;">USA (seed) · 15%</div>
-    </div>
-    <table class="table-compact">
-      <thead><tr><th>Geography</th><th>% of Monthly</th><th>Monthly Spend</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr><td><strong>London</strong></td><td>50%</td><td>£400</td><td>B2B anchor (most existing cafes + highest concentration of prospects) + highest-density D2C wellness audience</td></tr>
-        <tr><td><strong>Rest of UK</strong></td><td>35%</td><td>£280</td><td>Manchester, Brighton, Edinburgh, Bristol, Birmingham — next 150 cafes live here; D2C shipping already covers</td></tr>
-        <tr><td><strong>USA (seed)</strong></td><td>15%</td><td>£120</td><td>D2C-only. Seed spend M4 onwards, targeting diaspora + wellness in NYC, LA, Chicago. Proves economics before scaling Y2.</td></tr>
-        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>£800</strong></td><td>—</td></tr>
-      </tbody>
-    </table>
-
-    <h3>5.3 — Budget split by motion</h3>
-    <p>Three motions, each with its own target CPA / CPL and its own annual purchase / partnership target.</p>
-    <table>
-      <thead><tr><th>Motion</th><th>% of Monthly</th><th>Monthly Spend</th><th>Annual Spend</th><th>Target CPA / CPL</th><th>Annual Target</th></tr></thead>
-      <tbody>
-        <tr><td><strong>B2B Wholesale (UK cafes)</strong></td><td>70%</td><td>£560</td><td>£6,720</td><td>£28 per sample-request lead</td><td>150 net-new cafes (avg £1,800 LTV each)</td></tr>
-        <tr><td><strong>D2C UK</strong></td><td>22%</td><td>£180</td><td>£2,160</td><td>£14 per first-order customer</td><td>~1,800 new D2C customers</td></tr>
-        <tr><td><strong>D2C USA (seed, M4+)</strong></td><td>8%</td><td>£60 (M4+)</td><td>£540 (9 months)</td><td>£25 per first-order customer</td><td>~220 new US D2C customers</td></tr>
-        <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>£800</strong></td><td><strong>£9,420</strong></td><td>—</td><td>~2,170 customers + 150 cafes</td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout callout-orange">
-      <div class="callout-title">How to read these numbers</div>
-      <p>Target CPAs are <strong>starting benchmarks</strong>, not steady-state. Real CPAs in M1–M2 will run 1.8–2.5x higher while we learn. Steady-state is achievable by M4–M6 once pixels are trained, audiences are seeded, and creative has won through. Plan cash flow accordingly — don't judge M1 spend by M6 economics.</p>
-    </div>
-
-    <h3>5.4 — Motion-by-motion campaign blueprint</h3>
-
-    <!-- MOTION 1: B2B WHOLESALE -->
-    <div class="course-box">
-      <div class="course-head">
-        <div class="course-name">Motion 01 · B2B Wholesale — Cafe Partner Acquisition</div>
-        <div class="course-meta">£560/mo · 70% of budget · Target CPL £28 · 150 cafes Y1</div>
+      <div class="audit-card">
+        <div class="audit-icon">📱</div>
+        <div class="audit-title">Social Media Audit</div>
+        <p class="audit-desc">A channel-by-channel review of your social media presence — content strategy, engagement patterns, profile optimisation, and competitive positioning across Instagram, LinkedIn, and more.</p>
+        <ul class="audit-list">
+          <li>Profile completeness &amp; branding consistency check</li>
+          <li>Content pillars, frequency &amp; format analysis</li>
+          <li>Engagement rate benchmarking vs competitors</li>
+          <li>Audience demographics &amp; growth trend review</li>
+          <li>Hook strategy, CTA usage &amp; hashtag performance</li>
+        </ul>
       </div>
-      <div class="course-body">
-        <div class="course-split">
-          <div>
-            <h4>Google Ads Structure</h4>
-            <ul>
-              <li><strong>Search — London Wholesale Intent:</strong> "wholesale chai London", "chai supplier London", "chai latte mix for cafes"</li>
-              <li><strong>Search — UK Wholesale Intent:</strong> "wholesale chai UK", "chai supplier UK", "buy chai wholesale"</li>
-              <li><strong>Search — B2B long-tail:</strong> "chai for coffee shops", "specialty chai supplier", "masala chai wholesale"</li>
-              <li><strong>Search — Competitor terms:</strong> "Amala Chai alternative", "Dishoom chai kit wholesale"</li>
-              <li><strong>Performance Max</strong> — activate only after 15 /wholesale form fills for AI audience training</li>
-              <li><strong>Display Remarketing</strong> — 30-day visitors to /wholesale with "Free sample in the post" creative</li>
-            </ul>
-            <h4>Top 10 B2B Keywords (UK)</h4>
-            <ul>
-              <li>wholesale chai UK — ~720/mo</li>
-              <li>chai supplier London — ~290/mo</li>
-              <li>chai latte wholesale — ~410/mo</li>
-              <li>masala chai wholesale UK — ~210/mo</li>
-              <li>chai for cafes — ~170/mo</li>
-              <li>chai supplier for coffee shops — ~140/mo</li>
-              <li>specialty chai UK — ~320/mo</li>
-              <li>chai latte powder wholesale — ~180/mo</li>
-              <li>buy chai wholesale — ~240/mo</li>
-              <li>chai supplier Manchester — ~110/mo</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Sample Responsive Search Ad</h4>
-            <div class="ad-copy">
-              <span class="h">H1: Wholesale Chai for UK Cafes</span>
-              <span class="h">H2: Used by Soho House &amp; Mildreds</span>
-              <span class="h">H3: 300+ UK Cafes Serve Our Chai</span>
-              <span class="h">H4: Free Sample in the Post</span>
-              <span class="h">H5: No Tea Bags. Real Spice Blend.</span>
-              <span class="h">H6: Strong Margins, Simple Prep</span>
-              <span class="h">H7: From Mira — Author &amp; Chai Maker</span>
-              <span class="h">H8: Serve Chai Your Customers Ask For</span>
-              <span class="d">D1: Add authentic masala chai to your menu. Coconut sugar, six spices, zero refined sugar. Staff-simple prep. Free 2-cup sample.</span>
-              <span class="d">D2: Trusted by Soho House, Mildreds, Foyles, Muriel's Kitchen &amp; 290+ other UK cafes. Request samples today.</span>
-              <span class="d">D3: Competitive wholesale margins. Dedicated trade support from our team. Delivery across the UK in 2–3 days.</span>
-              <span class="u">chaibymira.com/wholesale · Email trade@chaibymira.com</span>
-            </div>
-            <h4>Meta Ads Structure (B2B)</h4>
-            <ul>
-              <li><strong>Top-Funnel (Video views):</strong> "Life at 300 cafes" sizzle reel targeting hospitality interest + cafe owner lookalike</li>
-              <li><strong>Mid-Funnel (Lead):</strong> Soho House / Mildreds testimonial reel → Lead Form (sample request)</li>
-              <li><strong>Bottom-Funnel (Conversion):</strong> /wholesale retargeting with "Free sample in 48h" creative</li>
-              <li><strong>Retargeting:</strong> Engagement + video-50%-view audiences; offer cafe partner welcome kit</li>
-            </ul>
-            <h4>Conversion Events (priority order)</h4>
-            <ol>
-              <li>Sample Request submitted (value: £28 per lead)</li>
-              <li>First wholesale order placed (value: £200)</li>
-              <li>Pixel fire on /wholesale page view (value: £3 — for audience building only)</li>
-            </ol>
-          </div>
-        </div>
+      <div class="audit-card">
+        <div class="audit-icon">✍️</div>
+        <div class="audit-title">Content Audit</div>
+        <p class="audit-desc">We inventory and evaluate all your existing content — blogs, landing pages, videos — to identify what's performing, what needs updating, what should be retired, and what gaps exist.</p>
+        <ul class="audit-list">
+          <li>Full content inventory &amp; performance mapping</li>
+          <li>Content gap analysis vs search intent</li>
+          <li>Thin, duplicate &amp; cannibalising content flagging</li>
+          <li>Funnel alignment — TOFU / MOFU / BOFU coverage</li>
+          <li>Content refresh &amp; consolidation recommendations</li>
+        </ul>
       </div>
-    </div>
-
-    <!-- MOTION 2: D2C UK -->
-    <div class="course-box">
-      <div class="course-head">
-        <div class="course-name">Motion 02 · D2C UK — Wellness Ritualist + Diaspora</div>
-        <div class="course-meta">£180/mo · 22% of budget · Target CPA £14 · ~1,800 new customers Y1</div>
-      </div>
-      <div class="course-body">
-        <div class="course-split">
-          <div>
-            <h4>Google Ads Structure</h4>
-            <ul>
-              <li><strong>Search — Brand Defence:</strong> "chai by mira", "mira manek chai" (low CPC, catches branded intent)</li>
-              <li><strong>Search — Category:</strong> "masala chai powder UK", "authentic chai blend", "chai latte mix UK"</li>
-              <li><strong>Shopping — Standard:</strong> all 3 SKUs + The Book of Chai</li>
-              <li><strong>Shopping — Seasonal Push:</strong> Christmas gift sets (Nov–Dec), Diwali (Oct), Mother's Day (Mar)</li>
-              <li><strong>YouTube — Skippable:</strong> 6s bumper of Mira pouring chai → /store (M6+ only, after pixel is trained)</li>
-            </ul>
-            <h4>Top 10 D2C Keywords (UK)</h4>
-            <ul>
-              <li>masala chai UK — ~890/mo</li>
-              <li>authentic chai blend — ~480/mo</li>
-              <li>chai by mira — ~720/mo (brand)</li>
-              <li>best chai UK — ~1,100/mo</li>
-              <li>Ayurvedic chai — ~320/mo</li>
-              <li>golden chai turmeric — ~410/mo</li>
-              <li>chai gift set UK — ~520/mo (seasonal)</li>
-              <li>chai spice powder — ~340/mo</li>
-              <li>Gujarati chai — ~180/mo</li>
-              <li>book of chai mira manek — ~640/mo</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Sample Responsive Search Ad</h4>
-            <div class="ad-copy">
-              <span class="h">H1: Authentic Masala Chai Blend</span>
-              <span class="h">H2: No Refined Sugar. Six Spices.</span>
-              <span class="h">H3: As Used by Soho House &amp; Mildreds</span>
-              <span class="h">H4: From Mira Manek, Author &amp; Maker</span>
-              <span class="h">H5: Ayurvedic Ritual in Every Cup</span>
-              <span class="h">H6: Vegan, Dairy-Free, Gluten-Free</span>
-              <span class="h">H7: UK Delivery · Free Over £30</span>
-              <span class="h">H8: 15% Off Your First Order</span>
-              <span class="d">D1: Six spices. Coconut sugar. No refined sugar. The chai blend used by 300 UK cafes, now made for your home ritual.</span>
-              <span class="d">D2: Handcrafted by Mira Manek — chef, Ayurvedic wellness author, and founder of Chai by Mira. Three books. One authentic blend.</span>
-              <span class="d">D3: Sign up for 15% off your first order. Free UK shipping over £30.</span>
-              <span class="u">chaibymira.com/store · 4.9★ from 400+ reviews</span>
-            </div>
-            <h4>Meta Ads Structure (D2C)</h4>
-            <ul>
-              <li><strong>Top-Funnel:</strong> Mira's kitchen-lifestyle reel → Wellness interest, Pukka lookalike audience</li>
-              <li><strong>Mid-Funnel:</strong> Founder-story carousel + customer reviews → /store visitors + video 50% viewers</li>
-              <li><strong>Bottom-Funnel:</strong> "15% off your first order" → 30-day site visitors + cart abandoners</li>
-              <li><strong>Retargeting:</strong> 3-day cart abandoners with "still thinking?" creative + free-shipping threshold nudge</li>
-            </ul>
-            <h4>Conversion Events (priority order)</h4>
-            <ol>
-              <li>Purchase (value: AOV ~£28)</li>
-              <li>Initiate Checkout (value: £8 — for audience building)</li>
-              <li>Add to Cart (value: £4)</li>
-              <li>View Product (value: £1 — audience only)</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MOTION 3: D2C USA SEED -->
-    <div class="course-box">
-      <div class="course-head">
-        <div class="course-name">Motion 03 · D2C USA Seed — M4 onwards</div>
-        <div class="course-meta">£60/mo (ramp) · 8% of budget · Target CPA £25 · ~220 customers Y1</div>
-      </div>
-      <div class="course-body">
-        <div class="course-split">
-          <div>
-            <h4>Google Ads Structure (US)</h4>
-            <ul>
-              <li><strong>Search — Brand + Diaspora:</strong> "Indian masala chai USA delivery", "authentic Gujarati chai USA"</li>
-              <li><strong>Search — Book hook:</strong> "book of chai USA", "mira manek chai" (leverages book sales on US Amazon)</li>
-              <li><strong>Shopping:</strong> USD pricing, target NY / LA / Chicago / SF first-tier metros only</li>
-              <li><strong>Do NOT activate Performance Max until 30+ US orders</strong> — too little data will burn budget</li>
-            </ul>
-            <h4>Strategic Considerations (US)</h4>
-            <ul>
-              <li><strong>Shipping/fulfilment</strong> is the primary constraint — a £25 product with £12 shipping converts at 3x lower rate than UK. Solve ops first, ads second.</li>
-              <li>Test <strong>Amazon US</strong> as a secondary D2C channel in M6+ — lower friction for US buyers than UK shipping</li>
-              <li>Consider <strong>US-based 3PL</strong> partnership by M9 if monthly US orders exceed 60 — unlocks USA-speed shipping</li>
-              <li>Book tour / podcast PR in US should precede paid ads, not lag behind</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Sample Responsive Search Ad (US)</h4>
-            <div class="ad-copy">
-              <span class="h">H1: Authentic Indian Masala Chai</span>
-              <span class="h">H2: From London to Your Kitchen</span>
-              <span class="h">H3: Shipped to the USA in 4–6 Days</span>
-              <span class="h">H4: By Mira Manek, Author of Chai</span>
-              <span class="h">H5: Six Spices. No Refined Sugar.</span>
-              <span class="h">H6: Gujarati Family Recipe</span>
-              <span class="h">H7: Free Shipping Over $45</span>
-              <span class="h">H8: 15% Off Your First Order</span>
-              <span class="d">D1: Real masala chai — the way a Gujarati kitchen makes it. Six spices, coconut sugar, no refined sugar, no compromise.</span>
-              <span class="d">D2: Handcrafted by Mira Manek — author of The Book of Chai (Headline Publishing). Shipped from London to your door.</span>
-              <span class="d">D3: 15% off your first order with code HOME15. Free US shipping on orders over $45.</span>
-              <span class="u">chaibymira.com/us · Shipped worldwide</span>
-            </div>
-            <h4>Meta Ads Structure (US)</h4>
-            <ul>
-              <li><strong>Top-Funnel:</strong> Founder-diaspora reel → South Asian diaspora lookalike + wellness US audience</li>
-              <li><strong>Mid-Funnel:</strong> "Gujarati mom tastes Chai by Mira" reaction content → engaged users</li>
-              <li><strong>Bottom-Funnel:</strong> 15% off + free-shipping-threshold creative → 30-day US visitors</li>
-              <li><strong>Retargeting:</strong> Cart abandoners only — US organic audiences too small to split further early on</li>
-            </ul>
-            <h4>Conversion Events (priority order)</h4>
-            <ol>
-              <li>Purchase — US buyer (value: $35)</li>
-              <li>Initiate Checkout (value: $10)</li>
-              <li>Country/GEO signal detection on /us landing (for audience seeding only)</li>
-            </ol>
-          </div>
+      <div class="audit-card" style="grid-column:1/-1;">
+        <div class="audit-icon">⚡</div>
+        <div class="audit-title">Website Performance &amp; UX Audit</div>
+        <p class="audit-desc">Speed, usability, and conversion rate optimisation — we assess your website's technical performance and user experience to identify friction points costing you conversions, even if your traffic is healthy.</p>
+        <div class="grid-3" style="margin-top:18px;">
+          <ul class="audit-list">
+            <li>Page speed &amp; Core Web Vitals (LCP, CLS, FID)</li>
+            <li>Mobile responsiveness across devices</li>
+          </ul>
+          <ul class="audit-list">
+            <li>Navigation, site structure &amp; UX flow review</li>
+            <li>CTA placement, form usability &amp; trust signals</li>
+          </ul>
+          <ul class="audit-list">
+            <li>Analytics &amp; tracking implementation check</li>
+            <li>Heatmap &amp; user behaviour analysis</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========================= 06 CREATIVE ========================= -->
-<section id="creative" class="alt">
+<section id="process" aria-labelledby="process-heading">
   <div class="container">
-    <div class="sec-num">06 · Creative &amp; Remarketing Strategy</div>
-    <h2>Heritage over <span class="accent-alt">hustle-ad energy.</span></h2>
-    <p class="sec-lede">Chai by Mira's creative cannot look like a D2C brand chasing ROAS. It has to look like a publishing-grade founder brand whose product happens to be chai. That means: Mira at the centre, warm tones, slow pacing, film grain, not Canva templates. Every ad ends on the same earned signals — the book, the 300 cafes, the heritage — not on a limited-time 30% off.</p>
-
-    <h3>6.1 — The four creative pillars</h3>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-sub">Pillar 01</div>
-        <div class="card-title">Life at Chai by Mira — Lifestyle &amp; Ritual</div>
-        <p>POV of Mira's day, her kitchen, her cafe partners, her recipe testing. Unscripted, handheld, warm-lit. Goal: self-identification by the ritualist and diaspora personas.</p>
+    <div class="sec-num">03 — Our Process</div>
+    <h2 id="process-heading">How a <span class="accent">Kerkar Media Audit</span> Works</h2>
+    <p class="sec-lede">From brief to delivery, here's exactly what happens when you commission an audit from us.</p>
+    <div style="max-width:760px;margin-top:40px;">
+      <div class="timeline-phase">
+        <div class="timeline-label">Step 01 — Day 1</div>
+        <div class="timeline-h">Discovery &amp; Access</div>
+        <p>We send you a simple onboarding form to collect access credentials — Google Analytics, Search Console, Ads account, social profiles. No unnecessary back-and-forth. You fill it once, we handle the rest.</p>
       </div>
-      <div class="card">
-        <div class="card-sub">Pillar 02</div>
-        <div class="card-title">Transformation &amp; Outcome proof</div>
-        <p>Cafe partner spotlights. "We switched from tea bags to Chai by Mira" testimonials. Customer receipts and reviews. Converts both B2B sceptics and D2C fence-sitters.</p>
+      <div class="timeline-phase p2">
+        <div class="timeline-label">Step 02 — Days 2–5</div>
+        <div class="timeline-h">Deep-Dive Analysis</div>
+        <p>Our specialists go through every data point — crawl logs, ad account history, content performance, social analytics. We benchmark against your competitors and industry standards. Everything is manually reviewed, not auto-generated.</p>
       </div>
-      <div class="card">
-        <div class="card-sub">Pillar 03</div>
-        <div class="card-title">Founder IP &amp; Heritage</div>
-        <p>Mira reading from The Book of Chai. Nani's village memory stories. Spice explainers in 60 seconds. Double-duty: organic YT Shorts + paid Meta Reels. The compounding engine.</p>
+      <div class="timeline-phase p3">
+        <div class="timeline-label">Step 03 — Days 5–7</div>
+        <div class="timeline-h">Report &amp; Roadmap Creation</div>
+        <p>Findings are compiled into a structured audit report with a prioritised action roadmap. Every issue is assigned a severity level (Critical / High / Medium) and paired with a specific, actionable recommendation.</p>
       </div>
-      <div class="card">
-        <div class="card-sub">Pillar 04</div>
-        <div class="card-title">Category Education &amp; Demand creation</div>
-        <p>"Why Pukka isn't chai." "The history of chai in 3 minutes." "What's actually in a proper masala chai." Educates the market and positions Chai by Mira as the default authority.</p>
+      <div class="timeline-phase p4">
+        <div class="timeline-label">Step 04 — Day 7–8</div>
+        <div class="timeline-h">Walkthrough Call</div>
+        <p>We walk you through the full report on a 30–45 minute video call. You leave the call knowing exactly what to fix, in what order, and why — with a recording shared for your team's reference.</p>
       </div>
-    </div>
-
-    <h3>6.2 — Twelve specific creative concepts to produce</h3>
-    <p>Shot list for Months 01–02 production. Vertical 9:16 master format, horizontal for YouTube mid-roll.</p>
-
-    <div class="concept">
-      <div class="concept-num">01</div>
-      <div>
-        <div class="concept-h">A Day in Mira's Kitchen</div>
-        <div class="concept-meta">Format: Reel + Short · Length: 60–90s · Series: 6 episodes · Pillar 01</div>
-        <p>POV of Mira from morning chai to evening chai. Handheld, no script. Natural light. Goal: self-identification by ritualist. Shot across one week for editorial depth.</p>
-        <div class="concept-hook">"6:47 AM. Kettle on before the kids. This is what a chai ritual actually looks like — not aesthetic, just real."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">02</div>
-      <div>
-        <div class="concept-h">"I Finally Stopped Drinking Pukka" — Customer Confessional Series</div>
-        <div class="concept-meta">Format: Reel · Length: 45–75s · Series: 12 episodes · Pillar 02</div>
-        <p>Solo monologue to camera. Real Chai by Mira customers explain the tea-bag → ritual transition. Shot in their kitchen. No brand frame for the first 20 seconds.</p>
-        <div class="concept-hook">"I'd been drinking Pukka tea bags for five years. Then I tried Mira's blend. I didn't realise how much I'd been settling."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">03</div>
-      <div>
-        <div class="concept-h">The Cafe Partner Wall — Outcome Proof</div>
-        <div class="concept-meta">Format: Reel · Length: 30s · Series: 20 episodes · Pillar 02</div>
-        <p>Static establishing shot of a named cafe partner (Soho House, Mildreds, Muriel's, Foyles). Superimposed text: cafe name, location, how long they've served Chai by Mira. Cut to barista preparing a chai latte with the blend. End on the branded pack on the back bar.</p>
-        <div class="concept-hook">"Soho House. London &amp; Oxfordshire. Serving Chai by Mira since 2021. Still on the menu."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">04</div>
-      <div>
-        <div class="concept-h">The Sceptic Who Changed Her Mind</div>
-        <div class="concept-meta">Format: Reel · Length: 60s · Series: 3–4 episodes · Pillar 02</div>
-        <p>Interview style. A Gujarati auntie / mum / MIL tastes Chai by Mira for the first time and gives an honest verdict. Emotionally weighted. Real, not staged.</p>
-        <div class="concept-hook">"£26 ni packet? Pagal che. Taste kar, pachi bolje." ("£26 a packet? Mad. Taste it first, then talk.")</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">05</div>
-      <div>
-        <div class="concept-h">Mira in 60 — One Spice Per Episode</div>
-        <div class="concept-meta">Format: Short + Reel · Length: 60s · Series: 30+ episodes · Pillar 03</div>
-        <p>Mira explains one spice in 60 seconds — cinnamon, cardamom, ginger, clove, nutmeg, pepper, turmeric. Ayurvedic benefits. Where it comes from. Why it's in the blend. The core content engine — runs organically forever, clipped for paid.</p>
-        <div class="concept-hook">"Cardamom. My grandmother called it the queen of spices. Here's why it matters in your chai."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">06</div>
-      <div>
-        <div class="concept-h">The Real Map of UK Chai — Category Explainer</div>
-        <div class="concept-meta">Format: YouTube long-form · Length: 8–12 min · Pillar 04</div>
-        <p>Mira walks through every chai option on the UK shelf — Pukka, Twinings, Dishoom, Amala, Chai by Mira. Honest. Data-driven. No plug in the first 6 minutes. Becomes the reference URL for every "best chai UK" conversation.</p>
-        <div class="concept-hook">"There are five real ways to drink chai in the UK. Let me walk you through every one — and tell you why most of them aren't actually chai."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">07</div>
-      <div>
-        <div class="concept-h">Homemade vs Chai by Mira — The Blind Taste</div>
-        <div class="concept-meta">Format: YouTube + Reel clips · Length: 10–14 min · Pillar 03</div>
-        <p>Mira makes chai from scratch (15 minutes of prep) next to a cup made with Chai by Mira blend (2 minutes). Then a third generation Gujarati woman tastes both blind. Honest verdict. Ends with soft CTA.</p>
-        <div class="concept-hook">"I've spent 20 years making chai from scratch. This is whether a pre-made blend can beat it. Honestly."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">08</div>
-      <div>
-        <div class="concept-h">The Book of Chai — A Reading Series</div>
-        <div class="concept-meta">Format: YouTube + Reel · Length: 5–7 min · Series: 12 readings · Pillar 03</div>
-        <p>Mira reads one chapter / story from The Book of Chai on camera. "My great-great-grandmother's heirlooms." "A brief history of tea." "Nani's village." Each reading ends with a soft product mention. Lead magnet: free book excerpt PDF in exchange for email.</p>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">09</div>
-      <div>
-        <div class="concept-h">Behind the Back Bar — Cafe Partner Series</div>
-        <div class="concept-meta">Format: Reel · Length: 60s · Series: 20 episodes · Pillar 01</div>
-        <p>Steadicam walk-through of a stockist cafe — the bar, the chai station, the pack, the barista making the drink, the customer ordering. Music-driven, minimal voiceover. Sells physical legitimacy to both personas at once.</p>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">10</div>
-      <div>
-        <div class="concept-h">The Moat — Only Brand With 300 Cafes &amp; a Book</div>
-        <div class="concept-meta">Format: Reel + Carousel · Length: 30s · Pillar 04</div>
-        <p>Split-screen: shelf of UK chai brands on the left, Chai by Mira on the right. Overlay text calls out: "Pukka — no book. Dishoom — no wholesale. Amala — no heritage author. Chai by Mira — all three." Positioning is the hook.</p>
-        <div class="concept-hook">"One brand. Three books. 300 cafes. Nine years. Zero shortcuts."</div>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">11</div>
-      <div>
-        <div class="concept-h">The Book Tour — Annual Flagship Documentary</div>
-        <div class="concept-meta">Format: YouTube mini-doc · Length: 12–15 min · Pillar 02</div>
-        <p>Film Mira's book tour across the UK. Every bookshop signing, every event, every cafe partner meeting. The real people, the real tears, the real press. Becomes the single most convincing asset — for diaspora, for wellness buyers, for journalists.</p>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">12</div>
-      <div>
-        <div class="concept-h">Why Pukka Isn't Chai — The Spice Ratio Truth</div>
-        <div class="concept-meta">Format: FB ad + YouTube pre-roll · Length: 2–3 min · Pillar 04</div>
-        <p>No branded intro for 90 seconds. Mira explains — factually — why tea-bag chai isn't really chai. Spice ratios, bulk manufacturing, colonial simplification. Ends on: "If you want a tea bag, Pukka's fine. If you want chai, I can help." Heaviest hitter for the diaspora persona.</p>
-        <div class="concept-hook">"Chai isn't tea. It never was. Tea is what they did to it in a factory."</div>
-      </div>
-    </div>
-
-    <h3>6.3 — Meta remarketing architecture</h3>
-    <table>
-      <thead><tr><th>Audience</th><th>Source Signal</th><th>Budget Share</th><th>Creative They See</th><th>CTA</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Warm-07</strong></td><td>Site visitors past 7 days, exc. purchasers</td><td>15%</td><td>Abandoned cart specific product reel + review screenshot</td><td>Complete your order (free shipping reminder)</td></tr>
-        <tr><td><strong>Warm-30</strong></td><td>Site visitors past 30 days, exc. purchasers</td><td>10%</td><td>Founder story + "15% off first order"</td><td>Take 15% off — HOME15</td></tr>
-        <tr><td><strong>Video-50</strong></td><td>Watched 50%+ of any Mira Reel past 60 days</td><td>10%</td><td>Customer confessional Reel (Concept 02)</td><td>Try the blend your feed keeps showing you</td></tr>
-        <tr><td><strong>Cafe-Pixel</strong></td><td>Visited /wholesale past 60 days</td><td>25%</td><td>Sample-in-the-post + Soho House / Mildreds testimonial</td><td>Request your free sample (48h)</td></tr>
-        <tr><td><strong>Ritualist Lookalike</strong></td><td>1% LAL of existing UK customers</td><td>25%</td><td>Mira kitchen ritual reel + Ayurvedic framing</td><td>Start your morning ritual</td></tr>
-        <tr><td><strong>Seasonal Gift</strong></td><td>Interest: UK gifts + Indian heritage · Oct–Dec only</td><td>15%</td><td>Chai gift-set carousel + Book of Chai gift pairing</td><td>Order by Dec 15 for Christmas delivery</td></tr>
-      </tbody>
-    </table>
-
-    <h3>6.4 — YouTube remarketing &amp; format playbook</h3>
-    <table class="table-compact">
-      <thead><tr><th>Format</th><th>Length</th><th>Use Case</th><th>Remarketing Audience</th></tr></thead>
-      <tbody>
-        <tr><td><strong>TrueView In-Stream</strong></td><td>30–60s</td><td>Mira-led founder story + product hero</td><td>UK 25–55 wellness + South Asian heritage interests</td></tr>
-        <tr><td><strong>YouTube Shorts Ads</strong></td><td>6–15s</td><td>Spice-of-the-week snippet → /store</td><td>Video-50% viewers + channel subscribers</td></tr>
-        <tr><td><strong>Bumper Ads</strong></td><td>6s</td><td>Brand awareness pulse (Diwali, Christmas, Mother's Day)</td><td>Seasonal gift-purchase affinity audiences</td></tr>
-        <tr><td><strong>Discovery Ads</strong></td><td>Thumbnail + title</td><td>The Real Map of UK Chai (Concept 06) + Reading Series (Concept 08)</td><td>Users who recently searched "best chai UK" / "chai review"</td></tr>
-        <tr><td><strong>Masthead / Homepage</strong></td><td>N/A</td><td>Reserve for book launch / flagship moment only — not routine</td><td>M9+ once pixel and audiences are seasoned</td></tr>
-      </tbody>
-    </table>
-
-    <div class="highlight-box">
-      <h4>The sequence that actually converts — "the ladder"</h4>
-      <p><strong>Day 1:</strong> Ritualist watches Concept 05 (cardamom explainer) on Instagram Reels. <strong>Day 2:</strong> Retargeted with Concept 02 (customer confessional). <strong>Day 4:</strong> Sees Concept 10 (The Moat — book + cafes). <strong>Day 6:</strong> Google searches "chai by mira review" — lands on a 4.9★ product page with founder bio. <strong>Day 7:</strong> Adds to cart, abandons. <strong>Day 9:</strong> Retargeted with 15% first-order discount and free-shipping nudge. <strong>Converts on Day 9.</strong> Six touchpoints. Nine days. <strong>This is what the £800/mo actually buys — not single-click conversions, but compounding sequences.</strong></p>
     </div>
   </div>
 </section>
 
-<!-- ========================= 07 MEASUREMENT ========================= -->
-<section id="measure">
+<section id="deliverables" class="alt" aria-labelledby="deliverables-heading">
   <div class="container">
-    <div class="sec-num">07 · Measurement &amp; KPIs</div>
-    <h2>If we can't measure it, <span class="accent">we won't scale it.</span></h2>
-    <p class="sec-lede">Two motions, two pipelines, two definitions of "conversion". B2B success is a sample-request → first wholesale order → repeat order. D2C success is a site visit → first order → subscription. The tracking stack has to cleanly split both without double-counting, and Mira needs a single-pane Monday dashboard that tells the truth in 30 seconds.</p>
-
-    <h3>7.1 — The tracking stack</h3>
-    <ul>
-      <li><strong>Google Tag Manager</strong> — single source of truth for every event fire. No tag installs outside GTM.</li>
-      <li><strong>GA4</strong> — conversion events (wholesale_sample_request, d2c_purchase, d2c_subscribe, book_downloaded).</li>
-      <li><strong>Meta Pixel + Conversions API (server-side via Shopify/Squarespace)</strong> — iOS 14+ attribution is broken client-side only.</li>
-      <li><strong>Google Ads Enhanced Conversions</strong> — hash-email matching fixes 30–40% of attribution loss.</li>
-      <li><strong>Klaviyo</strong> (recommended) — D2C email / SMS / owned-audience engine. Tag every first-order vs repeat.</li>
-      <li><strong>HubSpot Free CRM</strong> (recommended) — B2B sample-request → wholesale-order pipeline tracking. Free tier is enough for first 12 months.</li>
-      <li><strong>Call tracking</strong> — optional; only if Mira starts fielding direct wholesale calls (CallHippo or Aircall).</li>
-      <li><strong>UTM discipline</strong> — every paid URL parametrised. Every cafe partner invite-email uses a UTM. No naked links.</li>
-    </ul>
-
-    <h3>7.2 — Governance cadence</h3>
-    <table class="table-compact">
-      <thead><tr><th>Cadence</th><th>Owner</th><th>What happens</th></tr></thead>
+    <div class="sec-num">04 — What You Get</div>
+    <h2 id="deliverables-heading">Your <span class="accent-alt">Audit Deliverables</span></h2>
+    <p class="sec-lede">Every Kerkar Media audit comes with a clear, structured set of deliverables — not a generic report dump. Here's exactly what lands in your inbox.</p>
+    <table aria-label="Audit deliverables breakdown">
+      <thead>
+        <tr><th>Deliverable</th><th>Format</th><th>What's Inside</th><th>Included In</th></tr>
+      </thead>
       <tbody>
-        <tr><td><strong>Daily</strong></td><td>Kerkar Media team</td><td>Check spend pacing + disapprovals + pixel health (5 min)</td></tr>
-        <tr><td><strong>Weekly</strong></td><td>Kerkar Media + Mira (Mon 30 min)</td><td>Review prior-week CPA, CPL, sample-requests, D2C orders. Decide creative shifts.</td></tr>
-        <tr><td><strong>Fortnightly</strong></td><td>Kerkar Media</td><td>Creative refresh — retire fatigued ads, add 2 new variants per motion</td></tr>
-        <tr><td><strong>Monthly</strong></td><td>Full team report + Mira strategy call</td><td>Motion-by-motion P&amp;L, pipeline health, SEO movements, next month's plan</td></tr>
-        <tr><td><strong>Quarterly</strong></td><td>Mira + Kerkar leadership</td><td>Reallocate budget across motions based on proven ROAS. Set next-quarter targets.</td></tr>
+        <tr><td><strong>Audit Report</strong></td><td>PDF + HTML</td><td>Full findings, screenshots, data tables, issue log</td><td><span class="tag tag-good">All Audits</span></td></tr>
+        <tr><td><strong>Priority Action Roadmap</strong></td><td>Spreadsheet</td><td>Every issue ranked by impact, effort &amp; urgency with owner column</td><td><span class="tag tag-good">All Audits</span></td></tr>
+        <tr><td><strong>Competitor Benchmark Sheet</strong></td><td>Spreadsheet</td><td>Side-by-side comparison of your metrics vs 3 competitors</td><td><span class="tag tag-med">SEO + Social</span></td></tr>
+        <tr><td><strong>Keyword Gap Analysis</strong></td><td>Spreadsheet</td><td>Keywords competitors rank for that you don't, sorted by opportunity</td><td><span class="tag tag-med">SEO Audit</span></td></tr>
+        <tr><td><strong>Ad Account Scorecard</strong></td><td>PDF</td><td>Campaign-by-campaign performance score with benchmark comparison</td><td><span class="tag tag-med">Ads Audit</span></td></tr>
+        <tr><td><strong>Walkthrough Call Recording</strong></td><td>Video (MP4)</td><td>Full recorded session for team sharing and reference</td><td><span class="tag tag-good">All Audits</span></td></tr>
+        <tr><td><strong>30-Day Quick-Win Checklist</strong></td><td>PDF</td><td>Top 10 changes you can implement immediately for fast results</td><td><span class="tag tag-good">All Audits</span></td></tr>
       </tbody>
     </table>
-
-    <h3>7.3 — The 12 KPIs that matter</h3>
-    <div class="grid-4">
-      <div class="kpi-box">
-        <div class="kpi-lbl">Sample Requests / mo</div>
-        <div class="kpi-val">20</div>
-        <div class="kpi-sub">B2B · by M6</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">New Cafe Partners / mo</div>
-        <div class="kpi-val">12</div>
-        <div class="kpi-sub">B2B · by M6</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Wholesale CPL</div>
-        <div class="kpi-val">£28</div>
-        <div class="kpi-sub">B2B · steady state</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Sample → Order %</div>
-        <div class="kpi-val">60%</div>
-        <div class="kpi-sub">B2B · conversion</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">D2C Orders / mo</div>
-        <div class="kpi-val">320</div>
-        <div class="kpi-sub">UK · by M12</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">D2C CPA</div>
-        <div class="kpi-val">£14</div>
-        <div class="kpi-sub">UK · steady state</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">AOV (UK)</div>
-        <div class="kpi-val">£28</div>
-        <div class="kpi-sub">D2C · first-order</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Subscribe Rate</div>
-        <div class="kpi-val">22%</div>
-        <div class="kpi-sub">D2C · of buyers</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">D2C Repeat Rate</div>
-        <div class="kpi-val">45%</div>
-        <div class="kpi-sub">at 180 days</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Organic Sessions / mo</div>
-        <div class="kpi-val">18K</div>
-        <div class="kpi-sub">by M12</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Email list size</div>
-        <div class="kpi-val">15K</div>
-        <div class="kpi-sub">by M12 (owned)</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Blended ROAS</div>
-        <div class="kpi-val">3.2x</div>
-        <div class="kpi-sub">D2C · by M9</div>
-      </div>
-    </div>
-
-    <div class="callout callout-orange">
-      <div class="callout-title">The silent killer — wholesale response SLA</div>
-      <p>In wholesale B2B, a sample-request contacted within 2 hours is 4x more likely to convert to a first order than one contacted in 24 hours. Before scaling spend: Mira or a trade-ops person MUST commit to a 2-hour weekday SLA. HubSpot auto-responder buys the first 30 minutes; a human follow-up within the next 90 closes the loop. Without that SLA, every £28 CPL is worth 25% of what it should be — and the 150-cafe target halves.</p>
+    <div class="callout-orange callout" style="margin-top:32px;">
+      <div class="callout-title">Full-Stack Audit Bundle</div>
+      <p>Commission all five audits together and receive a unified cross-channel insights report that shows how your SEO, ads, social, content and website performance interact — and where the biggest compounding opportunities lie.</p>
     </div>
   </div>
 </section>
 
-<!-- ========================= 08 TIMELINE ========================= -->
-<section id="timeline" class="alt">
+<section id="who-its-for" aria-labelledby="who-heading">
   <div class="container">
-    <div class="sec-num">08 · 12-Month Execution Roadmap</div>
-    <h2>Month by month, <span class="accent">moving the needle.</span></h2>
-    <p class="sec-lede">This is what £800/month actually does when executed with discipline. Quarterly reallocation is built in — we'll know by M3 which motion is pulling its weight and shift accordingly. No rigid plan survives contact with data; this one is designed to flex.</p>
-
-    <div class="timeline-phase">
-      <div class="timeline-label">Q1 · Month 01 — Foundation Sprint</div>
-      <div class="timeline-h">Fix the bleeding. Build the funnel architecture.</div>
-      <ul>
-        <li>Technical SEO audit + all critical on-page fixes (titles, slugs, meta descriptions)</li>
-        <li>Build /wholesale, /wholesale/london, /the-book-of-chai landing pages</li>
-        <li>Deploy core schema (Product, Organization, Person, Book, FAQPage)</li>
-        <li>GTM + GA4 + Meta Pixel + Conversions API full rebuild</li>
-        <li>HubSpot Free CRM set up — map out the sample-request → first-order workflow</li>
-        <li>Launch B2B Google Search campaigns (wholesale keywords, London + UK)</li>
-        <li>Stockist backlink reclamation email sequence — target 15 links this month</li>
-        <li><strong>Target M1:</strong> 8 sample requests · 60 D2C UK orders · blended CPA learning phase</li>
-      </ul>
-    </div>
-
-    <div class="timeline-phase alt-marker">
-      <div class="timeline-label">Q1 · Month 02 — Creative Production</div>
-      <div class="timeline-h">Film everything once. Run it for six months.</div>
-      <ul>
-        <li>Shoot Concepts 01, 02, 03, 05, 09 (lowest production friction) in one week</li>
-        <li>Launch D2C Meta ads with founder-story creative + branded Shopping</li>
-        <li>Publish first 4 pillar hub articles (Benefits of Spices, Chai Ritual)</li>
-        <li>Pitch Mira to 3 podcasts — land 1 appearance by M3</li>
-        <li>First cafe partner spotlight Reels published (Soho House, Mildreds, Foyles)</li>
-        <li><strong>Target M2:</strong> 12 sample requests · 80 D2C UK orders · CPA stabilising toward £20</li>
-      </ul>
-    </div>
-
-    <div class="timeline-phase">
-      <div class="timeline-label">Q1 · Month 03 — Optimisation Pass</div>
-      <div class="timeline-h">Kill what isn't working. Double down on what is.</div>
-      <ul>
-        <li>Retire bottom-20% creatives. Launch Concepts 04, 06, 08</li>
-        <li>First performance review — reallocate budget if one motion is dramatically ahead</li>
-        <li>Launch Manchester + Brighton wholesale city pages</li>
-        <li>Email list growth push — 15% off first order pop-up + book-excerpt lead magnet</li>
-        <li>First quarterly review with Mira — set Q2 targets</li>
-        <li><strong>Target M3:</strong> 15 sample requests · 100 D2C UK orders · first repeat-buyer cohort measurable</li>
-      </ul>
-    </div>
-
-    <div class="timeline-phase alt-marker">
-      <div class="timeline-label">Q2 · Months 04–06 — Scale + USA Seed</div>
-      <div class="timeline-h">B2B at steady state. USA D2C switched on.</div>
-      <ul>
-        <li>M4: Launch USA seed campaign — Google + Meta · £60/mo · NYC / LA / Chicago first</li>
-        <li>M4: Add /us landing page with USD pricing + shipping-time transparency</li>
-        <li>M5: Add Edinburgh + Bristol wholesale city pages</li>
-        <li>M5–M6: Produce Concepts 10, 11, 12 (flagship assets)</li>
-        <li>M6: British Chai Census / digital PR launch — target 8 press pickups</li>
-        <li>M6: Reach 22 sample requests / month steady state (exit Q2 at 20 new cafes/month)</li>
-        <li><strong>Target M6:</strong> 22 sample requests · 160 D2C UK orders · 12 US orders · blended CPL &lt;£28</li>
-      </ul>
-    </div>
-
-    <div class="timeline-phase">
-      <div class="timeline-label">Q3 · Months 07–09 — Compound</div>
-      <div class="timeline-h">Organic catches up. Paid becomes accelerant, not driver.</div>
-      <ul>
-        <li>Organic now delivers 40–50% of D2C orders (up from ~25% at M3)</li>
-        <li>Launch /chai-for-wellness + /authentic-masala-chai pillar destinations</li>
-        <li>Mira on 6 podcasts in Q3 — compounding authority signal</li>
-        <li>First recipe-carousel rich result in Google — benchmark measurable click-through lift</li>
-        <li>Build first gift-set PDP + Pinterest push for Diwali / Christmas seasonal</li>
-        <li>Amazon US listing evaluation — if US orders &gt;30/mo, open Amazon test</li>
-        <li><strong>Target M9:</strong> 28 sample requests · 240 D2C UK orders · 35 US orders · blended ROAS 3x+</li>
-      </ul>
-    </div>
-
-    <div class="timeline-phase alt-marker">
-      <div class="timeline-label">Q4 · Months 10–12 — Defend &amp; Peak Season</div>
-      <div class="timeline-h">Seasonal compound. Year 1 close. Year 2 scope.</div>
-      <ul>
-        <li>Christmas / Diwali / Mother's Day (early) gift-set push — highest-AOV creative</li>
-        <li>Lock 450th cafe partner — anniversary content from Mira</li>
-        <li>Book tour documentary drops (Concept 11) — PR wave</li>
-        <li>Competitor gap sweep + title/content refresh across top 30 pages</li>
-        <li>Year 2 roadmap workshop with Mira — decide on USA wholesale, Amazon UK, potential Germany/EU</li>
-        <li><strong>Target M12:</strong> 32 sample requests · 320 D2C UK orders · 80 US orders · 450 total cafe partners</li>
-      </ul>
-    </div>
-
-    <h3>The picture by end of Year 1</h3>
-    <div class="grid-4">
-      <div class="kpi-box">
-        <div class="kpi-lbl">Annual D2C Orders</div>
-        <div class="kpi-val">~2,800</div>
-        <div class="kpi-sub">UK 2,350 · USA 450</div>
+    <div class="sec-num">05 — Who It's For</div>
+    <h2 id="who-heading">Built for <span class="accent">Brands Ready to Scale</span></h2>
+    <p class="sec-lede">Our audits are best suited to brands that are already active online but aren't seeing the results their investment deserves.</p>
+    <div class="grid-3">
+      <div class="card card-accent">
+        <div class="card-sub">Ideal Client 01</div>
+        <div class="card-title">D2C &amp; E-commerce Brands</div>
+        <p>Spending on performance marketing but ROAS is inconsistent. You need to know whether the issue is your ads, your landing pages, your product pages, or all three.</p>
       </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Annual B2B Cafes Added</div>
-        <div class="kpi-val">150</div>
-        <div class="kpi-sub">300 → 450 total</div>
+      <div class="card card-accent">
+        <div class="card-sub">Ideal Client 02</div>
+        <div class="card-title">B2B Companies &amp; SaaS</div>
+        <p>Generating traffic from SEO or LinkedIn but not converting. An audit reveals the exact friction points in your funnel — from first click to demo request.</p>
       </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Blended Cost / New Customer</div>
-        <div class="kpi-val">£15</div>
-        <div class="kpi-sub">D2C only</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Organic Share of Sessions</div>
-        <div class="kpi-val">55%</div>
-        <div class="kpi-sub">from ~35% baseline</div>
+      <div class="card card-accent">
+        <div class="card-sub">Ideal Client 03</div>
+        <div class="card-title">Local &amp; Service Businesses</div>
+        <p>Trying to show up in local searches and compete with bigger brands. We identify exactly what your local SEO and Google Business Profile are missing.</p>
       </div>
     </div>
-
-    <div class="highlight-box">
-      <h4>What's in this plan that isn't in a typical agency deck</h4>
-      <p>Most agencies handed an £800/month chai account would propose a generic "brand awareness" Meta campaign and call it done. This plan refuses to spend a pound on awareness — it only spends when a specific pipeline signal fires. It <strong>treats Mira as the product</strong>, not the chai, because the author-founder IP is the uncopyable asset. It <strong>keeps the 300-cafe moat as the centrepiece of every creative</strong>, because proof outperforms promises on lean budgets. And it <strong>sequences B2B ahead of D2C</strong>, because wholesale has the higher LTV and lower CAC — the honest answer for a sub-£10k/year budget.</p>
+    <div class="highlight-box" style="margin-top:36px;">
+      <h4>Not sure if you need an audit?</h4>
+      <p style="margin:0;color:var(--text-2);">If you're spending more than ₹50,000/month on digital marketing — or if you've been active online for 6+ months without clear results — an audit will almost certainly reveal opportunities worth many times its cost. The question isn't whether something is wrong. It's knowing exactly what and where.</p>
     </div>
   </div>
 </section>
 
-<footer>
+<section id="faq" class="alt" aria-labelledby="faq-heading">
   <div class="container">
-    <div class="footer-brand">Kerkar Media</div>
-    <div class="footer-tag">Pipeline-first SEO + performance marketing for B2B and ambitious brands.</div>
-    <div class="footer-meta">Prepared for Chai by Mira · Strategic Roadmap v1 · April 2026 · CONFIDENTIAL</div>
+    <div class="sec-num">06 — FAQ</div>
+    <h2 id="faq-heading">Frequently Asked <span class="accent">Questions</span></h2>
+    <p class="sec-lede">Everything you need to know before commissioning an audit.</p>
+    <div style="max-width:800px;margin-top:32px;">
+      <div class="faq-item"><div class="faq-q">What is a digital marketing audit?</div><div class="faq-a">A digital marketing audit is a comprehensive review of your brand's online presence — covering SEO, paid ads, social media, content, and website performance — to identify gaps, errors, and opportunities. The output is a prioritised roadmap that tells you exactly what to fix, in what order, and why.</div></div>
+      <div class="faq-item"><div class="faq-q">How long does an audit take?</div><div class="faq-a">Most standalone audits are delivered within 5–7 business days. A full-stack audit covering all five channels typically takes 7–10 business days. We'll confirm the exact timeline at the time of briefing.</div></div>
+      <div class="faq-item"><div class="faq-q">Do I need to give you access to my accounts?</div><div class="faq-a">Yes — read-only access to relevant platforms (Google Analytics, Search Console, Ads account, social profiles) is required for a thorough audit. We use a secure onboarding form and never store your credentials beyond the audit period.</div></div>
+      <div class="faq-item"><div class="faq-q">What do I receive at the end?</div><div class="faq-a">You receive a detailed audit report (PDF + HTML), a prioritised action roadmap, relevant data sheets (keyword gaps, competitor benchmarks, ad scorecards), a 30-day quick-win checklist, and a 30–45 minute walkthrough call with a recording.</div></div>
+      <div class="faq-item"><div class="faq-q">Will you implement the changes too, or just audit?</div><div class="faq-a">Audits are a standalone service — we give you the full picture and roadmap. However, many clients choose to engage us for implementation after the audit. We offer SEO, paid media, social media, and content services scoped based on audit findings.</div></div>
+      <div class="faq-item"><div class="faq-q">Do you work with businesses outside India?</div><div class="faq-a">Yes. While Kerkar Media is based in India, we work with brands globally. Our audits are platform-agnostic and applicable to any market or geography.</div></div>
+      <div class="faq-item"><div class="faq-q">How is a Kerkar Media audit different from a free tool report?</div><div class="faq-a">Free tools generate data dumps. Our audits are manually interpreted by specialists who understand your industry and business context. We don't just surface issues — we explain why they matter, what to prioritise, and exactly how to fix them.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="cta-content">
+      <div class="badge" style="margin-bottom:24px;">Get Started</div>
+      <h2 id="cta-heading">Ready to Know Exactly<br>What's Holding You Back?</h2>
+      <p>Commission your audit today. In 7 days, you'll have a clear, data-backed picture of your digital marketing — and a prioritised roadmap to fix it.</p>
+      <div>
+        <a href="mailto:hello@kerkarmedia.com" class="btn-primary">Request an Audit</a>
+        <a href="mailto:hello@kerkarmedia.com" class="btn-ghost">Ask a Question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-mark">KM</div>
+        <span style="color:rgba(255,255,255,0.7);font-weight:600;">Kerkar Media</span>
+      </div>
+      <span>© 2026 Kerkar Media. All rights reserved.</span>
+      <span>Digital Marketing Audits · Strategy · Execution</span>
+    </div>
   </div>
 </footer>
 

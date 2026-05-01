@@ -1,0 +1,78 @@
+# ============================================================
+# KERKAR MEDIA — Security Headers
+# ============================================================
+
+# Prevent clickjacking
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# Prevent MIME-type sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# Enable XSS protection (legacy browsers)
+Header always set X-XSS-Protection "1; mode=block"
+
+# Referrer policy — don't leak URL info to third parties
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Permissions policy — disable unused browser features
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+# Content Security Policy
+Header always set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:"
+
+# HTTP Strict Transport Security (force HTTPS)
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# Remove server signature
+Header unset Server
+Header unset X-Powered-By
+ServerSignature Off
+
+# ============================================================
+# BLOCK SENSITIVE FILES
+# ============================================================
+
+# Block access to hidden files (e.g. .git, .env)
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to backup/config files
+<FilesMatch "\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist|env|json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to CLAUDE-SETUP.md
+<Files "CLAUDE-SETUP.md">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# ============================================================
+# DISABLE DIRECTORY LISTING
+# ============================================================
+Options -Indexes
+
+# ============================================================
+# FORCE HTTPS
+# ============================================================
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ============================================================
+# BLOCK BAD BOTS & SCANNERS
+# ============================================================
+RewriteCond %{HTTP_USER_AGENT} (havij|libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww|wget|python|nikto|curl|scan|java|winhttp|HTTrack) [NC]
+RewriteRule .* - [F,L]
+
+# ============================================================
+# PREVENT HOTLINKING
+# ============================================================
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?slategray-wren-882514\.hostingersite\.com [NC]
+RewriteRule \.(jpg|jpeg|png|gif|svg|webp)$ - [F,L]

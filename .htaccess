@@ -74,5 +74,5 @@ RewriteRule .* - [F,L]
 # PREVENT HOTLINKING
 # ============================================================
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^https://(www\.)?slategray-wren-882514\.hostingersite\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?audits\.kerkarmedia\.com [NC]
 RewriteRule \.(jpg|jpeg|png|gif|svg|webp)$ - [F,L]

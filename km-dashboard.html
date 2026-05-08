@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerkar Media — SEO Performance Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --blue: #035398;
+    --blue-cta: #003DCC;
+    --light-gray: #E9E9E8;
+    --black: #000000;
+    --white: #FFFFFF;
+    --footer-bg: #124648;
+    --text-body: #1a1a1a;
+    --text-muted: #666;
+    --border: #e2e2e2;
+    --card-bg: #ffffff;
+    --page-bg: #f6f8fc;
+    --win-green: #16a34a;
+    --loss-red: #dc2626;
+    --radius: 12px;
+    --shadow: 0 2px 16px rgba(3,83,152,0.08);
+    --shadow-hover: 0 8px 32px rgba(3,83,152,0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    background: var(--page-bg);
+    color: var(--text-body);
+    min-height: 100vh;
+  }
+
+  /* ── ANNOUNCEMENT BANNER ── */
+  .announce-bar {
+    background: var(--blue-cta);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .announce-bar a { color: #fff; text-decoration: underline; margin-left: 8px; }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .navbar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--blue-cta);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 20px; height: 20px; }
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+    letter-spacing: -0.02em;
+  }
+  .logo-text span { color: var(--blue-cta); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .report-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .report-meta strong { color: var(--blue-cta); }
+  .btn-primary {
+    background: var(--blue-cta);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #0030a8; transform: translateY(-1px); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .client-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-cta);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .page-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .page-title span { color: var(--blue-cta); }
+  .report-period {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .report-period strong { color: var(--text-body); }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    margin-top: 48px;
+  }
+  .section-num {
+    width: 32px; height: 32px;
+    background: var(--blue-cta);
+    color: white;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 8px;
+  }
+
+  /* ── CARDS GRID ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 900px) { .metrics-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 500px) { .metrics-grid { grid-template-columns: 1fr; } }
+
+  .metric-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+    opacity: 0;
+    transform: translateY(24px);
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+  }
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--blue-cta);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .metric-card.green::before { background: var(--win-green); }
+  .metric-card.red::before { background: var(--loss-red); }
+  .metric-card.orange::before { background: #ea580c; }
+
+  .metric-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .metric-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .metric-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+  .delta-up { background: #dcfce7; color: #16a34a; }
+  .delta-down { background: #fee2e2; color: #dc2626; }
+  .metric-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: linear-gradient(135deg, #035398 0%, #003DCC 100%);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: white;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .callout-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .callout-body {
+    font-size: 14px;
+    opacity: 0.88;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .callout-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px;
+    padding: 16px 24px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .callout-badge-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .callout-badge-label { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+
+  /* ── TWO COL LAYOUT ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  .chart-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .chart-card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chart-tag {
+    font-size: 11px;
+    background: #eff6ff;
+    color: var(--blue-cta);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-weight: 600;
+  }
+
+  /* ── DATA TABLE ── */
+  .table-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .table-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .table-header-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: #f8fafc;
+    padding: 12px 24px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.15s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #f8fafc; }
+  td {
+    padding: 14px 24px;
+    color: var(--text-body);
+    vertical-align: middle;
+  }
+  .td-keyword { font-weight: 500; color: var(--black); }
+  .td-url { font-size: 12px; color: var(--text-muted); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pos-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .pos-1-3 { background: #dcfce7; color: #15803d; }
+  .pos-4-10 { background: #fef3c7; color: #d97706; }
+  .pos-11 { background: #fee2e2; color: #dc2626; }
+
+  .trend-bar-wrap { width: 80px; background: #f1f5f9; border-radius: 4px; height: 6px; }
+  .trend-bar { height: 6px; border-radius: 4px; background: var(--blue-cta); }
+
+  /* ── INSIGHTS SECTION ── */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 900px) { .insights-grid { grid-template-columns: 1fr; } }
+
+  .insight-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .insight-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+
+  .insight-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .icon-win { background: #dcfce7; }
+  .icon-loss { background: #fee2e2; }
+  .icon-action { background: #eff6ff; }
+
+  .insight-type {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .insight-type.win { color: var(--win-green); }
+  .insight-type.loss { color: var(--loss-red); }
+  .insight-type.action { color: var(--blue-cta); }
+
+  .insight-list { list-style: none; }
+  .insight-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-body);
+    display: flex;
+    gap: 10px;
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-list li::before {
+    content: '→';
+    color: var(--blue-cta);
+    flex-shrink: 0;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .insight-card.win .insight-list li::before { color: var(--win-green); content: '✓'; }
+  .insight-card.loss .insight-list li::before { color: var(--loss-red); content: '✗'; }
+
+  /* ── LEADS TABLE BADGE ── */
+  .service-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: var(--blue-cta);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .budget-badge {
+    display: inline-block;
+    background: #f0fdf4;
+    color: #15803d;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--footer-bg);
+    margin-top: 80px;
+    padding: 32px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .footer-logo span { color: #7dd3fc; }
+  .footer-meta { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .footer-meta a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 8px; }
+
+  /* ── LOADING PULSE ── */
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .skeleton {
+    background: var(--light-gray);
+    border-radius: 6px;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--page-bg); }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+  /* ── CHIP ── */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 12px;
+    font-size: 12px; font-weight: 500; color: var(--text-muted);
+  }
+  .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+</style>
+</head>
+<body>
+
+<!-- Announcement Banner -->
+<div class="announce-bar">
+  📊 Free SEO Audit for Q2 2026. Limited slots available. <a href="#">Claim Yours Today →</a>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 17l4-8 4 4 4-6 4 10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">kerkar<span>media</span></span>
+    </a>
+    <div class="nav-right">
+      <div class="chip"><span class="chip-dot"></span> Live Report</div>
+      <div class="report-meta">Week of <strong>05 May 2026</strong></div>
+      <a href="https://kerkarmedia.com" class="btn-primary" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><polyline points="15 3 21 3 21 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        kerkarmedia.com
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Main -->
+<main class="main">
+
+  <!-- Page Header -->
+  <div class="page-header" id="pageHeader">
+    <div>
+      <div class="client-name">Kerkar Media — Internal Report</div>
+      <h1 class="page-title">SEO Performance<br><span>Dashboard</span></h1>
+    </div>
+    <div class="report-period">
+      Report Period: <strong>08 Apr — 05 May 2026</strong> &nbsp;|&nbsp; Last 28 days
+    </div>
+  </div>
+
+  <!-- ════ SECTION 1: OVERVIEW ════ -->
+  <div class="section-label" id="sec1label">
+    <div class="section-num">1</div>
+    <div class="section-title">Overview</div>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Callout -->
+  <div class="callout" id="callout">
+    <div>
+      <div class="callout-title">Executive Summary — Week of 05 May 2026</div>
+      <div class="callout-body">
+        Organic traffic grew 18% WoW driven by a surge in branded queries. Top 3 position keywords increased from 12 to 17 — a strong signal of improving <em>SegIndexer</em> tier classification. GSC shows improving <strong>goodClicks</strong> ratio (0.74 vs 0.61 prior week). One concern: 3 high-value commercial keywords slipped from page 1 — requires immediate internal linking + content refresh action. 2 new leads captured this week, both ₹50K+ budget.
+      </div>
+    </div>
+    <div class="callout-badge">
+      <div class="callout-badge-value">74%</div>
+      <div class="callout-badge-label">Good Click Ratio</div>
+    </div>
+  </div>
+
+  <!-- KPI Metrics -->
+  <div class="metrics-grid" id="metricsGrid">
+    <div class="metric-card" style="--i:0">
+      <div class="metric-label">Organic Sessions</div>
+      <div class="metric-value">3,847</div>
+      <span class="metric-delta delta-up">↑ 18.2%</span>
+      <div class="metric-sub">vs 3,255 last period</div>
+    </div>
+    <div class="metric-card green" style="--i:1">
+      <div class="metric-label">Total Impressions</div>
+      <div class="metric-value">142K</div>
+      <span class="metric-delta delta-up">↑ 9.4%</span>
+      <div class="metric-sub">GSC · Last 28 days</div>
+    </div>
+    <div class="metric-card" style="--i:2">
+      <div class="metric-label">Avg. Click-Through Rate</div>
+      <div class="metric-value">3.8%</div>
+      <span class="metric-delta delta-up">↑ 0.6pp</span>
+      <div class="metric-sub">Target: 3–5% commercial</div>
+    </div>
+    <div class="metric-card orange" style="--i:3">
+      <div class="metric-label">Avg. Position</div>
+      <div class="metric-value">14.2</div>
+      <span class="metric-delta delta-down">↓ 1.3</span>
+      <div class="metric-sub">Top 50 tracked keywords</div>
+    </div>
+    <div class="metric-card" style="--i:4">
+      <div class="metric-label">Sessions (GA4)</div>
+      <div class="metric-value">4,210</div>
+      <span class="metric-delta delta-up">↑ 12.1%</span>
+      <div class="metric-sub">All traffic · Last 7 days</div>
+    </div>
+    <div class="metric-card green" style="--i:5">
+      <div class="metric-label">Conversions (Thank You)</div>
+      <div class="metric-value">31</div>
+      <span class="metric-delta delta-up">↑ 6</span>
+      <div class="metric-sub">keyEvent:thank_you</div>
+    </div>
+    <div class="metric-card" style="--i:6">
+      <div class="metric-label">Bounce Rate</div>
+      <div class="metric-value">52%</div>
+      <span class="metric-delta delta-up">↓ 4pp</span>
+      <div class="metric-sub">Improving engagement</div>
+    </div>
+    <div class="metric-card green" style="--i:7">
+      <div class="metric-label">New Leads (CF7)</div>
+      <div class="metric-value">2</div>
+      <span class="metric-delta delta-up">This week</span>
+      <div class="metric-sub">₹50K+ budget segment</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="two-col">
+    <div class="chart-card" id="chart1">
+      <div class="chart-card-title">
+        Organic Sessions — 4 Week Trend
+        <span class="chart-tag">GSC</span>
+      </div>
+      <canvas id="sessionsChart" height="200"></canvas>
+    </div>
+    <div class="chart-card" id="chart2">
+      <div class="chart-card-title">
+        CTR by Query Type
+        <span class="chart-tag">India Benchmarks</span>
+      </div>
+      <canvas id="ctrChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- ════ SECTION 2: SALES / LEADS — ORGANIC ════ -->
+  <div class="section-label" id="sec2label">
+    <div class="section-num">2</div>
+    <div class="section-title">Keyword Rankings</div>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Top 1-3 positions -->
+  <div class="table-card" id="table1">
+    <div class="table-header">
+      <div class="table-header-title">Top 1–3 Positions <span class="pos-badge pos-1-3" style="margin-left:10px">17 keywords</span></div>
+      <span class="chip">Best performers</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Pos</th>
+          <th>Clicks</th>
+          <th>Impressions</th>
+          <th>CTR</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-keyword">seo company in mumbai</td><td><span class="pos-badge pos-1-3">1</span></td><td>248</td><td>1,620</td><td>15.3%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:96%"></div></div></td></tr>
+        <tr><td class="td-keyword">b2b digital marketing agency mumbai</td><td><span class="pos-badge pos-1-3">2</span></td><td>182</td><td>1,140</td><td>16.0%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:88%"></div></div></td></tr>
+        <tr><td class="td-keyword">kerkar media</td><td><span class="pos-badge pos-1-3">1</span></td><td>310</td><td>820</td><td>37.8%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:100%"></div></div></td></tr>
+        <tr><td class="td-keyword">seo for manufacturers india</td><td><span class="pos-badge pos-1-3">3</span></td><td>96</td><td>880</td><td>10.9%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:72%"></div></div></td></tr>
+        <tr><td class="td-keyword">b2b seo agency india</td><td><span class="pos-badge pos-1-3">2</span></td><td>74</td><td>640</td><td>11.6%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:68%"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Top 4-10 positions -->
+  <div class="table-card" id="table2">
+    <div class="table-header">
+      <div class="table-header-title">Positions 4–10 <span class="pos-badge pos-4-10" style="margin-left:10px">24 keywords</span></div>
+      <span class="chip">Needs push to page 1</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Pos</th>
+          <th>Clicks</th>
+          <th>Impressions</th>
+          <th>CTR</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-keyword">seo company for real estate india</td><td><span class="pos-badge pos-4-10">5</span></td><td>42</td><td>920</td><td>4.6%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:55%"></div></div></td></tr>
+        <tr><td class="td-keyword">performance marketing agency mumbai</td><td><span class="pos-badge pos-4-10">7</span></td><td>28</td><td>740</td><td>3.8%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:40%"></div></div></td></tr>
+        <tr><td class="td-keyword">seo for healthcare india</td><td><span class="pos-badge pos-4-10">6</span></td><td>34</td><td>820</td><td>4.1%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:48%"></div></div></td></tr>
+        <tr><td class="td-keyword">digital marketing for smes india</td><td><span class="pos-badge pos-4-10">9</span></td><td>18</td><td>610</td><td>3.0%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:32%"></div></div></td></tr>
+        <tr><td class="td-keyword">amazon marketing services india</td><td><span class="pos-badge pos-4-10">8</span></td><td>22</td><td>560</td><td>3.9%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:36%"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GA4 Page Performance -->
+  <div class="section-label">
+    <div class="section-num" style="background:#0891b2">↗</div>
+    <div class="section-title">GA4 Page Performance</div>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="table-card" id="table3">
+    <div class="table-header">
+      <div class="table-header-title">Top 5 Pages by Sessions</div>
+      <span class="chip">Last 7 days</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Page Path</th>
+          <th>Sessions</th>
+          <th>Bounce Rate</th>
+          <th>Conversions</th>
+          <th>Conv. Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-keyword">/</td><td>1,240</td><td>48%</td><td>12</td><td>0.97%</td></tr>
+        <tr><td class="td-keyword">/seo-company-in-mumbai/</td><td>820</td><td>42%</td><td>9</td><td>1.10%</td></tr>
+        <tr><td class="td-keyword">/seo-for-manufacturers/</td><td>610</td><td>55%</td><td>4</td><td>0.66%</td></tr>
+        <tr><td class="td-keyword">/contact-us/</td><td>440</td><td>31%</td><td>6</td><td>1.36%</td></tr>
+        <tr><td class="td-keyword">/blog/seo-pricing-india-2026/</td><td>380</td><td>62%</td><td>0</td><td>0.00%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ════ SECTION 3: INSIGHTS ════ -->
+  <div class="section-label" id="sec3label">
+    <div class="section-num">3</div>
+    <div class="section-title">Insights</div>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="insights-grid" id="insightsGrid">
+    <div class="insight-card win" id="insWin">
+      <div class="insight-icon icon-win">🏆</div>
+      <div class="insight-type win">Wins This Week</div>
+      <ul class="insight-list">
+        <li>17 keywords now in top 3 — up from 12 last week. Strongest growth in branded cluster.</li>
+        <li>Organic CTR hit 3.8% — surpassing 3–5% commercial benchmark target for first time.</li>
+        <li>goodClicks ratio improved to 0.74, signaling stronger content-to-intent alignment per Algorithm Leak v2.</li>
+        <li>2 high-budget leads (₹50K+) captured via CF7 — both from /seo-company-in-mumbai/ landing page.</li>
+      </ul>
+    </div>
+
+    <div class="insight-card loss" id="insLoss">
+      <div class="insight-icon icon-loss">⚠️</div>
+      <div class="insight-type loss">Losses / Concerns</div>
+      <ul class="insight-list">
+        <li>3 commercial keywords slipped from positions 8–10 to 11–15. Likely due to badClicks spike on those URLs.</li>
+        <li>Blog page /seo-pricing-india-2026/ driving 380 sessions but zero conversions — no CTA or lead magnet present.</li>
+        <li>Avg. position degraded from 12.9 to 14.2 — siteRadius score likely impacted by thin pages in /resources/ section.</li>
+      </ul>
+    </div>
+
+    <div class="insight-card" id="insAction">
+      <div class="insight-icon icon-action">🎯</div>
+      <div class="insight-type action">Priority Actions</div>
+      <ul class="insight-list">
+        <li><strong>[HIGH]</strong> Add lead magnet to /seo-pricing-india-2026/ — target 1%+ CVR from 380 existing sessions.</li>
+        <li><strong>[HIGH]</strong> Internal linking audit for the 3 slipped commercial keywords — link from top 3 ranking pages.</li>
+        <li><strong>[MED]</strong> Delete or consolidate 4 thin /resources/ pages — improve contentEffort signal and siteQualityStddev.</li>
+        <li><strong>[MED]</strong> Publish 1 new manufacturer SEO case study to strengthen E-E-A-T and siteRadius cluster.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Leads CRM -->
+  <div class="section-label">
+    <div class="section-num" style="background:#7c3aed">👥</div>
+    <div class="section-title">Leads CRM — This Week</div>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="table-card" id="leadsTable">
+    <div class="table-header">
+      <div class="table-header-title">New Leads</div>
+      <span class="chip">CF7 · Google Sheets sync</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Service</th>
+          <th>Budget</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-keyword">Rahul Sharma</td>
+          <td>Apex Industries Pvt Ltd</td>
+          <td><span class="service-badge">SEO</span></td>
+          <td><span class="budget-badge">₹75,000</span></td>
+          <td>02 May 2026</td>
+        </tr>
+        <tr>
+          <td class="td-keyword">Priya Nair</td>
+          <td>MedEquip Solutions</td>
+          <td><span class="service-badge">Performance Mktg</span></td>
+          <td><span class="budget-badge">₹1,20,000</span></td>
+          <td>04 May 2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">kerkar<span>media</span></div>
+  <div class="footer-meta">
+    Automated SEO Report · Generated 05 May 2026 · Powered by n8n + Claude AI
+    <br>
+    <a href="https://kerkarmedia.com/privacy-policy">Privacy Policy</a>
+    <a href="https://kerkarmedia.com/terms-of-service">Terms of Service</a>
+    <br><br>
+    © Kerkar Media 2026. All Rights Reserved. &nbsp;|&nbsp; 805, SP TBI, Bhavans Campus, Andheri West, Mumbai 400058
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Page header
+gsap.to("#pageHeader", { opacity:1, y:0, duration:0.8, ease:"power3.out", delay:0.2 });
+
+// Callout
+gsap.to("#callout", { opacity:1, y:0, duration:0.7, ease:"power2.out",
+  scrollTrigger:{ trigger:"#callout", start:"top 85%", once:true }, delay:0.1 });
+
+// Metric cards stagger
+gsap.to("#metricsGrid .metric-card", {
+  opacity:1, y:0, duration:0.55, stagger:0.07, ease:"power2.out",
+  scrollTrigger:{ trigger:"#metricsGrid", start:"top 85%", once:true }
+});
+
+// Charts
+gsap.to(["#chart1","#chart2"], {
+  opacity:1, y:0, duration:0.6, stagger:0.12, ease:"power2.out",
+  scrollTrigger:{ trigger:"#chart1", start:"top 85%", once:true }
+});
+
+// Tables
+["#table1","#table2","#table3","#leadsTable"].forEach((id, i) => {
+  gsap.to(id, { opacity:1, y:0, duration:0.6, ease:"power2.out",
+    scrollTrigger:{ trigger:id, start:"top 88%", once:true }, delay: i*0.05 });
+});
+
+// Insights
+gsap.to(["#insWin","#insLoss","#insAction"], {
+  opacity:1, y:0, duration:0.6, stagger:0.12, ease:"power2.out",
+  scrollTrigger:{ trigger:"#insightsGrid", start:"top 85%", once:true }
+});
+
+// ── SESSIONS CHART ──
+const sessCtx = document.getElementById('sessionsChart').getContext('2d');
+new Chart(sessCtx, {
+  type: 'line',
+  data: {
+    labels: ['07 Apr','14 Apr','21 Apr','28 Apr','05 May'],
+    datasets: [{
+      label: 'Organic Sessions',
+      data: [2840, 3010, 3255, 3680, 3847],
+      borderColor: '#003DCC',
+      backgroundColor: 'rgba(0,61,204,0.08)',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#003DCC',
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      fill: true,
+      tension: 0.4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, tooltip: { mode:'index' } },
+    scales: {
+      y: { grid: { color:'#f1f5f9' }, ticks: { color:'#94a3b8', font:{size:11} } },
+      x: { grid: { display:false }, ticks: { color:'#94a3b8', font:{size:11} } }
+    }
+  }
+});
+
+// ── CTR CHART ──
+const ctrCtx = document.getElementById('ctrChart').getContext('2d');
+new Chart(ctrCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Branded', 'Commercial', 'Informational', 'Navigational'],
+    datasets: [
+      {
+        label: 'Actual CTR',
+        data: [22.4, 3.8, 1.4, 8.2],
+        backgroundColor: '#003DCC',
+        borderRadius: 6,
+        borderSkipped: false,
+      },
+      {
+        label: 'India Benchmark',
+        data: [15, 4, 1.5, 6],
+        backgroundColor: '#e2e8f0',
+        borderRadius: 6,
+        borderSkipped: false,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position:'bottom', labels:{ font:{size:11}, color:'#64748b' } } },
+    scales: {
+      y: { grid:{ color:'#f1f5f9' }, ticks:{ color:'#94a3b8', font:{size:11}, callback: v => v+'%' } },
+      x: { grid:{ display:false }, ticks:{ color:'#94a3b8', font:{size:11} } }
+    }
+  }
+});
+</script>
+</body>
+</html>

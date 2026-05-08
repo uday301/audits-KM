@@ -209,11 +209,11 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
 
   <!-- Charts Row 1 -->
   <div class="two">
-    <div class="cc anim" id="c1">
+    <div class="cc anim" >
       <div class="cc-top"><div class="cc-t">Clicks &amp; Impressions — Daily Trend</div><span class="tag tb">GSC · 90 days</span></div>
       <canvas id="clicksChart" height="220"></canvas>
     </div>
-    <div class="cc anim" id="c2">
+    <div class="cc anim" >
       <div class="cc-top"><div class="cc-t">Organic Positions Distribution</div><span class="tag ta">Ahrefs · Apr–May</span></div>
       <div class="pos-legend">
         <div class="pl-i"><div class="pl-d" style="background:#ea580c"></div>1–3</div>
@@ -245,7 +245,7 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
         </tbody>
       </table>
     </div>
-    <div class="cc anim" id="c3">
+    <div class="cc anim" >
       <div class="cc-top"><div class="cc-t">CTR vs India Benchmarks</div><span class="tag tb">Benchmark Analysis</span></div>
       <canvas id="ctrChart" height="230"></canvas>
     </div>
@@ -275,7 +275,7 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
   <div class="sh"><div class="sn">3</div><div class="st">Domain Authority &amp; Backlinks</div><div class="sdv"></div></div>
 
   <div class="two">
-    <div class="cc anim" id="c-dr">
+    <div class="cc anim" >
       <div class="cc-top"><div class="cc-t">Domain Rating — Ahrefs</div><span class="tag tg">kerkarmedia.com</span></div>
       <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center">
@@ -295,7 +295,7 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
       </div>
     </div>
 
-    <div class="cc anim" id="c-bl">
+    <div class="cc anim" >
       <div class="cc-top"><div class="cc-t">Backlink Profile</div><span class="tag tb">Month-on-Month</span></div>
       <div class="stat-pair">
         <div class="sp-box"><div class="sp-lbl">Ref. Domains</div><div class="sp-val">212 <span style="font-size:14px;color:var(--green);font-weight:700">+10</span></div><div class="sp-sub">All time: 746</div></div>
@@ -321,7 +321,7 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
       </table>
     </div>
 
-    <div class="cc anim" id="c-ai">
+    <div class="cc anim" >
       <div class="cc-top"><div class="cc-t">AI Citations — GEO Presence</div><span class="tag tg">Ahrefs · Last Month</span></div>
       <div class="ai-grid">
         <div class="ai-item"><div class="ai-logo" style="background:#f8fafc">🔍</div><div><div class="ai-name">AI Overview</div><div class="ai-count" style="color:var(--muted)">0 <span style="font-size:12px;font-weight:700;color:var(--red)">-2</span></div></div></div>
@@ -388,21 +388,13 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
 </footer>
 
 <script>
+window.addEventListener('DOMContentLoaded', function() {
 gsap.registerPlugin(ScrollTrigger);
 
-// Animate all .anim elements on scroll
-document.querySelectorAll('.anim').forEach(el=>{
-  gsap.to(el,{opacity:1,y:0,duration:.65,ease:'power2.out',
-    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+// Subtle hover animations only — no scroll hide/show
+gsap.utils.toArray('.kc').forEach(el => {
+  el.style.opacity = '1';
 });
-
-// KPI cards stagger
-gsap.to('.kc',{opacity:1,y:0,duration:.5,stagger:.06,ease:'power2.out',
-  scrollTrigger:{trigger:'.kg',start:'top 86%',once:true}});
-
-// DR Arc animation
-gsap.to('#drArc',{strokeDashoffset:55,duration:1.8,ease:'power2.out',
-  scrollTrigger:{trigger:'#c-dr',start:'top 85%',once:true}});
 
 // ── CLICKS & IMPRESSIONS ──
 new Chart(document.getElementById('clicksChart').getContext('2d'),{
@@ -488,6 +480,7 @@ new Chart(document.getElementById('blChart').getContext('2d'),{
     }
   }
 });
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>

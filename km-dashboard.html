@@ -67,7 +67,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 @media(max-width:1000px){.kg{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.kg{grid-template-columns:1fr}}
 
-.kc{background:var(--card);border-radius:var(--r);padding:22px;border:1px solid var(--border);box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden}
+.kc{background:var(--card);border-radius:var(--r);padding:22px;border:1px solid var(--border);box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;opacity:1}
 .kc:hover{box-shadow:var(--sh2);transform:translateY(-3px)}
 .kc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0;background:var(--cta)}
 .kc.g::after{background:var(--green)}.kc.r::after{background:var(--red)}.kc.a::after{background:var(--amber)}
@@ -129,7 +129,7 @@ td{padding:13px 20px;color:var(--body);vertical-align:middle}
 .bbadge{display:inline-block;background:#f0fdf4;color:var(--green);border-radius:6px;padding:2px 9px;font-size:11px;font-weight:600}
 
 /* stagger-anim targets */
-.anim{opacity:0;transform:translateY(20px)}
+.anim{opacity:1;transform:none}
 
 footer{background:var(--footer);padding:36px 32px;text-align:center}
 .flogo{font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}

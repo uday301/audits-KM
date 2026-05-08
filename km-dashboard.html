@@ -148,6 +148,137 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
 .sp-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
 .sp-val{font-family:'DM Sans',sans-serif;font-size:28px;font-weight:700;line-height:1}
 .sp-sub{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE & TABLET RESPONSIVE — full mobile rebuild
+   Tested breakpoints: 320, 375, 414, 768, 1024
+═══════════════════════════════════════════════════════ */
+
+/* TABLET — under 1024px */
+@media (max-width:1024px){
+  .wrap{padding:32px 24px 80px}
+  .nav-i{padding:0 20px}
+  .ph h1{font-size:36px}
+}
+
+/* MOBILE LANDSCAPE / SMALL TABLET — under 768px */
+@media (max-width:768px){
+  /* Layout */
+  .wrap{padding:24px 16px 60px}
+  .nav-i{padding:0 14px;height:56px;gap:8px}
+  
+  /* Hide period chip on mobile — saves nav space */
+  .pchip{display:none}
+  
+  /* Logo smaller */
+  .nav-i .logo img{height:30px !important}
+  
+  /* Live pill smaller */
+  .live-pill{font-size:11px;padding:4px 10px}
+  
+  /* Button smaller */
+  .btn{padding:7px 14px;font-size:12px}
+  
+  /* Hero */
+  .ph{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
+  .ph h1{font-size:32px;line-height:1.1}
+  .gnote{text-align:left;font-size:11px;width:100%}
+  
+  /* Section headers */
+  .sh{margin:36px 0 18px;gap:10px}
+  .st{font-size:18px}
+  .sn{width:26px;height:26px;font-size:12px}
+  
+  /* Callout — stack vertically */
+  .co{padding:22px 20px;grid-template-columns:1fr;gap:18px}
+  .co-t{font-size:16px}
+  .co-b{font-size:13px;line-height:1.55}
+  .cbadges{justify-content:flex-start}
+  .cbadge{padding:10px 14px}
+  .cbv{font-size:22px}
+  .cbl{font-size:10px}
+  
+  /* KPI cards — stay 2 columns on phones, 1 on tiny phones */
+  .kg{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px}
+  .kc{padding:16px}
+  .kl{font-size:10px;margin-bottom:8px}
+  .kv{font-size:26px;margin-bottom:6px}
+  .ks{font-size:11px}
+  .dl{font-size:11px;padding:2px 7px}
+  
+  /* Charts and tables full width */
+  .two{grid-template-columns:1fr;gap:14px;margin-top:24px}
+  .cc{padding:18px}
+  .cc-t{font-size:14px}
+  .cc-top{margin-bottom:14px}
+  
+  /* Tables — horizontal scroll wrapper */
+  .tc{overflow-x:auto}
+  .tc table{min-width:580px}
+  .tc-h{padding:14px 16px}
+  .tc-t{font-size:14px}
+  thead th{padding:9px 14px;font-size:9px}
+  td{padding:10px 14px;font-size:12px}
+  .tkw{font-size:12px}
+  
+  /* Stat pair tighter */
+  .stat-pair{grid-template-columns:1fr 1fr;gap:10px}
+  .sp-box{padding:12px}
+  .sp-val{font-size:22px}
+  .sp-lbl{font-size:10px}
+  
+  /* AI Citations grid */
+  .ai-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .ai-item{padding:11px 13px;gap:10px}
+  .ai-logo{width:28px;height:28px;font-size:15px}
+  .ai-name{font-size:11px}
+  .ai-count{font-size:18px}
+  
+  /* Insight cards stack */
+  .ins-grid{grid-template-columns:1fr;gap:14px}
+  .ins{padding:20px}
+  .ins-icon{width:38px;height:38px;font-size:18px;margin-bottom:12px}
+  .ins li{font-size:12px;line-height:1.5;padding:8px 0}
+  
+  /* Tags wrap */
+  .tag{font-size:10px;padding:2px 8px}
+  
+  /* Position legend */
+  .pos-legend{gap:10px}
+  .pl-i{font-size:10px}
+  
+  /* Info box */
+  .info-box{font-size:11px;padding:10px 12px}
+  
+  /* Announcement bar */
+  .ann{font-size:11px;padding:8px 14px}
+  
+  /* Footer */
+  footer{padding:28px 18px}
+  .fmeta{font-size:11px;line-height:1.8}
+  .fmeta a{margin:0 5px;display:inline-block}
+}
+
+/* SMALL MOBILE — under 480px */
+@media (max-width:480px){
+  .ph h1{font-size:28px}
+  .kg{grid-template-columns:1fr}
+  .kc{padding:18px}
+  .kv{font-size:30px}
+  .stat-pair{grid-template-columns:1fr}
+  .ai-grid{grid-template-columns:1fr}
+  .cbadges{flex-direction:column;width:100%}
+  .cbadge{width:100%}
+  
+  /* Hide live pill text on tiny screens, keep dot */
+  .live-pill span:not(.ldot){display:none}
+  .live-pill{padding:5px;width:18px;height:18px;justify-content:center}
+}
+
+/* DISABLE 3D TILT ON TOUCH DEVICES — respects no-hover state */
+@media (hover:none){
+  .kc:hover{transform:none !important}
+}
 </style>
 </head>
 <body>

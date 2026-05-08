@@ -3,863 +3,386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kerkar Media — SEO Performance Dashboard</title>
+<title>Kerkar Media — SEO Performance Dashboard | May 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  :root {
-    --blue: #035398;
-    --blue-cta: #003DCC;
-    --light-gray: #E9E9E8;
-    --black: #000000;
-    --white: #FFFFFF;
-    --footer-bg: #124648;
-    --text-body: #1a1a1a;
-    --text-muted: #666;
-    --border: #e2e2e2;
-    --card-bg: #ffffff;
-    --page-bg: #f6f8fc;
-    --win-green: #16a34a;
-    --loss-red: #dc2626;
-    --radius: 12px;
-    --shadow: 0 2px 16px rgba(3,83,152,0.08);
-    --shadow-hover: 0 8px 32px rgba(3,83,152,0.16);
-  }
+:root{
+  --cta:#003DCC;--blue:#035398;--black:#000;--white:#fff;--footer:#124648;
+  --green:#16a34a;--red:#dc2626;--amber:#d97706;--purple:#7c3aed;
+  --bg:#f0f4f9;--card:#fff;--border:#e4e9f0;--muted:#64748b;--body:#1e293b;
+  --r:14px;--sh:0 2px 12px rgba(3,61,204,.07);--sh2:0 8px 32px rgba(3,61,204,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;font-size:16px;background:var(--bg);color:var(--body);line-height:1.5}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+.ann{background:var(--cta);color:#fff;text-align:center;padding:9px 20px;font-size:13px;font-weight:500}
+.ann a{color:#fff;text-decoration:underline;margin-left:6px}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    background: var(--page-bg);
-    color: var(--text-body);
-    min-height: 100vh;
-  }
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.nav-i{max-width:1320px;margin:0 auto;padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:36px;height:36px;background:var(--cta);border-radius:9px;display:flex;align-items:center;justify-content:center}
+.lt{font-family:'DM Sans',sans-serif;font-weight:700;font-size:19px;color:var(--black);letter-spacing:-.02em}
+.lt span{color:var(--cta)}
+.nav-r{display:flex;align-items:center;gap:14px}
+.live-pill{display:flex;align-items:center;gap:6px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--green)}
+.ldot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.pchip{font-size:13px;color:var(--muted);font-weight:500;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 14px}
+.pchip b{color:var(--body)}
+.btn{background:var(--cta);color:#fff;border:none;border-radius:10px;padding:9px 18px;font-family:'Inter',sans-serif;font-weight:500;font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.btn:hover{background:#002ea8;transform:translateY(-1px)}
 
-  /* ── ANNOUNCEMENT BANNER ── */
-  .announce-bar {
-    background: var(--blue-cta);
-    color: var(--white);
-    text-align: center;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
-  .announce-bar a { color: #fff; text-decoration: underline; margin-left: 8px; }
+.wrap{max-width:1320px;margin:0 auto;padding:40px 32px 100px}
 
-  /* ── NAVBAR ── */
-  .navbar {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .navbar-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-  .logo-mark {
-    width: 36px; height: 36px;
-    background: var(--blue-cta);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .logo-mark svg { width: 20px; height: 20px; }
-  .logo-text {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--black);
-    letter-spacing: -0.02em;
-  }
-  .logo-text span { color: var(--blue-cta); }
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .report-meta {
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-  .report-meta strong { color: var(--blue-cta); }
-  .btn-primary {
-    background: var(--blue-cta);
-    color: var(--white);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .btn-primary:hover { background: #0030a8; transform: translateY(-1px); }
+.ph{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px}
+.ptag{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--cta);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.ph h1{font-family:'DM Sans',sans-serif;font-size:42px;font-weight:700;color:var(--black);line-height:1.08;letter-spacing:-.03em}
+.ph h1 em{color:var(--cta);font-style:normal}
+.gnote{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 14px;text-align:right;line-height:1.8}
+.gnote b{color:var(--body)}
 
-  /* ── MAIN LAYOUT ── */
-  .main {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 40px 32px 80px;
-  }
+.sh{display:flex;align-items:center;gap:12px;margin:52px 0 22px}
+.sn{width:30px;height:30px;background:var(--cta);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;flex-shrink:0}
+.st{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;color:var(--black)}
+.sdv{flex:1;height:1px;background:var(--border)}
 
-  /* ── PAGE HEADER ── */
-  .page-header {
-    margin-bottom: 40px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  .client-name {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--blue-cta);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 6px;
-  }
-  .page-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 40px;
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-  .page-title span { color: var(--blue-cta); }
-  .report-period {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 18px;
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-  .report-period strong { color: var(--text-body); }
+.co{background:linear-gradient(130deg,#024b8a 0%,#003DCC 100%);border-radius:var(--r);padding:28px 32px;color:#fff;margin-bottom:24px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+@media(max-width:700px){.co{grid-template-columns:1fr}}
+.co-t{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;margin-bottom:7px}
+.co-b{font-size:14px;opacity:.88;line-height:1.65;max-width:660px}
+.co-b strong{font-weight:600;color:#93c5fd}
+.cbadges{display:flex;gap:12px;flex-wrap:wrap}
+.cbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:14px 20px;text-align:center;white-space:nowrap}
+.cbv{font-family:'DM Sans',sans-serif;font-size:28px;font-weight:700;line-height:1}
+.cbl{font-size:11px;opacity:.75;margin-top:3px}
 
-  /* ── SECTION LABEL ── */
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    margin-top: 48px;
-  }
-  .section-num {
-    width: 32px; height: 32px;
-    background: var(--blue-cta);
-    color: white;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--black);
-  }
-  .section-divider {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    margin-left: 8px;
-  }
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+@media(max-width:1000px){.kg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.kg{grid-template-columns:1fr}}
 
-  /* ── CARDS GRID ── */
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  @media (max-width: 900px) { .metrics-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 500px) { .metrics-grid { grid-template-columns: 1fr; } }
+.kc{background:var(--card);border-radius:var(--r);padding:22px;border:1px solid var(--border);box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden}
+.kc:hover{box-shadow:var(--sh2);transform:translateY(-3px)}
+.kc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0;background:var(--cta)}
+.kc.g::after{background:var(--green)}.kc.r::after{background:var(--red)}.kc.a::after{background:var(--amber)}
+.kl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+.kv{font-family:'DM Sans',sans-serif;font-size:34px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-.02em;margin-bottom:8px}
+.dl{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700;padding:3px 8px;border-radius:20px}
+.du{background:#dcfce7;color:var(--green)}.dd{background:#fee2e2;color:var(--red)}
+.ks{font-size:12px;color:var(--muted);margin-top:5px}
 
-  .metric-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.2s, transform 0.2s;
-    opacity: 0;
-    transform: translateY(24px);
-    position: relative;
-    overflow: hidden;
-  }
-  .metric-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-3px);
-  }
-  .metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--blue-cta);
-    border-radius: var(--radius) var(--radius) 0 0;
-  }
-  .metric-card.green::before { background: var(--win-green); }
-  .metric-card.red::before { background: var(--loss-red); }
-  .metric-card.orange::before { background: #ea580c; }
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+@media(max-width:768px){.two{grid-template-columns:1fr}}
 
-  .metric-label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }
-  .metric-value {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .metric-delta {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 20px;
-  }
-  .delta-up { background: #dcfce7; color: #16a34a; }
-  .delta-down { background: #fee2e2; color: #dc2626; }
-  .metric-sub {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 6px;
-  }
+.cc{background:var(--card);border-radius:var(--r);padding:24px;border:1px solid var(--border);box-shadow:var(--sh)}
+.cc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+.cc-t{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--black)}
+.tag{font-size:11px;font-weight:600;border-radius:20px;padding:3px 10px}
+.tb{background:#eff6ff;color:var(--cta)}.tg{background:#f0fdf4;color:var(--green)}.ta{background:#fffbeb;color:var(--amber)}.tr{background:#fef2f2;color:var(--red)}
 
-  /* ── CALLOUT BOX ── */
-  .callout {
-    background: linear-gradient(135deg, #035398 0%, #003DCC 100%);
-    border-radius: var(--radius);
-    padding: 28px 32px;
-    color: white;
-    margin-bottom: 24px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 24px;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  .callout-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .callout-body {
-    font-size: 14px;
-    opacity: 0.88;
-    line-height: 1.6;
-    max-width: 640px;
-  }
-  .callout-badge {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 10px;
-    padding: 16px 24px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  .callout-badge-value {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-  }
-  .callout-badge-label { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+.tc{background:var(--card);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);overflow:hidden;margin-bottom:20px}
+.tc-h{padding:18px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.tc-t{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:#f8fafc;padding:11px 20px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid #f1f5f9;transition:background .12s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:#f8fafc}
+td{padding:13px 20px;color:var(--body);vertical-align:middle}
+.tkw{font-weight:600;color:var(--black)}
+.pos{display:inline-block;padding:2px 9px;border-radius:20px;font-weight:700;font-size:12px}
+.p13{background:#dcfce7;color:#15803d}.p410{background:#fef3c7;color:#d97706}.p1120{background:#fee2e2;color:#dc2626}
+.bw{width:70px;background:#f1f5f9;border-radius:4px;height:5px;display:inline-block}
+.bf{height:5px;border-radius:4px;background:var(--cta)}
+.cp{color:var(--green);font-size:12px;font-weight:700}
+.cn{color:var(--red);font-size:12px;font-weight:700}
+.cm{color:var(--muted);font-size:12px;font-weight:600}
 
-  /* ── TWO COL LAYOUT ── */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 24px;
-  }
-  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.ai-grid{grid-template-columns:repeat(2,1fr)}}
+.ai-item{background:var(--bg);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;border:1px solid var(--border)}
+.ai-logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ai-name{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:2px}
+.ai-count{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:700;line-height:1}
 
-  .chart-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  .chart-card-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--black);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .chart-tag {
-    font-size: 11px;
-    background: #eff6ff;
-    color: var(--blue-cta);
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-weight: 600;
-  }
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+@media(max-width:900px){.ins-grid{grid-template-columns:1fr}}
+.ins{background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:24px;box-shadow:var(--sh);transition:box-shadow .2s,transform .2s}
+.ins:hover{box-shadow:var(--sh2);transform:translateY(-3px)}
+.ins-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+.ins-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.ins-type.win{color:var(--green)}.ins-type.loss{color:var(--red)}.ins-type.act{color:var(--cta)}
+.ins ul{list-style:none}
+.ins li{padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:13px;line-height:1.55;display:flex;gap:8px}
+.ins li:last-child{border-bottom:none}
+.ins li > b{flex-shrink:0;font-size:14px;margin-top:1px}
+.ins.win li > b{color:var(--green)}.ins.loss li > b{color:var(--red)}.ins.act li > b{color:var(--cta)}
+.pr{font-size:10px;font-weight:700;border-radius:4px;padding:1px 6px;margin-right:4px}
+.prh{background:#fee2e2;color:#dc2626}.prm{background:#fef3c7;color:#d97706}
+.sbadge{display:inline-block;background:#eff6ff;color:var(--cta);border-radius:6px;padding:2px 9px;font-size:11px;font-weight:600}
+.bbadge{display:inline-block;background:#f0fdf4;color:var(--green);border-radius:6px;padding:2px 9px;font-size:11px;font-weight:600}
 
-  /* ── DATA TABLE ── */
-  .table-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 24px;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  .table-header {
-    padding: 20px 24px 16px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .table-header-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  thead th {
-    background: #f8fafc;
-    padding: 12px 24px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border);
-  }
-  tbody tr {
-    border-bottom: 1px solid #f1f5f9;
-    transition: background 0.15s;
-  }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #f8fafc; }
-  td {
-    padding: 14px 24px;
-    color: var(--text-body);
-    vertical-align: middle;
-  }
-  .td-keyword { font-weight: 500; color: var(--black); }
-  .td-url { font-size: 12px; color: var(--text-muted); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .pos-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 13px;
-  }
-  .pos-1-3 { background: #dcfce7; color: #15803d; }
-  .pos-4-10 { background: #fef3c7; color: #d97706; }
-  .pos-11 { background: #fee2e2; color: #dc2626; }
+/* stagger-anim targets */
+.anim{opacity:0;transform:translateY(20px)}
 
-  .trend-bar-wrap { width: 80px; background: #f1f5f9; border-radius: 4px; height: 6px; }
-  .trend-bar { height: 6px; border-radius: 4px; background: var(--blue-cta); }
+footer{background:var(--footer);padding:36px 32px;text-align:center}
+.flogo{font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.flogo span{color:#7dd3fc}
+.fmeta{font-size:12px;color:rgba(255,255,255,.45);line-height:2}
+.fmeta a{color:rgba(255,255,255,.6);text-decoration:none;margin:0 8px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
 
-  /* ── INSIGHTS SECTION ── */
-  .insights-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 24px;
-  }
-  @media (max-width: 900px) { .insights-grid { grid-template-columns: 1fr; } }
+.pos-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.pl-i{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:500}
+.pl-d{width:10px;height:10px;border-radius:2px}
 
-  .insight-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    padding: 24px;
-    opacity: 0;
-    transform: translateY(24px);
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .insight-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
-
-  .insight-icon {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
-  .icon-win { background: #dcfce7; }
-  .icon-loss { background: #fee2e2; }
-  .icon-action { background: #eff6ff; }
-
-  .insight-type {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-  }
-  .insight-type.win { color: var(--win-green); }
-  .insight-type.loss { color: var(--loss-red); }
-  .insight-type.action { color: var(--blue-cta); }
-
-  .insight-list { list-style: none; }
-  .insight-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #f1f5f9;
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--text-body);
-    display: flex;
-    gap: 10px;
-  }
-  .insight-list li:last-child { border-bottom: none; }
-  .insight-list li::before {
-    content: '→';
-    color: var(--blue-cta);
-    flex-shrink: 0;
-    font-weight: 700;
-    margin-top: 1px;
-  }
-  .insight-card.win .insight-list li::before { color: var(--win-green); content: '✓'; }
-  .insight-card.loss .insight-list li::before { color: var(--loss-red); content: '✗'; }
-
-  /* ── LEADS TABLE BADGE ── */
-  .service-badge {
-    display: inline-block;
-    background: #eff6ff;
-    color: var(--blue-cta);
-    border-radius: 6px;
-    padding: 3px 10px;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .budget-badge {
-    display: inline-block;
-    background: #f0fdf4;
-    color: #15803d;
-    border-radius: 6px;
-    padding: 3px 10px;
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--footer-bg);
-    margin-top: 80px;
-    padding: 32px;
-    text-align: center;
-  }
-  .footer-logo {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-  .footer-logo span { color: #7dd3fc; }
-  .footer-meta { font-size: 13px; color: rgba(255,255,255,0.5); }
-  .footer-meta a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 8px; }
-
-  /* ── LOADING PULSE ── */
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-  .skeleton {
-    background: var(--light-gray);
-    border-radius: 6px;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--page-bg); }
-  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-
-  /* ── CHIP ── */
-  .chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: white; border: 1px solid var(--border);
-    border-radius: 20px; padding: 4px 12px;
-    font-size: 12px; font-weight: 500; color: var(--text-muted);
-  }
-  .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+.info-box{margin-top:14px;padding:11px 14px;background:#eff6ff;border-radius:8px;font-size:12px;color:var(--cta);font-weight:500;line-height:1.5}
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.sp-box{background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.sp-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.sp-val{font-family:'DM Sans',sans-serif;font-size:28px;font-weight:700;line-height:1}
+.sp-sub{font-size:12px;color:var(--muted);margin-top:4px}
 </style>
 </head>
 <body>
 
-<!-- Announcement Banner -->
-<div class="announce-bar">
-  📊 Free SEO Audit for Q2 2026. Limited slots available. <a href="#">Claim Yours Today →</a>
-</div>
+<div class="ann">📊 Free SEO Audit for Q2 2026 — Limited slots available. <a href="https://kerkarmedia.com/contact-us" target="_blank">Claim Yours Today →</a></div>
 
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="navbar-inner">
-    <a href="#" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 17l4-8 4 4 4-6 4 10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="logo-text">kerkar<span>media</span></span>
+<nav>
+  <div class="nav-i">
+    <a href="https://kerkarmedia.com" class="logo" target="_blank">
+      <div class="lm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 4 4-6 4 10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="lt">kerkar<span>media</span></span>
     </a>
-    <div class="nav-right">
-      <div class="chip"><span class="chip-dot"></span> Live Report</div>
-      <div class="report-meta">Week of <strong>05 May 2026</strong></div>
-      <a href="https://kerkarmedia.com" class="btn-primary" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><polyline points="15 3 21 3 21 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <div class="nav-r">
+      <div class="live-pill"><span class="ldot"></span>Live Report</div>
+      <div class="pchip">Feb 7 — May 8, 2026 &nbsp;|&nbsp; <b>90 days</b></div>
+      <a href="https://kerkarmedia.com" class="btn" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="15 3 21 3 21 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         kerkarmedia.com
       </a>
     </div>
   </div>
 </nav>
 
-<!-- Main -->
-<main class="main">
+<div class="wrap">
 
-  <!-- Page Header -->
-  <div class="page-header" id="pageHeader">
+  <!-- HEADER -->
+  <div class="ph anim" id="ph">
     <div>
-      <div class="client-name">Kerkar Media — Internal Report</div>
-      <h1 class="page-title">SEO Performance<br><span>Dashboard</span></h1>
+      <div class="ptag">Kerkar Media — Internal SEO Report</div>
+      <h1>Performance <em>Dashboard</em></h1>
     </div>
-    <div class="report-period">
-      Report Period: <strong>08 Apr — 05 May 2026</strong> &nbsp;|&nbsp; Last 28 days
-    </div>
+    <div class="gnote">Generated: <b>08 May 2026</b><br>Sources: GSC · Ahrefs · GA4 · CF7<br>Powered by n8n + Claude AI</div>
   </div>
 
-  <!-- ════ SECTION 1: OVERVIEW ════ -->
-  <div class="section-label" id="sec1label">
-    <div class="section-num">1</div>
-    <div class="section-title">Overview</div>
-    <div class="section-divider"></div>
-  </div>
+  <!-- ══ SECTION 1 — OVERVIEW ══ -->
+  <div class="sh"><div class="sn">1</div><div class="st">Overview</div><div class="sdv"></div></div>
 
-  <!-- Callout -->
-  <div class="callout" id="callout">
+  <div class="co anim" id="co">
     <div>
-      <div class="callout-title">Executive Summary — Week of 05 May 2026</div>
-      <div class="callout-body">
-        Organic traffic grew 18% WoW driven by a surge in branded queries. Top 3 position keywords increased from 12 to 17 — a strong signal of improving <em>SegIndexer</em> tier classification. GSC shows improving <strong>goodClicks</strong> ratio (0.74 vs 0.61 prior week). One concern: 3 high-value commercial keywords slipped from page 1 — requires immediate internal linking + content refresh action. 2 new leads captured this week, both ₹50K+ budget.
+      <div class="co-t">Executive Summary — 08 May 2026</div>
+      <div class="co-b">GSC shows <strong>508 total clicks</strong> and <strong>104K impressions</strong> with Avg CTR of 0.5% vs position 33 — visibility is strong but click-through is critically under-performing. Ahrefs DR grew to <strong>27 (+1)</strong> with referring domains up to 212 (+10). Major concern: organic keywords dropped from 26 → <strong>10 (-16)</strong> and commercial keywords nearly wiped out (-11). Positive signal: <strong>Gemini citations +3, Copilot +2</strong> — AI search visibility accelerating.</div>
+    </div>
+    <div class="cbadges">
+      <div class="cbadge"><div class="cbv">508</div><div class="cbl">GSC Clicks</div></div>
+      <div class="cbadge"><div class="cbv">104K</div><div class="cbl">Impressions</div></div>
+      <div class="cbadge"><div class="cbv">DR 27</div><div class="cbl">Domain Rating</div></div>
+    </div>
+  </div>
+
+  <div class="kg">
+    <div class="kc anim"><div class="kl">Total Clicks (GSC)</div><div class="kv">508</div><span class="dl du">↑ Active</span><div class="ks">Last 90 days · Daily</div></div>
+    <div class="kc g anim"><div class="kl">Impressions</div><div class="kv">104K</div><span class="dl du">↑ Strong</span><div class="ks">176 tracked pages</div></div>
+    <div class="kc a anim"><div class="kl">Avg CTR</div><div class="kv">0.5%</div><span class="dl dd">↓ Below target</span><div class="ks">Target: 3–5% commercial</div></div>
+    <div class="kc a anim"><div class="kl">Avg Position</div><div class="kv">33</div><span class="dl dd">↓ Page 4</span><div class="ks">Need page 1 push</div></div>
+    <div class="kc r anim"><div class="kl">Organic Keywords</div><div class="kv">10</div><span class="dl dd">↓ -16 keywords</span><div class="ks">Ahrefs · India</div></div>
+    <div class="kc r anim"><div class="kl">Organic Traffic</div><div class="kv">67</div><span class="dl dd">↓ -27 vs last mo.</span><div class="ks">Ahrefs estimate</div></div>
+    <div class="kc g anim"><div class="kl">Domain Rating</div><div class="kv">27</div><span class="dl du">↑ +1 this month</span><div class="ks">AR: 5,284,585 ▲9,873</div></div>
+    <div class="kc g anim"><div class="kl">Referring Domains</div><div class="kv">212</div><span class="dl du">↑ +10 this month</span><div class="ks">All time: 759</div></div>
+  </div>
+
+  <!-- Charts Row 1 -->
+  <div class="two">
+    <div class="cc anim" id="c1">
+      <div class="cc-top"><div class="cc-t">Clicks &amp; Impressions — Daily Trend</div><span class="tag tb">GSC · 90 days</span></div>
+      <canvas id="clicksChart" height="220"></canvas>
+    </div>
+    <div class="cc anim" id="c2">
+      <div class="cc-top"><div class="cc-t">Organic Positions Distribution</div><span class="tag ta">Ahrefs · Apr–May</span></div>
+      <div class="pos-legend">
+        <div class="pl-i"><div class="pl-d" style="background:#ea580c"></div>1–3</div>
+        <div class="pl-i"><div class="pl-d" style="background:#f97316"></div>4–10</div>
+        <div class="pl-i"><div class="pl-d" style="background:#fdba74"></div>11–20</div>
+        <div class="pl-i"><div class="pl-d" style="background:#e2e8f0"></div>21–50+</div>
       </div>
-    </div>
-    <div class="callout-badge">
-      <div class="callout-badge-value">74%</div>
-      <div class="callout-badge-label">Good Click Ratio</div>
+      <canvas id="posChart" height="195"></canvas>
     </div>
   </div>
 
-  <!-- KPI Metrics -->
-  <div class="metrics-grid" id="metricsGrid">
-    <div class="metric-card" style="--i:0">
-      <div class="metric-label">Organic Sessions</div>
-      <div class="metric-value">3,847</div>
-      <span class="metric-delta delta-up">↑ 18.2%</span>
-      <div class="metric-sub">vs 3,255 last period</div>
+  <!-- ══ SECTION 2 — KEYWORD INTELLIGENCE ══ -->
+  <div class="sh"><div class="sn">2</div><div class="st">Keyword Intelligence</div><div class="sdv"></div></div>
+
+  <div class="two">
+    <div class="tc anim" id="t1">
+      <div class="tc-h"><div class="tc-t">Organic Keywords by Intent</div><span class="tag ta">Ahrefs Beta · India</span></div>
+      <table>
+        <thead><tr><th>Intent</th><th>Keywords</th><th>Δ</th><th>Traffic</th><th>Δ</th></tr></thead>
+        <tbody>
+          <tr><td class="tkw">🏷️ Branded</td><td>2</td><td class="cp">+1</td><td>49</td><td class="cm">—</td></tr>
+          <tr><td class="tkw">🔍 Non-branded</td><td>8</td><td class="cn">-17</td><td>17</td><td class="cn">-27</td></tr>
+          <tr><td class="tkw">📖 Informational</td><td>10</td><td class="cn">-16</td><td>66</td><td class="cn">-27</td></tr>
+          <tr><td class="tkw">🧭 Navigational</td><td>0</td><td class="cm">—</td><td>0</td><td class="cm">—</td></tr>
+          <tr><td class="tkw">💼 Commercial</td><td>5</td><td class="cn">-11</td><td>2</td><td class="cn">-15</td></tr>
+          <tr><td class="tkw">💸 Transactional</td><td>0</td><td class="cm">—</td><td>0</td><td class="cm">—</td></tr>
+          <tr><td class="tkw">📍 Local</td><td>4</td><td class="cn">-11</td><td>0</td><td class="cn">-17</td></tr>
+          <tr><td class="tkw">🌐 Non-local</td><td>6</td><td class="cn">-5</td><td>66</td><td class="cn">-10</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="metric-card green" style="--i:1">
-      <div class="metric-label">Total Impressions</div>
-      <div class="metric-value">142K</div>
-      <span class="metric-delta delta-up">↑ 9.4%</span>
-      <div class="metric-sub">GSC · Last 28 days</div>
-    </div>
-    <div class="metric-card" style="--i:2">
-      <div class="metric-label">Avg. Click-Through Rate</div>
-      <div class="metric-value">3.8%</div>
-      <span class="metric-delta delta-up">↑ 0.6pp</span>
-      <div class="metric-sub">Target: 3–5% commercial</div>
-    </div>
-    <div class="metric-card orange" style="--i:3">
-      <div class="metric-label">Avg. Position</div>
-      <div class="metric-value">14.2</div>
-      <span class="metric-delta delta-down">↓ 1.3</span>
-      <div class="metric-sub">Top 50 tracked keywords</div>
-    </div>
-    <div class="metric-card" style="--i:4">
-      <div class="metric-label">Sessions (GA4)</div>
-      <div class="metric-value">4,210</div>
-      <span class="metric-delta delta-up">↑ 12.1%</span>
-      <div class="metric-sub">All traffic · Last 7 days</div>
-    </div>
-    <div class="metric-card green" style="--i:5">
-      <div class="metric-label">Conversions (Thank You)</div>
-      <div class="metric-value">31</div>
-      <span class="metric-delta delta-up">↑ 6</span>
-      <div class="metric-sub">keyEvent:thank_you</div>
-    </div>
-    <div class="metric-card" style="--i:6">
-      <div class="metric-label">Bounce Rate</div>
-      <div class="metric-value">52%</div>
-      <span class="metric-delta delta-up">↓ 4pp</span>
-      <div class="metric-sub">Improving engagement</div>
-    </div>
-    <div class="metric-card green" style="--i:7">
-      <div class="metric-label">New Leads (CF7)</div>
-      <div class="metric-value">2</div>
-      <span class="metric-delta delta-up">This week</span>
-      <div class="metric-sub">₹50K+ budget segment</div>
+    <div class="cc anim" id="c3">
+      <div class="cc-top"><div class="cc-t">CTR vs India Benchmarks</div><span class="tag tb">Benchmark Analysis</span></div>
+      <canvas id="ctrChart" height="230"></canvas>
     </div>
   </div>
 
-  <!-- Charts -->
-  <div class="two-col">
-    <div class="chart-card" id="chart1">
-      <div class="chart-card-title">
-        Organic Sessions — 4 Week Trend
-        <span class="chart-tag">GSC</span>
+  <div class="tc anim" id="t2">
+    <div class="tc-h">
+      <div class="tc-t">Keyword Position Tracker</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="tag tg">Top 3: 1 kw</span><span class="tag ta">4–10: ~3 kw</span><span class="tag tr">11–20: ~4 kw</span>
       </div>
-      <canvas id="sessionsChart" height="200"></canvas>
-    </div>
-    <div class="chart-card" id="chart2">
-      <div class="chart-card-title">
-        CTR by Query Type
-        <span class="chart-tag">India Benchmarks</span>
-      </div>
-      <canvas id="ctrChart" height="200"></canvas>
-    </div>
-  </div>
-
-  <!-- ════ SECTION 2: SALES / LEADS — ORGANIC ════ -->
-  <div class="section-label" id="sec2label">
-    <div class="section-num">2</div>
-    <div class="section-title">Keyword Rankings</div>
-    <div class="section-divider"></div>
-  </div>
-
-  <!-- Top 1-3 positions -->
-  <div class="table-card" id="table1">
-    <div class="table-header">
-      <div class="table-header-title">Top 1–3 Positions <span class="pos-badge pos-1-3" style="margin-left:10px">17 keywords</span></div>
-      <span class="chip">Best performers</span>
     </div>
     <table>
-      <thead>
-        <tr>
-          <th>Keyword</th>
-          <th>Pos</th>
-          <th>Clicks</th>
-          <th>Impressions</th>
-          <th>CTR</th>
-          <th>Trend</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Keyword</th><th>Position</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Intent</th><th>Trend</th></tr></thead>
       <tbody>
-        <tr><td class="td-keyword">seo company in mumbai</td><td><span class="pos-badge pos-1-3">1</span></td><td>248</td><td>1,620</td><td>15.3%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:96%"></div></div></td></tr>
-        <tr><td class="td-keyword">b2b digital marketing agency mumbai</td><td><span class="pos-badge pos-1-3">2</span></td><td>182</td><td>1,140</td><td>16.0%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:88%"></div></div></td></tr>
-        <tr><td class="td-keyword">kerkar media</td><td><span class="pos-badge pos-1-3">1</span></td><td>310</td><td>820</td><td>37.8%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:100%"></div></div></td></tr>
-        <tr><td class="td-keyword">seo for manufacturers india</td><td><span class="pos-badge pos-1-3">3</span></td><td>96</td><td>880</td><td>10.9%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:72%"></div></div></td></tr>
-        <tr><td class="td-keyword">b2b seo agency india</td><td><span class="pos-badge pos-1-3">2</span></td><td>74</td><td>640</td><td>11.6%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:68%"></div></div></td></tr>
+        <tr><td class="tkw">kerkar media</td><td><span class="pos p13">1</span></td><td>49</td><td>130</td><td>37.7%</td><td><span class="tag tb">Branded</span></td><td><div class="bw"><div class="bf" style="width:100%"></div></div></td></tr>
+        <tr><td class="tkw">seo company in mumbai</td><td><span class="pos p410">6</span></td><td>8</td><td>940</td><td>0.9%</td><td><span class="tag ta">Commercial</span></td><td><div class="bw"><div class="bf" style="width:52%"></div></div></td></tr>
+        <tr><td class="tkw">digital marketing agency mumbai</td><td><span class="pos p410">9</span></td><td>4</td><td>720</td><td>0.6%</td><td><span class="tag ta">Commercial</span></td><td><div class="bw"><div class="bf" style="width:38%"></div></div></td></tr>
+        <tr><td class="tkw">b2b seo agency india</td><td><span class="pos p1120">14</span></td><td>2</td><td>480</td><td>0.4%</td><td><span class="tag ta">Commercial</span></td><td><div class="bw"><div class="bf" style="width:28%"></div></div></td></tr>
+        <tr><td class="tkw">seo for manufacturers india</td><td><span class="pos p1120">18</span></td><td>1</td><td>380</td><td>0.3%</td><td><span class="tag tb">Informational</span></td><td><div class="bw"><div class="bf" style="width:20%"></div></div></td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Top 4-10 positions -->
-  <div class="table-card" id="table2">
-    <div class="table-header">
-      <div class="table-header-title">Positions 4–10 <span class="pos-badge pos-4-10" style="margin-left:10px">24 keywords</span></div>
-      <span class="chip">Needs push to page 1</span>
+  <!-- ══ SECTION 3 — AUTHORITY & BACKLINKS ══ -->
+  <div class="sh"><div class="sn">3</div><div class="st">Domain Authority &amp; Backlinks</div><div class="sdv"></div></div>
+
+  <div class="two">
+    <div class="cc anim" id="c-dr">
+      <div class="cc-top"><div class="cc-t">Domain Rating — Ahrefs</div><span class="tag tg">kerkarmedia.com</span></div>
+      <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <svg width="150" height="95" viewBox="0 0 150 95">
+            <path d="M20 85 A55 55 0 0 1 130 85" fill="none" stroke="#f1f5f9" stroke-width="13" stroke-linecap="round"/>
+            <path id="drArc" d="M20 85 A55 55 0 0 1 130 85" fill="none" stroke="#22c55e" stroke-width="13" stroke-linecap="round" stroke-dasharray="172.7" stroke-dashoffset="172.7"/>
+          </svg>
+          <div style="font-family:'DM Sans',sans-serif;font-size:56px;font-weight:700;line-height:1;letter-spacing:-.03em;margin-top:-16px">27</div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:4px">Domain Rating</div>
+          <div style="font-size:12px;color:var(--green);font-weight:600;margin-top:4px">↑ +1 this month</div>
+        </div>
+        <div style="flex:1;min-width:150px">
+          <div style="margin-bottom:14px"><div class="sp-lbl">URL Rating</div><div style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:700">27</div></div>
+          <div style="margin-bottom:14px"><div class="sp-lbl">Ahrefs Rank</div><div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:var(--cta)">5,284,585 <span style="font-size:13px;color:var(--green)">▲9,873</span></div></div>
+          <div><div class="sp-lbl">Total Backlinks</div><div style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700">1.4K <span style="font-size:13px;color:var(--red)">-5</span></div><div style="font-size:12px;color:var(--muted)">All time: 35.3K</div></div>
+        </div>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Keyword</th>
-          <th>Pos</th>
-          <th>Clicks</th>
-          <th>Impressions</th>
-          <th>CTR</th>
-          <th>Trend</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="td-keyword">seo company for real estate india</td><td><span class="pos-badge pos-4-10">5</span></td><td>42</td><td>920</td><td>4.6%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:55%"></div></div></td></tr>
-        <tr><td class="td-keyword">performance marketing agency mumbai</td><td><span class="pos-badge pos-4-10">7</span></td><td>28</td><td>740</td><td>3.8%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:40%"></div></div></td></tr>
-        <tr><td class="td-keyword">seo for healthcare india</td><td><span class="pos-badge pos-4-10">6</span></td><td>34</td><td>820</td><td>4.1%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:48%"></div></div></td></tr>
-        <tr><td class="td-keyword">digital marketing for smes india</td><td><span class="pos-badge pos-4-10">9</span></td><td>18</td><td>610</td><td>3.0%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:32%"></div></div></td></tr>
-        <tr><td class="td-keyword">amazon marketing services india</td><td><span class="pos-badge pos-4-10">8</span></td><td>22</td><td>560</td><td>3.9%</td><td><div class="trend-bar-wrap"><div class="trend-bar" style="width:36%"></div></div></td></tr>
-      </tbody>
-    </table>
-  </div>
 
-  <!-- GA4 Page Performance -->
-  <div class="section-label">
-    <div class="section-num" style="background:#0891b2">↗</div>
-    <div class="section-title">GA4 Page Performance</div>
-    <div class="section-divider"></div>
-  </div>
-
-  <div class="table-card" id="table3">
-    <div class="table-header">
-      <div class="table-header-title">Top 5 Pages by Sessions</div>
-      <span class="chip">Last 7 days</span>
+    <div class="cc anim" id="c-bl">
+      <div class="cc-top"><div class="cc-t">Backlink Profile</div><span class="tag tb">Month-on-Month</span></div>
+      <div class="stat-pair">
+        <div class="sp-box"><div class="sp-lbl">Ref. Domains</div><div class="sp-val">212 <span style="font-size:14px;color:var(--green);font-weight:700">+10</span></div><div class="sp-sub">All time: 759</div></div>
+        <div class="sp-box"><div class="sp-lbl">Backlinks</div><div class="sp-val">1.4K <span style="font-size:14px;color:var(--red);font-weight:700">-5</span></div><div class="sp-sub">Active</div></div>
+        <div class="sp-box"><div class="sp-lbl">Org. Keywords</div><div class="sp-val" style="color:var(--red)">10 <span style="font-size:14px;font-weight:700">-16</span></div><div class="sp-sub">Top 3: 1</div></div>
+        <div class="sp-box"><div class="sp-lbl">Traffic Value</div><div class="sp-val" style="color:var(--red)">$1 <span style="font-size:14px;font-weight:700">-$15</span></div><div class="sp-sub">Ahrefs est.</div></div>
+      </div>
+      <canvas id="blChart" height="110"></canvas>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Page Path</th>
-          <th>Sessions</th>
-          <th>Bounce Rate</th>
-          <th>Conversions</th>
-          <th>Conv. Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="td-keyword">/</td><td>1,240</td><td>48%</td><td>12</td><td>0.97%</td></tr>
-        <tr><td class="td-keyword">/seo-company-in-mumbai/</td><td>820</td><td>42%</td><td>9</td><td>1.10%</td></tr>
-        <tr><td class="td-keyword">/seo-for-manufacturers/</td><td>610</td><td>55%</td><td>4</td><td>0.66%</td></tr>
-        <tr><td class="td-keyword">/contact-us/</td><td>440</td><td>31%</td><td>6</td><td>1.36%</td></tr>
-        <tr><td class="td-keyword">/blog/seo-pricing-india-2026/</td><td>380</td><td>62%</td><td>0</td><td>0.00%</td></tr>
-      </tbody>
-    </table>
   </div>
 
-  <!-- ════ SECTION 3: INSIGHTS ════ -->
-  <div class="section-label" id="sec3label">
-    <div class="section-num">3</div>
-    <div class="section-title">Insights</div>
-    <div class="section-divider"></div>
+  <!-- Traffic by Location + AI Citations -->
+  <div class="two">
+    <div class="tc anim" id="t3">
+      <div class="tc-h"><div class="tc-t">Traffic by Location</div><span class="tag ta">Organic: 3 countries</span></div>
+      <table>
+        <thead><tr><th>Location</th><th>Traffic</th><th>Δ</th><th>Share</th><th>Keywords</th><th>Kw Δ</th></tr></thead>
+        <tbody>
+          <tr><td class="tkw">🇮🇳 India</td><td>67</td><td class="cn">-27</td><td>98.5%</td><td>10</td><td class="cn">-16</td></tr>
+          <tr><td class="tkw">🇺🇸 United States</td><td>1</td><td class="cp">+1</td><td>1.5%</td><td>3</td><td class="cn">-9</td></tr>
+          <tr><td class="tkw">🇦🇪 UAE</td><td>0</td><td class="cm">—</td><td>0%</td><td>1</td><td class="cm">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cc anim" id="c-ai">
+      <div class="cc-top"><div class="cc-t">AI Citations — GEO Presence</div><span class="tag tg">Ahrefs · Last Month</span></div>
+      <div class="ai-grid">
+        <div class="ai-item"><div class="ai-logo" style="background:#f8fafc">🔍</div><div><div class="ai-name">AI Overview</div><div class="ai-count" style="color:var(--muted)">0 <span style="font-size:12px;font-weight:700;color:var(--red)">-2</span></div></div></div>
+        <div class="ai-item"><div class="ai-logo" style="background:#f0fdf4">🤖</div><div><div class="ai-name">ChatGPT</div><div class="ai-count" style="color:var(--green)">2 <span style="font-size:12px;font-weight:700;color:var(--green)">+2</span></div></div></div>
+        <div class="ai-item"><div class="ai-logo" style="background:#fffbeb">✦</div><div><div class="ai-name">Gemini</div><div class="ai-count" style="color:var(--green)">5 <span style="font-size:12px;font-weight:700;color:var(--green)">+3</span></div></div></div>
+        <div class="ai-item"><div class="ai-logo" style="background:#eff6ff">🔮</div><div><div class="ai-name">Copilot</div><div class="ai-count" style="color:var(--green)">2 <span style="font-size:12px;font-weight:700;color:var(--green)">+2</span></div></div></div>
+        <div class="ai-item"><div class="ai-logo" style="background:#f8fafc">⚡</div><div><div class="ai-name">Perplexity</div><div class="ai-count" style="color:var(--muted)">0 <span style="font-size:12px;font-weight:700;color:var(--muted)">—</span></div></div></div>
+        <div class="ai-item"><div class="ai-logo" style="background:#f8fafc">𝕏</div><div><div class="ai-name">Grok</div><div class="ai-count" style="color:var(--muted)">0 <span style="font-size:12px;font-weight:700;color:var(--muted)">—</span></div></div></div>
+      </div>
+      <div class="info-box">💡 <strong>GEO Insight:</strong> Gemini (+3) and Copilot (+2) citations growing. Publish E-E-A-T-rich structured content and FAQ schema to accelerate AI search visibility across all platforms.</div>
+    </div>
   </div>
 
-  <div class="insights-grid" id="insightsGrid">
-    <div class="insight-card win" id="insWin">
-      <div class="insight-icon icon-win">🏆</div>
-      <div class="insight-type win">Wins This Week</div>
-      <ul class="insight-list">
-        <li>17 keywords now in top 3 — up from 12 last week. Strongest growth in branded cluster.</li>
-        <li>Organic CTR hit 3.8% — surpassing 3–5% commercial benchmark target for first time.</li>
-        <li>goodClicks ratio improved to 0.74, signaling stronger content-to-intent alignment per Algorithm Leak v2.</li>
-        <li>2 high-budget leads (₹50K+) captured via CF7 — both from /seo-company-in-mumbai/ landing page.</li>
+  <!-- ══ SECTION 4 — INSIGHTS ══ -->
+  <div class="sh"><div class="sn">4</div><div class="st">Insights &amp; Priority Actions</div><div class="sdv"></div></div>
+
+  <div class="ins-grid">
+    <div class="ins win anim" id="iw">
+      <div class="ins-icon" style="background:#dcfce7">🏆</div>
+      <div class="ins-type win">Wins This Period</div>
+      <ul>
+        <li><b>✓</b>DR grew to 27 (+1) with referring domains up +10 to 212 — authority building steadily.</li>
+        <li><b>✓</b>Gemini citations at 5 (+3), Copilot at 2 (+2) — AI search visibility accelerating fast.</li>
+        <li><b>✓</b>104K impressions across 176 pages — GSC crawl and indexation coverage is excellent.</li>
+        <li><b>✓</b>Ahrefs Rank improved by 9,873 positions — consistent directional improvement.</li>
+        <li><b>✓</b>ChatGPT citations appeared for first time (+2) — brand entering LLM knowledge base.</li>
       </ul>
     </div>
-
-    <div class="insight-card loss" id="insLoss">
-      <div class="insight-icon icon-loss">⚠️</div>
-      <div class="insight-type loss">Losses / Concerns</div>
-      <ul class="insight-list">
-        <li>3 commercial keywords slipped from positions 8–10 to 11–15. Likely due to badClicks spike on those URLs.</li>
-        <li>Blog page /seo-pricing-india-2026/ driving 380 sessions but zero conversions — no CTA or lead magnet present.</li>
-        <li>Avg. position degraded from 12.9 to 14.2 — siteRadius score likely impacted by thin pages in /resources/ section.</li>
+    <div class="ins loss anim" id="il">
+      <div class="ins-icon" style="background:#fee2e2">⚠️</div>
+      <div class="ins-type loss">Critical Concerns</div>
+      <ul>
+        <li><b>✗</b>Organic keywords collapsed 26 → 10 (-16). Commercial cluster down -11, Local down -11.</li>
+        <li><b>✗</b>Avg CTR 0.5% vs 3–5% benchmark — all title tags and meta descriptions need urgent rewrite.</li>
+        <li><b>✗</b>Avg position 33 — only 1 keyword in Top 3 (branded). Zero transactional/navigational keywords.</li>
+        <li><b>✗</b>Traffic value at $1 — site attracts no commercial intent traffic despite 104K impressions.</li>
+        <li><b>✗</b>Local keyword traffic = 0 — critical failure for a Mumbai-based local SEO agency.</li>
       </ul>
     </div>
-
-    <div class="insight-card" id="insAction">
-      <div class="insight-icon icon-action">🎯</div>
-      <div class="insight-type action">Priority Actions</div>
-      <ul class="insight-list">
-        <li><strong>[HIGH]</strong> Add lead magnet to /seo-pricing-india-2026/ — target 1%+ CVR from 380 existing sessions.</li>
-        <li><strong>[HIGH]</strong> Internal linking audit for the 3 slipped commercial keywords — link from top 3 ranking pages.</li>
-        <li><strong>[MED]</strong> Delete or consolidate 4 thin /resources/ pages — improve contentEffort signal and siteQualityStddev.</li>
-        <li><strong>[MED]</strong> Publish 1 new manufacturer SEO case study to strengthen E-E-A-T and siteRadius cluster.</li>
+    <div class="ins act anim" id="ia">
+      <div class="ins-icon" style="background:#eff6ff">🎯</div>
+      <div class="ins-type act">Priority Actions</div>
+      <ul>
+        <li><b>→</b><span class="pr prh">HIGH</span>Rewrite all commercial page title tags. Add city + service modifier. Target 3%+ CTR.</li>
+        <li><b>→</b><span class="pr prh">HIGH</span>Rebuild Mumbai local SEO cluster: 5+ location-intent pages with schema markup.</li>
+        <li><b>→</b><span class="pr prh">HIGH</span>Add internal links from homepage (DR27) to all service pages to distribute authority.</li>
+        <li><b>→</b><span class="pr prm">MED</span>Publish 2 manufacturer/B2B case studies to recapture commercial keywords.</li>
+        <li><b>→</b><span class="pr prm">MED</span>Add FAQ schema + E-E-A-T signals to top 5 informational pages for Gemini GEO boost.</li>
       </ul>
     </div>
   </div>
 
-  <!-- Leads CRM -->
-  <div class="section-label">
-    <div class="section-num" style="background:#7c3aed">👥</div>
-    <div class="section-title">Leads CRM — This Week</div>
-    <div class="section-divider"></div>
-  </div>
+</div>
 
-  <div class="table-card" id="leadsTable">
-    <div class="table-header">
-      <div class="table-header-title">New Leads</div>
-      <span class="chip">CF7 · Google Sheets sync</span>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Company</th>
-          <th>Service</th>
-          <th>Budget</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="td-keyword">Rahul Sharma</td>
-          <td>Apex Industries Pvt Ltd</td>
-          <td><span class="service-badge">SEO</span></td>
-          <td><span class="budget-badge">₹75,000</span></td>
-          <td>02 May 2026</td>
-        </tr>
-        <tr>
-          <td class="td-keyword">Priya Nair</td>
-          <td>MedEquip Solutions</td>
-          <td><span class="service-badge">Performance Mktg</span></td>
-          <td><span class="budget-badge">₹1,20,000</span></td>
-          <td>04 May 2026</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</main>
-
-<!-- Footer -->
 <footer>
-  <div class="footer-logo">kerkar<span>media</span></div>
-  <div class="footer-meta">
-    Automated SEO Report · Generated 05 May 2026 · Powered by n8n + Claude AI
-    <br>
+  <div class="flogo">kerkar<span>media</span></div>
+  <div class="fmeta">
+    Automated SEO Report · Generated 08 May 2026 · Powered by n8n + Claude AI<br>
+    <a href="https://kerkarmedia.com">kerkarmedia.com</a>
     <a href="https://kerkarmedia.com/privacy-policy">Privacy Policy</a>
-    <a href="https://kerkarmedia.com/terms-of-service">Terms of Service</a>
-    <br><br>
+    <a href="https://kerkarmedia.com/terms-of-service">Terms</a><br>
     © Kerkar Media 2026. All Rights Reserved. &nbsp;|&nbsp; 805, SP TBI, Bhavans Campus, Andheri West, Mumbai 400058
   </div>
 </footer>
@@ -867,95 +390,101 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-// Page header
-gsap.to("#pageHeader", { opacity:1, y:0, duration:0.8, ease:"power3.out", delay:0.2 });
-
-// Callout
-gsap.to("#callout", { opacity:1, y:0, duration:0.7, ease:"power2.out",
-  scrollTrigger:{ trigger:"#callout", start:"top 85%", once:true }, delay:0.1 });
-
-// Metric cards stagger
-gsap.to("#metricsGrid .metric-card", {
-  opacity:1, y:0, duration:0.55, stagger:0.07, ease:"power2.out",
-  scrollTrigger:{ trigger:"#metricsGrid", start:"top 85%", once:true }
+// Animate all .anim elements on scroll
+document.querySelectorAll('.anim').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.65,ease:'power2.out',
+    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
 });
 
-// Charts
-gsap.to(["#chart1","#chart2"], {
-  opacity:1, y:0, duration:0.6, stagger:0.12, ease:"power2.out",
-  scrollTrigger:{ trigger:"#chart1", start:"top 85%", once:true }
-});
+// KPI cards stagger
+gsap.to('.kc',{opacity:1,y:0,duration:.5,stagger:.06,ease:'power2.out',
+  scrollTrigger:{trigger:'.kg',start:'top 86%',once:true}});
 
-// Tables
-["#table1","#table2","#table3","#leadsTable"].forEach((id, i) => {
-  gsap.to(id, { opacity:1, y:0, duration:0.6, ease:"power2.out",
-    scrollTrigger:{ trigger:id, start:"top 88%", once:true }, delay: i*0.05 });
-});
+// DR Arc animation
+gsap.to('#drArc',{strokeDashoffset:55,duration:1.8,ease:'power2.out',
+  scrollTrigger:{trigger:'#c-dr',start:'top 85%',once:true}});
 
-// Insights
-gsap.to(["#insWin","#insLoss","#insAction"], {
-  opacity:1, y:0, duration:0.6, stagger:0.12, ease:"power2.out",
-  scrollTrigger:{ trigger:"#insightsGrid", start:"top 85%", once:true }
-});
-
-// ── SESSIONS CHART ──
-const sessCtx = document.getElementById('sessionsChart').getContext('2d');
-new Chart(sessCtx, {
-  type: 'line',
-  data: {
-    labels: ['07 Apr','14 Apr','21 Apr','28 Apr','05 May'],
-    datasets: [{
-      label: 'Organic Sessions',
-      data: [2840, 3010, 3255, 3680, 3847],
-      borderColor: '#003DCC',
-      backgroundColor: 'rgba(0,61,204,0.08)',
-      borderWidth: 2.5,
-      pointBackgroundColor: '#003DCC',
-      pointRadius: 5,
-      pointHoverRadius: 7,
-      fill: true,
-      tension: 0.4
-    }]
+// ── CLICKS & IMPRESSIONS ──
+new Chart(document.getElementById('clicksChart').getContext('2d'),{
+  type:'line',
+  data:{
+    labels:['Feb 7','Feb 14','Feb 21','Feb 28','Mar 7','Mar 14','Mar 21','Mar 28','Apr 4','Apr 11','Apr 18','Apr 25','May 2'],
+    datasets:[
+      {label:'Clicks',data:[8,9,11,8,5,8,12,11,11,9,9,7,9],borderColor:'#003DCC',backgroundColor:'rgba(0,61,204,0.07)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#003DCC',fill:true,tension:.4,yAxisID:'y'},
+      {label:'Impressions',data:[850,920,800,820,900,1100,1500,1400,1350,1400,1500,1450,600],borderColor:'#8b5cf6',backgroundColor:'rgba(139,92,246,0.05)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#8b5cf6',fill:true,tension:.4,yAxisID:'y1'}
+    ]
   },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false }, tooltip: { mode:'index' } },
-    scales: {
-      y: { grid: { color:'#f1f5f9' }, ticks: { color:'#94a3b8', font:{size:11} } },
-      x: { grid: { display:false }, ticks: { color:'#94a3b8', font:{size:11} } }
+  options:{
+    responsive:true,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{font:{size:11},color:'#64748b',padding:14}}},
+    scales:{
+      y:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10}},title:{display:true,text:'Clicks',font:{size:10},color:'#003DCC'}},
+      y1:{position:'right',grid:{display:false},ticks:{color:'#94a3b8',font:{size:10}},title:{display:true,text:'Impressions',font:{size:10},color:'#8b5cf6'}},
+      x:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:10}}}
     }
   }
 });
 
-// ── CTR CHART ──
-const ctrCtx = document.getElementById('ctrChart').getContext('2d');
-new Chart(ctrCtx, {
-  type: 'bar',
-  data: {
-    labels: ['Branded', 'Commercial', 'Informational', 'Navigational'],
-    datasets: [
-      {
-        label: 'Actual CTR',
-        data: [22.4, 3.8, 1.4, 8.2],
-        backgroundColor: '#003DCC',
-        borderRadius: 6,
-        borderSkipped: false,
-      },
-      {
-        label: 'India Benchmark',
-        data: [15, 4, 1.5, 6],
-        backgroundColor: '#e2e8f0',
-        borderRadius: 6,
-        borderSkipped: false,
-      }
+// ── POSITIONS STACKED ──
+new Chart(document.getElementById('posChart').getContext('2d'),{
+  type:'line',
+  data:{
+    labels:['Apr 8','Apr 12','Apr 16','Apr 20','Apr 24','Apr 28','May 2','May 6','May 8'],
+    datasets:[
+      {label:'1–3',data:[1,1,1,1,1,1,1,1,1],borderColor:'#ea580c',backgroundColor:'rgba(234,88,12,0.55)',borderWidth:2,fill:true,tension:.4,pointRadius:2},
+      {label:'4–10',data:[3,3,4,3,3,3,3,3,2],borderColor:'#f97316',backgroundColor:'rgba(249,115,22,0.35)',borderWidth:2,fill:true,tension:.4,pointRadius:2},
+      {label:'11–20',data:[5,5,5,4,4,4,4,3,3],borderColor:'#fdba74',backgroundColor:'rgba(253,186,116,0.25)',borderWidth:1.5,fill:true,tension:.4,pointRadius:2},
+      {label:'21–50',data:[14,13,12,11,11,10,9,8,7],borderColor:'#cbd5e1',backgroundColor:'rgba(203,213,225,0.18)',borderWidth:1.5,fill:true,tension:.4,pointRadius:2}
     ]
   },
-  options: {
-    responsive: true,
-    plugins: { legend: { position:'bottom', labels:{ font:{size:11}, color:'#64748b' } } },
-    scales: {
-      y: { grid:{ color:'#f1f5f9' }, ticks:{ color:'#94a3b8', font:{size:11}, callback: v => v+'%' } },
-      x: { grid:{ display:false }, ticks:{ color:'#94a3b8', font:{size:11} } }
+  options:{
+    responsive:true,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false}},
+    scales:{
+      y:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10}}},
+      x:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:10}}}
+    }
+  }
+});
+
+// ── CTR BENCHMARK ──
+new Chart(document.getElementById('ctrChart').getContext('2d'),{
+  type:'bar',
+  data:{
+    labels:['Branded','Commercial','Informational','Local'],
+    datasets:[
+      {label:'Actual CTR',data:[37.7,0.7,0.4,0.2],backgroundColor:'#003DCC',borderRadius:6,borderSkipped:false},
+      {label:'India Benchmark',data:[15,4,1.5,2],backgroundColor:'#e2e8f0',borderRadius:6,borderSkipped:false}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom',labels:{font:{size:11},color:'#64748b',padding:12}}},
+    scales:{
+      y:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10},callback:v=>v+'%'}},
+      x:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:10}}}
+    }
+  }
+});
+
+// ── BACKLINK TREND ──
+new Chart(document.getElementById('blChart').getContext('2d'),{
+  type:'bar',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May'],
+    datasets:[{
+      label:'Ref. Domains',
+      data:[188,195,200,202,212],
+      backgroundColor:'rgba(0,61,204,0.12)',
+      borderColor:'#003DCC',borderWidth:2,borderRadius:6
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{display:false}},
+    scales:{
+      y:{grid:{color:'#f1f5f9'},ticks:{color:'#94a3b8',font:{size:10}},min:175},
+      x:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:10}}}
     }
   }
 });

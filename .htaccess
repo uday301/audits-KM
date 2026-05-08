@@ -18,7 +18,7 @@ Header always set Referrer-Policy "strict-origin-when-cross-origin"
 Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
 
 # Content Security Policy
-Header always set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:"
+Header always set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:"
 
 # HTTP Strict Transport Security (force HTTPS)
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
@@ -73,6 +73,9 @@ RewriteRule .* - [F,L]
 # ============================================================
 # PREVENT HOTLINKING
 # ============================================================
+# Allow direct access and all kerkarmedia subdomains
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^https://(www\.)?audits\.kerkarmedia\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?kerkarmedia\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://audits\.kerkarmedia\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://fonts\.googleapis\.com [NC]
 RewriteRule \.(jpg|jpeg|png|gif|svg|webp)$ - [F,L]

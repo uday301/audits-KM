@@ -534,17 +534,18 @@ const ctx = gsap.context(() => {
   // Reference: https://gsap.com/docs/v3/GSAP/gsap.matchMedia()
   const mm = gsap.matchMedia();
 
-  // ─── REDUCED MOTION: skip animations, set final states ───
-  mm.add('(prefers-reduced-motion: reduce)', () => {
-    gsap.set('.ph, .co, .kc, .cc, .tc, .ins, .sh, .ai-item, .sp-box, .live-pill', { 
-      opacity: 1, y: 0, x: 0, scale: 1, rotation: 0 
-    });
-    gsap.set('#drArc', { strokeDashoffset: 55 });
-    gsap.set('.bf', { width: (i, el) => el.style.width });
-  });
-
   // ─── FULL MOTION: orchestrated timelines ───
+  // We use gsap.fromTo() pattern: explicitly set hidden state THEN animate in.
+  // If JS fails, CSS default state keeps everything visible — no blank page.
   mm.add('(prefers-reduced-motion: no-preference)', () => {
+
+    // Set initial hidden states only when animation will run
+    gsap.set('.ph, .co, .kc, .cc, .tc, .ins', { opacity: 0, y: 30 });
+    gsap.set('.ai-item', { opacity: 0, scale: 0.7 });
+    gsap.set('.sp-box', { opacity: 0, y: 25 });
+    gsap.set('.sh .sn', { scale: 0, rotation: -180 });
+    gsap.set('.sh .st', { x: -20, opacity: 0 });
+    gsap.set('.sh .sdv', { scaleX: 0, transformOrigin: 'left center' });
 
     // ╔══════════════════════════════════════════════════════
     //   1. PAGE LOAD TIMELINE — runs immediately on load
@@ -553,12 +554,12 @@ const ctx = gsap.context(() => {
     const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     loadTl
-      .from('nav', { y: -60, opacity: 0, duration: 0.6 })
-      .from('.ann', { y: -40, opacity: 0, duration: 0.4 }, '<')
-      .from('.live-pill', { scale: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.2')
-      .from('.ph .ptag', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
-      .from('.ph h1', { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
-      .from('.gnote', { x: 30, opacity: 0, duration: 0.5 }, '-=0.5');
+      .fromTo('nav', { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, immediateRender: false })
+      .fromTo('.ann', { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, immediateRender: false }, '<')
+      .fromTo('.live-pill', { scale: 0 }, { scale: 1, duration: 0.5, ease: 'back.out(2)', immediateRender: false }, '-=0.2')
+      .fromTo('.ph .ptag', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, immediateRender: false }, '-=0.3')
+      .fromTo('.ph h1', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, immediateRender: false }, '-=0.4')
+      .fromTo('.gnote', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, immediateRender: false }, '-=0.5');
 
     // ╔══════════════════════════════════════════════════════
     //   2. SECTION HEADERS — scroll-triggered timelines
@@ -569,22 +570,22 @@ const ctx = gsap.context(() => {
         scrollTrigger: { trigger: section, start: 'top 85%', once: true }
       });
       tl
-        .from(section.querySelector('.sn'), { 
-          scale: 0, rotation: -180, duration: 0.6, ease: 'back.out(1.7)' 
+        .to(section.querySelector('.sn'), { 
+          scale: 1, rotation: 0, duration: 0.6, ease: 'back.out(1.7)' 
         })
-        .from(section.querySelector('.st'), { 
-          x: -20, opacity: 0, duration: 0.5 
+        .to(section.querySelector('.st'), { 
+          x: 0, opacity: 1, duration: 0.5 
         }, '-=0.3')
-        .from(section.querySelector('.sdv'), { 
-          scaleX: 0, transformOrigin: 'left center', duration: 0.8 
+        .to(section.querySelector('.sdv'), { 
+          scaleX: 1, duration: 0.8 
         }, '-=0.4');
     });
 
     // ╔══════════════════════════════════════════════════════
     //   3. CALLOUT — slide up + count-up badges
     // ╚══════════════════════════════════════════════════════
-    gsap.from('.co', {
-      y: 50, opacity: 0, duration: 0.9, ease: 'power3.out',
+    gsap.to('.co', {
+      y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
       scrollTrigger: { trigger: '.co', start: 'top 85%', once: true }
     });
 
@@ -616,13 +617,9 @@ const ctx = gsap.context(() => {
     //   4. KPI CARDS — stagger.from() with grid distribution
     //   Reference: https://gsap.com/resources/getting-started/Staggers
     // ╚══════════════════════════════════════════════════════
-    gsap.from('.kc', {
-      y: 40, opacity: 0, duration: 0.7, ease: 'power3.out',
-      stagger: { 
-        amount: 0.6,                    // total time spread across all
-        grid: 'auto',                   // auto-detect grid
-        from: 'start'                   // start from first card
-      },
+    gsap.to('.kc', {
+      y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+      stagger: { amount: 0.6, grid: 'auto', from: 'start' },
       scrollTrigger: { trigger: '.kg', start: 'top 85%', once: true }
     });
 
@@ -656,15 +653,15 @@ const ctx = gsap.context(() => {
     //   5. CHARTS & TABLES — staggered scroll reveals
     // ╚══════════════════════════════════════════════════════
     gsap.utils.toArray('.cc').forEach(el => {
-      gsap.from(el, {
-        y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
+      gsap.to(el, {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
       });
     });
 
     gsap.utils.toArray('.tc').forEach(el => {
-      gsap.from(el, {
-        y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
+      gsap.to(el, {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
       });
     });
@@ -672,8 +669,8 @@ const ctx = gsap.context(() => {
     // ╔══════════════════════════════════════════════════════
     //   6. INSIGHT CARDS — sequenced timeline with stagger
     // ╚══════════════════════════════════════════════════════
-    gsap.from('.ins', {
-      y: 50, opacity: 0, scale: 0.96, duration: 0.8, 
+    gsap.to('.ins', {
+      y: 0, opacity: 1, scale: 1, duration: 0.8, 
       stagger: 0.15, ease: 'back.out(1.3)',
       scrollTrigger: { trigger: '.ins-grid', start: 'top 82%', once: true }
     });
@@ -709,8 +706,8 @@ const ctx = gsap.context(() => {
     // ╔══════════════════════════════════════════════════════
     //   9. AI CITATIONS — pop-in stagger
     // ╚══════════════════════════════════════════════════════
-    gsap.from('.ai-item', {
-      scale: 0.7, opacity: 0, duration: 0.55,
+    gsap.to('.ai-item', {
+      scale: 1, opacity: 1, duration: 0.55,
       stagger: { amount: 0.4, from: 'start' },
       ease: 'back.out(1.7)',
       scrollTrigger: { trigger: '.ai-grid', start: 'top 85%', once: true }
@@ -719,8 +716,8 @@ const ctx = gsap.context(() => {
     // ╔══════════════════════════════════════════════════════
     //   10. STAT BOX PAIR — quick stagger
     // ╚══════════════════════════════════════════════════════
-    gsap.from('.sp-box', {
-      y: 25, opacity: 0, duration: 0.5,
+    gsap.to('.sp-box', {
+      y: 0, opacity: 1, duration: 0.5,
       stagger: 0.08, ease: 'power2.out',
       scrollTrigger: { trigger: '.stat-pair', start: 'top 88%', once: true }
     });

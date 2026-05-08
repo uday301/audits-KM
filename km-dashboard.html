@@ -67,7 +67,7 @@ nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;
 @media(max-width:1000px){.kg{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.kg{grid-template-columns:1fr}}
 
-.kc{background:var(--card);border-radius:var(--r);padding:22px;border:1px solid var(--border);box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;opacity:1}
+.kc{background:var(--card);border-radius:var(--r);padding:22px;border:1px solid var(--border);box-shadow:var(--sh);transition:box-shadow .3s,transform .35s ease-out;position:relative;overflow:hidden;opacity:1;transform-style:preserve-3d;will-change:transform}
 .kc:hover{box-shadow:var(--sh2);transform:translateY(-3px)}
 .kc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0;background:var(--cta)}
 .kc.g::after{background:var(--green)}.kc.r::after{background:var(--red)}.kc.a::after{background:var(--amber)}
@@ -391,9 +391,166 @@ footer{background:var(--footer);padding:36px 32px;text-align:center}
 window.addEventListener('DOMContentLoaded', function() {
 gsap.registerPlugin(ScrollTrigger);
 
-// Subtle hover animations only — no scroll hide/show
-gsap.utils.toArray('.kc').forEach(el => {
-  el.style.opacity = '1';
+// ── Page Header reveal ──
+gsap.from('.ph', {
+  y: 30, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.1
+});
+
+// ── Section labels: number bounce + line draw ──
+gsap.utils.toArray('.sh').forEach((el, i) => {
+  const num = el.querySelector('.sn');
+  const title = el.querySelector('.st');
+  const div = el.querySelector('.sdv');
+  
+  gsap.from(num, {
+    scale: 0, rotation: -180, duration: 0.6, ease: 'back.out(1.7)',
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+  });
+  gsap.from(title, {
+    x: -20, opacity: 0, duration: 0.5, ease: 'power2.out', delay: 0.2,
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+  });
+  gsap.from(div, {
+    scaleX: 0, transformOrigin: 'left', duration: 0.8, ease: 'power3.out', delay: 0.3,
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+  });
+});
+
+// ── Callout slide in ──
+gsap.from('.co', {
+  y: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
+  scrollTrigger: { trigger: '.co', start: 'top 85%', once: true }
+});
+
+// ── Callout badges count up ──
+document.querySelectorAll('.cbv').forEach(badge => {
+  const text = badge.textContent;
+  const match = text.match(/(\d+\.?\d*)([KMB]?)/);
+  if (match) {
+    const num = parseFloat(match[1]);
+    const suffix = match[2] + (text.includes('DR') ? '' : '');
+    const prefix = text.startsWith('DR') ? 'DR ' : '';
+    
+    ScrollTrigger.create({
+      trigger: badge, start: 'top 90%', once: true,
+      onEnter: () => {
+        gsap.fromTo(badge, 
+          { textContent: 0 },
+          { 
+            textContent: num, duration: 1.5, ease: 'power2.out', snap: { textContent: 0.1 },
+            onUpdate: function() {
+              const v = this.targets()[0].textContent;
+              const n = parseFloat(v);
+              const formatted = n >= 1 ? Math.round(n) : n.toFixed(1);
+              this.targets()[0].textContent = prefix + formatted + suffix;
+            }
+          }
+        );
+      }
+    });
+  }
+});
+
+// ── KPI Cards: stagger up ──
+gsap.from('.kc', {
+  y: 30, opacity: 0, duration: 0.6, stagger: 0.07, ease: 'power3.out',
+  scrollTrigger: { trigger: '.kg', start: 'top 85%', once: true }
+});
+
+// ── KPI values count up ──
+document.querySelectorAll('.kv').forEach(el => {
+  const text = el.textContent.trim();
+  const match = text.match(/^(\$?)(\d+\.?\d*)([KMB%]?)/);
+  if (!match) return;
+  const prefix = match[1];
+  const num = parseFloat(match[2]);
+  const suffix = match[3];
+  if (num === 0 || isNaN(num)) return;
+  
+  ScrollTrigger.create({
+    trigger: el, start: 'top 92%', once: true,
+    onEnter: () => {
+      gsap.fromTo(el, { textContent: 0 }, {
+        textContent: num, duration: 1.4, ease: 'power2.out', snap: { textContent: num < 10 ? 0.1 : 1 },
+        onUpdate: function() {
+          const v = parseFloat(this.targets()[0].textContent);
+          const formatted = v >= 1000 ? v.toLocaleString() : (num < 10 ? v.toFixed(1) : Math.round(v));
+          this.targets()[0].textContent = prefix + formatted + suffix;
+        }
+      });
+    }
+  });
+});
+
+// ── Chart cards fade in ──
+gsap.from('.cc', {
+  y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+  scrollTrigger: { trigger: '.cc', start: 'top 85%', once: true }
+});
+
+// ── Tables slide up ──
+gsap.utils.toArray('.tc').forEach(el => {
+  gsap.from(el, {
+    y: 30, opacity: 0, duration: 0.7, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+  });
+});
+
+// ── Insight cards: stagger with rotation ──
+gsap.from('.ins', {
+  y: 40, opacity: 0, scale: 0.95, duration: 0.7, stagger: 0.15, ease: 'back.out(1.4)',
+  scrollTrigger: { trigger: '.ins-grid', start: 'top 85%', once: true }
+});
+
+// ── DR Arc draws in ──
+gsap.fromTo('#drArc', 
+  { strokeDashoffset: 172.7 },
+  { strokeDashoffset: 55, duration: 2, ease: 'power3.out',
+    scrollTrigger: { trigger: '#drArc', start: 'top 85%', once: true } }
+);
+
+// ── Pill pulse ──
+gsap.from('.live-pill', {
+  scale: 0, opacity: 0, duration: 0.6, ease: 'back.out(2)', delay: 0.5
+});
+
+// ── Trend bars fill in ──
+gsap.utils.toArray('.bf').forEach(el => {
+  const targetWidth = el.style.width;
+  gsap.fromTo(el, 
+    { width: '0%' },
+    { width: targetWidth, duration: 1, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 95%', once: true } }
+  );
+});
+
+// ── AI citation items pop in ──
+gsap.from('.ai-item', {
+  scale: 0.8, opacity: 0, duration: 0.5, stagger: 0.06, ease: 'back.out(1.5)',
+  scrollTrigger: { trigger: '.ai-grid', start: 'top 85%', once: true }
+});
+
+// ── Stat boxes ──
+gsap.from('.sp-box', {
+  y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+  scrollTrigger: { trigger: '.stat-pair', start: 'top 88%', once: true }
+});
+
+// ── Mouse-follow tilt on KPI cards ──
+document.querySelectorAll('.kc').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rx = ((y - cy) / cy) * -3;
+    const ry = ((x - cx) / cx) * 3;
+    card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+  });
 });
 
 // ── CLICKS & IMPRESSIONS ──

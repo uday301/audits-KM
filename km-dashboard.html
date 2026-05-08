@@ -728,8 +728,10 @@ const ctx = gsap.context(() => {
     // ╔══════════════════════════════════════════════════════
     //   11. KPI 3D TILT — quickTo() for performant mouse follow
     //   Reference: https://gsap.com/docs/v3/GSAP/gsap.quickTo()
+    //   Skip on touch devices (no mouse to follow)
     // ╚══════════════════════════════════════════════════════
-    gsap.utils.toArray('.kc').forEach(card => {
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (!isTouchDevice) gsap.utils.toArray('.kc').forEach(card => {
       // quickTo creates an optimized setter for high-frequency updates
       const xTo = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power2.out' });
       const yTo = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power2.out' });

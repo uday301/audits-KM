@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPA Edutech — Google Ads Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0f1e; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .header-left h1 { font-size: 24px; font-weight: 800; color: #f8fafc; }
+  .header-left p { font-size: 13px; color: #64748b; margin-top: 4px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .badge-google { background: rgba(66,133,244,0.15); color: #4285F4; border: 1px solid rgba(66,133,244,0.3); }
+  .section-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; margin-bottom: 32px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { padding: 12px; text-align: right; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  th:first-child { text-align: left; }
+  th:nth-child(2) { text-align: center; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td { border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 32px; }
+  .insight-col h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .insight-items { display: flex; flex-direction: column; gap: 10px; }
+  .footer { text-align: center; padding: 24px; color: #334155; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 32px; }
+  @media (max-width: 768px) { .header { flex-direction: column; gap: 12px; align-items: flex-start; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>📊 FPA Edutech — Google Ads Dashboard</h1>
+      <p>Last 7 Days Performance · Generated Tuesday, 12 May 2026</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <span class="badge badge-google">🔵 Google Ads</span>
+      <span class="badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;border:1px solid rgba(255,255,255,0.1);">Customer ID: 564-700-6665</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:32px;border-left:4px solid #4285F4;">
+    <div class="section-title">🤖 Executive Summary</div>
+    <p style="color:#cbd5e1;line-height:1.8;font-size:15px;">Data loaded successfully. Claude analysis unavailable this run.</p>
+  </div>
+
+  <div class="section-title">📈 Account KPIs</div>
+  <div class="kpi-grid">
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#4285F4;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Total Spend</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">₹6,35,919</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">of ₹8,30,518 weekly budget</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#34A853;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Total Clicks</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">7,944</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">CTR 6.72%</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#FBBC05;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Impressions</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">1,18,129</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">last 7 days</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#EA4335;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Avg CPC</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">₹80</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">blended across campaigns</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#22c55e;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Conversions</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">398</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">Conv. Rate 5.01%</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#a855f7;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Cost per Lead</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">₹1,598</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">blended CPL</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#f59e0b;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Budget Used</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">77%</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">₹6,35,919 of ₹8,30,518</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#06b6d4;border-radius:4px 0 0 4px;"></div>
+    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Campaigns Live</div>
+    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">28</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">all Search type</div>
+  </div></div>
+
+  <div class="card">
+    <div class="section-title">🎯 Campaign Performance</div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left;">Campaign</th>
+            <th style="text-align:center;">Status</th>
+            <th>Spend</th>
+            <th>Clicks</th>
+            <th>CTR</th>
+            <th>Avg CPC</th>
+            <th>Leads</th>
+            <th>CPL</th>
+            <th>Impr. Share</th>
+            <th>Lost IS</th>
+            <th>Opt. Score</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_ACCA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:99%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">99% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹1,03,604</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">1,197</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">11.24%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹87</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">67.1</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,545</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">45.9%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-14.2%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CMA_US</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:97%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">97% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹81,592</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">857</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">5.67%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹95</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">46.1</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,769</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">41.1%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-11.2%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFP</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:98%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">98% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹75,254</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">465</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">12.49%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹162</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">25.8</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹2,915</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">74.5%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-6.5%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:97%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">97% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹64,788</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">841</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">7.43%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹77</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">45.2</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,432</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">34.9%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-11.3%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">005_SK_ACCA_LEAD_GEN_PAN_IND_ONLINE_GA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:98%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">98% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹47,912</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">935</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.71%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹51</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">46</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,042</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">18.1%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-57%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">003_SK_CFP_LEAD_GEN_PAN_IND_ONLINE_GA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:99%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">99% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹41,502</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">940</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">10.07%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹44</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">58.9</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹704</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">14.5%</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Pune_ACCA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹34,949</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">371</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">10.58%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹94</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">20.2</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,726</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">51.2%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-18.2%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Pune_CMA_US</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:99%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">99% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹34,659</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">298</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.97%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹116</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">12</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹2,891</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">46.5%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-20%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">007_SK_ACCA_LEAD_GEN_UAE_SA_ONLINE_GA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹33,291</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">255</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">2.86%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹131</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">18.7%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-17.9%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">006_SK_CMA_US_LEAD_GEN_PAN_IND_ONLINE_GA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:71%;height:100%;background:#f59e0b;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">71% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹29,622</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">731</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">4.49%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹41</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">26</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,140</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">13.3%</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Pune_CFA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:94%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">94% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹26,231</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">292</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">7.38%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹90</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">13</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹2,024</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">31.8%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-13%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2026_Search_Campaign_LeadGen_PanIndia_CFA_Online</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹20,940</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">277</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.62%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹76</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">16</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,310</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">28.6%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-12.7%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFA_Level_1</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:98%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">98% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹17,074</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">175</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.98%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹98</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">9.2</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,851</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">35%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-14.6%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">008_SK_ACCA_LEAD_GEN_QKBO_ONLINE_GA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹13,171</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">126</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">3.15%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹105</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">22.5%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-8.2%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFA_Level_2</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:96%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">96% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹6,059</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">62</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">7.79%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹98</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">6.5</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹939</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">33.4%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-11.2%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">009_SK_IBOC_LEAD_GEN_PAN_INDIA_ONLINE_GA</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:94%;height:100%;background:#ef4444;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">94% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹5,271</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">122</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">2.17%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹43</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">6</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹879</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">10.8%</td>
+    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-18.5%</span></td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CFP (Mumbai) CFP Mumbai LP  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - ACCA (Mumbai) ACCA (Mumbai) LP  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CFA (Tier 2 & 3) CFA (Tier 2 & 3)  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CFP (Tier 2 & 3) CFP (Tier 2 & 3)  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CPA (Mumbai) CPA (Mumbai) LP  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CPA (Pune) CPA (Pune) LP  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ -  CMA (Pune) CMA (Pune) LP  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - ACCA (Tier 3) ACCA (Tier 3)  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CPA (Tier 3) CPA (Tier 3)  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ -  CMA (Mumbai) CMA (Mumbai) LP  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">ΛΣ - CFA (Mumbai) CFA (Mumbai)  Recommendations trial</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr>
+  <tr>
+    <td style="padding:14px 12px;">
+      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">LocalServicesCampaign:SystemGenerated:00064d5a07ff5465</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+          <div style="width:0%;height:100%;background:#22c55e;border-radius:99px;"></div>
+        </div>
+        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">0% budget</span>
+      </div>
+    </td>
+    <td style="padding:14px 12px;text-align:center;">
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
+    </td>
+    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">0%</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹0</td>
+    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
+    <td style="padding:14px 12px;text-align:right;">—</td>
+    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="insights-grid">
+    <div class="insight-col">
+      <h3 style="color:#22c55e;">🏆 Wins</h3>
+      <div class="insight-items"></div>
+    </div>
+    <div class="insight-col">
+      <h3 style="color:#ef4444;">⚠️ Concerns</h3>
+      <div class="insight-items"></div>
+    </div>
+    <div class="insight-col">
+      <h3 style="color:#4285F4;">🎯 Actions This Week</h3>
+      <div class="insight-items"></div>
+    </div>
+  </div>
+
+  <div class="footer">Kerkar Media · FPA Edutech Ads Dashboard · Auto-generated every Monday 9am IST · Powered by Claude AI</div>
+</div>
+</body>
+</html>

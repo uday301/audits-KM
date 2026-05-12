@@ -3,546 +3,501 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FPA Edutech — Google Ads Dashboard</title>
+<title>FPA Edutech — Google Ads Dashboard | Tuesday, 12 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0a0f1e; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
-  .container { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
-  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .header-left h1 { font-size: 24px; font-weight: 800; color: #f8fafc; }
-  .header-left p { font-size: 13px; color: #64748b; margin-top: 4px; }
-  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-  .badge-google { background: rgba(66,133,244,0.15); color: #4285F4; border: 1px solid rgba(66,133,244,0.3); }
-  .section-title { font-size: 16px; font-weight: 700; color: #f1f5f9; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; margin-bottom: 32px; }
-  table { width: 100%; border-collapse: collapse; }
-  th { padding: 12px; text-align: right; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  th:first-child { text-align: left; }
-  th:nth-child(2) { text-align: center; }
-  tr:hover td { background: rgba(255,255,255,0.02); }
-  td { border-bottom: 1px solid rgba(255,255,255,0.04); }
-  .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 32px; }
-  .insight-col h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
-  .insight-items { display: flex; flex-direction: column; gap: 10px; }
-  .footer { text-align: center; padding: 24px; color: #334155; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 32px; }
-  @media (max-width: 768px) { .header { flex-direction: column; gap: 12px; align-items: flex-start; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .section-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .trend-bar { width: 100px; height: 6px; background: #F1F5F9; border-radius: 3px; overflow: hidden; }
+  .trend-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="header">
-    <div class="header-left">
-      <h1>📊 FPA Edutech — Google Ads Dashboard</h1>
-      <p>Last 7 Days Performance · Generated Tuesday, 12 May 2026</p>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <span class="badge badge-google">🔵 Google Ads</span>
-      <span class="badge" style="background:rgba(255,255,255,0.06);color:#94a3b8;border:1px solid rgba(255,255,255,0.1);">Customer ID: 564-700-6665</span>
-    </div>
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-12T15:12:43.964Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · FPA Edutech Ads Dashboard</strong>
+  <div class="meta">Week of Tuesday, 12 May 2026 · Customer ID 564-700-6665</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Weekly Google Ads Performance</h1>
+    <div class="sub">Week of Tuesday, 12 May 2026 · 16 active Search campaigns</div>
+    <div class="summary"><strong>Executive Summary:</strong> Spent INR 6.36 lakhs this week and generated 398 leads at INR 1,598 per lead. Two campaigns are spending full budget but delivering zero conversions, wasting INR 46,462 on UAE and QKBO targeting with no return.</div>
   </div>
 
-  <div class="card" style="margin-bottom:32px;border-left:4px solid #4285F4;">
-    <div class="section-title">🤖 Executive Summary</div>
-    <p style="color:#cbd5e1;line-height:1.8;font-size:15px;">Spent INR 6,35,919 this week and generated 398 leads at INR 1,598 per lead with 97% budget utilization. Two campaigns are spending full budget but delivering zero conversions, wasting INR 46,462 on non-performing traffic. Overall account health is strong with 5% conversion rate, but immediate action needed on UAE and QKBO campaigns.</p>
-  </div>
-
-  <div class="section-title">📈 Account KPIs</div>
   <div class="kpi-grid">
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#4285F4;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Total Spend</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">₹6,35,919</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">of ₹6,55,900 weekly budget</div>
+    
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">₹6,35,919</div>
+    <div class="kpi-sub">of ₹6,55,900 budget</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#34A853;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Total Clicks</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">7,944</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">CTR 6.72%</div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Total Clicks</div>
+    <div class="kpi-value">7,944</div>
+    <div class="kpi-sub">CTR 6.72%</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#FBBC05;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Impressions</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">1,18,129</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">last 7 days</div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value">1,18,129</div>
+    <div class="kpi-sub">last 7 days</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#EA4335;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Avg CPC</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">₹80</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">blended across campaigns</div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Conversions</div>
+    <div class="kpi-value">398</div>
+    <div class="kpi-sub">Conv. rate 5.01%</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#22c55e;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Conversions</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">398</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">Conv. Rate 5.01%</div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Avg CPC</div>
+    <div class="kpi-value">₹80</div>
+    <div class="kpi-sub">blended</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#a855f7;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Cost per Lead</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">₹1,598</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">blended CPL</div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Lead</div>
+    <div class="kpi-value">₹1,598</div>
+    <div class="kpi-sub">blended CPL</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#f59e0b;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Budget Used</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">97%</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">₹6,35,919 of ₹6,55,900</div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Budget Used</div>
+    <div class="kpi-value">97%</div>
+    <div class="kpi-sub">₹6,35,919 of ₹6,55,900</div>
   </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#06b6d4;border-radius:4px 0 0 4px;"></div>
-    <div style="font-size:12px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;padding-left:8px;">Campaigns Live</div>
-    <div style="font-size:28px;font-weight:800;color:#f8fafc;padding-left:8px;">16</div>
-    <div style="font-size:12px;color:#64748b;margin-top:4px;padding-left:8px;">all Search type</div>
-  </div></div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Campaigns Live</div>
+    <div class="kpi-value">16</div>
+    <div class="kpi-sub">all Search type</div>
+  </div>
+  </div>
 
-  <div class="card">
-    <div class="section-title">🎯 Campaign Performance</div>
+  <section>
+    <h2>
+      Campaign Performance
+      <div class="section-pills">
+        
+        
+        
+        
+        <span class="section-pill pill-blue">✓ Maintain (16)</span>
+      </div>
+    </h2>
     <div style="overflow-x:auto;">
       <table>
         <thead>
           <tr>
-            <th style="text-align:left;">Campaign</th>
-            <th style="text-align:center;">Status</th>
-            <th>Spend</th>
-            <th>Clicks</th>
-            <th>CTR</th>
-            <th>Avg CPC</th>
-            <th>Leads</th>
-            <th>CPL</th>
-            <th>Impr. Share</th>
-            <th>Lost IS</th>
-            <th>Opt. Score</th>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">Spend</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg CPC</th>
+            <th class="center">Leads</th>
+            <th class="center">CPL</th>
+            <th class="center">Impr. Share</th>
+            <th class="center">Lost IS</th>
           </tr>
         </thead>
         <tbody>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_ACCA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:99%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Mumbai_ACCA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="99% of weekly budget used">
+          <div class="trend-fill" style="width:99%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">99% budget</span>
+        <span style="font-size:11px;color:var(--muted);">99% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹1,03,604</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">1,197</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">11.24%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹87</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">67.1</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,545</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">45.9%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-14.2%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹1,03,604</strong></td>
+    <td class="center">1,197</td>
+    <td class="center">11.24%</td>
+    <td class="center">₹87</td>
+    <td class="center"><strong style="color:#16A34A">67.1</strong></td>
+    <td class="center">₹1,545</td>
+    <td class="center">45.9%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-14.2%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CMA_US</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:97%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Mumbai_CMA_US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="97% of weekly budget used">
+          <div class="trend-fill" style="width:97%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">97% budget</span>
+        <span style="font-size:11px;color:var(--muted);">97% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹81,592</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">857</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">5.67%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹95</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">46.1</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,769</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">41.1%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-11.2%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹81,592</strong></td>
+    <td class="center">857</td>
+    <td class="center">5.67%</td>
+    <td class="center">₹95</td>
+    <td class="center"><strong style="color:#16A34A">46.1</strong></td>
+    <td class="center">₹1,769</td>
+    <td class="center">41.1%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-11.2%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFP</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:98%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Mumbai_CFP
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="98% of weekly budget used">
+          <div class="trend-fill" style="width:98%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">98% budget</span>
+        <span style="font-size:11px;color:var(--muted);">98% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹75,254</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">465</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">12.49%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹162</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">25.8</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹2,915</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">74.5%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-6.5%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹75,254</strong></td>
+    <td class="center">465</td>
+    <td class="center">12.49%</td>
+    <td class="center">₹162</td>
+    <td class="center"><strong style="color:#16A34A">25.8</strong></td>
+    <td class="center">₹2,915</td>
+    <td class="center">74.5%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-6.5%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:97%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Mumbai_CFA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="97% of weekly budget used">
+          <div class="trend-fill" style="width:97%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">97% budget</span>
+        <span style="font-size:11px;color:var(--muted);">97% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹64,788</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">841</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">7.43%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹77</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">45.2</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,432</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">34.9%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-11.3%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹64,788</strong></td>
+    <td class="center">841</td>
+    <td class="center">7.43%</td>
+    <td class="center">₹77</td>
+    <td class="center"><strong style="color:#16A34A">45.2</strong></td>
+    <td class="center">₹1,432</td>
+    <td class="center">34.9%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-11.3%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">005_SK_ACCA_LEAD_GEN_PAN_IND_ONLINE_GA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:98%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      005_SK_ACCA_LEAD_GEN_PAN_IND_ONLINE_GA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="98% of weekly budget used">
+          <div class="trend-fill" style="width:98%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">98% budget</span>
+        <span style="font-size:11px;color:var(--muted);">98% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹47,912</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">935</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.71%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹51</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">46</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,042</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">18.1%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-57%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹47,912</strong></td>
+    <td class="center">935</td>
+    <td class="center">6.71%</td>
+    <td class="center">₹51</td>
+    <td class="center"><strong style="color:#16A34A">46</strong></td>
+    <td class="center">₹1,042</td>
+    <td class="center">18.1%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-57%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">003_SK_CFP_LEAD_GEN_PAN_IND_ONLINE_GA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:99%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      003_SK_CFP_LEAD_GEN_PAN_IND_ONLINE_GA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="99% of weekly budget used">
+          <div class="trend-fill" style="width:99%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">99% budget</span>
+        <span style="font-size:11px;color:var(--muted);">99% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹41,502</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">940</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">10.07%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹44</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">58.9</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹704</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">14.5%</td>
-    <td style="padding:14px 12px;text-align:right;">—</td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹41,502</strong></td>
+    <td class="center">940</td>
+    <td class="center">10.07%</td>
+    <td class="center">₹44</td>
+    <td class="center"><strong style="color:#16A34A">58.9</strong></td>
+    <td class="center">₹704</td>
+    <td class="center">14.5%</td>
+    <td class="center">—</td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Pune_ACCA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Pune_ACCA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of weekly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+        <span style="font-size:11px;color:var(--muted);">100% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹34,949</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">371</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">10.58%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹94</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">20.2</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,726</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">51.2%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-18.2%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹34,949</strong></td>
+    <td class="center">371</td>
+    <td class="center">10.58%</td>
+    <td class="center">₹94</td>
+    <td class="center"><strong style="color:#16A34A">20.2</strong></td>
+    <td class="center">₹1,726</td>
+    <td class="center">51.2%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-18.2%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Pune_CMA_US</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:99%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Pune_CMA_US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="99% of weekly budget used">
+          <div class="trend-fill" style="width:99%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">99% budget</span>
+        <span style="font-size:11px;color:var(--muted);">99% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹34,659</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">298</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.97%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹116</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">12</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹2,891</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">46.5%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-20%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹34,659</strong></td>
+    <td class="center">298</td>
+    <td class="center">6.97%</td>
+    <td class="center">₹116</td>
+    <td class="center"><strong style="color:#16A34A">12</strong></td>
+    <td class="center">₹2,891</td>
+    <td class="center">46.5%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-20%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">007_SK_ACCA_LEAD_GEN_UAE_SA_ONLINE_GA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      007_SK_ACCA_LEAD_GEN_UAE_SA_ONLINE_GA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of weekly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+        <span style="font-size:11px;color:var(--muted);">100% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹33,291</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">255</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">2.86%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹131</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">18.7%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-17.9%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹33,291</strong></td>
+    <td class="center">255</td>
+    <td class="center">2.86%</td>
+    <td class="center">₹131</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">18.7%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-17.9%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">006_SK_CMA_US_LEAD_GEN_PAN_IND_ONLINE_GA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:71%;height:100%;background:#f59e0b;border-radius:99px;"></div>
+    <td class="kw">
+      006_SK_CMA_US_LEAD_GEN_PAN_IND_ONLINE_GA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="71% of weekly budget used">
+          <div class="trend-fill" style="width:71%;background:#F59E0B"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">71% budget</span>
+        <span style="font-size:11px;color:var(--muted);">71% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹29,622</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">731</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">4.49%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹41</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">26</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,140</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">13.3%</td>
-    <td style="padding:14px 12px;text-align:right;">—</td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹29,622</strong></td>
+    <td class="center">731</td>
+    <td class="center">4.49%</td>
+    <td class="center">₹41</td>
+    <td class="center"><strong style="color:#16A34A">26</strong></td>
+    <td class="center">₹1,140</td>
+    <td class="center">13.3%</td>
+    <td class="center">—</td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Pune_CFA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:94%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Pune_CFA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="94% of weekly budget used">
+          <div class="trend-fill" style="width:94%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">94% budget</span>
+        <span style="font-size:11px;color:var(--muted);">94% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹26,231</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">292</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">7.38%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹90</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">13</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹2,024</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">31.8%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-13%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹26,231</strong></td>
+    <td class="center">292</td>
+    <td class="center">7.38%</td>
+    <td class="center">₹90</td>
+    <td class="center"><strong style="color:#16A34A">13</strong></td>
+    <td class="center">₹2,024</td>
+    <td class="center">31.8%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-13%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2026_Search_Campaign_LeadGen_PanIndia_CFA_Online</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2026_Search_Campaign_LeadGen_PanIndia_CFA_Online
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of weekly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+        <span style="font-size:11px;color:var(--muted);">100% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹20,940</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">277</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.62%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹76</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">16</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,310</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">28.6%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-12.7%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹20,940</strong></td>
+    <td class="center">277</td>
+    <td class="center">6.62%</td>
+    <td class="center">₹76</td>
+    <td class="center"><strong style="color:#16A34A">16</strong></td>
+    <td class="center">₹1,310</td>
+    <td class="center">28.6%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-12.7%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFA_Level_1</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:98%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Mumbai_CFA_Level_1
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="98% of weekly budget used">
+          <div class="trend-fill" style="width:98%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">98% budget</span>
+        <span style="font-size:11px;color:var(--muted);">98% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹17,074</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">175</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">6.98%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹98</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">9.2</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹1,851</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">35%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-14.6%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹17,074</strong></td>
+    <td class="center">175</td>
+    <td class="center">6.98%</td>
+    <td class="center">₹98</td>
+    <td class="center"><strong style="color:#16A34A">9.2</strong></td>
+    <td class="center">₹1,851</td>
+    <td class="center">35%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-14.6%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">008_SK_ACCA_LEAD_GEN_QKBO_ONLINE_GA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:100%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      008_SK_ACCA_LEAD_GEN_QKBO_ONLINE_GA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of weekly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">100% budget</span>
+        <span style="font-size:11px;color:var(--muted);">100% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹13,171</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">126</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">3.15%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹105</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">0</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">—</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">22.5%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-8.2%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹13,171</strong></td>
+    <td class="center">126</td>
+    <td class="center">3.15%</td>
+    <td class="center">₹105</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">22.5%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-8.2%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">KM_2024_Search_Campaign_LeadGen_Mumbai_CFA_Level_2</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:96%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      KM_2024_Search_Campaign_LeadGen_Mumbai_CFA_Level_2
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="96% of weekly budget used">
+          <div class="trend-fill" style="width:96%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">96% budget</span>
+        <span style="font-size:11px;color:var(--muted);">96% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹6,059</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">62</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">7.79%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹98</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">6.5</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹939</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">33.4%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-11.2%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹6,059</strong></td>
+    <td class="center">62</td>
+    <td class="center">7.79%</td>
+    <td class="center">₹98</td>
+    <td class="center"><strong style="color:#16A34A">6.5</strong></td>
+    <td class="center">₹939</td>
+    <td class="center">33.4%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-11.2%</span></td>
   </tr>
   <tr>
-    <td style="padding:14px 12px;">
-      <div style="font-weight:600;color:#f1f5f9;font-size:13px;margin-bottom:4px;">009_SK_IBOC_LEAD_GEN_PAN_INDIA_ONLINE_GA</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
-        <div style="flex:1;height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-          <div style="width:94%;height:100%;background:#ef4444;border-radius:99px;"></div>
+    <td class="kw">
+      009_SK_IBOC_LEAD_GEN_PAN_INDIA_ONLINE_GA
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="94% of weekly budget used">
+          <div class="trend-fill" style="width:94%;background:#EF4444"></div>
         </div>
-        <span style="font-size:11px;color:#94a3b8;white-space:nowrap;">94% budget</span>
+        <span style="font-size:11px;color:var(--muted);">94% budget</span>
       </div>
     </td>
-    <td style="padding:14px 12px;text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(59,130,246,0.15);color:#3b82f6;">✅ Maintain</span>
-    </td>
-    <td style="padding:14px 12px;text-align:right;font-weight:700;color:#f1f5f9;">₹5,271</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">122</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">2.17%</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹43</td>
-    <td style="padding:14px 12px;text-align:right;font-weight:600;color:#22c55e;">6</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">₹879</td>
-    <td style="padding:14px 12px;text-align:right;color:#cbd5e1;">10.8%</td>
-    <td style="padding:14px 12px;text-align:right;"><span style="color:#ef4444">-18.5%</span></td>
-    <td style="padding:14px 12px;text-align:right;color:#94a3b8;font-size:12px;">0%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹5,271</strong></td>
+    <td class="center">122</td>
+    <td class="center">2.17%</td>
+    <td class="center">₹43</td>
+    <td class="center"><strong style="color:#16A34A">6</strong></td>
+    <td class="center">₹879</td>
+    <td class="center">10.8%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-18.5%</span></td>
   </tr></tbody>
       </table>
     </div>
-  </div>
+  </section>
 
-  <div class="insights-grid">
-    <div class="insight-col">
-      <h3 style="color:#22c55e;">🏆 Wins</h3>
-      <div class="insight-items">
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #f59e0b;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#f59e0b22;color:#f59e0b;margin-bottom:8px;">Important</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">✅ 003_SK_CFP_LEAD_GEN_PAN_IND campaign delivering exceptional CPL of INR 704 (56% below account average) with 6.27% conversion rate and 58.9 leads from INR 41,502 spend</div>
-  </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #f59e0b;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#f59e0b22;color:#f59e0b;margin-bottom:8px;">Important</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">✅ Mumbai ACCA campaign maintaining strong performance with 11.24% CTR and 67 leads at INR 1,545 CPL, nearly exhausting budget at 99% utilization</div>
-  </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #3b82f6;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#3b82f622;color:#3b82f6;margin-bottom:8px;">Worth doing</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">✅ CFA Level 2 Mumbai campaign showing highest conversion rate at 10.41% despite small spend, indicating strong intent and landing page relevance</div>
-  </div></div>
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> CFP PAN India campaign (003_SK) is your star performer at INR 704 CPL with 6.27% conversion rate—58.9 leads from INR 41,502 spend, half the account average cost</li><li><strong>[Important]</strong> CFA Level 2 Mumbai campaign showing 10.41% conversion rate, double the account average, though on smaller volume (6.5 leads at INR 939 CPL)</li><li><strong>[Worth doing]</strong> Mumbai ACCA campaign maintaining strong 11.24% CTR with 67 leads at INR 1,545 CPL, beating account average by INR 53</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> UAE/Saudi ACCA campaign (007_SK) burned INR 33,291 with zero conversions—131 rupees per click, 2.86% CTR, completely wasting 113% of weekly budget</li><li><strong>[Urgent]</strong> QKBO ACCA campaign (008_SK) spent INR 13,171 with zero conversions at INR 105 CPC—another dead campaign running at full budget utilization</li><li><strong>[Important]</strong> Pune CMA campaign has weakest conversion rate at 4.02% with highest CPL at INR 2,891, spending INR 34,659 for only 12 leads</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Week</h3>
+        <ul><li><strong>[Urgent]</strong> Pause UAE ACCA (007_SK) and QKBO ACCA (008_SK) immediately—they've spent INR 46,462 with zero conversions. Reallocate this INR 42,000 weekly budget to CFP PAN India (003_SK) which converts at INR 704 CPL</li><li><strong>[Urgent]</strong> Audit conversion tracking on both zero-conversion campaigns before any restart—check if forms are working for UAE/international traffic and QKBO-specific landing pages</li><li><strong>[Important]</strong> Increase CFP PAN India budget from INR 6,000 to INR 10,000 daily—it has 0% budget lost impression share, best CPL, and can scale without efficiency loss</li></ul>
+      </div>
     </div>
-    <div class="insight-col">
-      <h3 style="color:#ef4444;">⚠️ Concerns</h3>
-      <div class="insight-items">
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #ef4444;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#ef444422;color:#ef4444;margin-bottom:8px;">Urgent</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">🔴 007_SK_ACCA_LEAD_GEN_UAE_SA campaign spent INR 33,291 (100% of weekly budget) with ZERO conversions at INR 131 CPC and only 2.86% CTR - complete budget waste</div>
-  </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #ef4444;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#ef444422;color:#ef4444;margin-bottom:8px;">Urgent</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">🔴 008_SK_ACCA_LEAD_GEN_QKBO campaign burning INR 13,171 (100% budget) with ZERO conversions at INR 105 CPC and 3.15% CTR - traffic quality issue</div>
-  </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #f59e0b;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#f59e0b22;color:#f59e0b;margin-bottom:8px;">Important</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">🔴 CFP campaigns show INR 2,200 CPL gap: Mumbai CFP at INR 2,915 vs PAN India CFP at INR 704, suggesting geo-targeting or bidding inefficiency in Mumbai</div>
-  </div></div>
-    </div>
-    <div class="insight-col">
-      <h3 style="color:#4285F4;">🎯 Actions This Week</h3>
-      <div class="insight-items">
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #ef4444;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#ef444422;color:#ef4444;margin-bottom:8px;">Urgent</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">→ Immediately pause 007_SK_ACCA_UAE_SA and 008_SK_ACCA_QKBO campaigns - investigate conversion tracking, landing pages, and keyword relevance before reactivating</div>
-  </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #ef4444;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#ef444422;color:#ef4444;margin-bottom:8px;">Urgent</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">→ Reallocate INR 17,000 weekly budget from paused UAE and QKBO campaigns to 003_SK_CFP_LEAD_GEN (increase to INR 9,000 daily) which has 0% budget lost IS and best CPL</div>
-  </div>
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #f59e0b;border-radius:10px;padding:14px 16px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#f59e0b22;color:#f59e0b;margin-bottom:8px;">Important</span>
-    <div style="color:#e2e8f0;font-size:14px;line-height:1.6;">→ Audit Mumbai CFP campaign keywords and bids - replicate targeting strategy from PAN India CFP campaign to reduce CPL from INR 2,915 to sub-INR 1,500</div>
-  </div></div>
-    </div>
-  </div>
+  </section>
 
-  <div class="footer">Kerkar Media · FPA Edutech Ads Dashboard · Auto-generated every Monday 9am IST · Powered by Claude AI</div>
 </div>
+
+<footer>
+  <strong>Kerkar Media</strong> · FPA Edutech Ads Dashboard · Auto-generated every Monday 9am IST · Powered by Claude AI
+</footer>
+
 </body>
 </html>

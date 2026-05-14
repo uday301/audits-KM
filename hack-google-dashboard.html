@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hack Athletics — Google Ads Dashboard | Thursday, 14 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .section-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .trend-bar { width: 100px; height: 6px; background: #F1F5F9; border-radius: 3px; overflow: hidden; }
+  .trend-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-14T10:07:41.032Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Hack Athletics Ads Dashboard</strong>
+  <div class="meta">Week of Thursday, 14 May 2026 · Customer ID 223-688-6303</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Weekly Google Ads Performance</h1>
+    <div class="sub">Week of Thursday, 14 May 2026 · 3 active campaigns · Blended ROAS 26.69x</div>
+    <div class="summary"><strong>Executive Summary:</strong> Last week you spent INR 21,108 and generated INR 5,63,324 in revenue at a blended ROAS of 26.69x — exceptionally strong performance. All three campaigns are profitable, but you're leaving money on the table with budget caps causing 83% overall utilization and significant impression share loss on your best-performing campaign.</div>
+  </div>
+
+  <div class="kpi-grid">
+    
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Revenue</div>
+    <div class="kpi-value">₹5,63,324</div>
+    <div class="kpi-sub">last 7 days</div>
+  </div>
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Blended ROAS</div>
+    <div class="kpi-value">26.69x</div>
+    <div class="kpi-sub">₹5,63,324 from ₹21,108</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Purchases</div>
+    <div class="kpi-value">213.3</div>
+    <div class="kpi-sub">Conv. rate 4.91%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Order Value</div>
+    <div class="kpi-value">₹2,641</div>
+    <div class="kpi-sub">blended AOV</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">₹21,108</div>
+    <div class="kpi-sub">of ₹25,550 budget</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Purchase</div>
+    <div class="kpi-value">₹99</div>
+    <div class="kpi-sub">blended CPA</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Budget Used</div>
+    <div class="kpi-value">83%</div>
+    <div class="kpi-sub">4,347 clicks · 2.95% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Campaigns Live</div>
+    <div class="kpi-value">3</div>
+    <div class="kpi-sub">across PMax, Search, Shopping</div>
+  </div>
+  </div>
+
+  <section>
+    <h2>
+      Campaign Performance
+      <div class="section-pills">
+        
+        
+        
+        
+        <span class="section-pill pill-blue">✓ Maintain (3)</span>
+      </div>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">Spend</th>
+            <th class="center">Revenue</th>
+            <th class="center">ROAS</th>
+            <th class="center">Purchases</th>
+            <th class="center">AOV</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Lost IS</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      PMax_09/03/25
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="78% of weekly budget used">
+          <div class="trend-fill" style="width:78%;background:#F59E0B"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">78% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹16,385</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹4,86,104</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">29.67x</strong></td>
+    <td class="center">193.5</td>
+    <td class="center">₹2,512</td>
+    <td class="center">3,534</td>
+    <td class="center">2.86%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-9.8%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | PMax | Lever Belt
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of weekly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">100% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹3,667</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹55,491</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">15.13x</strong></td>
+    <td class="center">14.5</td>
+    <td class="center">₹3,828</td>
+    <td class="center">506</td>
+    <td class="center">2.53%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-3.5%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Sales_Gymbag-PMax-3
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of weekly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">100% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>₹1,056</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹21,729</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">20.58x</strong></td>
+    <td class="center">5.3</td>
+    <td class="center">₹4,086</td>
+    <td class="center">307</td>
+    <td class="center">8.86%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-17.1%</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> PMax_09/03/25 delivered INR 4,86,104 revenue at 29.67x ROAS with a lean CPA of INR 85, driving 91% of total account revenue</li><li><strong>[Important]</strong> Sales_Gymbag-PMax-3 achieving 20.58x ROAS with highest AOV at INR 4,086 and exceptionally strong CTR of 8.86%</li><li><strong>[Worth doing]</strong> Account-wide conversion rate of 4.91% is solid, indicating strong product-market fit and landing page performance</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> PMax_09/03/25 losing 9.8% impression share due to budget at only 78% utilization — missing potential revenue at your best ROAS</li><li><strong>[Important]</strong> KM | PMax | Lever Belt has 100% budget utilization but CPA jumped to INR 253 (3x higher than main campaign) with conversion rate of only 2.86%</li><li><strong>[Important]</strong> Sales_Gymbag-PMax-3 losing 17.1% impression share to budget constraints despite 20.58x ROAS and hitting 100% budget spend</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Week</h3>
+        <ul><li><strong>[Urgent]</strong> Increase PMax_09/03/25 daily budget from INR 3,000 to INR 4,000 immediately to capture lost impression share — this campaign can scale profitably at current 29.67x ROAS</li><li><strong>[Important]</strong> Raise Sales_Gymbag-PMax-3 daily budget from INR 150 to INR 250 to reduce 17.1% budget lost IS — high AOV and strong ROAS justify expansion</li><li><strong>[Important]</strong> Review audience signals and asset groups in KM | PMax | Lever Belt — INR 253 CPA suggests poor targeting for this premium product; consider tightening signals to powerlifting/strength training enthusiasts or test high-intent search themes</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Hack Athletics Ads Dashboard · Auto-generated every Monday 9am IST · Powered by KM
+</footer>
+
+</body>
+</html>

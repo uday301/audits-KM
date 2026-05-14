@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hack Athletics — Meta Ads Dashboard | Thursday, 14 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .section-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  .mis-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .mis-table th { text-align: center; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
+  .mis-table th:first-child { text-align: left; }
+  .mis-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); }
+  .mis-table tbody tr:nth-child(even) { background: #FAFBFC; }
+  .mis-table tbody tr:hover { background: #F1F5F9; }
+  .mis-table td.mis-name { font-weight: 500; max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mis-totals { background: #DBEAFE !important; border-top: 2px solid #003DCC; }
+  .mis-totals td { padding: 14px 12px; font-size: 14px; border-bottom: none; }
+  .mis-totals:hover { background: #DBEAFE !important; }
+  .channel-tag { display: inline-block; padding: 3px 10px; background: #F1F5F9; color: #475569; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-14T14:38:19.359Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Hack Athletics Meta Ads Dashboard</strong>
+  <div class="meta">Week of Thursday, 14 May 2026 · Ad Account act_1098756504689551</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Weekly Meta Ads Performance</h1>
+    <div class="sub">Week of Thursday, 14 May 2026 · 5 active campaigns · Blended ROAS 23.66x</div>
+    <div class="summary"><strong>Executive Summary:</strong> Spent INR 4,671 this week and generated INR 1,10,517 in revenue at a blended ROAS of 23.66x — exceptionally strong performance. All five campaigns are profitable with the Remarketing campaign leading at 37.81x ROAS. The Shaker Bottle campaign is dragging overall efficiency with 12.16x ROAS and significantly higher CPC of INR 9.</div>
+  </div>
+
+  <div class="kpi-grid">
+    
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Revenue</div>
+    <div class="kpi-value">₹1,10,517</div>
+    <div class="kpi-sub">last 7 days</div>
+  </div>
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Blended ROAS</div>
+    <div class="kpi-value">23.66x</div>
+    <div class="kpi-sub">₹1,10,517 from ₹4,671</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Purchases</div>
+    <div class="kpi-value">29</div>
+    <div class="kpi-sub">Conv. rate 2.50%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Order Value</div>
+    <div class="kpi-value">₹3,811</div>
+    <div class="kpi-sub">blended AOV</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">₹4,671</div>
+    <div class="kpi-sub">CPM ₹61</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Purchase</div>
+    <div class="kpi-value">₹161</div>
+    <div class="kpi-sub">blended CPA</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Frequency</div>
+    <div class="kpi-value">1.58</div>
+    <div class="kpi-sub">48,528 reach · 76,656 impressions</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Campaigns Live</div>
+    <div class="kpi-value">5</div>
+    <div class="kpi-sub">on Meta (Facebook + Instagram)</div>
+  </div>
+  </div>
+
+  <section>
+    <h2>
+      Campaign Performance
+      <div class="section-pills">
+        <span class="section-pill pill-green">↑ Scale (5)</span>
+        
+        
+        
+        
+        
+      </div>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">Spend</th>
+            <th class="center">Revenue</th>
+            <th class="center">ROAS</th>
+            <th class="center">Purchases</th>
+            <th class="center">AOV</th>
+            <th class="center">Freq</th>
+            <th class="center">CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      KM | Remarketing Campaign
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">SALES</div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹952</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹36,007</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">37.81x</strong></td>
+    <td class="center">8</td>
+    <td class="center">₹4,501</td>
+    <td class="center"><strong style="color:var(--text)">1.77</strong></td>
+    <td class="center">2.57%</td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Website Con | Lever Belt | 10mm Carbon Belt
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">SALES</div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹898</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹19,855</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">22.12x</strong></td>
+    <td class="center">5</td>
+    <td class="center">₹3,971</td>
+    <td class="center"><strong style="color:var(--text)">1.88</strong></td>
+    <td class="center">1.47%</td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Website Con | Lever Belt | Influencer Video – Copy
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">SALES</div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹1,015</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹29,444</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">29x</strong></td>
+    <td class="center">9</td>
+    <td class="center">₹3,272</td>
+    <td class="center"><strong style="color:var(--text)">1.54</strong></td>
+    <td class="center">0.97%</td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Website Con | Gym Bag
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">SALES</div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹901</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹14,212</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">15.77x</strong></td>
+    <td class="center">4</td>
+    <td class="center">₹3,553</td>
+    <td class="center"><strong style="color:var(--text)">1.4</strong></td>
+    <td class="center">0.96%</td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Website Con | Shaker Bottle
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">SALES</div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹905</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹10,999</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">12.16x</strong></td>
+    <td class="center">3</td>
+    <td class="center">₹3,666</td>
+    <td class="center"><strong style="color:var(--text)">1.26</strong></td>
+    <td class="center">1.71%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      7-Day Campaign Detail (MIS)
+      <span style="font-size:12px;color:var(--muted);font-weight:400">8 May 2026 — 14 May 2026 · 5 campaigns</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table class="mis-table">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Objective</th>
+            <th>Spend</th>
+            <th>Revenue</th>
+            <th>ROAS</th>
+            <th>Purchases</th>
+            <th>CPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+  <tr>
+    <td class="mis-name">KM | Remarketing Campaign</td>
+    <td class="center"><span class="channel-tag">SALES</span></td>
+    <td class="center">₹952</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹36,007</td>
+    <td class="center"><strong style="color:#16A34A">37.81x</strong></td>
+    <td class="center">8</td>
+    <td class="center">₹119</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | Website Con | Lever Belt | 10mm Carbon Belt</td>
+    <td class="center"><span class="channel-tag">SALES</span></td>
+    <td class="center">₹898</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹19,855</td>
+    <td class="center"><strong style="color:#16A34A">22.12x</strong></td>
+    <td class="center">5</td>
+    <td class="center">₹180</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | Website Con | Lever Belt | Influencer Video – Copy</td>
+    <td class="center"><span class="channel-tag">SALES</span></td>
+    <td class="center">₹1,015</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹29,444</td>
+    <td class="center"><strong style="color:#16A34A">29x</strong></td>
+    <td class="center">9</td>
+    <td class="center">₹113</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | Website Con | Gym Bag</td>
+    <td class="center"><span class="channel-tag">SALES</span></td>
+    <td class="center">₹901</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹14,212</td>
+    <td class="center"><strong style="color:#16A34A">15.77x</strong></td>
+    <td class="center">4</td>
+    <td class="center">₹225</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | Website Con | Shaker Bottle</td>
+    <td class="center"><span class="channel-tag">SALES</span></td>
+    <td class="center">₹905</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹10,999</td>
+    <td class="center"><strong style="color:#16A34A">12.16x</strong></td>
+    <td class="center">3</td>
+    <td class="center">₹302</td>
+  </tr>
+          
+  <tr class="mis-totals">
+    <td class="mis-name"><strong>TOTAL</strong></td>
+    <td class="center"><strong>—</strong></td>
+    <td class="center"><strong>₹4,671</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹1,10,517</strong></td>
+    <td class="center"><strong style="color:#003DCC">23.66x</strong></td>
+    <td class="center"><strong>29</strong></td>
+    <td class="center"><strong>₹161</strong></td>
+  </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> Remarketing Campaign delivering 37.81x ROAS with INR 36,007 revenue from just INR 952 spend — highest efficiency across the account with 2.57% CTR and INR 2 CPC</li><li><strong>[Important]</strong> Influencer Video Lever Belt campaign achieving 29x ROAS with exceptional 5.66% conversion rate despite lowest CTR of 0.97% — creative is converting browsers into buyers</li><li><strong>[Important]</strong> Blended CPA of INR 161 with AOV of INR 3,811 shows healthy unit economics across all products — strong margin cushion to scale</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Important]</strong> Shaker Bottle campaign underperforming at 12.16x ROAS with highest CPC of INR 9 and CPM of INR 159 — spending INR 905 for only INR 10,999 revenue, dragging account efficiency</li><li><strong>[Worth doing]</strong> Remarketing frequency at 1.77 and Lever Belt 10mm at 1.88 approaching fatigue threshold — monitor closely for creative burnout as these are top revenue drivers</li><li><strong>[Low priority]</strong> Gym Bag campaign showing lowest ROAS at 15.77x with INR 225 CPA — still profitable but room for optimization through creative testing or audience refinement</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Week</h3>
+        <ul><li><strong>[Urgent]</strong> Reallocate INR 400-500 from Shaker Bottle campaign to Remarketing and Influencer Video campaigns — shift budget from 12.16x ROAS to 37.81x and 29x ROAS performers for immediate revenue lift</li><li><strong>[Important]</strong> Launch 2-3 new creative variants for Remarketing campaign before frequency hits 2.5+ — use UGC testimonials or product benefit hooks to maintain 37.81x ROAS performance</li><li><strong>[Important]</strong> Test broad audience expansion with 2-3% lookalike or interest stacking for Influencer Video campaign — 5.66% conversion rate proves creative works, expand reach beyond current 10,637 to capture more high-intent buyers</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Hack Athletics Meta Ads Dashboard · Auto-generated every Monday 9am IST · Powered by KM
+</footer>
+
+</body>
+</html>

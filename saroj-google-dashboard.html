@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saroj Fashions — Google Ads Dashboard | Friday, 15 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .section-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .trend-bar { width: 100px; height: 6px; background: #F1F5F9; border-radius: 3px; overflow: hidden; }
+  .trend-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  .mis-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .mis-table th { text-align: center; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
+  .mis-table th:first-child { text-align: left; }
+  .mis-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); }
+  .mis-table tbody tr:nth-child(even) { background: #FAFBFC; }
+  .mis-table tbody tr:hover { background: #F1F5F9; }
+  .mis-table td.mis-name { font-weight: 500; max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mis-totals { background: #DBEAFE !important; border-top: 2px solid #003DCC; }
+  .mis-totals td { padding: 14px 12px; font-size: 14px; border-bottom: none; }
+  .mis-totals:hover { background: #DBEAFE !important; }
+  .channel-tag { display: inline-block; padding: 3px 10px; background: #F1F5F9; color: #475569; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-15T08:01:25.645Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Saroj Fashions Ads Dashboard</strong>
+  <div class="meta">Month ending Friday, 15 May 2026 · Customer ID 455-501-9995</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>30-Day Google Ads Performance</h1>
+    <div class="sub">Month ending Friday, 15 May 2026 · 4 active campaigns · Blended ROAS 4.11x</div>
+    <div class="summary"><strong>Executive Summary:</strong> In the last 30 days, you spent ₹36,952 and generated ₹1,51,779 in revenue at a blended ROAS of 4.11x across 102.7 purchases. Your Branded PMax campaign is the star performer at 8.61x ROAS, but one campaign (Ahmedabad Store Visit) has spent ₹7,400 with zero online revenue tracked, dragging down overall profitability.</div>
+  </div>
+
+  <div class="kpi-grid">
+    
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Revenue</div>
+    <div class="kpi-value">₹1,51,779</div>
+    <div class="kpi-sub">last 30 days</div>
+  </div>
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Blended ROAS</div>
+    <div class="kpi-value">4.11x</div>
+    <div class="kpi-sub">₹1,51,779 from ₹36,952</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Purchases</div>
+    <div class="kpi-value">102.7</div>
+    <div class="kpi-sub">Conv. rate 0.61%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Order Value</div>
+    <div class="kpi-value">₹1,478</div>
+    <div class="kpi-sub">blended AOV</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">₹36,952</div>
+    <div class="kpi-sub">of ₹39,000 budget</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Purchase</div>
+    <div class="kpi-value">₹360</div>
+    <div class="kpi-sub">blended CPA</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Budget Used</div>
+    <div class="kpi-value">95%</div>
+    <div class="kpi-sub">16,813 clicks · 2.85% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Campaigns Live</div>
+    <div class="kpi-value">4</div>
+    <div class="kpi-sub">across Search, PMax, Shopping</div>
+  </div>
+  </div>
+
+  <section>
+    <h2>
+      Campaign Performance
+      <div class="section-pills">
+        
+        
+        <span class="section-pill pill-red">! Budget Capped (2)</span>
+        <span class="section-pill pill-amber">◐ Low Intent (1)</span>
+        <span class="section-pill pill-red">◉ Review (1)</span>
+        
+      </div>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">Spend</th>
+            <th class="center">Revenue</th>
+            <th class="center">ROAS</th>
+            <th class="center">Purchases</th>
+            <th class="center">AOV</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Lost IS</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      KM | PMax Campaign | Branded
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="98% of monthly budget used">
+          <div class="trend-fill" style="width:98%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">98% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹11,808</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹1,01,615</strong></td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">8.61x</strong></td>
+    <td class="center">54.6</td>
+    <td class="center">₹1,861</td>
+    <td class="center">8,096</td>
+    <td class="center">3.09%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-1.1%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | PMax Campaign | Summer Keywords
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="99% of monthly budget used">
+          <div class="trend-fill" style="width:99%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">99% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹11,893</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹38,291</strong></td>
+    <td class="center"><strong style="color:#F59E0B;font-size:15px">3.22x</strong></td>
+    <td class="center">34.1</td>
+    <td class="center">₹1,123</td>
+    <td class="center">5,460</td>
+    <td class="center">2.66%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-1.9%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | PMax Campaign | Generic Keywords | Tier 2 Cities
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="98% of monthly budget used">
+          <div class="trend-fill" style="width:98%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">98% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>₹5,851</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹11,873</strong></td>
+    <td class="center"><strong style="color:#F59E0B;font-size:15px">2.03x</strong></td>
+    <td class="center">14</td>
+    <td class="center">₹848</td>
+    <td class="center">2,972</td>
+    <td class="center">2.69%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-3.2%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | PMax | Ahmedabad Store Visit
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="82% of monthly budget used">
+          <div class="trend-fill" style="width:82%;background:#F59E0B"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">82% budget · PMax</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹7,400</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹0</strong></td>
+    <td class="center"><strong style="color:var(--text);font-size:15px">0x</strong></td>
+    <td class="center">0</td>
+    <td class="center">—</td>
+    <td class="center">285</td>
+    <td class="center">2.61%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-8.5%</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      30-Day Campaign Detail (MIS)
+      <span style="font-size:12px;color:var(--muted);font-weight:400">15 Apr 2026 — 14 May 2026 · 4 campaigns</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table class="mis-table">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Channel</th>
+            <th>Spend</th>
+            <th>Revenue</th>
+            <th>ROAS</th>
+            <th>Purchases</th>
+            <th>CPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+  <tr>
+    <td class="mis-name">KM | PMax Campaign | Branded</td>
+    <td class="center"><span class="channel-tag">PMax</span></td>
+    <td class="center">₹11,808</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹1,01,615</td>
+    <td class="center"><strong style="color:#16A34A">8.61x</strong></td>
+    <td class="center">54.6</td>
+    <td class="center">₹216</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | PMax Campaign | Summer Keywords</td>
+    <td class="center"><span class="channel-tag">PMax</span></td>
+    <td class="center">₹11,893</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹38,291</td>
+    <td class="center"><strong style="color:#F59E0B">3.22x</strong></td>
+    <td class="center">34.1</td>
+    <td class="center">₹349</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | PMax Campaign | Generic Keywords | Tier 2 Cities</td>
+    <td class="center"><span class="channel-tag">PMax</span></td>
+    <td class="center">₹5,851</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹11,873</td>
+    <td class="center"><strong style="color:#F59E0B">2.03x</strong></td>
+    <td class="center">14</td>
+    <td class="center">₹418</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | PMax | Ahmedabad Store Visit</td>
+    <td class="center"><span class="channel-tag">PMax</span></td>
+    <td class="center">₹7,400</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹0</td>
+    <td class="center"><strong style="color:var(--text)">0x</strong></td>
+    <td class="center">0</td>
+    <td class="center">—</td>
+  </tr>
+          
+  <tr class="mis-totals">
+    <td class="mis-name"><strong>TOTAL</strong></td>
+    <td class="center"><strong>—</strong></td>
+    <td class="center"><strong>₹36,952</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹1,51,779</strong></td>
+    <td class="center"><strong style="color:#003DCC">4.11x</strong></td>
+    <td class="center"><strong>102.7</strong></td>
+    <td class="center"><strong>₹360</strong></td>
+  </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> KM | PMax Campaign | Branded delivered ₹1,01,615 revenue at 8.61x ROAS with ₹1,861 AOV — your strongest performer and clear evidence that branded intent drives premium fabric purchases.</li><li><strong>[Important]</strong> KM | PMax Campaign | Summer Keywords achieved 3.22x ROAS and drove 34.1 purchases, showing seasonal/generic keywords can work profitably when properly targeted.</li><li><strong>[Worth doing]</strong> Overall blended CTR of 2.85% and ₹2 average CPC indicate decent ad relevance and cost efficiency across the account.</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> KM | PMax | Ahmedabad Store Visit has spent ₹7,400 with zero tracked online revenue and ₹26 CPC — if this is a store visit campaign, ensure offline conversion import is set up or pause immediately to stop waste.</li><li><strong>[Important]</strong> KM | PMax Campaign | Generic Keywords | Tier 2 Cities shows 2.03x ROAS and ₹848 AOV (lowest in account) with 0.47% conversion rate — likely attracting low-intent browsers who don't convert on premium fabrics.</li><li><strong>[Important]</strong> Branded PMax has 32.3% impression share and 1.1% budget lost IS — you're missing 67%+ of branded search volume, which is your highest ROAS opportunity at 8.61x.</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Month</h3>
+        <ul><li><strong>[Urgent]</strong> Pause KM | PMax | Ahmedabad Store Visit immediately unless offline conversion tracking is live — reallocate the ₹300/day budget to the Branded campaign which is budget-capped and delivering 8.61x ROAS.</li><li><strong>[Urgent]</strong> Increase daily budget for KM | PMax Campaign | Branded from ₹400 to ₹700/day (add the ₹300 from Store Visit) to capture more branded search volume — current 32.3% impression share means you're losing high-intent customers to competitors.</li><li><strong>[Important]</strong> Audit audience signals and search term reports for KM | PMax Campaign | Generic Keywords | Tier 2 Cities — add negative keywords to exclude low-intent queries (e.g., 'cheap fabric', 'wholesale', 'bulk') and tighten audience signals toward wedding/festive/saree shoppers to improve 0.47% conversion rate and ₹848 AOV.</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Saroj Fashions Ads Dashboard · Auto-refreshed every Monday 9am IST · Powered by KM
+</footer>
+
+</body>
+</html>

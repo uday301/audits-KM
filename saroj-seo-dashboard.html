@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saroj Fashions — SEO Dashboard | Friday, 15 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .section-label { font-family: 'DM Sans'; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 8px 0 12px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  section h2 .meta { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .empty-row { text-align: center; color: var(--muted); font-style: italic; padding: 24px !important; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-15T14:00:50.046Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Saroj Fashions SEO Dashboard</strong>
+  <div class="meta">Week ending Friday, 15 May 2026 · saroj.in</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>SEO Performance & Business Impact</h1>
+    <div class="sub">16 Apr 2026 — 15 May 2026 · 1,673 organic clicks · ₹0 revenue · undefined orders</div>
+    <div class="summary"><strong>Executive Summary:</strong> Saroj Fashions is gaining strong organic visibility with 59,532 sessions and 2 lakh impressions, but converting ZERO revenue from organic traffic. The cotton matka fabric category is driving 59% of all clicks with strong intent signals, but critical conversion gaps exist between traffic and transactions.</div>
+  </div>
+
+  <div class="section-label">SEO Performance</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Organic Clicks</div>
+    <div class="kpi-value">1,673</div>
+    <div class="kpi-sub">2,00,244 impressions · 0.84% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Organic Sessions</div>
+    <div class="kpi-value">59,532</div>
+    <div class="kpi-sub">0 unique users</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Position</div>
+    <div class="kpi-value">6.4</div>
+    <div class="kpi-sub">across all tracked queries</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Domain Rating</div>
+    <div class="kpi-value">18</div>
+    <div class="kpi-sub">0 backlinks · 0 refdomains</div>
+  </div></div>
+
+  <div class="section-label">Business Impact</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Total Revenue (Shopify)</div>
+    <div class="kpi-value">₹0</div>
+    <div class="kpi-sub">undefined orders · AOV ₹0</div>
+  </div>
+  <div class="kpi" style="border-top-color:#16A34A">
+    <div class="kpi-label">Organic Revenue</div>
+    <div class="kpi-value">₹0</div>
+    <div class="kpi-sub">undefined% of total · 0 orders</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Total Orders</div>
+    <div class="kpi-value">undefined</div>
+    <div class="kpi-sub">0 from organic</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Organic Keywords (Ahrefs)</div>
+    <div class="kpi-value">721</div>
+    <div class="kpi-sub">est traffic 6,863/mo</div>
+  </div></div>
+
+  <section>
+    <h2>
+      Top Search Queries
+      <span class="meta">16 Apr 2026 — 15 May 2026 · GSC data</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">matka clothing</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>854</strong></td>
+    <td class="center">53,781</td>
+    <td class="center">1.59%</td>
+    <td class="center">10.8</td>
+  </tr>
+  <tr>
+    <td class="kw">cotton matka clothing</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>104</strong></td>
+    <td class="center">1,547</td>
+    <td class="center">6.72%</td>
+    <td class="center">4.9</td>
+  </tr>
+  <tr>
+    <td class="kw">saroj fabrics</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>70</strong></td>
+    <td class="center">2,765</td>
+    <td class="center">2.53%</td>
+    <td class="center">3.7</td>
+  </tr>
+  <tr>
+    <td class="kw">matka clothing online shopping</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>36</strong></td>
+    <td class="center">1,706</td>
+    <td class="center">2.11%</td>
+    <td class="center">5.2</td>
+  </tr>
+  <tr>
+    <td class="kw">cotton matka</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>29</strong></td>
+    <td class="center">1,787</td>
+    <td class="center">1.62%</td>
+    <td class="center">6.1</td>
+  </tr>
+  <tr>
+    <td class="kw">raw silk fabric</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>26</strong></td>
+    <td class="center">2,973</td>
+    <td class="center">0.87%</td>
+    <td class="center">7.3</td>
+  </tr>
+  <tr>
+    <td class="kw">matka</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>21</strong></td>
+    <td class="center">1,002</td>
+    <td class="center">2.1%</td>
+    <td class="center">25.5</td>
+  </tr>
+  <tr>
+    <td class="kw">saroj fashions</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>20</strong></td>
+    <td class="center">120</td>
+    <td class="center">16.67%</td>
+    <td class="center">1.3</td>
+  </tr>
+  <tr>
+    <td class="kw">cutwork fabric</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>19</strong></td>
+    <td class="center">674</td>
+    <td class="center">2.82%</td>
+    <td class="center">8.4</td>
+  </tr>
+  <tr>
+    <td class="kw">lachka fabric</td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>15</strong></td>
+    <td class="center">1,988</td>
+    <td class="center">0.75%</td>
+    <td class="center">10</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Performing Pages
+      <span class="meta">16 Apr 2026 — 15 May 2026 · GSC data</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/collections/cotton-matka-fabrics" target="_blank" style="color:#003DCC;text-decoration:none">/collections/cotton-matka-fabrics</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>982</strong></td>
+    <td class="center">55,742</td>
+    <td class="center">1.76%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/" target="_blank" style="color:#003DCC;text-decoration:none">/</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>164</strong></td>
+    <td class="center">12,766</td>
+    <td class="center">1.28%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/blogs/news/matka-cotton-vs-regular-cotton-what-sets-it-apart" target="_blank" style="color:#003DCC;text-decoration:none">/blogs/news/matka-cotton-vs-regular-cotton-what-sets-it-apar…</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>79</strong></td>
+    <td class="center">3,543</td>
+    <td class="center">2.23%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/collections/satin-linen-fabrics" target="_blank" style="color:#003DCC;text-decoration:none">/collections/satin-linen-fabrics</a></td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>53</strong></td>
+    <td class="center">17,481</td>
+    <td class="center">0.3%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/blogs/news/what-is-cotton-slub-fabric" target="_blank" style="color:#003DCC;text-decoration:none">/blogs/news/what-is-cotton-slub-fabric</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>46</strong></td>
+    <td class="center">3,060</td>
+    <td class="center">1.5%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/collections/raw-silk-100gm-fabrics" target="_blank" style="color:#003DCC;text-decoration:none">/collections/raw-silk-100gm-fabrics</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>38</strong></td>
+    <td class="center">3,687</td>
+    <td class="center">1.03%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/collections/cotton-lawn-printed-fabrics" target="_blank" style="color:#003DCC;text-decoration:none">/collections/cotton-lawn-printed-fabrics</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>35</strong></td>
+    <td class="center">1,309</td>
+    <td class="center">2.67%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/blogs/news/what-is-chinon-fabric-a-complete-guide" target="_blank" style="color:#003DCC;text-decoration:none">/blogs/news/what-is-chinon-fabric-a-complete-guide</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>26</strong></td>
+    <td class="center">4,072</td>
+    <td class="center">0.64%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/products/white-plain-cotton-matka-fabric-29" target="_blank" style="color:#003DCC;text-decoration:none">/products/white-plain-cotton-matka-fabric-29</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>24</strong></td>
+    <td class="center">1,357</td>
+    <td class="center">1.77%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://saroj.in/collections/crepe-cut-work" target="_blank" style="color:#003DCC;text-decoration:none">/collections/crepe-cut-work</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>23</strong></td>
+    <td class="center">856</td>
+    <td class="center">2.69%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Recent Orders
+      <span class="meta">undefined this week · ₹0 total</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th class="center">Date</th>
+            <th class="center">Items</th>
+            <th class="center">Total</th>
+            <th class="center">Status</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="5" class="empty-row">No orders this period</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> Cotton matka collection dominates with 982 clicks (59% of total) at 1.76% CTR, establishing category authority with queries like 'cotton matka clothing' ranking position 4.9</li><li><strong>[Important]</strong> Brand queries 'saroj fabrics' and 'saroj fashions' show strong recognition with 90 combined clicks at top 4 positions and CTRs up to 16.67%</li><li><strong>[Worth doing]</strong> Educational content performing well with matka vs regular cotton blog driving 79 clicks at 2.23% CTR, supporting purchase decisions</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> INR 0 revenue from 59,532 organic sessions indicates critical conversion funnel breakdown - traffic quality or site experience severely impacting transactions</li><li><strong>[Urgent]</strong> Primary keyword 'matka clothing' stuck at position 10.8 despite 854 clicks leaves 53,781 impressions undermonetized - page 2 visibility limiting high-intent traffic</li><li><strong>[Important]</strong> Domain Rating of 18 with 721 keywords signals weak backlink profile limiting authority for competitive fabric retail terms beyond matka niche</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Week</h3>
+        <ul><li><strong>[Urgent]</strong> Audit cotton matka collection page conversion path - add fabric swatches, bulk pricing, GSM specifications, delivery timelines, and trust signals to convert 982 monthly clicks into transactions</li><li><strong>[Urgent]</strong> Optimize 'matka clothing' landing page with commercial modifiers - add 'buy,' 'price per meter,' fabric weight filters, and internal links to push from position 10.8 to page 1</li><li><strong>[Important]</strong> Launch link building campaign targeting fashion blogs, designer directories, and textile industry publications to build DR beyond 18 and capture 'raw silk fabric' opportunity (26 clicks at position 7.3)</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Saroj Fashions SEO Dashboard · Auto-refreshed every Monday 9am IST · Powered by KM
+</footer>
+
+</body>
+</html>

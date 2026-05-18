@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hack Athletics — SEO Dashboard | Monday, 18 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .section-label { font-family: 'DM Sans'; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 8px 0 12px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  section h2 .meta { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .empty-row { text-align: center; color: var(--muted); font-style: italic; padding: 24px !important; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-18T13:28:26.723Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Hack Athletics SEO Dashboard</strong>
+  <div class="meta">Period ending Monday, 18 May 2026 · hackathletics.com</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>SEO Performance & Business Impact</h1>
+    <div class="sub">19 Apr 2026 — 18 May 2026 · 1,300 organic clicks · ₹19,20,513 organic revenue · 668 transactions</div>
+    <div class="summary"><strong>Executive Summary:</strong> Organic traffic drove INR 19.2L in revenue from 668 transactions last month, but the brand is heavily dependent on branded searches (413 clicks for 'hack athletics'). Critical issue: branded product queries like 'hack lever belt' and 'hack athletics lever belt' rank at positions 2.3-2.9, indicating Amazon/Flipkart listings are outranking the D2C site and cannibalizing revenue. With DR 0.3 and only 89 ranking keywords, aggressive link building and category page optimization are essential to capture high-intent generic queries.</div>
+  </div>
+
+  <div class="section-label">SEO Performance</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Organic Clicks</div>
+    <div class="kpi-value">1,300</div>
+    <div class="kpi-sub">67,521 impressions · 1.93% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Organic Sessions</div>
+    <div class="kpi-value">62,867</div>
+    <div class="kpi-sub">GA4 organic channel</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Position</div>
+    <div class="kpi-value">6.8</div>
+    <div class="kpi-sub">across all tracked queries</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Domain Rating</div>
+    <div class="kpi-value">0.3</div>
+    <div class="kpi-sub">0 backlinks · 0 refdomains</div>
+  </div></div>
+
+  <div class="section-label">Business Impact & Authority</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#16A34A">
+    <div class="kpi-label">Organic Revenue</div>
+    <div class="kpi-value">₹19,20,513</div>
+    <div class="kpi-sub">GA4 attributed · last 30d</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Organic Transactions</div>
+    <div class="kpi-value">668</div>
+    <div class="kpi-sub">from organic sessions</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Organic Keywords (Ahrefs)</div>
+    <div class="kpi-value">89</div>
+    <div class="kpi-sub">est traffic 1,099/mo</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Referring Domains</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">0 total backlinks</div>
+  </div></div>
+
+  <section>
+    <h2>
+      Top Search Queries
+      <span class="meta">19 Apr 2026 — 18 May 2026 · GSC data</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">hack athletics</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>413</strong></td>
+    <td class="center">12,334</td>
+    <td class="center">3.35%</td>
+    <td class="center">1.1</td>
+  </tr>
+  <tr>
+    <td class="kw">hack lever belt</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>92</strong></td>
+    <td class="center">3,066</td>
+    <td class="center">3%</td>
+    <td class="center">2.9</td>
+  </tr>
+  <tr>
+    <td class="kw">lever belt</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>68</strong></td>
+    <td class="center">5,760</td>
+    <td class="center">1.18%</td>
+    <td class="center">9.8</td>
+  </tr>
+  <tr>
+    <td class="kw">gym belt</td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>53</strong></td>
+    <td class="center">18,639</td>
+    <td class="center">0.28%</td>
+    <td class="center">9.9</td>
+  </tr>
+  <tr>
+    <td class="kw">hack knee sleeves</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>53</strong></td>
+    <td class="center">1,055</td>
+    <td class="center">5.02%</td>
+    <td class="center">1.6</td>
+  </tr>
+  <tr>
+    <td class="kw">hack belt</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>47</strong></td>
+    <td class="center">2,167</td>
+    <td class="center">2.17%</td>
+    <td class="center">2.8</td>
+  </tr>
+  <tr>
+    <td class="kw">gym belt for men</td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>45</strong></td>
+    <td class="center">9,223</td>
+    <td class="center">0.49%</td>
+    <td class="center">9.6</td>
+  </tr>
+  <tr>
+    <td class="kw">hack athletics lever belt</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>40</strong></td>
+    <td class="center">1,202</td>
+    <td class="center">3.33%</td>
+    <td class="center">2.3</td>
+  </tr>
+  <tr>
+    <td class="kw">hack shaker</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>31</strong></td>
+    <td class="center">369</td>
+    <td class="center">8.4%</td>
+    <td class="center">1.4</td>
+  </tr>
+  <tr>
+    <td class="kw">lever belt gym</td>
+    <td class="center"><span class="pill pill-green">↑ Rising</span></td>
+    <td class="center"><strong>27</strong></td>
+    <td class="center">1,316</td>
+    <td class="center">2.05%</td>
+    <td class="center">6.4</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Performing Pages
+      <span class="meta">19 Apr 2026 — 18 May 2026 · GSC data</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/" target="_blank" style="color:#003DCC;text-decoration:none">/</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>470</strong></td>
+    <td class="center">5,703</td>
+    <td class="center">8.24%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/collections/weight-lifting-belts" target="_blank" style="color:#003DCC;text-decoration:none">/collections/weight-lifting-belts</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>178</strong></td>
+    <td class="center">18,719</td>
+    <td class="center">0.95%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/products/hack-athletic-premium-13mm-weight-lifting-lever-belt" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletic-premium-13mm-weight-lifting-lever-be…</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>162</strong></td>
+    <td class="center">23,387</td>
+    <td class="center">0.69%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/collections/weightlifting-belts" target="_blank" style="color:#003DCC;text-decoration:none">/collections/weightlifting-belts</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>101</strong></td>
+    <td class="center">3,423</td>
+    <td class="center">2.95%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/collections/shaker-bottles" target="_blank" style="color:#003DCC;text-decoration:none">/collections/shaker-bottles</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>88</strong></td>
+    <td class="center">1,504</td>
+    <td class="center">5.85%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/collections/wrist-support" target="_blank" style="color:#003DCC;text-decoration:none">/collections/wrist-support</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>70</strong></td>
+    <td class="center">2,931</td>
+    <td class="center">2.39%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-performance-7mm-knee-sleeves" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-performance-7mm-knee-sleeves</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>50</strong></td>
+    <td class="center">962</td>
+    <td class="center">5.2%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/collections/knee-support" target="_blank" style="color:#003DCC;text-decoration:none">/collections/knee-support</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>50</strong></td>
+    <td class="center">1,696</td>
+    <td class="center">2.95%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-premium-10mm-weight-lifting-lever-belt-power-lifting-belt-for-men-women-for-lower-back-support-multipurpose-gym-workouts-deadlifts-squats-powerlifting-4-inch-wide" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-premium-10mm-weight-lifting-lever-b…</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>21</strong></td>
+    <td class="center">3,040</td>
+    <td class="center">0.69%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-premium-stainless-steel-insulated-shaker-bottles-709ml-black" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-premium-stainless-steel-insulated-s…</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>20</strong></td>
+    <td class="center">326</td>
+    <td class="center">6.13%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> Homepage and branded queries deliver exceptional CTR of 8.24% and 3.35% respectively, converting 668 organic transactions worth INR 19.2L—proving strong brand recall among powerlifting community</li><li><strong>[Important]</strong> Knee sleeves performing strongly: 'hack knee sleeves' ranks at position 1.6 with 5.02% CTR and product page achieving 5.2% CTR, showing product-category strength beyond belts</li><li><strong>[Worth doing]</strong> Shaker bottles collection punches above weight with 5.85% CTR from 88 clicks, indicating potential to expand into complementary fitness accessories</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> Marketplace Leak crisis: Own branded queries 'hack lever belt' (pos 2.9), 'hack athletics lever belt' (pos 2.3), and 'hack belt' (pos 2.8) are being outranked by Amazon/Flipkart, directly siphoning high-intent customers to marketplace commissions instead of D2C margins</li><li><strong>[Urgent]</strong> Domain authority catastrophically low at DR 0.3 with no measurable backlink profile—explains why generic high-volume queries like 'lever belt' (5,760 impressions, pos 9.8) and 'gym belt' (18,639 impressions, pos 9.9) fail to convert</li><li><strong>[Important]</strong> Top product page (/products/hack-athletic-premium-13mm-weight-lifting-lever-belt) has 23,387 impressions but only 0.69% CTR at position—poor meta optimization and marketplace dominance limiting India's peak fitness season revenue potential with January approaching</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Period</h3>
+        <ul><li><strong>[Urgent]</strong> Combat marketplace cannibalization: Implement brand bidding defense by adding structured data (Product schema with price/availability), creating unique product comparison content ('Hack lever belt vs Amazon alternatives'), and requesting Amazon Brand Registry violation takedowns for unauthorized 'Hack Athletics' keyword usage in seller listings</li><li><strong>[Urgent]</strong> Emergency link acquisition targeting DR 30+ fitness sites: Secure 15-20 backlinks from Indian fitness blogs, gym equipment review sites, and powerlifting communities through product seeding to coaches/influencers, HARO responses on lifting gear topics, and digital PR around powerlifting meets before January resolution traffic spike</li><li><strong>[Important]</strong> Optimize category pages for generic conversions: Rewrite /collections/weight-lifting-belts (0.95% CTR) with buying guides targeting 'best lever belt India', 'powerlifting belt 13mm vs 10mm', add size calculators, comparison tables vs Decathlon/Boldfit, and user-generated content from Mumbai gym communities to capture 18,719 monthly impressions currently leaking to competitors</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Hack Athletics SEO Dashboard · Auto-refreshed every Monday 9:35am IST · Powered by KM
+</footer>
+
+</body>
+</html>

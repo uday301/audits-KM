@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eat Breathe Smile — SEO Dashboard | Monday, 18 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .section-label { font-family: 'DM Sans'; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 8px 0 12px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  section h2 .meta { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .empty-row { text-align: center; color: var(--muted); font-style: italic; padding: 24px !important; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-18T12:37:39.396Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Eat Breathe Smile SEO Dashboard</strong>
+  <div class="meta">Last 30 days ending Monday, 18 May 2026 · eatbreathesmile.com</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>SEO Performance & Business Impact</h1>
+    <div class="sub">18 Apr 2026 — 17 May 2026 · 456 organic clicks · 38,504 organic sessions</div>
+    <div class="summary"><strong>Executive Summary:</strong> Eat Breathe Smile has strong brand visibility with 456 organic clicks and excellent average position of 2.7, but critical conversion failure shows INR 0 revenue from 38,504 organic sessions. The site ranks well for branded queries (85%+ of clicks) but lacks non-branded wellness keyword visibility, with Domain Rating of 0 indicating zero backlink authority and severely limited organic reach beyond existing brand awareness.</div>
+  </div>
+
+  <div class="section-label">SEO Performance</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Organic Clicks</div>
+    <div class="kpi-value">456</div>
+    <div class="kpi-sub">7,978 impressions · 5.72% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Organic Sessions</div>
+    <div class="kpi-value">38,504</div>
+    <div class="kpi-sub">GA4 organic channel</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Position</div>
+    <div class="kpi-value">2.7</div>
+    <div class="kpi-sub">across all tracked queries</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Domain Rating</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">0 backlinks · 0 refdomains</div>
+  </div></div>
+
+  <div class="section-label">Business Impact</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Organic Revenue (GA4)</div>
+    <div class="kpi-value">₹0</div>
+    <div class="kpi-sub">0 organic transactions</div>
+  </div>
+  <div class="kpi" style="border-top-color:#16A34A">
+    <div class="kpi-label">Organic Transactions</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">from organic search channel</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Organic Keywords (Ahrefs)</div>
+    <div class="kpi-value">3</div>
+    <div class="kpi-sub">est. traffic 64/mo</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Referring Domains</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">0 total backlinks</div>
+  </div></div>
+
+  <section>
+    <h2>
+      Top Search Queries
+      <span class="meta">18 Apr 2026 — 17 May 2026 · GSC data</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">eat breathe smile</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>256</strong></td>
+    <td class="center">4,970</td>
+    <td class="center">5.15%</td>
+    <td class="center">1</td>
+  </tr>
+  <tr>
+    <td class="kw">eat breathe smile protein powder</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>40</strong></td>
+    <td class="center">487</td>
+    <td class="center">8.21%</td>
+    <td class="center">5.2</td>
+  </tr>
+  <tr>
+    <td class="kw">eatbreathesmile</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>34</strong></td>
+    <td class="center">360</td>
+    <td class="center">9.44%</td>
+    <td class="center">1</td>
+  </tr>
+  <tr>
+    <td class="kw">eat smile breathe</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>22</strong></td>
+    <td class="center">158</td>
+    <td class="center">13.92%</td>
+    <td class="center">1</td>
+  </tr>
+  <tr>
+    <td class="kw">super vegan protein collagen</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>11</strong></td>
+    <td class="center">149</td>
+    <td class="center">7.38%</td>
+    <td class="center">6.3</td>
+  </tr>
+  <tr>
+    <td class="kw">super cleanse</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>9</strong></td>
+    <td class="center">213</td>
+    <td class="center">4.23%</td>
+    <td class="center">4.6</td>
+  </tr>
+  <tr>
+    <td class="kw">eat breathe smile reviews</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>9</strong></td>
+    <td class="center">197</td>
+    <td class="center">4.57%</td>
+    <td class="center">4.8</td>
+  </tr>
+  <tr>
+    <td class="kw">eat breathe smile protein powder review</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>8</strong></td>
+    <td class="center">180</td>
+    <td class="center">4.44%</td>
+    <td class="center">6</td>
+  </tr>
+  <tr>
+    <td class="kw">eat breath smile</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>6</strong></td>
+    <td class="center">19</td>
+    <td class="center">31.58%</td>
+    <td class="center">1.1</td>
+  </tr>
+  <tr>
+    <td class="kw">super cleanse powder</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>6</strong></td>
+    <td class="center">71</td>
+    <td class="center">8.45%</td>
+    <td class="center">4.8</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Performing Pages
+      <span class="meta">18 Apr 2026 — 17 May 2026 · GSC data</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/" target="_blank" style="color:#003DCC;text-decoration:none">/</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>292</strong></td>
+    <td class="center">1,344</td>
+    <td class="center">21.73%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/collections/vegan-protein-powder" target="_blank" style="color:#003DCC;text-decoration:none">/collections/vegan-protein-powder</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>36</strong></td>
+    <td class="center">890</td>
+    <td class="center">4.04%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/products/supercleanse" target="_blank" style="color:#003DCC;text-decoration:none">/products/supercleanse</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>22</strong></td>
+    <td class="center">457</td>
+    <td class="center">4.81%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/products/super-vegan-protein-collagen" target="_blank" style="color:#003DCC;text-decoration:none">/products/super-vegan-protein-collagen</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>18</strong></td>
+    <td class="center">1,043</td>
+    <td class="center">1.73%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/pages/eat-breath-smile-reviews" target="_blank" style="color:#003DCC;text-decoration:none">/pages/eat-breath-smile-reviews</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>15</strong></td>
+    <td class="center">255</td>
+    <td class="center">5.88%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/collections/all" target="_blank" style="color:#003DCC;text-decoration:none">/collections/all</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>13</strong></td>
+    <td class="center">791</td>
+    <td class="center">1.64%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/collections/weight-loss" target="_blank" style="color:#003DCC;text-decoration:none">/collections/weight-loss</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">642</td>
+    <td class="center">1.09%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/collections/shop" target="_blank" style="color:#003DCC;text-decoration:none">/collections/shop</a></td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">835</td>
+    <td class="center">0.84%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/products/superherbs" target="_blank" style="color:#003DCC;text-decoration:none">/products/superherbs</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">291</td>
+    <td class="center">2.41%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://eatbreathesmile.com/blogs/news/super-fasting-broth-for-intermittent-fasting-success" target="_blank" style="color:#003DCC;text-decoration:none">/blogs/news/super-fasting-broth-for-intermittent-fasting-suc…</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>5</strong></td>
+    <td class="center">35</td>
+    <td class="center">14.29%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> Homepage dominates with 292 clicks at 21.73% CTR for branded queries, proving strong brand recall and search intent capture</li><li><strong>[Important]</strong> Protein powder collectionpage ranks position 5.2 for 'eat breathe smile protein powder' with 40 clicks, showing product-specific SEO traction</li><li><strong>[Worth doing]</strong> Review-focused queries driving 24 clicks combined ('eat breathe smile reviews' and 'protein powder review'), indicating trust-building content is indexing</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> INR 0 organic revenue despite 38,504 sessions indicates broken conversion funnel from organic traffic to checkout—immediate product page optimization and CTA testing required</li><li><strong>[Urgent]</strong> Domain Rating 0 with no backlinks means zero authority for competitive wellness keywords like 'yoga mat', 'meditation cushion', or 'vegan protein India'—brand is invisible beyond branded search</li><li><strong>[Important]</strong> Super Vegan Protein Collagen product page has 1,043 impressions but only 1.73% CTR (18 clicks), suggesting meta description and title tag optimization needed to capture ready-to-buy traffic</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Week</h3>
+        <ul><li><strong>[Urgent]</strong> Launch backlink outreach to 20+ Indian yoga/wellness blogs and influencers for product reviews and guest posts on 'best vegan protein for yogis' to build Domain Rating above 20 within 90 days</li><li><strong>[Urgent]</strong> Audit organic landing pages (homepage, protein powder collection, supercleanse product) for conversion blockers—add Product schema markup, trust badges, clear Add-to-Cart CTAs, and streamline mobile checkout flow</li><li><strong>[Important]</strong> Create 12 SEO-optimized blog posts targeting non-branded queries ('yoga for beginners at home', 'vegan protein benefits India', 'natural cleanse for weight loss') to capture 500+ monthly non-branded clicks within 6 months</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Eat Breathe Smile SEO Dashboard · Auto-refreshed every Monday 9am IST · Powered by KM
+</footer>
+
+</body>
+</html>

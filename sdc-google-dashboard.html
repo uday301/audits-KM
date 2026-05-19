@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suresh Dani's Classes — Google Ads Dashboard | Tuesday, 19 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .section-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .trend-bar { width: 100px; height: 6px; background: #F1F5F9; border-radius: 3px; overflow: hidden; }
+  .trend-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed every Monday · Generated 2026-05-19T13:45:03.342Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Suresh Dani's Classes Ads Dashboard</strong>
+  <div class="meta">20 Apr 2026 — 19 May 2026 · Customer ID 951-125-3431</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Google Ads Performance — Last 30 Days</h1>
+    <div class="sub">20 Apr 2026 — 19 May 2026 · 10 active Search campaigns · 2461 leads · ₹45 blended CPL</div>
+    <div class="summary"><strong>Executive Summary:</strong> Spent INR 1,10,452 and generated 2,461 leads at a blended CPL of INR 45 this month. Three Call Ads campaigns (NEET, CET, JEE) are burning 68% of total budget but delivering only 6 leads combined at catastrophic CPLs of INR 7,332–22,031. Meanwhile, your best performers—PMax GMB and Lead Gen campaigns—are budget-capped and ready to scale immediately.</div>
+  </div>
+
+  <div class="kpi-grid">
+    
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">₹1,10,452</div>
+    <div class="kpi-sub">of ₹1,62,000 budget</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Total Clicks</div>
+    <div class="kpi-value">6,674</div>
+    <div class="kpi-sub">CTR 3.91%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value">1,70,740</div>
+    <div class="kpi-sub">last 30 days</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Leads</div>
+    <div class="kpi-value">2461</div>
+    <div class="kpi-sub">Conv. rate 36.87%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Avg CPC</div>
+    <div class="kpi-value">₹17</div>
+    <div class="kpi-sub">blended</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Lead</div>
+    <div class="kpi-value">₹45</div>
+    <div class="kpi-sub">blended CPL</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Budget Used</div>
+    <div class="kpi-value">68%</div>
+    <div class="kpi-sub">₹1,10,452 of ₹1,62,000</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Campaigns Live</div>
+    <div class="kpi-value">10</div>
+    <div class="kpi-sub">all Search type</div>
+  </div>
+  </div>
+
+  
+  <section>
+    <h2>
+      Performance by Course
+      <span style="font-size:12px;color:var(--muted);font-weight:400;">Spend & lead efficiency grouped by exam category</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th class="center">Spend</th>
+            <th class="center">% of Spend</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Leads</th>
+            <th class="center">CPL</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><strong>NEET</strong> <span style="font-size:11px;color:var(--muted);">(3 campaigns)</span></td>
+    <td class="center"><strong>₹37,751</strong></td>
+    <td class="center">34.2%</td>
+    <td class="center">1,389</td>
+    <td class="center">3.54%</td>
+    <td class="center"><strong style="color:#16A34A">165</strong></td>
+    <td class="center">₹229</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>MHT-CET</strong> <span style="font-size:11px;color:var(--muted);">(2 campaigns)</span></td>
+    <td class="center"><strong>₹25,622</strong></td>
+    <td class="center">23.2%</td>
+    <td class="center">2,171</td>
+    <td class="center">4.58%</td>
+    <td class="center"><strong style="color:#16A34A">282</strong></td>
+    <td class="center">₹91</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Other</strong> <span style="font-size:11px;color:var(--muted);">(3 campaigns)</span></td>
+    <td class="center"><strong>₹25,047</strong></td>
+    <td class="center">22.7%</td>
+    <td class="center">2,859</td>
+    <td class="center">4.62%</td>
+    <td class="center"><strong style="color:#16A34A">2013</strong></td>
+    <td class="center">₹12</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>JEE</strong> <span style="font-size:11px;color:var(--muted);">(2 campaigns)</span></td>
+    <td class="center"><strong>₹22,032</strong></td>
+    <td class="center">19.9%</td>
+    <td class="center">255</td>
+    <td class="center">1.15%</td>
+    <td class="center"><strong style="color:#16A34A">1</strong></td>
+    <td class="center">₹22,032</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Campaign Performance
+      <div class="section-pills">
+        <span class="section-pill pill-green">↑ Scale (4)</span>
+        
+        <span class="section-pill pill-red">! Budget Capped (2)</span>
+        <span class="section-pill pill-red">◉ Review (4)</span>
+        
+      </div>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">Spend</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg CPC</th>
+            <th class="center">Leads</th>
+            <th class="center">CPL</th>
+            <th class="center">Impr. Share</th>
+            <th class="center">Lost IS</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      KM | Call Ads | NEET
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="91% of monthly budget used">
+          <div class="trend-fill" style="width:91%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">91% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹24,439</strong></td>
+    <td class="center">337</td>
+    <td class="center">1.54%</td>
+    <td class="center">₹73</td>
+    <td class="center"><strong style="color:#16A34A">3</strong></td>
+    <td class="center">₹7,332</td>
+    <td class="center">46.8%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-26.6%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Call Ads | CET
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="85% of monthly budget used">
+          <div class="trend-fill" style="width:85%;background:#F59E0B"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">85% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹23,017</strong></td>
+    <td class="center">305</td>
+    <td class="center">1.71%</td>
+    <td class="center">₹75</td>
+    <td class="center"><strong style="color:#16A34A">2</strong></td>
+    <td class="center">₹11,508</td>
+    <td class="center">50%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-24%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Call Ads | JEE
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="82% of monthly budget used">
+          <div class="trend-fill" style="width:82%;background:#F59E0B"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">82% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹22,031</strong></td>
+    <td class="center">253</td>
+    <td class="center">1.14%</td>
+    <td class="center">₹87</td>
+    <td class="center"><strong style="color:#16A34A">1</strong></td>
+    <td class="center">₹22,031</td>
+    <td class="center">48.2%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-23.7%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Lead Gen 2026 | NEET
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="79% of monthly budget used">
+          <div class="trend-fill" style="width:79%;background:#F59E0B"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">79% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹11,811</strong></td>
+    <td class="center">322</td>
+    <td class="center">8.95%</td>
+    <td class="center">₹37</td>
+    <td class="center"><strong style="color:#16A34A">56</strong></td>
+    <td class="center">₹211</td>
+    <td class="center">10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-22.1%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Call Ads | Branded Campaign
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="87% of monthly budget used">
+          <div class="trend-fill" style="width:87%;background:#F59E0B"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">87% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹10,491</strong></td>
+    <td class="center">137</td>
+    <td class="center">1.03%</td>
+    <td class="center">₹77</td>
+    <td class="center"><strong style="color:#16A34A">4</strong></td>
+    <td class="center">₹2,861</td>
+    <td class="center">30.1%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-35.2%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | 2026 | PMax | GMB
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="52% of monthly budget used">
+          <div class="trend-fill" style="width:52%;background:#22C55E"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">52% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹9,278</strong></td>
+    <td class="center">2,122</td>
+    <td class="center">5.23%</td>
+    <td class="center">₹4</td>
+    <td class="center"><strong style="color:#16A34A">1849</strong></td>
+    <td class="center">₹5</td>
+    <td class="center">10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-4.1%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | 2024 | Search Campaign | Lead Gen | Career Counseling
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="59% of monthly budget used">
+          <div class="trend-fill" style="width:59%;background:#22C55E"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">59% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹5,278</strong></td>
+    <td class="center">600</td>
+    <td class="center">7.46%</td>
+    <td class="center">₹9</td>
+    <td class="center"><strong style="color:#16A34A">160</strong></td>
+    <td class="center">₹33</td>
+    <td class="center">10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-7.4%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | 2024 | Search Campaign | Lead Gen | CET
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="29% of monthly budget used">
+          <div class="trend-fill" style="width:29%;background:#22C55E"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">29% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹2,605</strong></td>
+    <td class="center">1,866</td>
+    <td class="center">6.31%</td>
+    <td class="center">₹1</td>
+    <td class="center"><strong style="color:#16A34A">280</strong></td>
+    <td class="center">₹9</td>
+    <td class="center">10%</td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | 2024 | Search Campaign | Lead Gen | NEET Repeaters
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="17% of monthly budget used">
+          <div class="trend-fill" style="width:17%;background:#22C55E"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">17% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-green">↑ Scale</span></td>
+    <td class="center"><strong>₹1,501</strong></td>
+    <td class="center">730</td>
+    <td class="center">5.3%</td>
+    <td class="center">₹2</td>
+    <td class="center"><strong style="color:#16A34A">106</strong></td>
+    <td class="center">₹14</td>
+    <td class="center">10%</td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | 2024 | Search Campaign | Lead Gen | JEE
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="0% of monthly budget used">
+          <div class="trend-fill" style="width:0%;background:#22C55E"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">0% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹1</strong></td>
+    <td class="center">2</td>
+    <td class="center">8.7%</td>
+    <td class="center">₹0</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">—</td>
+    <td class="center">—</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> MHT-CET campaigns delivered 282 leads at INR 91 CPL (well within benchmark) with 4.58% CTR, proving strong local demand and efficient targeting across 2 campaigns spending INR 25,622</li><li><strong>[Important]</strong> PMax GMB campaign (23635007193) achieved INR 5 CPL with 87% conversion rate and 1,849 leads from just INR 9,278 spend—your most efficient lead source by far</li><li><strong>[Worth doing]</strong> Career Counseling and CET Lead Gen campaigns combined delivered 440 leads at INR 9–33 CPL with strong 15–27% conversion rates, significantly outperforming premium exam campaigns</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> Three Call Ads campaigns (IDs 23640449021, 23595403139, 23595641012) spent INR 69,487 (63% of total budget) but generated only 6 leads total at INR 7,332–22,031 per lead—this is 10-30x your benchmarks and bleeding budget</li><li><strong>[Urgent]</strong> JEE course spent INR 22,032 for 1 lead (INR 22,032 CPL vs benchmark INR 300-800)—entire JEE strategy is broken with 1.15% CTR and 0.4% conversion rate across 2 campaigns</li><li><strong>[Important]</strong> Branded Call Ads campaign losing 35.2% impression share to budget while spending INR 10,491 for only 4 leads at INR 2,861 CPL—competitors may be capturing your brand searches</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Period</h3>
+        <ul><li><strong>[Urgent]</strong> Immediately pause or reduce daily budgets to INR 100-200 for Call Ads NEET (23640449021), CET (23595403139), and JEE (23595641012) until conversion tracking is fixed or ad copy/landing pages are rebuilt—these are not generating real leads</li><li><strong>[Urgent]</strong> Reallocate freed budget to scale PMax GMB (23635007193) to INR 1,200/day, CET Lead Gen (21068545437) to INR 600/day, and Career Counseling (21068617416) to INR 600/day—all show 0-7.4% budget lost impression share and sub-INR 35 CPLs</li><li><strong>[Important]</strong> Audit JEE campaigns immediately: review search terms, ad copy relevance, and landing page experience—1 conversion from INR 22,032 spend suggests either tracking failure or severe targeting/quality issues that need diagnosis before any further spend</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Suresh Dani's Classes Ads Dashboard · Auto-generated every Monday 10:05am IST · Powered by KM
+</footer>
+
+</body>
+</html>

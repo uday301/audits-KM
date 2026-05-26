@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hack Athletics — Marketing Dashboards | Kerkar Media</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC;
+    --brand-blue-dark: #035398;
+    --text: #0F172A;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 700; }
+
+  /* ── Top strip ── */
+  .topbar {
+    background: var(--brand-blue);
+    color: #fff;
+    padding: 9px 0;
+    font-size: 12.5px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .topbar strong { font-weight: 600; }
+
+  /* ── Hero header ── */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, #003DCC 0%, #035398 100%);
+    color: #fff;
+    overflow: hidden;
+    padding: 64px 32px 120px;
+  }
+  /* subtle geometric depth */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 85% 20%, rgba(255,255,255,0.12) 0%, transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(255,255,255,0.08) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 18px;
+    animation: rise 0.6s ease both;
+  }
+  .eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #4ADE80;
+    box-shadow: 0 0 0 0 rgba(74,222,128,0.7);
+    animation: pulse 2s infinite;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    animation: rise 0.6s ease 0.08s both;
+  }
+  .hero p {
+    font-size: 16px;
+    opacity: 0.9;
+    max-width: 560px;
+    animation: rise 0.6s ease 0.16s both;
+  }
+
+  /* ── Cards area (pulled up over hero) ── */
+  .wrap {
+    max-width: 1100px;
+    margin: -72px auto 0;
+    padding: 0 32px 64px;
+    position: relative;
+    z-index: 2;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 12px 28px -12px rgba(15,23,42,0.12);
+    transition: transform 0.22s cubic-bezier(.2,.8,.2,1), box-shadow 0.22s ease, border-color 0.22s ease;
+    position: relative;
+    overflow: hidden;
+    animation: rise 0.6s ease both;
+  }
+  .card:nth-child(1) { animation-delay: 0.24s; }
+  .card:nth-child(2) { animation-delay: 0.32s; }
+  .card:nth-child(3) { animation-delay: 0.40s; }
+
+  /* accent rail on top */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 1px 3px rgba(15,23,42,0.05), 0 24px 48px -16px rgba(0,61,204,0.28);
+    border-color: transparent;
+  }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+  .card-icon svg { width: 24px; height: 24px; }
+
+  .card-platform {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .card h3 {
+    font-size: 21px;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .card p {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 22px;
+    flex-grow: 1;
+  }
+  .card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .card-status {
+    font-size: 12px;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-status .live {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #22C55E;
+  }
+  .card-cta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease;
+  }
+  .card:hover .card-cta { gap: 11px; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 36px 32px 48px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  footer strong { color: var(--brand-blue); font-weight: 600; }
+  footer .sep { margin: 0 8px; opacity: 0.5; }
+
+  /* ── Animations ── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
+    70%  { box-shadow: 0 0 0 7px rgba(74,222,128,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+    .hero { padding: 48px 24px 110px; }
+    .wrap { padding: 0 24px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"><strong>Kerkar Media</strong> &middot; Client Marketing Dashboards</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span> Hack Athletics</div>
+    <h1>Marketing Performance<br>Dashboards</h1>
+    <p>Your live advertising and SEO performance, refreshed automatically every Monday. Select a channel below to view the full report.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+
+    <!-- Google Ads -->
+    <a class="card" href="hack-google-dashboard.html"
+       style="--accent:#1A73E8; --accent-soft:#E8F0FE;">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 4-5"/>
+        </svg>
+      </div>
+      <div class="card-platform">Google Ads</div>
+      <h3>Google Ads Performance</h3>
+      <p>Campaign spend, ROAS, purchases and budget efficiency across Performance Max, Search and Shopping.</p>
+      <div class="card-foot">
+        <span class="card-status"><span class="live"></span> Updated weekly</span>
+        <span class="card-cta">View report
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Meta Ads -->
+    <a class="card" href="hack-meta-dashboard.html"
+       style="--accent:#0866FF; --accent-soft:#E7F0FF;">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12c2-5 5-7 7-7 3 0 3 4 3 7s0 7 3 7c2 0 5-2 7-7"/>
+        </svg>
+      </div>
+      <div class="card-platform">Meta Ads</div>
+      <h3>Meta Ads Performance</h3>
+      <p>Facebook &amp; Instagram revenue, ROAS, audience reach, frequency and creative fatigue signals.</p>
+      <div class="card-foot">
+        <span class="card-status"><span class="live"></span> Updated weekly</span>
+        <span class="card-cta">View report
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- SEO -->
+    <a class="card" href="hack-seo-dashboard.html"
+       style="--accent:#16A34A; --accent-soft:#DCFCE7;">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+      </div>
+      <div class="card-platform">Organic Search</div>
+      <h3>SEO Performance</h3>
+      <p>Organic clicks, keyword rankings, branded vs non-branded split, top pages and authority metrics.</p>
+      <div class="card-foot">
+        <span class="card-status"><span class="live"></span> Updated weekly</span>
+        <span class="card-cta">View report
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <strong>Kerkar Media</strong><span class="sep">·</span>Hack Athletics Marketing Dashboards<span class="sep">·</span>Auto-refreshed every Monday
+</footer>
+
+</body>
+</html>

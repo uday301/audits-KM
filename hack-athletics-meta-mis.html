@@ -8,217 +8,147 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root {
-  --bg:           #FFFFFF;
-  --bg-2:         #F8FAFC;
-  --bg-3:         #F1F5F9;
-  --ink:          #0F172A;
-  --ink-dim:      #475569;
-  --ink-mute:     #94A3B8;
-  --blue:         #1E40AF;
-  --blue-dim:     #1E3A8A;
-  --blue-deep:    #172554;
-  --accent:       #2563EB;
-  --accent-light: #3B82F6;
-  --accent-soft:  #DBEAFE;
-  --line:         #E2E8F0;
-  --line-soft:    #F1F5F9;
-  --critical:     #DC2626;
-  --high:         #D97706;
-  --med:          #0891B2;
-  --good:         #16A34A;
-  --meta:         #0866FF;
+  --bg:#FFFFFF; --bg-2:#F8FAFC; --bg-3:#F1F5F9;
+  --ink:#0F172A; --ink-dim:#475569; --ink-mute:#94A3B8;
+  --blue:#1E40AF; --blue-dim:#1E3A8A; --blue-deep:#172554;
+  --accent:#2563EB; --accent-light:#3B82F6; --accent-soft:#DBEAFE;
+  --line:#E2E8F0; --line-soft:#F1F5F9;
+  --critical:#DC2626; --high:#D97706; --med:#0891B2; --good:#16A34A;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-feature-settings: 'cv02','cv03','cv04','cv11','ss01';
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  font-size: 14.5px;
-  -webkit-font-smoothing: antialiased;
-}
-.container { max-width: 1260px; margin: 0 auto; padding: 0 32px; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-feature-settings:'cv02','cv03','cv04','cv11','ss01';background:var(--bg);color:var(--ink);line-height:1.6;font-size:14.5px;-webkit-font-smoothing:antialiased;}
+.container{max-width:1260px;margin:0 auto;padding:0 32px;}
 
-/* PAGE HEADER */
-.page-header {
-  background:
-    radial-gradient(ellipse at top right, rgba(37,99,235,0.08) 0%, transparent 55%),
-    radial-gradient(ellipse at bottom left, rgba(30,64,175,0.06) 0%, transparent 55%),
-    linear-gradient(180deg, #fff 0%, #f8fafc 100%);
-  border-bottom: 1px solid var(--line);
-  padding: 56px 0 40px;
-  position: relative;
-}
-.page-header::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(30,64,175,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(30,64,175,0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
-  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
-}
-.page-header-inner { position: relative; z-index: 1; }
-.brand-row {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 28px; padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
-}
-.brand-mark {
-  width: 38px; height: 38px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--accent-light) 100%);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-weight: 700; font-size: 15px; letter-spacing: -0.02em;
-}
-.brand-name { font-size: 14px; font-weight: 600; color: var(--ink); }
-.brand-tag { font-size: 11.5px; color: var(--ink-mute); }
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 5px 12px;
-  border: 1px solid var(--accent);
-  border-radius: 100px;
-  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--blue); background: rgba(37,99,235,0.06);
-  font-weight: 600; margin-bottom: 20px;
-}
-.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--meta); }
-h1 { font-size: 42px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 14px; color: var(--ink); }
-h1 .accent { color: var(--blue); font-style: italic; font-weight: 500; letter-spacing: -0.035em; }
-.page-sub { font-size: 16px; color: var(--ink-dim); max-width: 780px; line-height: 1.55; margin-bottom: 28px; }
-.header-stats {
-  display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
-  padding-top: 28px; border-top: 1px solid var(--line);
-}
-.hs-val { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; line-height: 1.1; }
-.hs-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-mute); font-weight: 500; margin-top: 4px; }
-.hs-sub { font-size: 11px; color: var(--ink-mute); margin-top: 2px; }
-.doc-meta { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; gap: 28px; flex-wrap: wrap; font-size: 12px; color: var(--ink-mute); }
-.doc-meta strong { color: var(--ink); font-weight: 600; margin-right: 4px; }
+/* HEADER */
+.page-header{background:radial-gradient(ellipse at top right,rgba(37,99,235,.08) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(30,64,175,.06) 0%,transparent 55%),linear-gradient(180deg,#fff 0%,#f8fafc 100%);border-bottom:1px solid var(--line);padding:56px 0 40px;position:relative;}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(30,64,175,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(30,64,175,.035) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.1) 100%);-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.1) 100%);}
+.page-header-inner{position:relative;z-index:1;}
+.brand-row{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--line);}
+.brand-mark{width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,var(--blue) 0%,var(--accent-light) 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;letter-spacing:-.02em;}
+.brand-name{font-size:14px;font-weight:600;color:var(--ink);}
+.brand-tag{font-size:11.5px;color:var(--ink-mute);}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border:1px solid var(--accent);border-radius:100px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(37,99,235,.06);font-weight:600;margin-bottom:20px;}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#0866FF;}
+h1{font-size:42px;font-weight:700;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px;color:var(--ink);}
+h1 .accent{color:var(--blue);font-style:italic;font-weight:500;letter-spacing:-.035em;}
+.page-sub{font-size:16px;color:var(--ink-dim);max-width:780px;line-height:1.55;margin-bottom:28px;}
+.header-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;padding-top:28px;border-top:1px solid var(--line);}
+.hs-val{font-size:22px;font-weight:700;color:var(--blue);letter-spacing:-.02em;line-height:1.1;}
+.hs-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-mute);font-weight:500;margin-top:4px;}
+.hs-sub{font-size:11px;color:var(--ink-mute);margin-top:2px;}
+.doc-meta{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:28px;flex-wrap:wrap;font-size:12px;color:var(--ink-mute);}
+.doc-meta strong{color:var(--ink);font-weight:600;margin-right:4px;}
 
-/* STICKY TAB BAR */
-.tab-bar-wrap {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid var(--line);
-}
-.tab-bar { display: flex; gap: 4px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
-.tab-bar::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex-shrink: 0; padding: 10px 18px; font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-  background: transparent; border: 1px solid transparent; color: var(--ink-dim);
-  border-radius: 8px; cursor: pointer; transition: all 0.18s; white-space: nowrap; text-decoration: none;
-}
-.tab-btn:hover { color: var(--blue); background: var(--bg-2); }
-.tab-btn.active { color: var(--blue); background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.22); }
-.tab-btn .tab-meta { font-weight: 400; color: var(--ink-mute); margin-left: 6px; font-size: 11.5px; }
-.tab-btn.active .tab-meta { color: var(--accent); }
+/* TAB BAR */
+.tab-bar-wrap{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);}
+.tab-bar{display:flex;gap:4px;overflow-x:auto;padding:10px 0;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:10px 18px;font:inherit;font-size:13px;font-weight:600;letter-spacing:.02em;background:transparent;border:1px solid transparent;color:var(--ink-dim);border-radius:8px;cursor:pointer;transition:all .18s;white-space:nowrap;text-decoration:none;}
+.tab-btn:hover{color:var(--blue);background:var(--bg-2);}
+.tab-btn.active{color:var(--blue);background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.22);}
+.tab-btn .tab-meta{font-weight:400;color:var(--ink-mute);margin-left:6px;font-size:11.5px;}
+.tab-btn.active .tab-meta{color:var(--accent);}
 
 /* SECTIONS */
-section { padding: 52px 0 68px; border-bottom: 1px solid var(--line-soft); }
-section:last-of-type { border-bottom: none; }
-.sec-num { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; font-weight: 600; }
-h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; color: var(--ink); }
-h2 .accent { color: var(--blue); font-style: italic; font-weight: 500; }
-.sec-lede { font-size: 15px; color: var(--ink-dim); max-width: 780px; margin-bottom: 32px; line-height: 1.6; }
-h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin: 40px 0 14px; color: var(--ink); display: flex; align-items: center; gap: 12px; }
-h3::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--blue); border-radius: 1px; }
-h4 { font-size: 15px; font-weight: 600; color: var(--blue); margin: 24px 0 10px; letter-spacing: -0.005em; }
-p { color: var(--ink-dim); margin-bottom: 12px; font-size: 14.5px; }
-p strong { color: var(--ink); font-weight: 600; }
+section{padding:52px 0 68px;border-bottom:1px solid var(--line-soft);}
+section:last-of-type{border-bottom:none;}
+.sec-num{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;font-weight:600;}
+h2{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px;color:var(--ink);}
+h2 .accent{color:var(--blue);font-style:italic;font-weight:500;}
+.sec-lede{font-size:15px;color:var(--ink-dim);max-width:780px;margin-bottom:32px;line-height:1.6;}
+h3{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:40px 0 14px;color:var(--ink);display:flex;align-items:center;gap:12px;}
+h3::before{content:'';display:inline-block;width:24px;height:2px;background:var(--blue);border-radius:1px;}
+p{color:var(--ink-dim);margin-bottom:12px;font-size:14.5px;}
+p strong{color:var(--ink);font-weight:600;}
 
 /* KPI BOXES */
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 18px 0; }
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin: 18px 0; }
-.kpi-box { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
-.kpi-lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; font-weight: 600; }
-.kpi-val { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; line-height: 1.1; }
-.kpi-sub { font-size: 11px; color: var(--ink-mute); margin-top: 3px; }
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:18px 0;}
+.kpi-box{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:14px 16px;}
+.kpi-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;font-weight:600;}
+.kpi-val{font-size:22px;font-weight:700;color:var(--blue);letter-spacing:-.02em;line-height:1.1;}
+.kpi-sub{font-size:11px;color:var(--ink-mute);margin-top:3px;}
+
+/* ROAS HIGHLIGHT BOX */
+.roas-hero{background:linear-gradient(135deg,var(--blue) 0%,var(--accent-light) 100%);border-radius:10px;padding:28px 32px;color:#fff;margin:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.roas-main-val{font-size:56px;font-weight:800;letter-spacing:-.04em;line-height:1;}
+.roas-main-lbl{font-size:12px;letter-spacing:.15em;text-transform:uppercase;opacity:.7;margin-bottom:6px;}
+.roas-main-sub{font-size:14px;opacity:.85;margin-top:6px;}
+.roas-stats{display:flex;gap:32px;flex-wrap:wrap;}
+.roas-stat-val{font-size:26px;font-weight:700;letter-spacing:-.02em;}
+.roas-stat-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-top:3px;}
 
 /* TABLES */
-table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,23,42,0.03); }
-th { background: var(--bg-3); text-align: left; padding: 11px 14px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); font-weight: 600; border-bottom: 1px solid var(--line); white-space: nowrap; }
-td { padding: 10px 14px; color: var(--ink-dim); border-bottom: 1px solid var(--line); vertical-align: middle; }
-tbody tr:nth-child(2n) td { background: var(--bg-2); }
-tr:last-child td { border-bottom: none; }
-td strong { color: var(--ink); font-weight: 600; }
-.table-total td { background: rgba(37,99,235,0.06) !important; font-weight: 600; color: var(--ink); }
+table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.03);}
+th{background:var(--bg-3);text-align:left;padding:11px 14px;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);font-weight:600;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:10px 14px;color:var(--ink-dim);border-bottom:1px solid var(--line);vertical-align:middle;}
+tbody tr:nth-child(2n) td{background:var(--bg-2);}
+tr:last-child td{border-bottom:none;}
+td strong{color:var(--ink);font-weight:600;}
+.table-total td{background:rgba(37,99,235,.06)!important;font-weight:600;color:var(--ink);}
 
 /* TAGS */
-.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
-.tag-good    { background: rgba(22,163,74,0.10); color: var(--good); }
-.tag-high    { background: rgba(217,119,6,0.12); color: var(--high); }
-.tag-critical{ background: rgba(220,38,38,0.10); color: var(--critical); }
-.tag-display { background: rgba(148,163,184,0.18); color: #64748b; }
-.tag-med     { background: rgba(8,145,178,0.10); color: var(--med); }
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+.tag-good{background:rgba(22,163,74,.10);color:var(--good);}
+.tag-high{background:rgba(217,119,6,.12);color:var(--high);}
+.tag-critical{background:rgba(220,38,38,.10);color:var(--critical);}
+.tag-display{background:rgba(148,163,184,.18);color:#64748b;}
+.tag-med{background:rgba(8,145,178,.10);color:var(--med);}
 
 /* CALLOUTS */
-.callout { background: rgba(37,99,235,0.04); border-left: 3px solid var(--blue); padding: 14px 20px; margin: 18px 0; border-radius: 0 6px 6px 0; }
-.callout-title { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 6px; font-weight: 700; }
-.callout p { color: var(--ink); margin: 0; font-size: 13.5px; }
-.callout.warn { background: rgba(217,119,6,0.05); border-left-color: var(--high); }
-.callout.warn .callout-title { color: var(--high); }
-.callout.good { background: rgba(22,163,74,0.05); border-left-color: var(--good); }
-.callout.good .callout-title { color: var(--good); }
+.callout{background:rgba(37,99,235,.04);border-left:3px solid var(--blue);padding:14px 20px;margin:18px 0;border-radius:0 6px 6px 0;}
+.callout-title{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:6px;font-weight:700;}
+.callout p{color:var(--ink);margin:0;font-size:13.5px;}
+.callout.warn{background:rgba(217,119,6,.05);border-left-color:var(--high);}
+.callout.warn .callout-title{color:var(--high);}
+.callout.good{background:rgba(22,163,74,.05);border-left-color:var(--good);}
+.callout.good .callout-title{color:var(--good);}
 
-/* CHART CONTAINERS */
-.chart-wrap { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 22px 26px; margin: 12px 0; }
-.chart-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-.chart-sub   { font-size: 11px; color: var(--ink-mute); margin-bottom: 16px; }
-.chart-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 12px; }
-.leg-item { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-dim); }
-.leg-dot  { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+/* CHARTS */
+.chart-wrap{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:22px 26px;margin:12px 0;}
+.chart-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.chart-sub{font-size:11px;color:var(--ink-mute);margin-bottom:16px;}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:12px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-dim);}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
 
-/* CAMPAIGN CARDS */
-.camp-card { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
-.camp-head { background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%); color: #fff; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.camp-name  { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
-.camp-status{ font-size: 10.5px; font-family: 'JetBrains Mono', monospace; background: rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 20px; font-weight: 500; }
-.camp-status.inactive { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
-.camp-body  { padding: 16px 22px; display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; }
-.camp-stat  {}
-.camp-stat-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); font-weight: 600; margin-bottom: 3px; }
-.camp-stat-val { font-size: 18px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; }
-.camp-stat-val.warn { color: var(--high); }
-.camp-stat-val.crit { color: var(--critical); }
-.camp-stat-val.good { color: var(--good); }
+/* AD CARDS */
+.ad-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:12px;}
+.ad-head{background:linear-gradient(135deg,var(--blue) 0%,var(--accent) 100%);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ad-head.warn{background:linear-gradient(135deg,#7f1d1d 0%,#991b1b 100%);}
+.ad-head.muted{background:linear-gradient(135deg,#374151 0%,#4B5563 100%);}
+.ad-name{font-size:14px;font-weight:700;letter-spacing:-.01em;}
+.ad-status{font-size:10.5px;font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.15);padding:3px 10px;border-radius:20px;font-weight:500;}
+.ad-body{padding:16px 22px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.ad-stat-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-mute);font-weight:600;margin-bottom:3px;}
+.ad-stat-val{font-size:17px;font-weight:700;color:var(--blue);letter-spacing:-.02em;}
+.ad-stat-val.warn{color:var(--high);}
+.ad-stat-val.crit{color:var(--critical);}
+.ad-stat-val.good{color:var(--good);}
+.ad-stat-val.star{color:#7C3AED;}
 
-/* INSIGHT GRID */
-.insight-item { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; }
-.insight-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 6px; }
-.insight-head { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-.insight-body { font-size: 13px; color: var(--ink-dim); line-height: 1.6; }
-.insight-action { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12px; font-weight: 600; color: var(--blue); }
+/* INSIGHTS */
+.insight-item{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:18px 20px;}
+.insight-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:6px;}
+.insight-head{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.insight-body{font-size:13px;color:var(--ink-dim);line-height:1.6;}
+.insight-action{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;font-weight:600;color:var(--blue);}
 
 /* FOOTER */
-footer { padding: 48px 0 32px; text-align: center; background: var(--blue-deep); color: #E2E8F0; margin-top: 40px; }
-footer .kerkar { font-size: 13px; color: #fff; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
-footer .tag-line { font-size: 11.5px; color: #CBD5E1; letter-spacing: 0.08em; }
-footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: #64748B; letter-spacing: 0.08em; }
+footer{padding:48px 0 32px;text-align:center;background:var(--blue-deep);color:#E2E8F0;margin-top:40px;}
+footer .kerkar{font-size:13px;color:#fff;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+footer .tag-line{font-size:11.5px;color:#CBD5E1;letter-spacing:.08em;}
+footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spacing:.08em;}
 
-@media (max-width: 900px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .header-stats { grid-template-columns: repeat(3, 1fr); }
-  h1 { font-size: 30px; }
-  h2 { font-size: 24px; }
-  .container { padding: 0 18px; }
-  .camp-body { grid-template-columns: repeat(2,1fr); }
-}
-@media print {
-  .tab-bar-wrap { display: none; }
-  body { font-size: 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .container { padding: 0 8mm; max-width: 100%; }
-  .page-header { padding: 16mm 8mm 10mm; }
-  .page-header::before { display: none; }
-  section { padding: 12mm 0 8mm; border-bottom: 1px solid var(--line) !important; }
-  h1 { font-size: 22pt; }
-  h2 { font-size: 16pt; }
+@media(max-width:900px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  .header-stats{grid-template-columns:repeat(3,1fr);}
+  h1{font-size:30px;}h2{font-size:24px;}
+  .container{padding:0 18px;}
+  .ad-body{grid-template-columns:repeat(2,1fr);}
+  .roas-hero{flex-direction:column;}
 }
 </style>
 </head>
@@ -235,45 +165,45 @@ footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: #64748B; let
       </div>
     </div>
     <div class="badge">Meta Ads · MIS Report</div>
-    <h1>Hack Athletics — <span class="accent">30-Day Performance</span></h1>
-    <p class="page-sub">Campaign-level management information system for Meta paid social — Apr 25 to May 24, 2026. All metrics pulled directly from Meta Ads Manager pixel purchase events.</p>
-    <div class="header-stats" style="--stat-cols:6;">
+    <h1>Hack Athletics — <span class="accent">ROAS & Revenue</span></h1>
+    <p class="page-sub">Ad-level revenue, ROAS, and spend breakdown for Meta paid social — Apr 27 to May 26, 2026. Pixel purchase conversion values attributed via 7-day click / 1-day view / 1-day engaged-view.</p>
+    <div class="header-stats">
       <div>
-        <div class="hs-val">₹20,913</div>
+        <div class="hs-val">₹6,42,043</div>
+        <div class="hs-lbl">Total Revenue</div>
+        <div class="hs-sub">pixel conv. value</div>
+      </div>
+      <div>
+        <div class="hs-val">₹19,994</div>
         <div class="hs-lbl">Total Spend</div>
-        <div class="hs-sub">7 campaigns</div>
+        <div class="hs-sub">7 active ads</div>
       </div>
       <div>
-        <div class="hs-val">178</div>
+        <div class="hs-val">32.11×</div>
+        <div class="hs-lbl">Blended ROAS</div>
+        <div class="hs-sub">revenue ÷ spend</div>
+      </div>
+      <div>
+        <div class="hs-val">171</div>
         <div class="hs-lbl">Purchases</div>
-        <div class="hs-sub">pixel conversions</div>
+        <div class="hs-sub">pixel events</div>
       </div>
       <div>
-        <div class="hs-val">₹117.5</div>
-        <div class="hs-lbl">Avg. CPP</div>
-        <div class="hs-sub">blended</div>
+        <div class="hs-val">₹3,754</div>
+        <div class="hs-lbl">Avg. Order Value</div>
+        <div class="hs-sub">revenue ÷ purchases</div>
       </div>
       <div>
-        <div class="hs-val">3.62L</div>
-        <div class="hs-lbl">Impressions</div>
-        <div class="hs-sub">362,278 total</div>
-      </div>
-      <div>
-        <div class="hs-val">1.68L</div>
-        <div class="hs-lbl">Reach</div>
-        <div class="hs-sub">167,823 unique</div>
-      </div>
-      <div>
-        <div class="hs-val">5 / 7</div>
-        <div class="hs-lbl">Active</div>
-        <div class="hs-sub">2 paused</div>
+        <div class="hs-val">₹116.9</div>
+        <div class="hs-lbl">Blended CPP</div>
+        <div class="hs-sub">spend ÷ purchases</div>
       </div>
     </div>
     <div class="doc-meta">
       <span><strong>Client:</strong> Hack Athletics</span>
       <span><strong>Platform:</strong> Meta Ads (Facebook &amp; Instagram)</span>
-      <span><strong>Period:</strong> Apr 25 – May 24, 2026</span>
-      <span><strong>Objective:</strong> Website Conversions (Purchase)</span>
+      <span><strong>Period:</strong> Apr 27 – May 26, 2026</span>
+      <span><strong>Attribution:</strong> 7-day click / 1-day view / 1-day engaged-view</span>
       <span><strong>Prepared by:</strong> Kerkar Media</span>
     </div>
   </div>
@@ -283,10 +213,10 @@ footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: #64748B; let
 <div class="tab-bar-wrap">
   <div class="container">
     <nav class="tab-bar">
-      <a href="#overview" class="tab-btn active">Overview <span class="tab-meta">KPIs</span></a>
-      <a href="#campaigns" class="tab-btn">Campaigns <span class="tab-meta">7 active</span></a>
-      <a href="#charts" class="tab-btn">Charts <span class="tab-meta">spend &amp; reach</span></a>
-      <a href="#insights" class="tab-btn">Insights <span class="tab-meta">6 actions</span></a>
+      <a href="#overview" class="tab-btn active">Overview <span class="tab-meta">ROAS + Revenue</span></a>
+      <a href="#ads" class="tab-btn">Ad Breakdown <span class="tab-meta">7 ads</span></a>
+      <a href="#charts" class="tab-btn">Charts <span class="tab-meta">visual</span></a>
+      <a href="#insights" class="tab-btn">Insights <span class="tab-meta">actions</span></a>
     </nav>
   </div>
 </div>
@@ -294,292 +224,286 @@ footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: #64748B; let
 <!-- SECTION 1: OVERVIEW -->
 <section id="overview">
   <div class="container">
-    <div class="sec-num">01 — Summary KPIs</div>
-    <h2>Account-level <span class="accent">snapshot</span></h2>
-    <p class="sec-lede">Total spend, conversions, and efficiency metrics across all 7 campaigns for the 30-day reporting window.</p>
+    <div class="sec-num">01 — Revenue Summary</div>
+    <h2>Account-level <span class="accent">ROAS & revenue</span></h2>
+    <p class="sec-lede">Total revenue attributed by Meta pixel, blended ROAS, and per-ad efficiency for the 30-day reporting window.</p>
+
+    <!-- ROAS HERO -->
+    <div class="roas-hero">
+      <div>
+        <div class="roas-main-lbl">Blended ROAS</div>
+        <div class="roas-main-val">32.11×</div>
+        <div class="roas-main-sub">Every ₹1 spent returned ₹32.11 in revenue</div>
+      </div>
+      <div class="roas-stats">
+        <div>
+          <div class="roas-stat-val">₹6,42,043</div>
+          <div class="roas-stat-lbl">Total Revenue</div>
+        </div>
+        <div>
+          <div class="roas-stat-val">₹19,994</div>
+          <div class="roas-stat-lbl">Total Spend</div>
+        </div>
+        <div>
+          <div class="roas-stat-val">171</div>
+          <div class="roas-stat-lbl">Purchases</div>
+        </div>
+        <div>
+          <div class="roas-stat-val">₹3,754</div>
+          <div class="roas-stat-lbl">Avg. Order Value</div>
+        </div>
+      </div>
+    </div>
 
     <div class="grid-4">
       <div class="kpi-box">
-        <div class="kpi-lbl">Total Spend (INR)</div>
-        <div class="kpi-val">₹20,913</div>
-        <div class="kpi-sub">vs budget allocation</div>
+        <div class="kpi-lbl">Best ROAS — Ad</div>
+        <div class="kpi-val" style="color:#7C3AED;">57.04×</div>
+        <div class="kpi-sub">Vishav Video – Copy</div>
       </div>
       <div class="kpi-box">
-        <div class="kpi-lbl">Total Purchases</div>
-        <div class="kpi-val">178</div>
-        <div class="kpi-sub">pixel purchase events</div>
+        <div class="kpi-lbl">Best Revenue — Ad</div>
+        <div class="kpi-val" style="color:var(--good);">₹2,04,249</div>
+        <div class="kpi-sub">Remarketing Catalogue</div>
       </div>
       <div class="kpi-box">
-        <div class="kpi-lbl">Blended CPP</div>
-        <div class="kpi-val">₹117.5</div>
-        <div class="kpi-sub">total spend ÷ purchases</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Best CPP</div>
-        <div class="kpi-val" style="color:var(--good);">₹80.3</div>
-        <div class="kpi-sub">Remarketing campaign</div>
-      </div>
-    </div>
-    <div class="grid-4">
-      <div class="kpi-box">
-        <div class="kpi-lbl">Impressions</div>
-        <div class="kpi-val">3,62,278</div>
-        <div class="kpi-sub">total ad views</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Reach</div>
-        <div class="kpi-val">1,67,823</div>
-        <div class="kpi-sub">unique users</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Avg. Frequency</div>
-        <div class="kpi-val">2.16×</div>
-        <div class="kpi-sub">impr ÷ reach</div>
-      </div>
-      <div class="kpi-box">
-        <div class="kpi-lbl">Worst CPP</div>
-        <div class="kpi-val" style="color:var(--critical);">₹240.4</div>
+        <div class="kpi-lbl">Worst ROAS — Ad</div>
+        <div class="kpi-val" style="color:var(--critical);">15.94×</div>
         <div class="kpi-sub">Shaker Bottle</div>
       </div>
-    </div>
-
-    <div class="callout" style="margin-top:28px;">
-      <div class="callout-title">Reporting note</div>
-      <p>All conversion data uses Meta pixel purchase events. Attribution settings vary by campaign — Remarketing uses 7-day click / 1-day view / 1-day engaged-view; Sales Campaign uses multiple attribution settings. CPP figures are as reported by Meta Ads Manager.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 2: CAMPAIGN BREAKDOWN -->
-<section id="campaigns">
-  <div class="container">
-    <div class="sec-num">02 — Campaign Breakdown</div>
-    <h2>Individual <span class="accent">campaign performance</span></h2>
-    <p class="sec-lede">Drill-down view of all 7 campaigns with spend, conversions, CPP, reach, and frequency. Sorted by number of purchases (highest to lowest).</p>
-
-    <!-- Remarketing -->
-    <div class="camp-card">
-      <div class="camp-head">
-        <span class="camp-name">KM | Remarketing Campaign</span>
-        <span class="camp-status">● Active</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val good">58</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">4,660</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val good">80.3</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">31,348</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val">2.66×</div></div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Best CPP — Ad</div>
+        <div class="kpi-val" style="color:var(--good);">₹68.6</div>
+        <div class="kpi-sub">Pickle Ball Paddle</div>
       </div>
     </div>
 
-    <!-- Lever Belt 10mm -->
-    <div class="camp-card">
-      <div class="camp-head">
-        <span class="camp-name">KM | Website Con | Lever Belt | 10mm Carbon Belt</span>
-        <span class="camp-status">● Active</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val">37</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">4,405</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val warn">119.0</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">27,972</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val">2.82×</div></div>
-      </div>
-    </div>
-
-    <!-- Influencer Video -->
-    <div class="camp-card">
-      <div class="camp-head">
-        <span class="camp-name">KM | Website Con | Lever Belt | Influencer Video – Copy</span>
-        <span class="camp-status">● Active</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val">34</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">3,696</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val">108.7</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">32,947</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val good">1.97×</div></div>
-      </div>
-    </div>
-
-    <!-- Gym Bag -->
-    <div class="camp-card">
-      <div class="camp-head">
-        <span class="camp-name">KM | Website Con | Gym Bag</span>
-        <span class="camp-status">● Active</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val">22</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">3,526</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val warn">160.3</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">47,288</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val">1.84×</div></div>
-      </div>
-    </div>
-
-    <!-- Shaker Bottle -->
-    <div class="camp-card">
-      <div class="camp-head" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);">
-        <span class="camp-name">KM | Website Con | Shaker Bottle</span>
-        <span class="camp-status">● Active — Review Needed</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val">15</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">3,605</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val crit">240.4</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">15,338</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val">1.83×</div></div>
-      </div>
-    </div>
-
-    <!-- Pickle Ball -->
-    <div class="camp-card">
-      <div class="camp-head" style="background: linear-gradient(135deg, #374151 0%, #4B5563 100%);">
-        <span class="camp-name">KM | Website Conv | Pickle Ball Paddle</span>
-        <span class="camp-status inactive">● Paused — Revive?</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val">10</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">813</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val good">81.3</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">11,042</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val good">1.62×</div></div>
-      </div>
-    </div>
-
-    <!-- Sales Campaign -->
-    <div class="camp-card">
-      <div class="camp-head" style="background: linear-gradient(135deg, #374151 0%, #4B5563 100%);">
-        <span class="camp-name">Sales Campaign</span>
-        <span class="camp-status inactive">● Paused</span>
-      </div>
-      <div class="camp-body">
-        <div class="camp-stat"><div class="camp-stat-lbl">Purchases</div><div class="camp-stat-val">2</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Spend (₹)</div><div class="camp-stat-val">213</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">CPP (₹)</div><div class="camp-stat-val">106.6</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Reach</div><div class="camp-stat-val">1,888</div></div>
-        <div class="camp-stat"><div class="camp-stat-lbl">Frequency</div><div class="camp-stat-val good">1.00×</div></div>
-      </div>
-    </div>
-
-    <!-- Full Data Table -->
-    <h3>Full data table</h3>
+    <h3>Full revenue & ROAS table</h3>
     <div style="overflow-x:auto;">
     <table>
       <thead>
         <tr>
-          <th>Campaign</th>
-          <th>Status</th>
+          <th>Ad</th>
           <th>Purchases</th>
           <th>Spend (₹)</th>
+          <th>Revenue (₹)</th>
+          <th>ROAS</th>
           <th>CPP (₹)</th>
-          <th>Impressions</th>
-          <th>Reach</th>
-          <th>Frequency</th>
-          <th>Budget Type</th>
+          <th>Avg. Order (₹)</th>
           <th>Efficiency</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Remarketing</strong></td>
-          <td><span class="tag tag-good">Active</span></td>
-          <td><strong>58</strong></td>
-          <td>₹4,660</td>
-          <td><strong style="color:var(--good);">₹80.3</strong></td>
-          <td>83,490</td>
-          <td>31,348</td>
-          <td>2.66×</td>
-          <td>Ad set</td>
-          <td><span class="tag tag-good">Best</span></td>
-        </tr>
-        <tr>
-          <td><strong>Lever Belt 10mm</strong></td>
-          <td><span class="tag tag-good">Active</span></td>
-          <td>37</td>
-          <td>₹4,405</td>
-          <td>₹119.0</td>
-          <td>78,922</td>
-          <td>27,972</td>
-          <td>2.82×</td>
-          <td>₹200/day</td>
-          <td><span class="tag tag-med">Average</span></td>
-        </tr>
-        <tr>
-          <td><strong>Influencer Video</strong></td>
-          <td><span class="tag tag-good">Active</span></td>
-          <td>34</td>
-          <td>₹3,696</td>
-          <td>₹108.7</td>
-          <td>64,897</td>
-          <td>32,947</td>
-          <td>1.97×</td>
-          <td>₹200/day</td>
+          <td><strong>Remarketing | ATC Catalogue</strong></td>
+          <td>59</td>
+          <td>₹4,261</td>
+          <td><strong>₹2,04,249</strong></td>
+          <td><strong style="color:var(--good);">47.94×</strong></td>
+          <td>₹72.2</td>
+          <td>₹3,462</td>
           <td><span class="tag tag-good">Scale</span></td>
         </tr>
         <tr>
-          <td><strong>Gym Bag</strong></td>
-          <td><span class="tag tag-good">Active</span></td>
-          <td>22</td>
-          <td>₹3,526</td>
-          <td>₹160.3</td>
-          <td>87,164</td>
-          <td>47,288</td>
-          <td>1.84×</td>
-          <td>₹200/day</td>
+          <td><strong>Lever Belt | Vishav Video – Copy</strong></td>
+          <td>12</td>
+          <td>₹1,298</td>
+          <td><strong>₹74,059</strong></td>
+          <td><strong style="color:#7C3AED;">57.04×</strong></td>
+          <td>₹108.2</td>
+          <td>₹6,172</td>
+          <td><span class="tag tag-good">Scale</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | 10mm Carbon Belt</strong></td>
+          <td>30</td>
+          <td>₹4,092</td>
+          <td><strong>₹1,56,406</strong></td>
+          <td><strong style="color:var(--good);">38.22×</strong></td>
+          <td>₹136.4</td>
+          <td>₹5,214</td>
+          <td><span class="tag tag-good">Maintain</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pickle Ball Paddle | Intro Reel</strong></td>
+          <td>6</td>
+          <td>₹411</td>
+          <td><strong>₹11,967</strong></td>
+          <td><strong style="color:var(--med);">29.09×</strong></td>
+          <td>₹68.6</td>
+          <td>₹1,994</td>
+          <td><span class="tag tag-med">Revive</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | Vishav Video</strong></td>
+          <td>24</td>
+          <td>₹2,535</td>
+          <td><strong>₹61,697</strong></td>
+          <td><strong style="color:var(--med);">24.34×</strong></td>
+          <td>₹105.6</td>
+          <td>₹2,571</td>
+          <td><span class="tag tag-med">Monitor</span></td>
+        </tr>
+        <tr>
+          <td><strong>Gym Bag | Influencer Ad</strong></td>
+          <td>24</td>
+          <td>₹3,636</td>
+          <td><strong>₹73,741</strong></td>
+          <td><strong style="color:var(--high);">20.28×</strong></td>
+          <td>₹151.5</td>
+          <td>₹3,072</td>
           <td><span class="tag tag-high">Optimise</span></td>
         </tr>
         <tr>
           <td><strong>Shaker Bottle</strong></td>
-          <td><span class="tag tag-good">Active</span></td>
-          <td>15</td>
-          <td>₹3,605</td>
-          <td><strong style="color:var(--critical);">₹240.4</strong></td>
-          <td>28,087</td>
-          <td>15,338</td>
-          <td>1.83×</td>
-          <td>₹200/day</td>
+          <td>16</td>
+          <td>₹3,760</td>
+          <td><strong>₹59,925</strong></td>
+          <td><strong style="color:var(--critical);">15.94×</strong></td>
+          <td>₹235.0</td>
+          <td>₹3,745</td>
           <td><span class="tag tag-critical">Pause?</span></td>
-        </tr>
-        <tr>
-          <td><strong>Pickle Ball Paddle</strong></td>
-          <td><span class="tag tag-display">Paused</span></td>
-          <td>10</td>
-          <td>₹813</td>
-          <td><strong style="color:var(--good);">₹81.3</strong></td>
-          <td>17,830</td>
-          <td>11,042</td>
-          <td>1.62×</td>
-          <td>Ad set</td>
-          <td><span class="tag tag-good">Revive</span></td>
-        </tr>
-        <tr>
-          <td><strong>Sales Campaign</strong></td>
-          <td><span class="tag tag-display">Paused</span></td>
-          <td>2</td>
-          <td>₹213</td>
-          <td>₹106.6</td>
-          <td>1,888</td>
-          <td>1,888</td>
-          <td>1.00×</td>
-          <td>Ad set</td>
-          <td><span class="tag tag-display">Under-tested</span></td>
         </tr>
         <tr class="table-total">
           <td><strong>Total / Blended</strong></td>
-          <td>—</td>
-          <td><strong>178</strong></td>
-          <td><strong>₹20,913</strong></td>
-          <td><strong>₹117.5</strong></td>
-          <td><strong>3,62,278</strong></td>
-          <td><strong>1,67,823</strong></td>
-          <td><strong>2.16×</strong></td>
-          <td>—</td>
+          <td><strong>171</strong></td>
+          <td><strong>₹19,994</strong></td>
+          <td><strong>₹6,42,043</strong></td>
+          <td><strong>32.11×</strong></td>
+          <td><strong>₹116.9</strong></td>
+          <td><strong>₹3,754</strong></td>
           <td>—</td>
         </tr>
       </tbody>
     </table>
     </div>
+
+    <div class="callout">
+      <div class="callout-title">Attribution note</div>
+      <p>All revenue figures use Meta's 7-day click / 1-day view / 1-day engaged-view attribution window. Actual revenue may differ slightly from Shopify/WooCommerce backend totals due to cross-device and view-through attribution. Always reconcile against store-side data for billing purposes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: AD BREAKDOWN -->
+<section id="ads">
+  <div class="container">
+    <div class="sec-num">02 — Ad-Level Breakdown</div>
+    <h2>Individual <span class="accent">ad performance</span></h2>
+    <p class="sec-lede">Revenue, ROAS, spend, and purchase data for every active ad in the account. Sorted by revenue generated.</p>
+
+    <!-- Remarketing -->
+    <div class="ad-card">
+      <div class="ad-head">
+        <span class="ad-name">Remarketing Campaign | ATC | Catalogue Ad</span>
+        <span class="ad-status">● Active</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val good">₹2,04,249</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">47.94×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">59</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹4,261</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹72.2</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,462</div></div>
+      </div>
+    </div>
+
+    <!-- Lever Belt 10mm Carbon -->
+    <div class="ad-card">
+      <div class="ad-head">
+        <span class="ad-name">Lever Belt | 10mm Carbon Belt</span>
+        <span class="ad-status">● Active</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val good">₹1,56,406</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">38.22×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">30</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹4,092</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val warn">₹136.4</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹5,214</div></div>
+      </div>
+    </div>
+
+    <!-- Vishav Video Copy — STAR -->
+    <div class="ad-card" style="border-color:#7C3AED;">
+      <div class="ad-head" style="background:linear-gradient(135deg,#4C1D95 0%,#7C3AED 100%);">
+        <span class="ad-name">⭐ Lever Belt | Vishav Video – Copy</span>
+        <span class="ad-status">● Active — Highest ROAS</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val star">₹74,059</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val star">57.04×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">12</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹1,298</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val">₹108.2</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val star">₹6,172</div></div>
+      </div>
+    </div>
+
+    <!-- Gym Bag -->
+    <div class="ad-card">
+      <div class="ad-head">
+        <span class="ad-name">Gym Bag | Influencer Ad</span>
+        <span class="ad-status">● Active</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹73,741</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val warn">20.28×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">24</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹3,636</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val warn">₹151.5</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,072</div></div>
+      </div>
+    </div>
+
+    <!-- Vishav Video -->
+    <div class="ad-card">
+      <div class="ad-head">
+        <span class="ad-name">Lever Belt | Vishav Video</span>
+        <span class="ad-status">● Active</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹61,697</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val">24.34×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">24</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹2,535</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val">₹105.6</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹2,571</div></div>
+      </div>
+    </div>
+
+    <!-- Shaker Bottle — WARN -->
+    <div class="ad-card">
+      <div class="ad-head warn">
+        <span class="ad-name">Shaker Bottle — Review Needed</span>
+        <span class="ad-status">● Active</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹59,925</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val crit">15.94×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">16</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹3,760</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val crit">₹235.0</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,745</div></div>
+      </div>
+    </div>
+
+    <!-- Pickle Ball -->
+    <div class="ad-card">
+      <div class="ad-head muted">
+        <span class="ad-name">Pickle Ball Paddle | Tier 1 Cities | Intro Reel</span>
+        <span class="ad-status" style="color:rgba(255,255,255,.6);">● Not Delivering — Revive?</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹11,967</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">29.09×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">6</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹411</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹68.6</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹1,994</div></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -587,47 +511,43 @@ footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: #64748B; let
 <section id="charts">
   <div class="container">
     <div class="sec-num">03 — Visual Analysis</div>
-    <h2>Spend, reach &amp; <span class="accent">conversion charts</span></h2>
-    <p class="sec-lede">Visual breakdown of how budget is distributed versus results generated, and how each campaign stacks up on reach and impressions.</p>
+    <h2>Revenue, ROAS &amp; <span class="accent">spend charts</span></h2>
+    <p class="sec-lede">Visual breakdown of how revenue and ROAS vary across ads, and where the biggest return opportunities lie.</p>
 
     <div class="grid-2">
       <div class="chart-wrap">
-        <div class="chart-title">Purchases vs Spend</div>
-        <div class="chart-sub">Bar chart — purchases (scaled) and spend side by side per campaign</div>
+        <div class="chart-title">Revenue vs Spend by Ad</div>
+        <div class="chart-sub">Revenue (blue) stacked against spend (green) — gap = profit margin</div>
         <div class="chart-legend">
-          <span class="leg-item"><span class="leg-dot" style="background:#1E40AF;"></span>Spend (₹)</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#16A34A;"></span>Purchases (×80 for scale)</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#1E40AF;"></span>Revenue (₹ ÷ 10 for scale)</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#16A34A;"></span>Spend (₹)</span>
         </div>
         <div style="position:relative;width:100%;height:260px;">
-          <canvas id="c1" role="img" aria-label="Bar chart comparing spend and purchases per campaign">Remarketing 58 purchases, ₹4660 spend. Lever Belt 37 purchases, ₹4405. Influencer Video 34 purchases, ₹3696.</canvas>
+          <canvas id="c1"></canvas>
         </div>
       </div>
       <div class="chart-wrap">
-        <div class="chart-title">Cost Per Purchase (CPP)</div>
-        <div class="chart-sub">Lower is better — colour-coded: green &lt;₹100, amber ₹100–₹150, red &gt;₹150</div>
-        <div style="position:relative;width:100%;height:290px;">
-          <canvas id="c2" role="img" aria-label="Bar chart of CPP per campaign. Shaker Bottle highest at ₹240, Remarketing lowest at ₹80.">CPP ranges from ₹80 (Remarketing) to ₹240 (Shaker Bottle).</canvas>
+        <div class="chart-title">ROAS by Ad</div>
+        <div class="chart-sub">Colour-coded: purple &gt;50×, green &gt;30×, amber 15–30×, red &lt;15×</div>
+        <div style="position:relative;width:100%;height:280px;">
+          <canvas id="c2"></canvas>
         </div>
       </div>
     </div>
 
     <div class="grid-2" style="margin-top:4px;">
       <div class="chart-wrap">
-        <div class="chart-title">Spend Distribution</div>
-        <div class="chart-sub">Share of total ₹20,913 spend by campaign</div>
+        <div class="chart-title">Revenue Share by Ad</div>
+        <div class="chart-sub">Which ad is driving the most revenue</div>
         <div style="position:relative;width:100%;height:260px;">
-          <canvas id="c3" role="img" aria-label="Doughnut chart of spend distribution. Remarketing and Lever Belt together account for over 40% of spend.">Remarketing 22%, Lever Belt 21%, Influencer 18%, Gym Bag 17%, Shaker Bottle 17%, Pickle Ball 4%, Sales 1%.</canvas>
+          <canvas id="c3"></canvas>
         </div>
       </div>
       <div class="chart-wrap">
-        <div class="chart-title">Impressions vs Reach</div>
-        <div class="chart-sub">Frequency gap shows how often the same user sees the ad</div>
-        <div class="chart-legend">
-          <span class="leg-item"><span class="leg-dot" style="background:#1E40AF;"></span>Impressions</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#DBEAFE; border:1px solid #93C5FD;"></span>Reach</span>
-        </div>
-        <div style="position:relative;width:100%;height:240px;">
-          <canvas id="c4" role="img" aria-label="Grouped bar chart of impressions vs reach. Gym Bag has highest impressions at 87K.">Gym Bag 87K impressions, 47K reach. Remarketing 83K impressions, 31K reach.</canvas>
+        <div class="chart-title">Average Order Value by Ad</div>
+        <div class="chart-sub">Revenue per purchase — higher AOV = higher-value customers</div>
+        <div style="position:relative;width:100%;height:260px;">
+          <canvas id="c4"></canvas>
         </div>
       </div>
     </div>
@@ -638,149 +558,119 @@ footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: #64748B; let
 <section id="insights">
   <div class="container">
     <div class="sec-num">04 — Strategic Insights</div>
-    <h2>Actions &amp; <span class="accent">recommendations</span></h2>
-    <p class="sec-lede">Six data-backed recommendations to reduce blended CPP, reallocate budget, and improve overall account efficiency in the next 30 days.</p>
+    <h2>ROAS-led <span class="accent">recommendations</span></h2>
+    <p class="sec-lede">Six data-backed actions to maximise revenue per rupee spent in the next 30 days.</p>
 
     <div class="grid-3">
-      <div class="insight-item" style="border-top:3px solid var(--good);">
-        <div class="insight-label" style="color:var(--good);">01 — Scale</div>
-        <div class="insight-head">Double down on Remarketing</div>
-        <div class="insight-body">At ₹80.3 CPP with 58 purchases, Remarketing is 32% cheaper than the blended average. Increasing budget here directly lowers overall account CPP. Switch to campaign budget and raise by ₹100–₹200/day.</div>
-        <div class="insight-action">→ Increase daily budget by ₹150</div>
+      <div class="insight-item" style="border-top:3px solid #7C3AED;">
+        <div class="insight-label" style="color:#7C3AED;">01 — Star Creative</div>
+        <div class="insight-head">Vishav Video – Copy is your best ad</div>
+        <div class="insight-body">57.04× ROAS with ₹74,059 revenue on just ₹1,298 spend. This is your highest-returning creative. Budget is severely under-allocated here — this ad should be getting 3–4× more spend immediately.</div>
+        <div class="insight-action">→ Scale budget to ₹400–₹500/day</div>
       </div>
       <div class="insight-item" style="border-top:3px solid var(--good);">
-        <div class="insight-label" style="color:var(--good);">02 — Revive</div>
-        <div class="insight-head">Restart Pickle Ball Paddle</div>
-        <div class="insight-body">Paused with only ₹813 spent but a CPP of ₹81.3 — nearly as efficient as Remarketing with very low frequency (1.62×). The audience is barely touched. Allocate ₹200/day and run for 2 more weeks before judging.</div>
-        <div class="insight-action">→ Resume + set ₹200/day budget</div>
+        <div class="insight-label" style="color:var(--good);">02 — Scale</div>
+        <div class="insight-head">Remarketing is your revenue engine</div>
+        <div class="insight-body">₹2,04,249 revenue at 47.94× ROAS — this single ad drives 32% of total account revenue. It targets warm audiences (ATC) which explains the superior conversion. Priority #1 for budget increases.</div>
+        <div class="insight-action">→ Increase to ₹300–₹400/day</div>
       </div>
       <div class="insight-item" style="border-top:3px solid var(--critical);">
-        <div class="insight-label" style="color:var(--critical);">03 — Pause</div>
-        <div class="insight-head">Pause or restructure Shaker Bottle</div>
-        <div class="insight-body">₹3,605 spent at ₹240.4 CPP — the worst performer by a wide margin. With only 15 purchases and small reach (15K), this campaign is burning budget inefficiently. Pause it and test a new creative angle.</div>
-        <div class="insight-action">→ Pause now, refresh creative</div>
+        <div class="insight-label" style="color:var(--critical);">03 — Fix</div>
+        <div class="insight-head">Shaker Bottle ROAS is too low</div>
+        <div class="insight-body">15.94× ROAS with the highest CPP (₹235) in the account. It spends ₹3,760 but generates the least revenue per rupee. The ₹3,760 budget freed from this ad, reallocated to Vishav Video – Copy, could generate ~₹1.5L extra revenue.</div>
+        <div class="insight-action">→ Pause or halve budget, refresh creative</div>
       </div>
       <div class="insight-item" style="border-top:3px solid var(--high);">
-        <div class="insight-label" style="color:var(--high);">04 — Optimise</div>
-        <div class="insight-head">Gym Bag — narrow the audience</div>
-        <div class="insight-body">Highest impressions (87K) and reach (47K) but only 22 conversions at ₹160 CPP. The broad reach suggests targeting is too wide. Add purchase intent or lookalike signals, or narrow to fitness enthusiasts.</div>
-        <div class="insight-action">→ Tighten targeting or add LAL</div>
+        <div class="insight-label" style="color:var(--high);">04 — Investigate</div>
+        <div class="insight-head">Gym Bag AOV is dragging ROAS</div>
+        <div class="insight-body">20.28× ROAS despite 24 purchases — the ₹3,072 AOV is the second lowest in the account. Gym bags are a lower-price product vs lever belts. Consider bundling with accessories or testing upsell landing pages to raise AOV.</div>
+        <div class="insight-action">→ Test bundle offer / upsell page</div>
       </div>
       <div class="insight-item" style="border-top:3px solid var(--blue);">
-        <div class="insight-label" style="color:var(--blue);">05 — Scale</div>
-        <div class="insight-head">Influencer Video has room to grow</div>
-        <div class="insight-body">CPP ₹108.7 with the lowest frequency (1.97×) of all active campaigns. The audience is not fatigued. This ad format has headroom — increase spend by ₹100/day and monitor CPP over the next 7 days.</div>
-        <div class="insight-action">→ Increase to ₹300/day</div>
+        <div class="insight-label" style="color:var(--blue);">05 — Revive</div>
+        <div class="insight-head">Pickle Ball Paddle is under-invested</div>
+        <div class="insight-body">29.09× ROAS with the lowest CPP (₹68.6) in the account — barely spent ₹411. This ad is not delivering right now but the unit economics are strong. Re-activate with ₹200/day minimum to generate meaningful data.</div>
+        <div class="insight-action">→ Re-activate + set ₹200/day</div>
       </div>
-      <div class="insight-item" style="border-top:3px solid var(--high);">
-        <div class="insight-label" style="color:var(--high);">06 — Rebalance</div>
-        <div class="insight-head">Reallocate Shaker Bottle budget</div>
-        <div class="insight-body">Freeing ₹200/day from Shaker Bottle creates an immediate reallocation opportunity. Split it: ₹100/day to Remarketing (best CPP) + ₹100/day to Pickle Ball revival. At current CPPs, this could yield +3–4 incremental purchases/day.</div>
-        <div class="insight-action">→ Reallocate ₹100+₹100/day</div>
+      <div class="insight-item" style="border-top:3px solid var(--blue);">
+        <div class="insight-label" style="color:var(--blue);">06 — AOV Opportunity</div>
+        <div class="insight-head">Vishav Video – Copy AOV = ₹6,172</div>
+        <div class="insight-body">The highest AOV in the account by far (₹6,172 vs blended ₹3,754) — customers coming through this creative are buying premium lever belts. This audience likely has higher purchase intent. Worth testing against Remarketing audiences too.</div>
+        <div class="insight-action">→ Test as Remarketing creative</div>
       </div>
     </div>
 
     <div class="callout good" style="margin-top:32px;">
-      <div class="callout-title">Projected impact</div>
-      <p>Implementing recommendations 01, 02, 03, and 06 without increasing total daily spend should lower the blended CPP from ₹117.5 to approximately ₹90–₹95 — a ~20% improvement — within 2 weeks.</p>
-    </div>
-
-    <div class="callout warn" style="margin-top:16px;">
-      <div class="callout-title">Watch list — Lever Belt frequency</div>
-      <p>Both Lever Belt campaigns (10mm Carbon Belt and Influencer Video) are targeting overlapping audiences. The 10mm campaign's frequency of 2.82× is the highest in the account. Consider merging ad sets or adding audience exclusions to prevent overlap and fatigue.</p>
+      <div class="callout-title">Overall assessment</div>
+      <p>A blended ROAS of 32.11× on Meta is very strong — industry benchmark for e-commerce is typically 3–5×. The account is performing well overall. The opportunity is in budget reallocation: moving spend from Shaker Bottle (15.94×) to Vishav Video – Copy (57.04×) and Remarketing (47.94×) could push blended ROAS above 40× without increasing total spend.</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <div class="brand-mark" style="margin:0 auto 14px; width:42px; height:42px; font-size:16px;">KM</div>
+    <div class="brand-mark" style="margin:0 auto 14px;width:42px;height:42px;font-size:16px;">KM</div>
     <div class="kerkar">Kerkar Media</div>
     <div class="tag-line">Performance Marketing · SEO · Paid Social</div>
-    <div class="doc-meta-line">
-      Client: Hack Athletics &nbsp;·&nbsp; Platform: Meta Ads &nbsp;·&nbsp; Period: Apr 25 – May 24, 2026 &nbsp;·&nbsp; Prepared by Kerkar Media
-    </div>
+    <div class="doc-meta-line">Client: Hack Athletics &nbsp;·&nbsp; Platform: Meta Ads &nbsp;·&nbsp; Period: Apr 27 – May 26, 2026 &nbsp;·&nbsp; Prepared by Kerkar Media</div>
   </div>
 </footer>
 
 <script>
-const labels = ['Remarketing','Lever Belt 10mm','Influencer Video','Gym Bag','Shaker Bottle','Pickle Ball','Sales'];
-const spend = [4660,4405,3696,3526,3605,813,213];
-const purch = [58,37,34,22,15,10,2];
-const cpp   = [80.3,119.0,108.7,160.3,240.4,81.3,106.6];
-const impr  = [83490,78922,64897,87164,28087,17830,1888];
-const reach = [31348,27972,32947,47288,15338,11042,1888];
+const adLabels = ['Remarketing\nCatalogue','Lever Belt\n10mm Carbon','Vishav Video\n– Copy','Gym Bag\nInfluencer','Lever Belt\nVishav Video','Shaker Bottle','Pickle Ball\nPaddle'];
+const revenue  = [204248.99, 156406.08, 74058.75, 73740.75, 61697.15, 59924.72, 11966.55];
+const spend    = [4260.72, 4092.23, 1298.27, 3636.48, 2534.52, 3760.43, 411.36];
+const roas     = [47.94, 38.22, 57.04, 20.28, 24.34, 15.94, 29.09];
+const aov      = [3462, 5214, 6172, 3072, 2571, 3745, 1994];
 
-const gridColor = 'rgba(15,23,42,0.06)';
 const txtColor  = '#94A3B8';
+const gridColor = 'rgba(15,23,42,0.06)';
 const baseOpts = {
-  responsive: true, maintainAspectRatio: false,
-  plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0F172A', titleColor: '#fff', bodyColor: '#CBD5E1', padding: 10, cornerRadius: 6 } },
-  scales: {
-    x: { ticks: { color: txtColor, font: { size: 10, family: 'Inter' }, maxRotation: 30 }, grid: { color: gridColor } },
-    y: { ticks: { color: txtColor, font: { size: 10, family: 'Inter' } }, grid: { color: gridColor } }
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:false}, tooltip:{backgroundColor:'#0F172A',titleColor:'#fff',bodyColor:'#CBD5E1',padding:10,cornerRadius:6}},
+  scales:{
+    x:{ticks:{color:txtColor,font:{size:10,family:'Inter'},maxRotation:30},grid:{color:gridColor}},
+    y:{ticks:{color:txtColor,font:{size:10,family:'Inter'}},grid:{color:gridColor}}
   }
 };
 
-// Chart 1 — Spend vs Purchases
-new Chart(document.getElementById('c1'), {
-  type: 'bar',
-  data: {
-    labels,
-    datasets: [
-      { label: 'Spend (₹)', data: spend, backgroundColor: '#1E40AF', borderRadius: 4 },
-      { label: 'Purchases (×80)', data: purch.map(p=>p*80), backgroundColor: '#16A34A', borderRadius: 4 }
-    ]
-  },
-  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: c => c.datasetIndex===0 ? ' ₹'+c.raw.toLocaleString('en-IN') : ' '+(c.raw/80)+' purchases' } } } }
+// C1 — Revenue vs Spend
+new Chart(document.getElementById('c1'),{
+  type:'bar',
+  data:{labels:adLabels,datasets:[
+    {label:'Revenue (÷10)',data:revenue.map(v=>v/10),backgroundColor:'#1E40AF',borderRadius:4},
+    {label:'Spend',data:spend,backgroundColor:'#16A34A',borderRadius:4}
+  ]},
+  options:{...baseOpts,plugins:{...baseOpts.plugins,tooltip:{...baseOpts.plugins.tooltip,callbacks:{label:c=>c.datasetIndex===0?'Rev: ₹'+(c.raw*10).toLocaleString('en-IN'):'Spend: ₹'+c.raw.toLocaleString('en-IN')}}}}
 });
 
-// Chart 2 — CPP
-new Chart(document.getElementById('c2'), {
-  type: 'bar',
-  data: {
-    labels,
-    datasets: [{ label: 'CPP (₹)', data: cpp, backgroundColor: cpp.map(v=>v>150?'#DC2626':v>110?'#D97706':'#16A34A'), borderRadius: 4 }]
-  },
-  options: { ...baseOpts, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, min:0, max:280, ticks: { ...baseOpts.scales.y.ticks, callback: v=>'₹'+v } } } }
+// C2 — ROAS
+new Chart(document.getElementById('c2'),{
+  type:'bar',
+  data:{labels:adLabels,datasets:[{label:'ROAS',data:roas,backgroundColor:roas.map(v=>v>=50?'#7C3AED':v>=30?'#16A34A':v>=20?'#D97706':'#DC2626'),borderRadius:4}]},
+  options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,min:0,max:65,ticks:{...baseOpts.scales.y.ticks,callback:v=>v+'×'}}}}
 });
 
-// Chart 3 — Spend doughnut
-const pieColors = ['#1E40AF','#2563EB','#3B82F6','#1E3A8A','#DC2626','#475569','#94A3B8'];
-new Chart(document.getElementById('c3'), {
-  type: 'doughnut',
-  data: { labels, datasets: [{ data: spend, backgroundColor: pieColors, borderWidth: 0 }] },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: true, position: 'right', labels: { font: { size: 11, family: 'Inter' }, color: '#475569', boxWidth: 10, padding: 8 } },
-      tooltip: { backgroundColor: '#0F172A', titleColor: '#fff', bodyColor: '#CBD5E1', padding: 10, callbacks: { label: c=>' ₹'+c.raw.toLocaleString('en-IN')+' ('+Math.round(c.raw/20913*100)+'%)' } }
-    }
-  }
+// C3 — Revenue doughnut
+const pieColors=['#1E40AF','#2563EB','#7C3AED','#1E3A8A','#3B82F6','#DC2626','#475569'];
+new Chart(document.getElementById('c3'),{
+  type:'doughnut',
+  data:{labels:['Remarketing','Lever Belt 10mm','Vishav – Copy','Gym Bag','Vishav Video','Shaker Bottle','Pickle Ball'],datasets:[{data:revenue,backgroundColor:pieColors,borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'right',labels:{font:{size:10,family:'Inter'},color:'#475569',boxWidth:10,padding:6}},tooltip:{backgroundColor:'#0F172A',titleColor:'#fff',bodyColor:'#CBD5E1',padding:10,callbacks:{label:c=>' ₹'+Math.round(c.raw).toLocaleString('en-IN')+' ('+Math.round(c.raw/642042.99*100)+'%)'}}}}
 });
 
-// Chart 4 — Impressions vs Reach
-new Chart(document.getElementById('c4'), {
-  type: 'bar',
-  data: {
-    labels,
-    datasets: [
-      { label: 'Impressions', data: impr, backgroundColor: '#1E40AF', borderRadius: 4 },
-      { label: 'Reach', data: reach, backgroundColor: '#DBEAFE', borderRadius: 4 }
-    ]
-  },
-  options: { ...baseOpts, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { ...baseOpts.scales.y.ticks, callback: v=>(v/1000).toFixed(0)+'K' } } } }
+// C4 — AOV
+new Chart(document.getElementById('c4'),{
+  type:'bar',
+  data:{labels:adLabels,datasets:[{label:'AOV (₹)',data:aov,backgroundColor:aov.map(v=>v>=5000?'#7C3AED':v>=3500?'#1E40AF':'#2563EB'),borderRadius:4}]},
+  options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>'₹'+v.toLocaleString('en-IN')}}}}
 });
 
-// Sticky tab active state
-const sections = document.querySelectorAll('section[id]');
-const tabs = document.querySelectorAll('.tab-btn');
-const setActive = () => {
-  let cur = sections[0]?.id;
-  for (const s of sections) { if (window.scrollY+120>=s.offsetTop) cur=s.id; }
-  tabs.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+cur));
-};
-window.addEventListener('scroll', setActive, { passive: true });
+// Sticky tabs
+const sections=document.querySelectorAll('section[id]');
+const tabs=document.querySelectorAll('.tab-btn');
+const setActive=()=>{let cur=sections[0]?.id;for(const s of sections){if(window.scrollY+120>=s.offsetTop)cur=s.id;}tabs.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+cur));};
+window.addEventListener('scroll',setActive,{passive:true});
 setActive();
 </script>
 </body>

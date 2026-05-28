@@ -3,560 +3,432 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kerkar Media — Technical SEO Audit</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>kerkarmedia.com — Website Health Report | Kerkar Media</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  :root{--brand:#003DCC;--brand-dark:#035398;--red:#EF4444;--red-bg:#FEE2E2;--red-text:#991B1B;--amber:#F59E0B;--amber-bg:#FEF3C7;--amber-text:#92400E;--green:#22C55E;--green-bg:#DCFCE7;--green-text:#166534;--blue-bg:#DBEAFE;--blue-text:#1E40AF;--text:#0F172A;--muted:#64748B;--border:#E2E8F0;--surface:#F8FAFC;}
+  :root{--km:#003DCC;--km-dark:#035398;--km-light:#EFF6FF;--red:#EF4444;--red-bg:#FEE2E2;--red-text:#991B1B;--amber:#F59E0B;--amber-bg:#FEF3C7;--amber-text:#92400E;--green:#22C55E;--green-bg:#DCFCE7;--green-text:#166534;--bg:#F8FAFC;--white:#FFFFFF;--text:#0F172A;--muted:#64748B;--border:#E2E8F0;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Inter',sans-serif;background:#F8FAFC;color:var(--text);line-height:1.5;font-size:14px;}
-  h1,h2,h3{font-family:'DM Sans',sans-serif;font-weight:600;}
-  .topbar{background:#1a1a1a;color:white;padding:8px 0;font-size:12px;text-align:center;}
-  .nav{background:white;border-bottom:1px solid var(--border);padding:14px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
-  .nav strong{font-family:'DM Sans';font-size:17px;color:var(--brand);}
-  .nav .meta{font-size:12px;color:var(--muted);}
-  .wrap{max-width:1200px;margin:0 auto;padding:32px;}
-  .hero{background:linear-gradient(135deg,#003DCC 0%,#035398 100%);color:white;border-radius:12px;padding:32px 40px;margin-bottom:32px;}
-  .hero h1{font-size:24px;margin-bottom:6px;}
-  .hero .sub{opacity:0.85;font-size:13px;margin-bottom:20px;}
-  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
-  .hero-stat{background:rgba(255,255,255,0.12);border-radius:8px;padding:14px 18px;}
-  .hero-stat .label{font-size:11px;opacity:0.75;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;}
-  .hero-stat .value{font-family:'DM Sans';font-size:28px;font-weight:700;}
-  .hero-stat .sub{font-size:11px;opacity:0.7;margin-top:2px;}
-  .summary-box{background:rgba(255,255,255,0.12);border-radius:8px;padding:16px 20px;font-size:13px;margin-bottom:16px;}
-  .progress-label{display:flex;justify-content:space-between;font-size:12px;opacity:0.8;margin-bottom:6px;}
-  .progress-bar{height:8px;background:rgba(255,255,255,0.2);border-radius:4px;overflow:hidden;}
-  .progress-fill{height:100%;background:#86EFAC;border-radius:4px;transition:width 0.5s ease;width:0%;}
-  .section-label{font-family:'DM Sans';font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:28px 0 12px;}
-  .priority-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
-  .priority-card{background:white;border-radius:10px;padding:18px;border:1px solid var(--border);border-left:4px solid var(--brand);}
-  .priority-issue{font-weight:600;font-size:14px;margin-bottom:6px;}
-  .priority-impact{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.5;}
-  .priority-effort{font-size:12px;color:var(--muted);}
-  .issue-section{background:white;border-radius:10px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden;}
-  .issue-header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
-  .issue-header:hover{background:var(--surface);}
-  .issue-header-left{display:flex;align-items:center;gap:12px;}
-  .severity-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-  .severity-dot.red{background:var(--red);box-shadow:0 0 0 3px var(--red-bg);}
-  .severity-dot.amber{background:var(--amber);box-shadow:0 0 0 3px var(--amber-bg);}
-  .severity-dot.green{background:var(--green);box-shadow:0 0 0 3px var(--green-bg);}
-  .issue-title{font-family:'DM Sans';font-size:15px;font-weight:600;}
-  .issue-meta{font-size:12px;color:var(--muted);margin-top:2px;}
-  .issue-header-right{display:flex;align-items:center;gap:10px;}
-  .issue-count{font-family:'DM Sans';font-size:20px;font-weight:700;}
-  .issue-count.red{color:var(--red);}
-  .issue-count.amber{color:var(--amber);}
-  .issue-count.green{color:var(--green);}
-  .chevron{font-size:11px;color:var(--muted);transition:transform 0.2s;}
-  .issue-section.open .chevron{transform:rotate(180deg);}
-  .issue-body{display:none;border-top:1px solid var(--border);}
-  .issue-section.open .issue-body{display:block;}
-  .claude-rec{padding:12px 20px;background:#EFF6FF;font-size:13px;color:#1E40AF;border-bottom:1px solid var(--border);}
-  .mini-progress{font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2px 10px;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  table th{text-align:left;padding:9px 14px;background:var(--surface);font-weight:600;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);}
-  table th.center,table td.center{text-align:center;}
-  table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
-  table tr:last-child td{border-bottom:none;}
-  table tr:hover td{background:var(--surface);}
-  table tr.done td{opacity:0.4;}
-  table tr.done .url-cell a{text-decoration:line-through;}
-  .url-cell{font-family:monospace;font-size:12px;}
-  .url-cell a{color:var(--brand);text-decoration:none;}
-  .url-cell a:hover{text-decoration:underline;}
-  .muted{color:var(--muted);font-style:italic;}
-  .fix-tag{background:var(--green-bg);color:var(--green-text);padding:3px 8px;border-radius:4px;font-size:12px;display:inline-block;}
-  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
-  .badge.high{background:var(--red-bg);color:var(--red-text);}
-  .badge.medium{background:var(--amber-bg);color:var(--amber-text);}
-  .badge.low{background:var(--green-bg);color:var(--green-text);}
-  .empty-row{text-align:center;color:var(--muted);font-style:italic;padding:20px!important;}
-  input[type="checkbox"]{width:16px;height:16px;cursor:pointer;accent-color:var(--brand);}
-  footer{text-align:center;padding:28px;color:var(--muted);font-size:11px;border-top:1px solid var(--border);margin-top:32px;}
-  footer strong{color:var(--brand);}
-  @media(max-width:768px){.hero-stats{grid-template-columns:repeat(2,1fr);}.priority-grid{grid-template-columns:1fr;}.wrap{padding:16px;}}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);}
+  h1,h2,h3,h4{font-family:'DM Sans',sans-serif;}
+  .topbar{background:var(--km);color:white;padding:9px 0;font-size:12px;text-align:center;letter-spacing:0.3px;font-family:'DM Sans',sans-serif;font-weight:500;}
+  .nav{background:white;border-bottom:1px solid var(--border);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+  .nav-left{display:flex;align-items:center;gap:14px;}
+  .km-logo{width:32px;height:32px;background:var(--km);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .km-logo span{color:white;font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;}
+  .nav strong{font-family:'DM Sans';font-size:16px;color:var(--km);font-weight:600;}
+  .nav .meta{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;}
+  .wrap{max-width:1100px;margin:0 auto;padding:36px 32px 80px;}
+  .hero{background:linear-gradient(135deg,var(--km) 0%,var(--km-dark) 100%);border-radius:14px;padding:40px 44px;margin-bottom:32px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+  .hero-tag{display:inline-block;background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;font-family:'DM Sans',sans-serif;}
+  .hero h1{font-size:32px;font-weight:700;color:white;line-height:1.15;margin-bottom:8px;}
+  .hero-domain{font-size:13px;color:rgba(255,255,255,0.6);font-family:'DM Mono',monospace;margin-bottom:20px;}
+  .hero-summary{font-size:14px;line-height:1.65;color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.1);border-radius:10px;padding:14px 18px;max-width:560px;}
+  .hero-progress{margin-top:20px;}
+  .hp-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:6px;}
+  .hp-track{height:6px;background:rgba(255,255,255,0.15);border-radius:20px;overflow:hidden;}
+  .hp-fill{height:100%;background:#86EFAC;border-radius:20px;transition:width 0.5s ease;}
+  .score-wrap{background:rgba(255,255,255,0.12);border-radius:14px;padding:32px 36px;text-align:center;min-width:180px;}
+  .score-ring{position:relative;width:120px;height:120px;margin:0 auto 14px;}
+  .score-ring svg{transform:rotate(-90deg);}
+  .score-val{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+  .score-val .num{font-family:'DM Sans',sans-serif;font-size:36px;font-weight:700;color:#FCD34D;line-height:1;}
+  .score-val .den{font-size:13px;color:rgba(255,255,255,0.55);}
+  .score-label{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:600;color:#FCD34D;}
+  .score-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:3px;}
+  .section-label{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:0 0 14px;}
+  .kpi-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+  .kpi-card{background:white;border-radius:12px;border:1px solid var(--border);padding:22px 24px;position:relative;overflow:hidden;}
+  .kpi-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .kpi-card.red::after{background:var(--red);}
+  .kpi-card.amber::after{background:var(--amber);}
+  .kpi-card.green::after{background:var(--green);}
+  .kpi-tag{font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px;font-family:'DM Sans',sans-serif;}
+  .kpi-card.red .kpi-tag{color:var(--red);}
+  .kpi-card.amber .kpi-tag{color:var(--amber);}
+  .kpi-card.green .kpi-tag{color:var(--green);}
+  .kpi-num{font-family:'DM Sans',sans-serif;font-size:48px;font-weight:700;line-height:1;margin-bottom:4px;}
+  .kpi-card.red .kpi-num{color:var(--red);}
+  .kpi-card.amber .kpi-num{color:var(--amber);}
+  .kpi-card.green .kpi-num{color:var(--green);}
+  .kpi-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+  .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;}
+  .impact-card{background:white;border-radius:12px;border:1px solid var(--border);padding:22px;}
+  .impact-icon{width:40px;height:40px;border-radius:10px;background:var(--km-light);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .impact-icon svg{width:20px;height:20px;color:var(--km);}
+  .impact-card h4{font-size:14px;font-weight:600;margin-bottom:6px;font-family:'DM Sans',sans-serif;}
+  .impact-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px;}
+  .impact-pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;font-family:'DM Sans',sans-serif;}
+  .impact-pill.red{background:var(--red-bg);color:var(--red-text);}
+  .impact-pill.amber{background:var(--amber-bg);color:var(--amber-text);}
+  .impact-pill.green{background:var(--green-bg);color:var(--green-text);}
+  .impact-pill.blue{background:var(--km-light);color:var(--km);}
+  .broken-card{background:white;border-radius:12px;border:1px solid var(--border);border-left:4px solid var(--red);margin-bottom:32px;overflow:hidden;}
+  .broken-header{padding:20px 24px 0;}
+  .broken-header h3{font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;color:var(--red);margin-bottom:4px;}
+  .broken-header p{font-size:13px;color:var(--muted);margin-bottom:18px;}
+  .broken-list{padding:0 24px 20px;display:flex;flex-direction:column;gap:8px;}
+  .broken-item{display:flex;align-items:center;gap:12px;background:var(--red-bg);border-radius:8px;padding:12px 16px;}
+  .b-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;}
+  .b-url{font-family:'DM Mono',monospace;font-size:12px;color:var(--red-text);flex:1;word-break:break-all;}
+  .b-links{font-size:11px;color:var(--muted);flex-shrink:0;white-space:nowrap;}
+  .b-badge{background:var(--red);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;flex-shrink:0;font-family:'DM Mono',monospace;}
+  .broken-tip{margin:0 24px 20px;background:var(--km-light);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--km);line-height:1.55;}
+  .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+  .chart-card{background:white;border-radius:12px;border:1px solid var(--border);padding:24px;}
+  .chart-card h3{font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;margin-bottom:3px;}
+  .chart-sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;font-size:12px;color:var(--muted);}
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;}
+  .impact-bar-card{background:white;border-radius:12px;border:1px solid var(--border);padding:24px;margin-bottom:32px;}
+  .impact-bar-card h3{font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;margin-bottom:3px;}
+  .ib-sub{font-size:13px;color:var(--muted);margin-bottom:22px;}
+  .ib-rows{display:flex;flex-direction:column;gap:16px;}
+  .ib-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+  .ib-label{font-size:14px;font-weight:500;}
+  .ib-val{font-size:13px;font-weight:600;color:var(--km);font-family:'DM Mono',monospace;}
+  .ib-track{height:8px;background:var(--bg);border-radius:20px;overflow:hidden;border:1px solid var(--border);}
+  .ib-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--km),var(--km-dark));}
+  .tracker-card{background:white;border-radius:12px;border:1px solid var(--border);padding:28px;margin-bottom:32px;}
+  .tracker-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .tracker-top h2{font-size:18px;font-weight:600;font-family:'DM Sans',sans-serif;}
+  .tracker-pct{font-family:'DM Mono',monospace;font-size:24px;font-weight:500;color:var(--km);}
+  .tracker-track{height:10px;background:var(--bg);border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-bottom:24px;}
+  .tracker-fill{height:100%;background:linear-gradient(90deg,var(--km),var(--km-dark));border-radius:20px;transition:width 0.4s ease;width:0%;}
+  .cl-group-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:14px 0 6px;font-family:'DM Sans',sans-serif;}
+  .cl-group-label.red{color:var(--red);}
+  .cl-group-label.amber{color:var(--amber);}
+  .cl-group-label.green{color:var(--green);}
+  .cl-items{display:flex;flex-direction:column;gap:8px;}
+  label.cl-item{display:flex;align-items:center;gap:14px;padding:13px 16px;background:var(--bg);border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+  label.cl-item:hover{background:var(--km-light);border-color:var(--km);}
+  label.cl-item.done{opacity:0.45;}
+  label.cl-item.done .cl-text{text-decoration:line-through;}
+  label.cl-item input[type="checkbox"]{width:17px;height:17px;accent-color:var(--km);cursor:pointer;flex-shrink:0;}
+  .cl-sev{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .cl-sev.red{background:var(--red);}
+  .cl-sev.amber{background:var(--amber);}
+  .cl-sev.green{background:var(--green);}
+  .cl-text{font-size:14px;flex:1;}
+  .cl-effort{font-size:11px;color:var(--muted);background:white;border:1px solid var(--border);padding:2px 8px;border-radius:20px;flex-shrink:0;font-family:'DM Mono',monospace;white-space:nowrap;}
+  footer{text-align:center;padding:28px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:12px;}
+  footer strong{color:var(--km);}
+  @media(max-width:768px){.hero{grid-template-columns:1fr;}.kpi-strip{grid-template-columns:1fr;}.impact-grid{grid-template-columns:1fr;}.charts-row{grid-template-columns:1fr;}.wrap{padding:20px 16px;}.nav{padding:12px 16px;}}
 </style>
 </head>
 <body>
-<div class="topbar">Technical SEO Audit · Powered by Screaming Frog + Claude AI · Kerkar Media</div>
+
+<div class="topbar">Kerkar Media · Website Health Report · Powered by Screaming Frog + Claude AI</div>
+
 <nav class="nav">
-  <strong>Kerkar Media · Technical SEO Audit</strong>
-  <div class="meta">kerkarmedia.com · Crawled 28 May 2026 · Generated Thursday, 28 May 2026</div>
+  <div class="nav-left">
+    <div class="km-logo"><span>KM</span></div>
+    <strong>Kerkar Media · Website Health Report</strong>
+  </div>
+  <div class="meta">kerkarmedia.com · 28 May 2026</div>
 </nav>
+
 <div class="wrap">
+
   <div class="hero">
-    <h1>Technical SEO Audit — kerkarmedia.com</h1>
-    <div class="sub">Screaming Frog crawl · 28 May 2026 · Powered by Claude AI</div>
-    <div class="hero-stats">
-      <div class="hero-stat red"><div class="label">Critical</div><div class="value">5</div><div class="sub">Fix immediately</div></div>
-      <div class="hero-stat amber"><div class="label">Warnings</div><div class="value">10</div><div class="sub">Fix soon</div></div>
-      <div class="hero-stat green"><div class="label">Notices</div><div class="value">24</div><div class="sub">Low priority</div></div>
-      <div class="hero-stat"><div class="label">Overall Health</div><div class="value" style="color:#FCD34D;font-size:20px;">Fair</div><div class="sub">39 total issues</div></div>
+    <div>
+      <div class="hero-tag">Website Health Score</div>
+      <h1>Your website has<br>39 things to fix</h1>
+      <div class="hero-domain">kerkarmedia.com · Scanned 28 May 2026</div>
+      <div class="hero-summary">
+        <strong style="color:white;">Summary:</strong> The site has critical broken internal links with 5 pages returning 404 errors, including important SEO topic pages with up to 6 inbound links causing link equity loss and poor user experience. Title tags exceed optimal length on 5 pages, potentially causing truncation in search results and reduced click-through rates. Overall technical foundation is solid with no missing meta descriptions or H1 tags, but the 404 errors require immediate attention to preserve internal linking structure and SEO authority.
+      </div>
+      <div class="hero-progress">
+        <div class="hp-label"><span>Fix progress</span><span id="hero-pct">0 / 9 tasks completed</span></div>
+        <div class="hp-track"><div class="hp-fill" id="hero-fill"></div></div>
+      </div>
     </div>
-    <div class="summary-box"><strong>Executive Summary:</strong> The site has critical 404 errors affecting 5 URLs with internal links, including high-value content pages with up to 6 inbound links that are bleeding link equity and harming user experience. Title tags exceed Google's recommended 60-character display limit on 5 pages, potentially getting truncated in search results. Overall technical foundation is moderate but requires immediate attention to broken internal links which directly impact crawl efficiency and rankings.</div>
-    <div class="progress-label"><span>Fix Progress</span><span id="progress-pct">0 / 39 issues resolved</span></div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="score-wrap">
+      <div class="score-ring">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="10"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#FCD34D" stroke-width="10"
+            stroke-dasharray="314" stroke-dashoffset="131.88000000000002" stroke-linecap="round"/>
+        </svg>
+        <div class="score-val">
+          <div class="num">58</div>
+          <div class="den">/100</div>
+        </div>
+      </div>
+      <div class="score-label" style="color:#FCD34D;">Fair</div>
+      <div class="score-sub">39 total issues</div>
+    </div>
   </div>
-  <div class="section-label">Top Priorities</div><div class="priority-grid">
-  <div class="priority-card">
-    <div class="priority-issue">5 Internal 404 Errors with Active Inbound Links</div>
-    <div class="priority-impact">12 total internal links pointing to dead pages waste crawl budget, dilute link equity, create poor UX, and signal site maintenance issues to Google. High-authority pages linking to 404s lose ability to pass PageRank effectively.</div>
-    <div class="priority-effort">Effort: <strong>Easy</strong></div>
+
+  <div class="section-label">Issue Summary</div>
+  <div class="kpi-strip">
+    <div class="kpi-card red">
+      <div class="kpi-tag">🔴 Fix immediately</div>
+      <div class="kpi-num">5</div>
+      <div class="kpi-desc">Broken pages sending visitors to dead ends — losing real business enquiries right now</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-tag">🟡 Fix this week</div>
+      <div class="kpi-num">10</div>
+      <div class="kpi-desc">Pages missing key information Google needs to show your site properly in search results</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-tag">🟢 Fix when you can</div>
+      <div class="kpi-num">24</div>
+      <div class="kpi-desc">Small improvements — each one adds up to better Google rankings over time</div>
+    </div>
   </div>
-  <div class="priority-card">
-    <div class="priority-issue">5 Title Tags Exceeding 60 Characters</div>
-    <div class="priority-impact">Titles up to 81 characters will be truncated in SERPs, reducing click-through rates and potentially hiding important keywords or brand messaging. Core Web Vitals and SEO Pricing pages are key commercial intent pages.</div>
-    <div class="priority-effort">Effort: <strong>Easy</strong></div>
+
+  <div class="section-label">What does this mean for your business?</div>
+  <div class="impact-grid">
+  <div class="impact-card">
+    <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+    <h4>5 pages show errors to visitors</h4>
+    <p>When someone clicks a link to these pages — from Google, social media, or your own site — they hit an error. Every error is a lost potential client.</p>
+    <span class="impact-pill red">Lost clients</span>
   </div>
-  <div class="priority-card">
-    <div class="priority-issue">Broken Internal Linking Structure</div>
-    <div class="priority-impact">6 inlinks to single 404 page suggests systematic internal linking issue - likely outdated navigation, blog sidebars, or footer links. This multiplies negative SEO impact across the site and wastes Googlebot crawl resources.</div>
-    <div class="priority-effort">Effort: <strong>Medium</strong></div>
+  <div class="impact-card">
+    <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+    <h4>10 page titles get cut off in Google</h4>
+    <p>When your page title is too long, Google cuts it off in search results — your business name or key message might not even be visible to searchers.</p>
+    <span class="impact-pill green">Easy fix — 30 minutes</span>
+  </div>
+  <div class="impact-card">
+    <div class="impact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+    <h4>Images lack descriptions</h4>
+    <p>Images without descriptions are invisible to Google image search and accessibility tools. Small fix, meaningful gain over time.</p>
+    <span class="impact-pill green">Low priority</span>
   </div></div>
-  <div class="section-label">Critical Issues</div>
+
   
-<div class="issue-section open" id="section-4xx-int">
-  <div class="issue-header" onclick="toggleSection('section-4xx-int')">
-    <div class="issue-header-left">
-      <div class="severity-dot red"></div>
-      <div>
-        <div class="issue-title">Broken Internal Pages (4xx)</div>
-        <div class="issue-meta">Own pages returning 4xx — damages UX and wastes crawl budget</div>
+  <div class="section-label">Broken pages — fix these first</div>
+  <div class="broken-card">
+    <div class="broken-header">
+      <h3>These pages don't exist anymore — but links still point to them</h3>
+      <p>When someone visits these links they see an error page. Every error is a lost visitor. The fix is simple: point the old link to a new page. Your web developer can do this in under an hour.</p>
+    </div>
+    <div class="broken-list">
+  <div class="broken-item">
+    <div class="b-dot"></div>
+    <div class="b-url">/off-page-seo-link-building-b2b-2026/</div>
+    <div class="b-links">6 links point here</div>
+    <div class="b-badge">404</div>
+  </div>
+  <div class="broken-item">
+    <div class="b-dot"></div>
+    <div class="b-url">/b2b-seo-roi-calculator/seo-roi-calculator.js</div>
+    <div class="b-links">0 links point here</div>
+    <div class="b-badge">404</div>
+  </div>
+  <div class="broken-item">
+    <div class="b-dot"></div>
+    <div class="b-url">/keyword-research-for-b2b-2026/</div>
+    <div class="b-links">1 link point here</div>
+    <div class="b-badge">404</div>
+  </div>
+  <div class="broken-item">
+    <div class="b-dot"></div>
+    <div class="b-url">/canonical-tags-guide-duplicate-content-2026/</div>
+    <div class="b-links">3 links point here</div>
+    <div class="b-badge">404</div>
+  </div>
+  <div class="broken-item">
+    <div class="b-dot"></div>
+    <div class="b-url">/http-errors-seo-guide-404-410-500-503/</div>
+    <div class="b-links">2 links point here</div>
+    <div class="b-badge">404</div>
+  </div></div>
+    <div class="broken-tip">
+      <strong>How your team fixes this:</strong> These look like pages that were deleted or renamed. Either restore them, or add a "redirect" — like a changed-address notice — pointing the old URL to the most relevant live page on your site.
+    </div>
+  </div>
+
+  <div class="section-label">Visual breakdown</div>
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>Issues by type</h3>
+      <div class="chart-sub">What's missing across your scanned pages</div>
+      <div style="position:relative;height:200px;">
+        <canvas id="issueChart" role="img" aria-label="Bar chart of issues by type">Broken pages: 5, Titles too long: 10, Missing alt text: 15, Broken ext. links: 7</canvas>
+      </div>
+      <div class="legend">
+        <span><span class="legend-dot" style="background:#EF4444;"></span>Fix now</span>
+        <span><span class="legend-dot" style="background:#F59E0B;"></span>Fix soon</span>
+        <span><span class="legend-dot" style="background:#22C55E;"></span>When you can</span>
       </div>
     </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-4xx-int">0/5 done</span>
-      <span class="issue-count red">5</span>
-      <span class="chevron">▼</span>
-    </div>
-  </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> These are your own pages returning 404 errors. Fix by restoring the page or adding a 301 redirect to the most relevant live page.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>Broken URL</th><th class="center">Status</th><th class="center">Inlinks</th><th>Fix</th></tr></thead><tbody>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/off-page-seo-link-building-b2b-2026/" target="_blank">https://kerkarmedia.com/off-page-seo-link-building-b2b-2026/</a></td>
-    <td class="center"><span class="badge high">404</span></td>
-    <td class="center">6</td>
-    <td><span class="fix-tag">301 redirect to closest alternative off-page SEO content or …</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/b2b-seo-roi-calculator/seo-roi-calculator.js" target="_blank">https://kerkarmedia.com/b2b-seo-roi-calculator/seo-roi-calculator.js</a></td>
-    <td class="center"><span class="badge high">404</span></td>
-    <td class="center">0</td>
-    <td><span class="fix-tag">Fix JavaScript file path or remove reference from parent pag…</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/keyword-research-for-b2b-2026/" target="_blank">https://kerkarmedia.com/keyword-research-for-b2b-2026/</a></td>
-    <td class="center"><span class="badge high">404</span></td>
-    <td class="center">1</td>
-    <td><span class="fix-tag">301 redirect to https://kerkarmedia.com/the-importance-of-ke…</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/canonical-tags-guide-duplicate-content-2026/" target="_blank">https://kerkarmedia.com/canonical-tags-guide-duplicate-content-2026/</a></td>
-    <td class="center"><span class="badge high">404</span></td>
-    <td class="center">3</td>
-    <td><span class="fix-tag">301 redirect to updated canonical tags guide or restore cont…</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/http-errors-seo-guide-404-410-500-503/" target="_blank">https://kerkarmedia.com/http-errors-seo-guide-404-410-500-503/</a></td>
-    <td class="center"><span class="badge high">404</span></td>
-    <td class="center">2</td>
-    <td><span class="fix-tag">Restore this meta-content about HTTP errors (ironic 404) or …</span></td>
-  </tr></tbody></table></div>
-  </div>
-</div>
-  
-  <div class="section-label">Warnings</div>
-  
-<div class="issue-section open" id="section-meta">
-  <div class="issue-header" onclick="toggleSection('section-meta')">
-    <div class="issue-header-left">
-      <div class="severity-dot amber"></div>
-      <div>
-        <div class="issue-title">Missing Meta Descriptions</div>
-        <div class="issue-meta">Google auto-generates snippets when absent — often poorly</div>
+    <div class="chart-card">
+      <h3>How hard are these to fix?</h3>
+      <div class="chart-sub">Most fixes are quick wins under 1 hour</div>
+      <div style="position:relative;height:200px;">
+        <canvas id="effortChart" role="img" aria-label="Donut chart showing effort breakdown">4 easy, 0 medium, 5 need developer</canvas>
+      </div>
+      <div class="legend">
+        <span><span class="legend-dot" style="background:#22C55E;"></span>Easy — under 1 hour · 4</span>
+        <span><span class="legend-dot" style="background:#F59E0B;"></span>Medium — half a day · 0</span>
+        <span><span class="legend-dot" style="background:#EF4444;"></span>Needs developer · 5</span>
       </div>
     </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-meta">0/0 done</span>
-      <span class="issue-count amber">0</span>
-      <span class="chevron">▼</span>
-    </div>
   </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> Meta descriptions are your billboard in Google search results. For a digital marketing agency these are especially important — clients judge your SEO quality by your own site.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>Page</th><th>Page Title</th><th>Suggested Meta Description</th></tr></thead><tbody><tr><td colspan="10" class="empty-row">✅ All pages have meta descriptions</td></tr></tbody></table></div>
-  </div>
-</div>
-  
-<div class="issue-section open" id="section-h1">
-  <div class="issue-header" onclick="toggleSection('section-h1')">
-    <div class="issue-header-left">
-      <div class="severity-dot amber"></div>
+
+  <div class="impact-bar-card">
+    <h3>What happens when you fix these?</h3>
+    <div class="ib-sub">Estimated improvement to your Google visibility once all issues are resolved</div>
+    <div class="ib-rows">
       <div>
-        <div class="issue-title">Missing H1 Tags</div>
-        <div class="issue-meta">Pages without H1 miss a key on-page relevance signal</div>
+        <div class="ib-meta"><span class="ib-label">More people click your Google listing</span><span class="ib-val">+25–40%</span></div>
+        <div class="ib-track"><div class="ib-fill" style="width:75%;"></div></div>
+      </div>
+      <div>
+        <div class="ib-meta"><span class="ib-label">Better appearance in search results</span><span class="ib-val">+60%</span></div>
+        <div class="ib-track"><div class="ib-fill" style="width:60%;"></div></div>
+      </div>
+      <div>
+        <div class="ib-meta"><span class="ib-label">Faster page load speed</span><span class="ib-val">+30%</span></div>
+        <div class="ib-track"><div class="ib-fill" style="width:30%;"></div></div>
+      </div>
+      <div>
+        <div class="ib-meta"><span class="ib-label">Visitors who no longer see errors</span><span class="ib-val">100%</span></div>
+        <div class="ib-track"><div class="ib-fill" style="width:100%;"></div></div>
       </div>
     </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-h1">0/0 done</span>
-      <span class="issue-count amber">0</span>
-      <span class="chevron">▼</span>
+  </div>
+
+  <div class="tracker-card">
+    <div class="tracker-top">
+      <h2>Fix tracker — tick off as you go</h2>
+      <div class="tracker-pct" id="tracker-pct">0% complete</div>
     </div>
+    <div class="tracker-track"><div class="tracker-fill" id="tracker-fill"></div></div>
+
+    
+    <div class="cl-group-label red">Fix immediately — Critical</div>
+    <div class="cl-items">
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev red"></div>
+    <span class="cl-text">Redirect /off-page-seo-link-building-b2b-2026/ to a live page</span>
+    <span class="cl-effort">15–30 min</span>
+  </label>
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev red"></div>
+    <span class="cl-text">Redirect /b2b-seo-roi-calculator/seo-roi-calculator.js to a live page</span>
+    <span class="cl-effort">15–30 min</span>
+  </label>
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev red"></div>
+    <span class="cl-text">Redirect /keyword-research-for-b2b-2026/ to a live page</span>
+    <span class="cl-effort">15–30 min</span>
+  </label>
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev red"></div>
+    <span class="cl-text">Redirect /canonical-tags-guide-duplicate-content-2026/ to a live page</span>
+    <span class="cl-effort">15–30 min</span>
+  </label>
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev red"></div>
+    <span class="cl-text">Redirect /http-errors-seo-guide-404-410-500-503/ to a live page</span>
+    <span class="cl-effort">15–30 min</span>
+  </label></div>
+
+    
+    <div class="cl-group-label amber">Fix this week — Important</div>
+    <div class="cl-items">
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev amber"></div>
+    <span class="cl-text">Shorten 10 page titles that are too long (over 60 characters)</span>
+    <span class="cl-effort">30 min</span>
+  </label></div>
+
+    
+    <div class="cl-group-label green">Fix when you can — Nice to have</div>
+    <div class="cl-items">
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev green"></div>
+    <span class="cl-text">Add image descriptions to 15 images for Google image search</span>
+    <span class="cl-effort">1 hour</span>
+  </label>
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev green"></div>
+    <span class="cl-text">Remove 7 links pointing to dead external websites</span>
+    <span class="cl-effort">30 min</span>
+  </label>
+  <label class="cl-item">
+    <input type="checkbox" onchange="updateProgress()">
+    <div class="cl-sev green"></div>
+    <span class="cl-text">Expand 2 page titles that are too short</span>
+    <span class="cl-effort">20 min</span>
+  </label></div>
   </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> Every page should have exactly one H1. This is one of Googles strongest on-page ranking signals.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>Page</th><th>Page Title</th><th>Suggested H1</th></tr></thead><tbody><tr><td colspan="10" class="empty-row">✅ All pages have H1 tags</td></tr></tbody></table></div>
-  </div>
+
 </div>
-  
-<div class="issue-section" id="section-titles-long">
-  <div class="issue-header" onclick="toggleSection('section-titles-long')">
-    <div class="issue-header-left">
-      <div class="severity-dot amber"></div>
-      <div>
-        <div class="issue-title">Title Tags Over 60 Characters</div>
-        <div class="issue-meta">Long titles get truncated in SERPs</div>
-      </div>
-    </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-titles-long">0/10 done</span>
-      <span class="issue-count amber">10</span>
-      <span class="chevron">▼</span>
-    </div>
-  </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> Trim to 55-60 characters keeping the primary keyword near the start.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>Page</th><th>Current Title</th><th class="center">Length</th><th>Fix</th></tr></thead><tbody>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/core-web-vitals-guide/" target="_blank">/core-web-vitals-guide/</a></td>
-    <td>Core Web Vitals 2026: LCP, INP, CLS and What They Actually M…</td>
-    <td class="center"><span class="badge medium">81 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/benefits-of-digital-marketing-for-b2b/" target="_blank">/benefits-of-digital-marketing-for-b2b/</a></td>
-    <td>12 Benefits of Digital Marketing for B2B Companies (2026 Gui…</td>
-    <td class="center"><span class="badge medium">63 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/digital-pr-b2b-link-building/" target="_blank">/digital-pr-b2b-link-building/</a></td>
-    <td>Digital PR for B2B: How to Earn Links from Industry Publicat…</td>
-    <td class="center"><span class="badge medium">64 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/the-importance-of-keyword-research-for-seo/" target="_blank">/the-importance-of-keyword-research-for-seo/</a></td>
-    <td>The Importance of Keyword Research for SEO: A Complete Guide…</td>
-    <td class="center"><span class="badge medium">69 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/seo-pricing-india-2026/" target="_blank">/seo-pricing-india-2026/</a></td>
-    <td>SEO Pricing in India 2026: What You Should Actually Pay (Hon…</td>
-    <td class="center"><span class="badge medium">74 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/importance-of-seo-agency-in-2026/" target="_blank">/importance-of-seo-agency-in-2026/</a></td>
-    <td>Importance of an SEO Agency in 2026: Why Businesses Cannot A…</td>
-    <td class="center"><span class="badge medium">80 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/seo-for-automotive-industry/" target="_blank">/seo-for-automotive-industry/</a></td>
-    <td>SEO for Automotive Industry: The Complete Guide to Ranking &…</td>
-    <td class="center"><span class="badge medium">85 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/technical-seo-audit-50-point-checklist-2026/" target="_blank">/technical-seo-audit-50-point-checklist-2026/</a></td>
-    <td>Technical SEO Audit: The Complete 50-Point Checklist for 202…</td>
-    <td class="center"><span class="badge medium">61 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/site-migration-seo/" target="_blank">/site-migration-seo/</a></td>
-    <td>Site Migration SEO: How to Change Domain Without Losing Rank…</td>
-    <td class="center"><span class="badge medium">71 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/what-is-seo/" target="_blank">/what-is-seo/</a></td>
-    <td>What Is SEO? The Ultimate Guide to Search Engine Optimisatio…</td>
-    <td class="center"><span class="badge medium">69 chars</span></td>
-    <td><span class="muted">Trim to 55–60 chars, keyword first</span></td>
-  </tr></tbody></table></div>
-  </div>
-</div>
-  
-  <div class="section-label">Notices</div>
-  
-<div class="issue-section" id="section-4xx-ext">
-  <div class="issue-header" onclick="toggleSection('section-4xx-ext')">
-    <div class="issue-header-left">
-      <div class="severity-dot green"></div>
-      <div>
-        <div class="issue-title">Broken External Links</div>
-        <div class="issue-meta">Outbound links to dead external pages — low priority</div>
-      </div>
-    </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-4xx-ext">0/7 done</span>
-      <span class="issue-count green">7</span>
-      <span class="chevron">▼</span>
-    </div>
-  </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> Links from your site pointing to external pages that no longer exist. Low priority but worth cleaning up.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>External URL</th><th class="center">Status</th><th class="center">Inlinks</th><th>Fix</th></tr></thead><tbody>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://clutch.co/share/badges/1599519/86008?utm_source=clutch_top_company_badge&utm_medium=image_embed" target="_blank">https://clutch.co/share/badges/1599519/86008?utm_source=clutch_top_com…</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">0</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://clutch.co/share/badges/1599519/8518?utm_source=clutch_top_company_badge&utm_medium=image_embed" target="_blank">https://clutch.co/share/badges/1599519/8518?utm_source=clutch_top_comp…</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">0</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://clutch.co/share/badges/1599519/71943?utm_source=clutch_top_company_badge&utm_medium=image_embed" target="_blank">https://clutch.co/share/badges/1599519/71943?utm_source=clutch_top_com…</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">0</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://clutch.co/share/badges/1599519/60873?utm_source=clutch_top_company_badge&utm_medium=image_embed" target="_blank">https://clutch.co/share/badges/1599519/60873?utm_source=clutch_top_com…</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">0</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://clutch.co/share/badges/1599519/12564?utm_source=clutch_top_company_badge&utm_medium=image_embed" target="_blank">https://clutch.co/share/badges/1599519/12564?utm_source=clutch_top_com…</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">0</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://clutch.co/share/badges/1599519/37073?utm_source=clutch_award_badge&utm_medium=image_embed" target="_blank">https://clutch.co/share/badges/1599519/37073?utm_source=clutch_award_b…</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">0</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr>
-  <tr class="">
-    <td class="center">—</td>
-    <td class="url-cell"><a href="https://www.quora.com/profile/Kunal-Kerkar-3" target="_blank">https://www.quora.com/profile/Kunal-Kerkar-3</a></td>
-    <td class="center"><span class="badge medium">403</span></td>
-    <td class="center">80</td>
-    <td><span class="muted">Remove or replace link</span></td>
-  </tr></tbody></table></div>
-  </div>
-</div>
-  
-<div class="issue-section" id="section-alt">
-  <div class="issue-header" onclick="toggleSection('section-alt')">
-    <div class="issue-header-left">
-      <div class="severity-dot green"></div>
-      <div>
-        <div class="issue-title">Images Missing Alt Text</div>
-        <div class="issue-meta">Alt text helps Google understand images and improves accessibility</div>
-      </div>
-    </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-alt">0/15 done</span>
-      <span class="issue-count green">15</span>
-      <span class="chevron">▼</span>
-    </div>
-  </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> Add descriptive alt text to all images — especially service and case study images.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>Page</th><th>Image URL</th><th>Fix</th></tr></thead><tbody>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/02/Frame-281.png" target="_blank">/wp-content/uploads/2026/02/Frame-281.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/02/Frame-278-2.png" target="_blank">/wp-content/uploads/2026/02/Frame-278-2.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/05/1-Karan-Shah-IIDE.png" target="_blank">/wp-content/uploads/2026/05/1-Karan-Shah-IIDE…</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/04/Digital-PR-for-B2B_-How-to-Earn-Links-from-Industry-Publications-2-400x250.png" target="_blank">/wp-content/uploads/2026/04/Digital-PR-for-B2…</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/05/Frame-379-5.png" target="_blank">/wp-content/uploads/2026/05/Frame-379-5.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/02/Frame-280-1.png" target="_blank">/wp-content/uploads/2026/02/Frame-280-1.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2025/09/image.png" target="_blank">/wp-content/uploads/2025/09/image.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/02/Frame-2390-53.png" target="_blank">/wp-content/uploads/2026/02/Frame-2390-53.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/02/Frame-277.png" target="_blank">/wp-content/uploads/2026/02/Frame-277.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/02/Frame-279-2.png" target="_blank">/wp-content/uploads/2026/02/Frame-279-2.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/04/3-Yash-Chandiramani-Admatazz.png" target="_blank">/wp-content/uploads/2026/04/3-Yash-Chandirama…</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/05/3-Yash-Chandiramani-Admatazz.png" target="_blank">/wp-content/uploads/2026/05/3-Yash-Chandirama…</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/05/Frame-379-10.png" target="_blank">/wp-content/uploads/2026/05/Frame-379-10.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2026/05/11-Jessica-Chheda-JS-Diamonds-Inc.png" target="_blank">/wp-content/uploads/2026/05/11-Jessica-Chheda…</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/wp-content/uploads/2025/09/image-1.png" target="_blank">/wp-content/uploads/2025/09/image-1.png</a></td>
-    <td class="url-cell">—</td>
-    <td><span class="muted">Add descriptive alt text</span></td>
-  </tr></tbody></table></div>
-  </div>
-</div>
-  
-<div class="issue-section" id="section-titles-short">
-  <div class="issue-header" onclick="toggleSection('section-titles-short')">
-    <div class="issue-header-left">
-      <div class="severity-dot green"></div>
-      <div>
-        <div class="issue-title">Title Tags Under 30 Characters</div>
-        <div class="issue-meta">Short titles miss keyword opportunities</div>
-      </div>
-    </div>
-    <div class="issue-header-right">
-      <span class="mini-progress" id="prog-titles-short">0/2 done</span>
-      <span class="issue-count green">2</span>
-      <span class="chevron">▼</span>
-    </div>
-  </div>
-  <div class="issue-body">
-    <div class="claude-rec"><strong>🤖 Claude:</strong> Expand to 50-60 characters while keeping the most important keyword first.</div>
-    <div style="overflow-x:auto"><table><thead><tr><th style="width:36px"></th><th>Page</th><th>Current Title</th><th class="center">Length</th><th>Fix</th></tr></thead><tbody>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/html-sitemap/" target="_blank">/html-sitemap/</a></td>
-    <td>HTML Sitemap - Kerkar Media</td>
-    <td class="center"><span class="badge low">27 chars</span></td>
-    <td><span class="muted">Expand to 50–60 chars with primary keyword</span></td>
-  </tr>
-  <tr class="checkable">
-    <td class="center"><input type="checkbox" onchange="toggleDone(this)"></td>
-    <td class="url-cell"><a href="https://kerkarmedia.com/media-buying-and-planning/" target="_blank">/media-buying-and-planning/</a></td>
-    <td>Media Buying And Planning</td>
-    <td class="center"><span class="badge low">25 chars</span></td>
-    <td><span class="muted">Expand to 50–60 chars with primary keyword</span></td>
-  </tr></tbody></table></div>
-  </div>
-</div>
-</div>
-<footer><strong>Kerkar Media</strong> · Technical SEO Audit · kerkarmedia.com · Powered by Screaming Frog + Claude AI · 28 May 2026</footer>
+
+<footer>
+  <strong>Kerkar Media</strong> · Website Health Report · kerkarmedia.com · Powered by Screaming Frog + Claude AI · 28 May 2026
+</footer>
+
 <script>
-function toggleSection(id){document.getElementById(id).classList.toggle('open');}
-function toggleDone(cb){cb.closest('tr').classList.toggle('done',cb.checked);updateProgress();saveState();}
-function updateProgress(){
-  const all=document.querySelectorAll('input[type="checkbox"]');
-  const done=document.querySelectorAll('input[type="checkbox"]:checked');
-  const pct=all.length>0?Math.round((done.length/all.length)*100):0;
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-pct').textContent=done.length+' / '+all.length+' issues resolved';
-  document.querySelectorAll('.issue-section').forEach(sec=>{
-    const id=sec.id.replace('section-','');
-    const el=document.getElementById('prog-'+id);
-    if(!el)return;
-    const secAll=sec.querySelectorAll('input[type="checkbox"]');
-    const secDone=sec.querySelectorAll('input[type="checkbox"]:checked');
-    el.textContent=secDone.length+'/'+secAll.length+' done';
+new Chart(document.getElementById('issueChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Broken pages","Titles too long","Missing alt text","Broken ext. links"],
+    datasets: [{ data: [5,10,15,7], backgroundColor: ["#EF4444","#F59E0B","#22C55E","#22C55E"], borderRadius: 6, borderSkipped: false }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10, family: 'Inter' }, color: '#64748B', maxRotation: 30 } },
+      y: { grid: { color: '#F1F5F9' }, ticks: { stepSize: 2, color: '#64748B' }, beginAtZero: true }
+    }
+  }
+});
+
+new Chart(document.getElementById('effortChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Easy (under 1hr)', 'Medium (half day)', 'Needs developer'],
+    datasets: [{ data: [4, 0, 5], backgroundColor: ['#22C55E','#F59E0B','#EF4444'], borderWidth: 0, hoverOffset: 4 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { display: false } } }
+});
+
+function updateProgress() {
+  const all = document.querySelectorAll('.cl-item input[type="checkbox"]');
+  const done = document.querySelectorAll('.cl-item input[type="checkbox"]:checked');
+  all.forEach(cb => cb.closest('label').classList.remove('done'));
+  done.forEach(cb => cb.closest('label').classList.add('done'));
+  const pct = Math.round((done.length / all.length) * 100);
+  document.getElementById('tracker-fill').style.width = pct + '%';
+  document.getElementById('hero-fill').style.width = pct + '%';
+  document.getElementById('tracker-pct').textContent = pct + '% complete';
+  document.getElementById('hero-pct').textContent = done.length + ' / ' + all.length + ' tasks completed';
+  saveState();
+}
+
+function saveState() {
+  const state = {};
+  document.querySelectorAll('.cl-item input[type="checkbox"]').forEach((cb, i) => { state[i] = cb.checked; });
+  localStorage.setItem('km-audit-kerkarmedia-com-2026', JSON.stringify(state));
+}
+
+function loadState() {
+  const saved = localStorage.getItem('km-audit-kerkarmedia-com-2026');
+  if (!saved) return;
+  const state = JSON.parse(saved);
+  document.querySelectorAll('.cl-item input[type="checkbox"]').forEach((cb, i) => {
+    if (state[i]) { cb.checked = true; cb.closest('label').classList.add('done'); }
   });
-}
-function saveState(){
-  const state={};
-  document.querySelectorAll('input[type="checkbox"]').forEach((cb,i)=>{state[i]=cb.checked;});
-  localStorage.setItem('km-audit-kerkarmedia-2026',JSON.stringify(state));
-}
-function loadState(){
-  const saved=localStorage.getItem('km-audit-kerkarmedia-2026');
-  if(!saved)return;
-  const state=JSON.parse(saved);
-  document.querySelectorAll('input[type="checkbox"]').forEach((cb,i)=>{if(state[i]){cb.checked=true;cb.closest('tr').classList.add('done');}});
   updateProgress();
 }
-document.querySelectorAll('input[type="checkbox"]').forEach(cb=>{cb.addEventListener('change',saveState);});
 loadState();
 </script>
 </body>

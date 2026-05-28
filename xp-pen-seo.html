@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XP-Pen India — SEO Dashboard | Thursday, 28 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #E8410A; --brand-dark: #b33108;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #E8410A 0%, #b33108 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .section-label { font-family: 'DM Sans'; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 8px 0 12px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  section h2 .meta { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .pill-green  { background: #DCFCE7; color: #166534; }
+  .pill-amber  { background: #FEF3C7; color: #92400E; }
+  .pill-red    { background: #FEE2E2; color: #991B1B; }
+  .pill-blue   { background: #DBEAFE; color: #1E40AF; }
+  .pill-purple { background: #EDE9FE; color: #5B21B6; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .empty-row { text-align: center; color: var(--muted); font-style: italic; padding: 24px !important; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand); }
+  .insight-card.wins     { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions  { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .split-grid { grid-template-columns: 1fr !important; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-05-28T10:04:48.091Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · XP-Pen India SEO Dashboard</strong>
+  <div class="meta">Period ending Thursday, 28 May 2026 · xp-pen.co.in</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>SEO Performance & Business Impact</h1>
+    <div class="sub">30 Apr 2026 — 27 May 2026 · 2,737 organic clicks · ₹8,08,674 organic revenue (Search + Shopping) · 112 transactions</div>
+    <div class="summary"><strong>Executive Summary:</strong> XP-Pen India delivered ₹8,08,674 in organic revenue from 112 transactions (28 days), but 55.9% of clicks are Branded queries defending existing awareness, while Product queries contribute only 8.59% — signaling limited category discovery beyond brand search. Core branded terms like 'xp pen', 'xp pen tablet', and 'xppen' suffer Marketplace Leak with avg position 3.3–3.8, allowing Amazon/Flipkart to capture high-intent traffic and erode D2C margins. Top performers include Deco 01 V3 and Magic Note Pad product pages (6.56% and 2.63% CTR), plus collection pages for 'writing pad' and 'pen tablet' verticals.</div>
+  </div>
+
+  <div class="section-label">SEO Performance</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#E8410A">
+    <div class="kpi-label">Organic Clicks</div>
+    <div class="kpi-value">2,737</div>
+    <div class="kpi-sub">1,15,252 impressions · 2.37% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#b33108">
+    <div class="kpi-label">Organic Sessions</div>
+    <div class="kpi-value">11,375</div>
+    <div class="kpi-sub">GA4 organic channel</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Position</div>
+    <div class="kpi-value">4.3</div>
+    <div class="kpi-sub">across all tracked queries</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Domain Rating</div>
+    <div class="kpi-value">26</div>
+    <div class="kpi-sub">0 backlinks · 0 refdomains</div>
+  </div></div>
+
+  <div class="section-label">Business Impact & Authority</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#16A34A">
+    <div class="kpi-label">Organic Revenue</div>
+    <div class="kpi-value">₹8,08,674</div>
+    <div class="kpi-sub">Organic Search + Organic Shopping · last 28d</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Organic Transactions</div>
+    <div class="kpi-value">112</div>
+    <div class="kpi-sub">Search + Shopping sessions</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Organic Keywords (Ahrefs)</div>
+    <div class="kpi-value">744</div>
+    <div class="kpi-sub">est traffic 24,164/mo</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Referring Domains</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">0 total backlinks</div>
+  </div></div>
+
+  
+  <div class="section-label">Revenue by Channel — Transparency Breakdown</div>
+  <section>
+    <h2>
+      Where Revenue Comes From
+      <span class="meta">last 28d · GA4 session-based channel attribution</span>
+    </h2>
+    <div style="margin-bottom:16px; padding:14px 18px; background:#DCFCE7; border-radius:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <div>
+        <div style="font-size:12px; color:#166534; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">✓ Counted as Organic Revenue</div>
+        <div style="font-size:13px; color:#166534; margin-top:2px;">Organic Search + Organic Shopping only</div>
+      </div>
+      <div style="font-family:'DM Sans'; font-size:24px; font-weight:700; color:#166534;">₹8,08,674</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Channel <span style="font-weight:400;text-transform:none;">(shown for context — not in Organic Revenue above)</span></th>
+            <th class="center">Sessions</th>
+            <th class="center">Transactions</th>
+            <th class="center">Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      Paid Search
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">7,498</td>
+    <td class="center">94</td>
+    <td class="center"><strong>₹8,74,776</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Direct
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">7,357</td>
+    <td class="center">44</td>
+    <td class="center"><strong>₹2,40,477</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Organic Social
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">20,084</td>
+    <td class="center">48</td>
+    <td class="center"><strong>₹2,33,383</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Unassigned
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">8,793</td>
+    <td class="center">13</td>
+    <td class="center"><strong>₹58,189</strong></td>
+  </tr></tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px; padding:12px 16px; background:#FFF7ED; border-radius:6px; font-size:12px; color:#9A3412;">
+      <strong>How to read this:</strong> The headline <strong>Organic Revenue</strong> counts only <strong>Organic Search + Organic Shopping</strong> — revenue earned through SEO. Other channels above are shown <strong>for context only</strong>. GA4 uses last-click, session-based attribution.
+    </div>
+  </section>
+
+  <div class="section-label">Query Mix — Branded vs Product vs Informational</div>
+  <section style="padding: 24px 28px;">
+    <div class="split-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+      <div style="border-left: 4px solid #E8410A; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
+        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">🛡 Branded</div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">1,529</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 55.9% of total</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+          CTR 5.74% · Pos 3.5
+        </div>
+      </div>
+
+      <div style="border-left: 4px solid #16A34A; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
+        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">📦 Product <span style="font-size:10px; color:#16A34A; font-weight:600;">(CATEGORY DEMAND)</span></div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">235</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 8.59% of total</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+          CTR 0.94% · Pos 4.9
+        </div>
+      </div>
+
+      <div style="border-left: 4px solid #7C3AED; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
+        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">📖 Informational <span style="font-size:10px; color:#7C3AED; font-weight:600;">(TRUST + REACH)</span></div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">0</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 0% of total</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+          CTR 0% · Pos 0
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:16px; padding:12px 16px; background:#FFF7ED; border-radius:6px; font-size:12px; color:#9A3412;">
+      <strong>How to read this:</strong> <strong>Branded</strong> = "xp-pen", "xppen", model names (Deco, Artist Pro) — defending existing demand. <strong>Product</strong> = "drawing tablet", "graphic tablet", "pen display" — capturing category intent from new buyers. <strong>Informational</strong> = how-to, driver, setup, best-of queries — builds trust and top-of-funnel reach. High Product share = healthy category demand. High Informational share = strong content presence. Buckets are mutually exclusive.
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Search Queries
+      <span class="meta">30 Apr 2026 — 27 May 2026 · GSC · 🛡 brand · 📦 product · 📖 info</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>xp pen</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>404</strong></td>
+    <td class="center">9,244</td>
+    <td class="center">4.37%</td>
+    <td class="center">3.5</td>
+  </tr>
+  <tr>
+    <td class="kw">writing pad</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>302</strong></td>
+    <td class="center">25,117</td>
+    <td class="center">1.2%</td>
+    <td class="center">4.9</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>xp pen tablet</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>137</strong></td>
+    <td class="center">5,100</td>
+    <td class="center">2.69%</td>
+    <td class="center">3.3</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>xppen</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>96</strong></td>
+    <td class="center">1,372</td>
+    <td class="center">7%</td>
+    <td class="center">3.8</td>
+  </tr>
+  <tr>
+    <td class="kw">digital writing pad</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>82</strong></td>
+    <td class="center">3,927</td>
+    <td class="center">2.09%</td>
+    <td class="center">3.7</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>xp pen india</td>
+    <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
+    <td class="center"><strong>69</strong></td>
+    <td class="center">415</td>
+    <td class="center">16.63%</td>
+    <td class="center">1</td>
+  </tr>
+  <tr>
+    <td class="kw">pentab</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>65</strong></td>
+    <td class="center">4,729</td>
+    <td class="center">1.37%</td>
+    <td class="center">2.3</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DCFCE7;color:#166534;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">📦 PRODUCT</span>pen tablet</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>64</strong></td>
+    <td class="center">6,219</td>
+    <td class="center">1.03%</td>
+    <td class="center">3</td>
+  </tr>
+  <tr>
+    <td class="kw">xpen</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>53</strong></td>
+    <td class="center">724</td>
+    <td class="center">7.32%</td>
+    <td class="center">2.3</td>
+  </tr>
+  <tr>
+    <td class="kw">writing pad for laptop</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>53</strong></td>
+    <td class="center">4,102</td>
+    <td class="center">1.29%</td>
+    <td class="center">3.8</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Performing Pages
+      <span class="meta">30 Apr 2026 — 27 May 2026 · PDP / COLL / BLOG = page type</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><a href="https://xp-pen.co.in/" target="_blank" style="color:#E8410A;text-decoration:none">/</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>912</strong></td>
+    <td class="center">20,909</td>
+    <td class="center">4.36%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://xp-pen.co.in/collections/writing-pad-for-pc" target="_blank" style="color:#E8410A;text-decoration:none">/collections/writing-pad-for-pc</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>469</strong></td>
+    <td class="center">34,001</td>
+    <td class="center">1.38%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://xp-pen.co.in/collections/pen-tablet-for-laptop" target="_blank" style="color:#E8410A;text-decoration:none">/collections/pen-tablet-for-laptop</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>145</strong></td>
+    <td class="center">7,668</td>
+    <td class="center">1.89%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DCFCE7;color:#166534;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">PDP</span><a href="https://xp-pen.co.in/products/deco-01-v3" target="_blank" style="color:#E8410A;text-decoration:none">/products/deco-01-v3</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>143</strong></td>
+    <td class="center">2,179</td>
+    <td class="center">6.56%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://xp-pen.co.in/collections/graphic-tablets" target="_blank" style="color:#E8410A;text-decoration:none">/collections/graphic-tablets</a></td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>140</strong></td>
+    <td class="center">15,495</td>
+    <td class="center">0.9%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://xp-pen.co.in/collections/pen-tablet" target="_blank" style="color:#E8410A;text-decoration:none">/collections/pen-tablet</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>139</strong></td>
+    <td class="center">11,183</td>
+    <td class="center">1.24%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DCFCE7;color:#166534;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">PDP</span><a href="https://xp-pen.co.in/products/magic-note-pad" target="_blank" style="color:#E8410A;text-decoration:none">/products/magic-note-pad</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>134</strong></td>
+    <td class="center">5,090</td>
+    <td class="center">2.63%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DCFCE7;color:#166534;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">PDP</span><a href="https://xp-pen.co.in/products/deco-mini-7" target="_blank" style="color:#E8410A;text-decoration:none">/products/deco-mini-7</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>117</strong></td>
+    <td class="center">1,941</td>
+    <td class="center">6.03%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://xp-pen.co.in/collections/stylus" target="_blank" style="color:#E8410A;text-decoration:none">/collections/stylus</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>83</strong></td>
+    <td class="center">7,694</td>
+    <td class="center">1.08%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DCFCE7;color:#166534;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">PDP</span><a href="https://xp-pen.co.in/products/magic-drawing-pad" target="_blank" style="color:#E8410A;text-decoration:none">/products/magic-drawing-pad</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>59</strong></td>
+    <td class="center">1,035</td>
+    <td class="center">5.7%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> Homepage and Deco 01 V3 PDP driving strong CTR (4.36% and 6.56% respectively) with 912 and 143 clicks — flagship entry tablet capturing branded + discovery demand efficiently.</li><li><strong>[Important]</strong> 'writing pad' query delivers 302 clicks (top unbranded performer) at position 4.9, funneling into /collections/writing-pad-for-pc (469 clicks, 34,001 impressions) — validates consumer language alignment for non-artist segments.</li><li><strong>[Worth doing]</strong> 'xp pen india' owns position 1 with 16.63% CTR (69 clicks) — strong brand defense signal on geo-qualified searches, protecting D2C funnel from marketplace cannibalization.</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> Marketplace Leak on core branded queries: 'xp pen' at position 3.5 (404 clicks lost to Amazon/Flipkart listings above), 'xp pen tablet' at 3.3 (137 clicks), 'xppen' at 3.8 (96 clicks) — estimated ₹3–5 lakh monthly revenue leaking to marketplaces on own-brand searches due to weaker product schema, reviews, and authority.</li><li><strong>[Urgent]</strong> Product query share at only 8.59% (235 clicks) vs 55.9% Branded (1,529 clicks) — overdependence on existing brand awareness limits TAM expansion; missing category captures like 'best graphic tablet India', 'pen display for artists', 'drawing tablet with screen' where Wacom/Huion dominate.</li><li><strong>[Important]</strong> Zero Informational query clicks (0%) — no presence in high-funnel 'how to use graphic tablet', 'XP-Pen driver download', 'tablet setup guide', 'pen pressure settings' searches that build authority, reduce support load, and pre-qualify buyers before brand comparison phase.</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Period</h3>
+        <ul><li><strong>[Urgent]</strong> Implement aggressive Brand Defense: enrich all model PDPs (Deco 01 V2, Deco Mini 7, Artist 12, etc.) with Product schema, 50+ verified reviews, FAQs, video embeds, and INR pricing to reclaim positions 1–2 on 'xp pen [model]' queries and reduce marketplace bleed by 40%+ in 60 days.</li><li><strong>[Urgent]</strong> Launch category comparison content: create '[Use Case] tablets under ₹10,000/₹20,000' guides (e.g. 'Best graphic tablet for beginners India 2024', 'Pen display vs pen tablet for digital art') targeting Product queries, internally linking to Deco/Artist collection pages to lift non-branded share from 8.59% to 15%+ in Q2.</li><li><strong>[Important]</strong> Build Informational hub: publish driver download pages, setup tutorials, pressure curve guides, and software compatibility posts optimized for 'xp pen driver windows 11', 'how to connect pen tablet to laptop', 'Photoshop pen pressure not working' — capture 500+ monthly support query clicks, reduce bounce, seed retargeting audiences.</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · XP-Pen India SEO Dashboard · Auto-refreshed every Monday 10:30am IST · Powered by KM
+</footer>
+
+</body>
+</html>

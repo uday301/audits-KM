@@ -336,21 +336,16 @@
     // Animate steps
     animateSteps();
 
-    // Call n8n webhook
-    fetch(N8N_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ domain: domain, slug: slug, reportUrl: reportUrl })
-    })
-    .then(res => res.json())
-    .then(data => {
-      showSuccess(domain);
-    })
-    .catch(err => {
-      // Even if webhook fails, show success after timeout (for testing)
-      setTimeout(() => showSuccess(domain), 5000);
-    });
-  }
+// Fire and forget — don't wait for response
+fetch(N8N_WEBHOOK_URL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ domain: domain, slug: slug, reportUrl: reportUrl })
+}).catch(() => {});
+
+// Show success after realistic crawl time
+// Progress steps animate, then show report ready
+setTimeout(() => showSuccess(domain), 180000); // 3 minutes
 
   function animateSteps() {
     const steps = ['step-1','step-2','step-3','step-4','step-5'];

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jaysons Chemical Industries — SEO Dashboard | Tuesday, 2 June 2026</title>
+<title>Jaysons Chemical Industries — SEO Dashboard | Thursday, 4 June 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -43,16 +43,26 @@
   table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   table td.kw { font-weight: 500; }
   .empty-row { text-align: center; color: var(--muted); font-style: italic; padding: 24px !important; }
-  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  /* ── Insights: 3-column grid, cards scroll internally at 10+ items ── */
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
   .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
-  .insight-card.wins { border-left-color: #22C55E; }
-  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.wins    { border-left-color: #22C55E; }
+  .insight-card.concerns{ border-left-color: #EF4444; }
   .insight-card.actions { border-left-color: #F59E0B; }
-  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center; }
+  .insight-card h3 .count { font-size: 11px; background: var(--border); color: var(--muted); padding: 2px 7px; border-radius: 10px; font-weight: 600; letter-spacing: 0; }
+  /* Scrollable list when items > 6 — keeps 3-column layout tidy */
+  .insight-card .insight-list { max-height: 480px; overflow-y: auto; padding-right: 4px; }
+  .insight-card .insight-list::-webkit-scrollbar { width: 4px; }
+  .insight-card .insight-list::-webkit-scrollbar-track { background: transparent; }
+  .insight-card .insight-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
   .insight-card ul { padding-left: 18px; }
-  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li { margin-bottom: 6px; font-size: 13px; color: var(--text); line-height: 1.6; }
   .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .insight-card li:last-child { margin-bottom: 0; }
   .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+
   footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
   footer strong { color: var(--brand-blue); }
   @media (max-width: 768px) {
@@ -61,69 +71,70 @@
     .mix-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .wrap { padding: 16px; }
     section h2 { flex-direction: column; align-items: flex-start; }
+    .insight-card .insight-list { max-height: none; overflow-y: visible; }
   }
 </style>
 </head>
 <body>
 
-<div class="topbar">Auto-refreshed weekly · Generated 2026-06-02T08:30:00.168Z</div>
+<div class="topbar">Auto-refreshed weekly · Generated 2026-06-04T10:14:27.635Z</div>
 <nav class="nav">
   <strong>Kerkar Media · Jaysons Chemical Industries SEO Dashboard</strong>
-  <div class="meta">Period ending Tuesday, 2 June 2026 · ammoniagas.com</div>
+  <div class="meta">Period ending Thursday, 4 June 2026 · ammoniagas.com</div>
 </nav>
 
 <div class="wrap">
 
   <div class="hero">
     <h1>SEO Performance & Lead Generation</h1>
-    <div class="sub">3 May 2026 — 1 Jun 2026 · 312 organic clicks · 90 quote leads · 3.34% conv rate</div>
-    <div class="summary"><strong>Executive Summary:</strong> Strong 3.34% organic lead conversion rate (90 leads from 2,694 sessions) demonstrates excellent B2B funnel execution. Branded queries dominate traffic (54.2%), but Product + Geo-State clicks (23.7% combined) drive high-intent procurement leads. Critical opportunity: 'liquid ammonia manufacturers in india' at position 4.2 with 33 impressions signals untapped demand for national-level supplier landing pages.</div>
+    <div class="sub">5 May 2026 — 3 Jun 2026 · 289 organic clicks · 96 quote leads · 3.45% conv rate</div>
+    <div class="summary"><strong>Executive Summary:</strong> Jaysons Chemical Industries is generating 96 organic leads per month at a 3.45% conversion rate, primarily driven by brand defense (52% of clicks) and supported by product + geo-state queries (26% combined). Top performers include MSDS PDFs (liquor ammonia, SO2) with 47%+ CTR and position 1.0, signaling strong technical authority. Critical gaps: weak Domain Rating (2), underperforming informational content (1308 impressions, 0.38% CTR), and missing state-level supplier pages despite impressions for 'liquid ammonia manufacturers in India' at position 4.1.</div>
   </div>
 
   <div class="section-label">SEO Performance</div>
   <div class="kpi-grid">
   <div class="kpi" style="border-top-color:#003DCC">
     <div class="kpi-label">Organic Clicks</div>
-    <div class="kpi-value">312</div>
-    <div class="kpi-sub">4,890 impressions · 6.38% CTR</div>
+    <div class="kpi-value">289</div>
+    <div class="kpi-sub">4,706 impressions · 6.14% CTR</div>
   </div>
   <div class="kpi" style="border-top-color:#035398">
     <div class="kpi-label">Organic Sessions</div>
-    <div class="kpi-value">2,694</div>
+    <div class="kpi-value">2,779</div>
     <div class="kpi-sub">GA4 organic channel</div>
   </div>
   <div class="kpi" style="border-top-color:#0EA5E9">
     <div class="kpi-label">Avg Position</div>
-    <div class="kpi-value">3.9</div>
+    <div class="kpi-value">3.8</div>
     <div class="kpi-sub">across all tracked queries</div>
   </div>
   <div class="kpi" style="border-top-color:#6366F1">
     <div class="kpi-label">Domain Rating</div>
     <div class="kpi-value">2</div>
-    <div class="kpi-sub">255 backlinks · 207 refdomains</div>
+    <div class="kpi-sub">258 backlinks · 209 refdomains</div>
   </div></div>
 
   <div class="section-label">Lead Generation & Authority</div>
   <div class="kpi-grid">
   <div class="kpi" style="border-top-color:#16A34A">
     <div class="kpi-label">Organic Leads</div>
-    <div class="kpi-value">90</div>
+    <div class="kpi-value">96</div>
     <div class="kpi-sub">quote / contact / vendor form · last 30d</div>
   </div>
   <div class="kpi" style="border-top-color:#22C55E">
     <div class="kpi-label">Lead Conversion Rate</div>
-    <div class="kpi-value">3.34%</div>
+    <div class="kpi-value">3.45%</div>
     <div class="kpi-sub">leads ÷ organic sessions</div>
   </div>
   <div class="kpi" style="border-top-color:#EC4899">
     <div class="kpi-label">Organic Keywords (Ahrefs)</div>
-    <div class="kpi-value">101</div>
-    <div class="kpi-sub">est traffic 705/mo</div>
+    <div class="kpi-value">107</div>
+    <div class="kpi-sub">est traffic 679/mo</div>
   </div>
   <div class="kpi" style="border-top-color:#A855F7">
     <div class="kpi-label">Referring Domains</div>
-    <div class="kpi-value">207</div>
-    <div class="kpi-sub">255 total backlinks</div>
+    <div class="kpi-value">209</div>
+    <div class="kpi-sub">258 total backlinks</div>
   </div></div>
 
   <div class="section-label">Query Mix — Where Clicks Are Coming From</div>
@@ -132,37 +143,37 @@
       
   <div style="border-left: 4px solid #003DCC; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
     <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">🛡 Branded</div>
-    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">169</div>
-    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 54.2% of total</div>
+    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">150</div>
+    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 51.9% of total</div>
     <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
-      11 queries · 12.68% CTR · Pos 1.4
+      11 queries · 12.11% CTR · Pos 1.5
     </div>
   </div>
       
   <div style="border-left: 4px solid #7C3AED; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
     <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">⬡ Product <span style="font-size:10px; color:#7C3AED; font-weight:600;">(CATEGORY DEMAND)</span></div>
-    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">36</div>
-    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 11.5% of total</div>
+    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">31</div>
+    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 10.7% of total</div>
     <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
-      15 queries · 2.68% CTR · Pos 5.2
+      13 queries · 2.51% CTR · Pos 5.1
     </div>
   </div>
       
   <div style="border-left: 4px solid #F59E0B; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
     <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">📍 Geo-State <span style="font-size:10px; color:#F59E0B; font-weight:600;">(HIGHEST LEVERAGE)</span></div>
-    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">38</div>
-    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 12.2% of total</div>
+    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">43</div>
+    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 14.9% of total</div>
     <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
-      30 queries · 6.43% CTR · Pos 4.5
+      34 queries · 6.36% CTR · Pos 4.1
     </div>
   </div>
       
   <div style="border-left: 4px solid #0EA5E9; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
     <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">ℹ Informational <span style="font-size:10px; color:#0EA5E9; font-weight:600;">(TOP OF FUNNEL)</span></div>
-    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">69</div>
-    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 22.1% of total</div>
+    <div style="font-family:'DM Sans'; font-size:26px; font-weight:700; color:var(--text);">65</div>
+    <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 22.5% of total</div>
     <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
-      44 queries · 4.25% CTR · Pos 4.5
+      42 queries · 4.18% CTR · Pos 4.5
     </div>
   </div>
     </div>
@@ -174,7 +185,7 @@
   <section>
     <h2>
       Top Search Queries
-      <span class="meta">3 May 2026 — 1 Jun 2026 · GSC · 🛡 brand · ⬡ product · 📍 state</span>
+      <span class="meta">5 May 2026 — 3 Jun 2026 · GSC · 🛡 brand · ⬡ product · 📍 state</span>
     </h2>
     <div style="overflow-x:auto;">
       <table>
@@ -192,81 +203,81 @@
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>jaysons chemical industries</td>
     <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
-    <td class="center"><strong>151</strong></td>
-    <td class="center">1,136</td>
-    <td class="center">13.29%</td>
-    <td class="center">1.3</td>
+    <td class="center"><strong>134</strong></td>
+    <td class="center">1,047</td>
+    <td class="center">12.8%</td>
+    <td class="center">1.4</td>
   </tr>
   <tr>
     <td class="kw">jayson chemical industries</td>
     <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
-    <td class="center"><strong>13</strong></td>
-    <td class="center">25</td>
-    <td class="center">52%</td>
+    <td class="center"><strong>11</strong></td>
+    <td class="center">22</td>
+    <td class="center">50%</td>
     <td class="center">1</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#EDE9FE;color:#5B21B6;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">⬡ PRODUCT</span>liquor ammonia msds</td>
     <td class="center"><span class="pill pill-purple">⬡ Product Query</span></td>
-    <td class="center"><strong>12</strong></td>
-    <td class="center">24</td>
-    <td class="center">50%</td>
+    <td class="center"><strong>11</strong></td>
+    <td class="center">23</td>
+    <td class="center">47.83%</td>
     <td class="center">1</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>jaysons chemical industries vapi</td>
     <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
-    <td class="center"><strong>8</strong></td>
+    <td class="center"><strong>7</strong></td>
     <td class="center">43</td>
-    <td class="center">18.6%</td>
+    <td class="center">16.28%</td>
     <td class="center">1.6</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>jaysons</td>
     <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
-    <td class="center"><strong>7</strong></td>
-    <td class="center">135</td>
-    <td class="center">5.19%</td>
-    <td class="center">2.3</td>
+    <td class="center"><strong>6</strong></td>
+    <td class="center">132</td>
+    <td class="center">4.55%</td>
+    <td class="center">2.2</td>
   </tr>
   <tr>
     <td class="kw">chemical manufacturing companies in mumbai</td>
-    <td class="center"><span class="pill pill-amber">📍 State Exporter</span></td>
-    <td class="center"><strong>6</strong></td>
-    <td class="center">57</td>
-    <td class="center">10.53%</td>
+    <td class="center"><span class="pill pill-green">★ Quote Intent</span></td>
+    <td class="center"><strong>5</strong></td>
+    <td class="center">58</td>
+    <td class="center">8.62%</td>
     <td class="center">1.1</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#EDE9FE;color:#5B21B6;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">⬡ PRODUCT</span>so2 msds</td>
     <td class="center"><span class="pill pill-purple">⬡ Product Query</span></td>
     <td class="center"><strong>5</strong></td>
-    <td class="center">57</td>
-    <td class="center">8.77%</td>
+    <td class="center">54</td>
+    <td class="center">9.26%</td>
     <td class="center">5.2</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#FEF3C7;color:#92400E;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">📍 STATE</span>liquid ammonia manufacturers in india</td>
     <td class="center"><span class="pill pill-green">★ Quote Intent</span></td>
     <td class="center"><strong>4</strong></td>
-    <td class="center">33</td>
-    <td class="center">12.12%</td>
-    <td class="center">4.2</td>
+    <td class="center">31</td>
+    <td class="center">12.9%</td>
+    <td class="center">4.1</td>
   </tr>
   <tr>
     <td class="kw">jayson chemicals</td>
     <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
     <td class="center"><strong>4</strong></td>
-    <td class="center">36</td>
-    <td class="center">11.11%</td>
+    <td class="center">28</td>
+    <td class="center">14.29%</td>
     <td class="center">1.3</td>
   </tr>
   <tr>
     <td class="kw">chemical companies in mumbai</td>
-    <td class="center"><span class="pill pill-amber">📍 State Exporter</span></td>
+    <td class="center"><span class="pill pill-green">★ Quote Intent</span></td>
     <td class="center"><strong>3</strong></td>
-    <td class="center">34</td>
-    <td class="center">8.82%</td>
+    <td class="center">28</td>
+    <td class="center">10.71%</td>
     <td class="center">4.7</td>
   </tr></tbody>
       </table>
@@ -276,7 +287,7 @@
   <section>
     <h2>
       Top Performing Pages
-      <span class="meta">3 May 2026 — 1 Jun 2026 · 📍 state page · ⬡ product page · BLOG</span>
+      <span class="meta">5 May 2026 — 3 Jun 2026 · 📍 state page · ⬡ product page · BLOG</span>
     </h2>
     <div style="overflow-x:auto;">
       <table>
@@ -293,92 +304,102 @@
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/" target="_blank" style="color:#003DCC;text-decoration:none">/</a></td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>210</strong></td>
-    <td class="center">1,305</td>
-    <td class="center">16.09%</td>
+    <td class="center"><strong>193</strong></td>
+    <td class="center">1,322</td>
+    <td class="center">14.6%</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/contact-us/" target="_blank" style="color:#003DCC;text-decoration:none">/contact-us/</a></td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>28</strong></td>
-    <td class="center">313</td>
-    <td class="center">8.95%</td>
+    <td class="center"><strong>27</strong></td>
+    <td class="center">291</td>
+    <td class="center">9.28%</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/wp-content/uploads/2023/08/MSDS-Liquor-Ammonia.pdf" target="_blank" style="color:#003DCC;text-decoration:none">/wp-content/uploads/2023/08/MSDS-Liquor-Ammonia.pdf</a></td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>12</strong></td>
-    <td class="center">24</td>
-    <td class="center">50%</td>
+    <td class="center"><strong>11</strong></td>
+    <td class="center">23</td>
+    <td class="center">47.83%</td>
   </tr>
   <tr>
-    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/wp-content/uploads/2023/08/MSDS-SO2-30.pdf" target="_blank" style="color:#003DCC;text-decoration:none">/wp-content/uploads/2023/08/MSDS-SO2-30.pdf</a></td>
-    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>10</strong></td>
-    <td class="center">102</td>
-    <td class="center">9.8%</td>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/common-uses-of-ammonia/" target="_blank" style="color:#003DCC;text-decoration:none">/common-uses-of-ammonia/</a></td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>8</strong></td>
+    <td class="center">501</td>
+    <td class="center">1.6%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#EDE9FE;color:#5B21B6;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">⬡ PRODUCT</span><a href="https://ammoniagas.com/products/" target="_blank" style="color:#003DCC;text-decoration:none">/products/</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">207</td>
+    <td class="center">3.38%</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/careers/" target="_blank" style="color:#003DCC;text-decoration:none">/careers/</a></td>
     <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
-    <td class="center"><strong>8</strong></td>
-    <td class="center">239</td>
-    <td class="center">3.35%</td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">221</td>
+    <td class="center">3.17%</td>
   </tr>
   <tr>
-    <td class="kw"><span style="display:inline-block;background:#EDE9FE;color:#5B21B6;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">⬡ PRODUCT</span><a href="https://ammoniagas.com/products/" target="_blank" style="color:#003DCC;text-decoration:none">/products/</a></td>
-    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/wp-content/uploads/2023/08/MSDS-SO2-30.pdf" target="_blank" style="color:#003DCC;text-decoration:none">/wp-content/uploads/2023/08/MSDS-SO2-30.pdf</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
     <td class="center"><strong>7</strong></td>
-    <td class="center">225</td>
-    <td class="center">3.11%</td>
-  </tr>
-  <tr>
-    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/common-uses-of-ammonia/" target="_blank" style="color:#003DCC;text-decoration:none">/common-uses-of-ammonia/</a></td>
-    <td class="center"><span class="pill pill-blue">⚙ Application Use</span></td>
-    <td class="center"><strong>7</strong></td>
-    <td class="center">518</td>
-    <td class="center">1.35%</td>
+    <td class="center">79</td>
+    <td class="center">8.86%</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/liquor-ammonia-vs-liquid-ammonia-differences/" target="_blank" style="color:#003DCC;text-decoration:none">/liquor-ammonia-vs-liquid-ammonia-differences/</a></td>
     <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
     <td class="center"><strong>5</strong></td>
-    <td class="center">1,354</td>
-    <td class="center">0.37%</td>
+    <td class="center">1,308</td>
+    <td class="center">0.38%</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/green-ammonia-vs-blue-amonia-key-differences/" target="_blank" style="color:#003DCC;text-decoration:none">/green-ammonia-vs-blue-amonia-key-differences/</a></td>
-    <td class="center"><span class="pill pill-blue">ℹ Informational</span></td>
-    <td class="center"><strong>4</strong></td>
-    <td class="center">147</td>
-    <td class="center">2.72%</td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>3</strong></td>
+    <td class="center">133</td>
+    <td class="center">2.26%</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://ammoniagas.com/ammonia-as-fertilizer/" target="_blank" style="color:#003DCC;text-decoration:none">/ammonia-as-fertilizer/</a></td>
-    <td class="center"><span class="pill pill-blue">⚙ Application Use</span></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
     <td class="center"><strong>3</strong></td>
-    <td class="center">76</td>
-    <td class="center">3.95%</td>
+    <td class="center">77</td>
+    <td class="center">3.9%</td>
   </tr></tbody>
       </table>
     </div>
   </section>
 
   <section>
-    <h2>Insights · Wins / Concerns / Actions</h2>
+    <h2>Insights · Wins / Concerns / Actions <span class="meta">18 total insights this period</span></h2>
     <div class="insights">
+
       <div class="insight-card wins">
-        <h3>🏆 Wins</h3>
-        <ul><li><strong>[Important]</strong> MSDS PDF assets driving qualified product research traffic: liquor ammonia MSDS at position 1.0 (12 clicks, 50% CTR) and SO2 MSDS (10 clicks) indicate procurement teams in vendor evaluation phase—ensure PDFs have clear CTA overlays linking to quote forms.</li><li><strong>[Important]</strong> Homepage conversion funnel performing: 210 clicks at 16.09% CTR funneling to Contact Us page (28 clicks, 8.95% CTR) shows strong brand-to-lead pathway for the 54.2% branded query traffic.</li><li><strong>[Worth doing]</strong> State exporter signal captured: 'chemical manufacturing companies in mumbai' at position 1.1 (6 clicks) validates programmatic geo-SEO strategy—Maharashtra plant location resonating with local sourcing intent.</li></ul>
+        <h3>🏆 Wins <span class="count">4</span></h3>
+        <div class="insight-list">
+          <ul><li><strong>[Important]</strong> MSDS PDFs driving high-intent procurement traffic: 'liquor ammonia msds' at position 1.0 with 47.83% CTR (11 clicks) and SO2 MSDS PDF at 8.86% CTR — technical assets establishing vendor credibility early in B2B evaluation.</li><li><strong>[Important]</strong> Brand defense holding position 1.0–1.6 for core branded queries: 'jaysons chemical industries' (134 clicks, position 1.4), 'jayson chemical industries' (11 clicks, position 1.0), protecting vendor discovery against competitors.</li><li><strong>[Important]</strong> Geo-state query 'liquid ammonia manufacturers in India' at position 4.1 generating 4 clicks from 31 impressions (12.9% CTR) — early validation of programmatic geo-supplier strategy.</li><li><strong>[Worth doing]</strong> Homepage converting brand + navigational intent: 193 clicks at 14.6% CTR, funneling to contact page (27 clicks, 9.28% CTR) — clear lead-generation path intact.</li></ul>
+        </div>
       </div>
+
       <div class="insight-card concerns">
-        <h3>⚠️ Concerns</h3>
-        <ul><li><strong>[Urgent]</strong> Domain authority bottleneck (DR 2, 207 referring domains) severely limits ability to rank for high-volume commercial queries like 'liquid ammonia manufacturers in india' (position 4.2)—competitors with higher DR will dominate buyer research phase.</li><li><strong>[Important]</strong> Products page underperforming: 7 clicks from 225 impressions (3.11% CTR, avg position likely 8-15) means core product catalog missing procurement traffic—page not optimized for transactional queries like '[product name] suppliers' or '[product] price India'.</li><li><strong>[Important]</strong> Low non-branded impression volume (4,890 total impressions, only 2,236 non-branded) indicates limited visibility in category demand—missing rankings for high-intent queries like 'anhydrous ammonia suppliers', 'green ammonia exporters India', 'methylamine manufacturers' where competitors capture buyer search volume.</li></ul>
+        <h3>⚠️ Concerns <span class="count">4</span></h3>
+        <div class="insight-list">
+          <ul><li><strong>[Urgent]</strong> Domain Rating of 2 with only 209 referring domains severely limits competitive visibility for non-branded product/geo queries — backlink velocity is critically low for B2B authority building.</li><li><strong>[Urgent]</strong> Informational blog pages drastically underperforming: 'liquor ammonia vs liquid ammonia' has 1,308 impressions but only 5 clicks (0.38% CTR), and 'common uses of ammonia' has 501 impressions with 8 clicks (1.6% CTR) — title/meta failing to attract procurement teams.</li><li><strong>[Important]</strong> 'chemical manufacturing companies in mumbai' at position 1.1 but only 5 clicks from 58 impressions (8.62% CTR) — geo-commercial intent exists but no dedicated Mumbai supplier landing page to capture RFQ traffic.</li><li><strong>[Important]</strong> 'so2 msds' at position 5.2 with 9.26% CTR (5 clicks from 54 impressions) — underperforming vs liquor ammonia MSDS at position 1.0; SO2 MSDS PDF exists but page optimization/internal linking likely weak.</li></ul>
+        </div>
       </div>
+
       <div class="insight-card actions">
-        <h3>🎯 Actions This Period</h3>
-        <ul><li><strong>[Urgent]</strong> Launch national + tier-1 city geo landing pages immediately: Create 'Liquid Ammonia Manufacturers in India', 'Anhydrous Ammonia Suppliers in India', then drill down to 'Ammonia Suppliers in Mumbai/Pune/Ahmedabad/Surat'—target the 33-impression 'liquid ammonia manufacturers in india' query (currently position 4.2) and similar volume hiding in search console query data.</li><li><strong>[Urgent]</strong> Execute B2B link-building campaign to raise DR from 2 to 15+ within 6 months: Secure backlinks from industry associations (Chemical & Petrochemical Manufacturers' Association, Refrigeration & Air Conditioning Manufacturers Association), client case study co-marketing (Aarti Industries, Avantor mentions), and supplier directory listings (IndiaMART, TradeIndia verified profiles with backlinks) to compete for commercial keywords.</li><li><strong>[Important]</strong> Optimize /products/ page for commercial intent: Rewrite with H2s for each product targeting '[Product] Suppliers in India' / '[Product] Manufacturers' / '[Product] Exporters'—add packaging specs (cylinders/tonners/ISO tanks), grade options (technical/refrigerant/AR/LR), and prominent 'Get Bulk Quote' CTAs above fold to convert the existing 225 monthly impressions into qualified leads.</li></ul>
+        <h3>🎯 Actions This Period <span class="count">10</span></h3>
+        <div class="insight-list">
+          <ul><li><strong>[Urgent]</strong> Launch 5 state-level supplier pages (Maharashtra, Tamil Nadu, Karnataka, Rajasthan, West Bengal) targeting '[Product] Suppliers in [State]' patterns — replicate 'Green Ammonia Exporters in [State]' template for Anhydrous Ammonia, Liquor Ammonia, and SO2 to capture geo-sourcing queries like 'liquid ammonia manufacturers in India' (position 4.1, 31 impressions).</li><li><strong>[Urgent]</strong> Execute targeted backlink campaign to reach DR 15+ in 90 days: secure 30–40 contextual backlinks from industry directories (ChemicalBook, IndiaMART supplier profiles), trade associations (Indian Chemical Council), and client case study co-marketing (Aarti Industries, Avantor) to improve domain authority for non-branded rankings.</li><li><strong>[Important]</strong> Rewrite title/meta for top 3 underperforming blog pages: change 'Liquor Ammonia vs Liquid Ammonia Differences' to 'Liquor Ammonia vs Liquid Ammonia: MSDS, Specs & Procurement Guide for Industrial Buyers' and 'Common Uses of Ammonia' to 'Industrial Ammonia Applications: Refrigeration, Textiles & Fertilizer Manufacturing' — inject procurement/vendor language to lift CTR from 0.38%/1.6% to 5%+.</li><li><strong>[Important]</strong> Create city-specific supplier pages for Mumbai, Pune, Ahmedabad, and Surat: 'chemical manufacturing companies in mumbai' is position 1.1 with 58 impressions but lacks a dedicated landing page — build '[City] Chemical Supplier | ISO Tanks, Cylinders & Tonners | Jaysons Chemical' pages with local case studies and delivery logistics.</li><li><strong>[Important]</strong> Optimize SO2 MSDS PDF page and create dedicated SO2 product page: 'so2 msds' at position 5.2 (54 impressions) — add on-page content (applications, packaging, safety specs) around PDF, create internal links from homepage/products page, and target 'sulphur dioxide suppliers India' to replicate liquor ammonia MSDS success (position 1.0, 47% CTR).</li><li><strong>[Important]</strong> Expand green ammonia content cluster to capture emerging hydrogen economy keywords: create 3 pillar pages — 'Green Ammonia Production in India,' 'Ammonia Cracking for Hydrogen Supply,' 'Green Ammonia Exporters & Pricing' — to own nascent search demand before competitors; link to existing blog posts on ammonia → hydrogen.</li><li><strong>[Worth doing]</strong> Add structured data (Organization, Product, FAQPage schema) to homepage, product pages, and top 5 geo-state pages — enhance SERP visibility for branded + product queries and improve Google's understanding of B2B supplier entity for procurement-related searches.</li><li><strong>[Worth doing]</strong> Build 'Ammonia Cylinder & Tonner Pricing Guide 2024' gated lead magnet: existing blog traffic on pricing queries (tonner price, cylinder cost) can convert into email leads — gate PDF download with vendor form to capture early-stage procurement contacts for nurture campaigns.</li><li><strong>[Worth doing]</strong> Internally link high-impression blog pages to conversion pages: add contextual CTAs in 'liquor ammonia vs liquid ammonia' (1,308 impressions) and 'common uses of ammonia' (501 impressions) linking to /contact-us/ and /products/ — reduce bounce and funnel awareness traffic toward quote requests.</li><li><strong>[Low priority]</strong> Monitor 'jaysons' branded query (position 2.2, 4.55% CTR from 132 impressions) for competitor encroachment — if position drops below 2.0 or CTR declines, investigate SERP features or competitor ad spend targeting brand name.</li></ul>
+        </div>
       </div>
+
     </div>
   </section>
 

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fangoral — SEO Dashboard</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b}
+  .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  table{width:100%;border-collapse:collapse}
+  thead th{background:#f8fafc;padding:8px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#64748b;text-align:left;border-bottom:2px solid #e2e8f0}
+  thead th:not(:first-child){text-align:right}
+  thead th:last-child{text-align:center}
+  tbody tr:hover{background:#f8fafc}
+  tbody tr{border-bottom:1px solid #f1f5f9}
+</style>
+</head>
+<body>
+<div style="max-width:1100px;margin:0 auto;padding:32px 20px;">
+
+  <!-- Header -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:14px;">
+    <div>
+      <h1 style="font-size:26px;font-weight:800;color:#0f172a;letter-spacing:-.5px;">🪥 Fangoral SEO Dashboard</h1>
+      <p style="font-size:13px;color:#64748b;margin-top:5px;">fangoral.com &nbsp;·&nbsp; Last 7 days &nbsp;·&nbsp; Tuesday, 9 June 2026</p>
+    </div>
+    <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:14px 20px;border-radius:12px;text-align:right;min-width:180px;">
+      <div style="font-size:11px;opacity:.8;text-transform:uppercase;letter-spacing:.5px;">Organic Revenue</div>
+      <div style="font-size:28px;font-weight:800;">₹0</div>
+      <div style="font-size:13px;opacity:.85;margin-top:2px;">58,845 transactions &nbsp;·&nbsp; 11.83% CVR</div>
+    </div>
+  </div>
+
+  <!-- SEO KPI grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:16px;">
+    
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #2563eb;">
+    <div style="font-size:20px;margin-bottom:6px;">👆</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">4,032</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Organic Clicks</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #7c3aed;">
+    <div style="font-size:20px;margin-bottom:6px;">👁️</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">1,14,965</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Impressions</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #0891b2;">
+    <div style="font-size:20px;margin-bottom:6px;">📊</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">3</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Avg Position</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #059669;">
+    <div style="font-size:20px;margin-bottom:6px;">🎯</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">3.51%</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">CTR</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #d97706;">
+    <div style="font-size:20px;margin-bottom:6px;">📱</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">4,97,304</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Organic Sessions</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #dc2626;">
+    <div style="font-size:20px;margin-bottom:6px;">🛒</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">11.83%</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Conv. Rate</div>
+  </div>
+  </div>
+
+  <!-- Ahrefs KPI grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px;">
+    
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #94a3b8;">
+    <div style="font-size:20px;margin-bottom:6px;">⭐</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">2</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Domain Rating</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #94a3b8;">
+    <div style="font-size:20px;margin-bottom:6px;">🔗</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">567</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Backlinks</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #94a3b8;">
+    <div style="font-size:20px;margin-bottom:6px;">🌐</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">215</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Referring Domains</div>
+  </div>
+  <div style="background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-top:3px solid #94a3b8;">
+    <div style="font-size:20px;margin-bottom:6px;">🔍</div>
+    <div style="font-size:22px;font-weight:800;color:#0f172a;">94</div>
+    <div style="font-size:11px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;">Organic Keywords</div>
+  </div>
+  </div>
+
+  <!-- Query Mix + Executive Summary -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+    <div class="card">
+      <h2 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:16px;">📊 Query Mix</h2>
+      
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:13px;font-weight:600;color:#1e293b;">🏷️ Branded</span>
+        <span style="font-size:12px;color:#64748b;">120 clicks · pos 1 · 3%</span>
+      </div>
+      <div style="background:#e2e8f0;border-radius:4px;height:8px;">
+        <div style="width:5%;background:#7c3aed;height:8px;border-radius:4px;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:13px;font-weight:600;color:#1e293b;">🪥 Product</span>
+        <span style="font-size:12px;color:#64748b;">1,264 clicks · pos 4.1 · 31.3%</span>
+      </div>
+      <div style="background:#e2e8f0;border-radius:4px;height:8px;">
+        <div style="width:50%;background:#2563eb;height:8px;border-radius:4px;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:13px;font-weight:600;color:#1e293b;">⚖️ Comparison</span>
+        <span style="font-size:12px;color:#64748b;">102 clicks · pos 2.8 · 2.5%</span>
+      </div>
+      <div style="background:#e2e8f0;border-radius:4px;height:8px;">
+        <div style="width:4%;background:#d97706;height:8px;border-radius:4px;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:13px;font-weight:600;color:#1e293b;">📖 Informational</span>
+        <span style="font-size:12px;color:#64748b;">2,546 clicks · pos 1.9 · 63.1%</span>
+      </div>
+      <div style="background:#e2e8f0;border-radius:4px;height:8px;">
+        <div style="width:100%;background:#16a34a;height:8px;border-radius:4px;"></div>
+      </div>
+    </div>
+      <p style="font-size:11px;color:#94a3b8;margin-top:6px;">Branded → Comparison → Product → Informational (mutually exclusive)</p>
+    </div>
+    <div class="card">
+      <h2 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:14px;">🧠 Executive Summary</h2>
+      <p style="font-size:14px;color:#334155;line-height:1.7;">SEO is driving 58,845 organic transactions at an 11.83% conversion rate, but 63% of clicks come from informational queries with lower purchase intent. Only 2.5% of clicks (102) are from high-intent Comparison queries where buyers choose between Fangoral and competitors—this is the biggest untapped revenue opportunity. Brand Defense is strong (position 1-2.7 for most branded terms), but product-category clicks (31.3%) show limited reach beyond existing brand awareness.</p>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px;">
+    <div class="card">
+    <h3 style="font-size:14px;font-weight:700;color:#16a34a;margin:0 0 10px;display:flex;align-items:center;gap:6px;">✅ Wins</h3>
+    
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Homepage (fangoral.com) converts at 7.53% CTR with 2,807 clicks, anchoring brand defense and capturing direct brand demand effectively.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Wild Mint Toothpaste product page ranks position 6 for 'fang toothpaste' (826 clicks, 2.27% CTR), driving measurable product-category traffic to a transaction page.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Organic conversion rate of 11.83% (58,845 transactions) shows landing pages and product pages are converting SEO traffic efficiently once users arrive.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#3b82f6;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.5px;">Worth doing</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">'Fang oral care' ranks position 1 with 195 clicks, defending brand + category association at the top of SERPs.</p>
+      </div>
+    </div></div>
+    <div class="card">
+    <h3 style="font-size:14px;font-weight:700;color:#dc2626;margin:0 0 10px;display:flex;align-items:center;gap:6px;">⚠️ Concerns</h3>
+    
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#ef4444;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.5px;">Urgent</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Only 102 clicks (2.5%) from Comparison queries—missing high-intent buyers researching 'Fangoral vs Oral-B', 'best electric toothbrush India', 'fluoride-free toothpaste vs Colgate'. Competitors capture this traffic.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#ef4444;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.5px;">Urgent</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Organic Revenue shows ₹0 in GA4 despite 58,845 transactions—e-commerce tracking is broken or misconfigured, making ROI measurement impossible for leadership.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#ef4444;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.5px;">Urgent</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Domain Rating 2 and only 215 referring domains severely limits ranking ability for non-branded, product-category keywords (electric toothbrush, nano hydroxyapatite toothpaste, etc.).</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">63.1% of clicks (2,546) are informational/other bucket—low purchase intent traffic inflates session count but contributes minimally to transactions vs product/comparison queries.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Teeth whitening collection page (6,384 impressions, 0.34% CTR, 22 clicks) and whitening kit product page (2,845 impressions, 0.35% CTR, 10 clicks) have dismal CTRs—meta titles/descriptions likely generic or unappealing.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">'Fang toothpaste' ranks position 6 (826 clicks)—not position 1-3. Competitors or aggregators outrank Fangoral's own product page for a branded product term, leaking revenue.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Ahrefs shows only 94 organic keywords—extremely narrow keyword footprint means Fangoral is invisible for most product-category and comparison searches (e.g., 'best sonic toothbrush India', 'n-HA toothpaste').</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#3b82f6;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.5px;">Worth doing</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">'Fang' (2,428 clicks, position 1.4) may capture unrelated searches (FAANG tech stocks, gaming, etc.)—verify search intent and session behavior to avoid vanity traffic inflating metrics without conversions.</p>
+      </div>
+    </div></div>
+    <div class="card">
+    <h3 style="font-size:14px;font-weight:700;color:#2563eb;margin:0 0 10px;display:flex;align-items:center;gap:6px;">🎯 Actions</h3>
+    
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#ef4444;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.5px;">Urgent</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Launch 5-8 Comparison landing pages: 'Fangoral vs Oral-B', 'Fangoral vs Philips Sonicare', 'Fangoral vs uSmile', 'Best fluoride-free toothpaste India', 'Best electric toothbrush under ₹2000 India'. Target comparison keywords to intercept buyers in purchase-decision phase.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#ef4444;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.5px;">Urgent</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Fix GA4 e-commerce revenue tracking immediately—work with dev/analytics team to validate purchase events fire correctly and currency is captured. Without revenue data, SEO ROI is invisible to leadership.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#ef4444;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.5px;">Urgent</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Rewrite meta titles/descriptions for teeth whitening collection (/collections/teeth-whitening) and whitening kit/pen product pages—CTRs of 0.34-0.57% are 5-10x below top pages. Include 'at-home', 'safe', 'peroxide-free', price anchors.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Build 20+ backlinks from Indian health/wellness blogs, dental hygiene listicles, beauty/grooming roundups, and lifestyle publications to lift Domain Rating from 2 to 10+ and unlock non-branded keyword rankings.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Optimize Wild Mint Toothpaste page to rank position 1-3 for 'fang toothpaste' (currently position 6)—add FAQ schema, customer reviews, ingredient deep-dive, n-HA benefits section, and internal links from homepage.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Create 10-15 product-category cluster pages: 'Electric toothbrush India', 'Nano hydroxyapatite toothpaste', 'Fluoride-free toothpaste benefits', 'DuPont bristle toothbrush', 'Herbal toothpaste neem'. Link to product pages to capture non-branded demand.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#f97316;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.5px;">Important</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Launch blog content targeting informational-to-transactional keywords: 'Is fluoride-free toothpaste safe', 'n-HA vs fluoride', 'How to whiten teeth at home India', 'Best toothbrush for sensitive gums'—funnel to product pages with strong CTAs.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#3b82f6;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.5px;">Worth doing</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Audit 'fang' query (2,428 clicks, position 1.4)—check GSC Search Appearance and user behavior in GA4. If traffic is unrelated (FAANG stocks, gaming), consider brand name disambiguation or schema to filter irrelevant impressions.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#3b82f6;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.5px;">Worth doing</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Add HowTo/FAQSchema to product pages and comparison pages—enhance SERP real estate for 'how to use whitening kit', 'how to choose electric toothbrush', 'fangoral vs oral-b differences' to boost CTR.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+      <div style="width:10px;height:10px;min-width:10px;border-radius:50%;background:#3b82f6;margin-top:4px;"></div>
+      <div>
+        <span style="font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.5px;">Worth doing</span>
+        <p style="margin:2px 0 0;font-size:13px;color:#334155;line-height:1.55;">Promote 'fangoral toothpaste review' (84 clicks, position 2.5) to position 1 by adding video testimonials, dermatologist/dentist quotes, before-after images, and UGC reviews with schema markup on the product page.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Top Queries -->
+  <div class="card" style="margin-bottom:20px;">
+    <h2 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:16px;">🔍 Top Queries (Last 7 days)</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th>Clicks</th>
+            <th>Impressions</th>
+            <th>Avg Pos</th>
+            <th>CTR</th>
+            <th>Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">2,428</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">48,052</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.4</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">5.05%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang toothpaste</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">826</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">36,321</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">6</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2.27%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Top Performer</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang oral care</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">195</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">7,498</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2.6%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fangoral</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">104</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">3,588</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2.9%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang toothpaste review</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">84</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">4,254</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2.5</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.97%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang oral</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">33</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">402</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">8.21%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang company</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">31</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1,639</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2.7</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.89%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang toothpaste ingredients</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">28</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">318</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.5</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">8.81%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">nha toothpaste</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">26</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1,709</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">4.5</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.52%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#dbeafe;color:#1e40af;border:1px solid #93c5fd;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Product Match</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:200px;word-break:break-word;">fang toothpaste company</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">15</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">118</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.5</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">12.71%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f3e8ff;color:#6b21a8;border:1px solid #d8b4fe;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Brand Defense</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Top Pages -->
+  <div class="card" style="margin-bottom:28px;">
+    <h2 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:16px;">📄 Top Pages (Last 7 days)</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Clicks</th>
+            <th>Impressions</th>
+            <th>CTR</th>
+            <th>Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">2,807</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">37,271</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">7.53%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Top Performer</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/products/wild-mint-toothpaste</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">996</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">37,610</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2.65%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Top Performer</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/collections/all</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">103</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">9,589</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.07%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#ffedd5;color:#9a3412;border:1px solid #fdba74;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Opportunity</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/collections/teeth-whitening</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">22</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">6,384</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">0.34%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#ffedd5;color:#9a3412;border:1px solid #fdba74;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Opportunity</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/products/teeth-whitening-pen</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">20</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">3,525</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">0.57%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#ffedd5;color:#9a3412;border:1px solid #fdba74;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Opportunity</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/pages/our-story</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">16</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">5,906</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">0.27%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Low Intent</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/products/forest-essence-toothpaste</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">14</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1,250</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">1.12%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Maintain</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/products/teeth-whitening-kit</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">10</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2,845</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">0.35%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#ffedd5;color:#9a3412;border:1px solid #fdba74;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Opportunity</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/pages/shipping-and-delivery</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">9</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">3,973</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">0.23%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Low Intent</span></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 10px;font-size:12px;color:#1e293b;max-width:220px;word-break:break-word;">/collections/all-products</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#0f172a;">7</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">2,868</td>
+    <td style="padding:8px 10px;text-align:right;font-size:12px;color:#475569;">0.24%</td>
+    <td style="padding:8px 10px;text-align:center;"><span style="background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;">Low Intent</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:16px 0;color:#94a3b8;font-size:12px;">
+    Auto-generated by Kerkar Media &nbsp;·&nbsp; fangoral.com &nbsp;·&nbsp; Tuesday, 9 June 2026
+  </div>
+
+</div>
+</body>
+</html>

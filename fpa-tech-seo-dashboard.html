@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPA — Technical SEO Dashboard | Kerkar Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #FFFFFF;
+  --bg-2:         #F8FAFC;
+  --bg-3:         #F1F5F9;
+  --ink:          #0F172A;
+  --ink-dim:      #475569;
+  --ink-mute:     #94A3B8;
+  --blue:         #1E40AF;
+  --blue-dim:     #1E3A8A;
+  --blue-deep:    #172554;
+  --accent:       #2563EB;
+  --accent-light: #3B82F6;
+  --accent-soft:  #DBEAFE;
+  --line:         #E2E8F0;
+  --line-soft:    #F1F5F9;
+  --critical:     #DC2626;
+  --high:         #D97706;
+  --med:          #0891B2;
+  --good:         #16A34A;
+  --google:       #4285F4;
+  --meta:         #0866FF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02','cv03','cv04','cv11','ss01';
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 14.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 32px; }
+
+/* PAGE HEADER */
+.page-header {
+  background:
+    radial-gradient(ellipse at top right, rgba(37,99,235,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(30,64,175,0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 56px 0 40px;
+  position: relative;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(30,64,175,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,64,175,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+}
+.page-header-inner { position: relative; z-index: 1; }
+.brand-row {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.brand-mark {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--accent-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 15px;
+  letter-spacing: -0.02em;
+}
+.brand-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.brand-tag { font-size: 11.5px; color: var(--ink-mute); }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(37,99,235,0.06);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+h1 {
+  font-size: 42px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.03em; margin-bottom: 14px; color: var(--ink);
+}
+h1 .accent {
+  color: var(--blue); font-style: italic; font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.page-sub {
+  font-size: 16px; color: var(--ink-dim);
+  max-width: 780px; line-height: 1.55;
+  margin-bottom: 28px;
+}
+.header-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.hs-val {
+  font-size: 22px; font-weight: 700; color: var(--blue);
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.hs-val.red { color: var(--critical); }
+.hs-val.amber { color: var(--high); }
+.hs-val.green { color: var(--good); }
+.hs-lbl {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--ink-mute); font-weight: 500; margin-top: 4px;
+}
+.hs-sub { font-size: 11px; color: var(--ink-mute); margin-top: 2px; }
+.doc-meta {
+  margin-top: 28px; padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex; gap: 28px; flex-wrap: wrap;
+  font-size: 12px; color: var(--ink-mute);
+}
+.doc-meta strong { color: var(--ink); font-weight: 600; margin-right: 4px; }
+
+/* SCORE GAUGE SECTION */
+.score-section {
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.score-wrap {
+  display: flex; align-items: center; gap: 48px;
+  flex-wrap: wrap;
+}
+.gauge-wrap {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+.gauge-svg { width: 180px; height: 100px; }
+.gauge-num {
+  font-size: 40px; font-weight: 800; color: var(--blue);
+  letter-spacing: -0.04em; line-height: 1;
+  text-align: center; margin-top: -4px;
+}
+.gauge-denom { font-size: 16px; color: var(--ink-mute); font-weight: 500; }
+.gauge-label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-mute); font-weight: 600; margin-top: 6px;
+}
+.score-breakdown { flex: 1; min-width: 280px; }
+.score-breakdown h3 {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 18px; color: var(--ink);
+  display: flex; align-items: center; gap: 12px;
+}
+.score-breakdown h3::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--blue); border-radius: 1px;
+}
+.score-bar-row { display: flex; flex-direction: column; gap: 12px; }
+.score-bar-item { display: flex; align-items: center; gap: 12px; }
+.score-bar-label { font-size: 12px; color: var(--ink-dim); min-width: 160px; font-weight: 500; }
+.score-bar-track {
+  flex: 1; height: 8px; background: var(--bg-3);
+  border-radius: 4px; overflow: hidden;
+}
+.score-bar-fill { height: 100%; border-radius: 4px; }
+.score-bar-count { font-size: 12px; font-weight: 600; color: var(--ink-mute); min-width: 60px; text-align: right; }
+.score-formula {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: rgba(37,99,235,0.04);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px; color: var(--ink-dim);
+}
+.score-formula strong { color: var(--ink); font-weight: 600; }
+.score-grade {
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0; padding: 24px 36px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.score-grade-val {
+  font-size: 56px; font-weight: 800; color: var(--high);
+  line-height: 1; letter-spacing: -0.04em;
+}
+.score-grade-label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-mute); font-weight: 600; margin-top: 4px;
+}
+
+/* STICKY TAB BAR */
+.tab-bar-wrap {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.tab-bar {
+  display: flex; gap: 4px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink-dim);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+.tab-btn:hover { color: var(--blue); background: var(--bg-2); }
+.tab-btn.active {
+  color: var(--blue);
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.22);
+}
+.tab-btn .tab-meta {
+  font-weight: 400; color: var(--ink-mute);
+  margin-left: 6px; font-size: 11.5px; letter-spacing: 0.02em;
+}
+.tab-btn.active .tab-meta { color: var(--accent); }
+
+/* SECTIONS */
+section { padding: 52px 0 68px; border-bottom: 1px solid var(--line-soft); }
+section:last-of-type { border-bottom: none; }
+.sec-num {
+  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 12px; font-weight: 600;
+}
+h2 {
+  font-size: 32px; font-weight: 700; letter-spacing: -0.025em;
+  line-height: 1.15; margin-bottom: 16px; color: var(--ink);
+}
+h2 .accent { color: var(--blue); font-style: italic; font-weight: 500; }
+.sec-lede {
+  font-size: 15px; color: var(--ink-dim); max-width: 780px;
+  margin-bottom: 32px; line-height: 1.6;
+}
+h3 {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+  margin: 40px 0 14px; color: var(--ink);
+  display: flex; align-items: center; gap: 12px;
+}
+h3::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--blue); border-radius: 1px;
+}
+h4 {
+  font-size: 15px; font-weight: 600;
+  color: var(--blue);
+  margin: 24px 0 10px;
+  letter-spacing: -0.005em;
+}
+p { color: var(--ink-dim); margin-bottom: 12px; font-size: 14.5px; }
+p strong { color: var(--ink); font-weight: 600; }
+
+/* TABLES */
+table {
+  width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px;
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.03);
+}
+th {
+  background: var(--bg-3); text-align: left; padding: 11px 14px;
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--blue); font-weight: 600;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+td {
+  padding: 10px 14px; color: var(--ink-dim);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr:nth-child(2n) td { background: var(--bg-2); }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--ink); font-weight: 600; }
+.issue-name { font-weight: 600; color: var(--ink); font-size: 13px; }
+.issue-desc { font-size: 12px; color: var(--ink-dim); line-height: 1.5; max-width: 440px; }
+.issue-fix { font-size: 12px; color: var(--ink-mute); line-height: 1.5; max-width: 340px; font-style: italic; }
+.url-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600; color: var(--ink);
+  white-space: nowrap;
+}
+.pct { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); }
+
+/* TAGS */
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.tag-critical { background: rgba(220,38,38,0.10); color: var(--critical); }
+.tag-high     { background: rgba(217,119,6,0.12); color: var(--high); }
+.tag-med      { background: rgba(8,145,178,0.10); color: var(--med); }
+.tag-good     { background: rgba(22,163,74,0.10); color: var(--good); }
+.tag-low      { background: rgba(148,163,184,0.18); color: #64748b; }
+.tag-issue    { background: rgba(220,38,38,0.10); color: var(--critical); }
+.tag-warning  { background: rgba(217,119,6,0.12); color: var(--high); }
+.tag-opp      { background: rgba(8,145,178,0.10); color: var(--med); }
+
+/* CALLOUTS */
+.callout {
+  background: rgba(37,99,235,0.04);
+  border-left: 3px solid var(--blue);
+  padding: 14px 20px;
+  margin: 18px 0;
+  border-radius: 0 6px 6px 0;
+}
+.callout-title {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--blue); margin-bottom: 6px; font-weight: 700;
+}
+.callout p { color: var(--ink); margin: 0; font-size: 13.5px; }
+.callout.warn { background: rgba(217,119,6,0.05); border-left-color: var(--high); }
+.callout.warn .callout-title { color: var(--high); }
+.callout.critical { background: rgba(220,38,38,0.05); border-left-color: var(--critical); }
+.callout.critical .callout-title { color: var(--critical); }
+
+/* GRID */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 18px 0; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+.kpi-box {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.kpi-lbl {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 6px; font-weight: 600;
+}
+.kpi-val {
+  font-size: 22px; font-weight: 700; color: var(--blue);
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.kpi-val.red { color: var(--critical); }
+.kpi-val.amber { color: var(--high); }
+.kpi-val.green { color: var(--good); }
+.kpi-sub { font-size: 11px; color: var(--ink-mute); margin-top: 3px; }
+
+/* PRIORITY BADGE IN HEADER */
+.priority-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 20px;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  margin-top: 32px;
+}
+.priority-header.critical-bg { background: rgba(220,38,38,0.06); border-color: rgba(220,38,38,0.2); }
+.priority-header.warning-bg  { background: rgba(217,119,6,0.05); border-color: rgba(217,119,6,0.2); }
+.priority-header.opp-bg      { background: rgba(8,145,178,0.04); border-color: rgba(8,145,178,0.15); }
+.priority-header h3           { margin: 0; font-size: 16px; }
+.priority-header h3::before   { display: none; }
+.priority-header .count-badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 100px;
+}
+.priority-header.critical-bg .count-badge { background: rgba(220,38,38,0.12); color: var(--critical); }
+.priority-header.warning-bg .count-badge  { background: rgba(217,119,6,0.12);  color: var(--high); }
+.priority-header.opp-bg .count-badge      { background: rgba(8,145,178,0.12); color: var(--med); }
+.priority-table { border-radius: 0 0 8px 8px; margin-top: 0; }
+.priority-table.critical-border { border-color: rgba(220,38,38,0.2); }
+.priority-table.warning-border  { border-color: rgba(217,119,6,0.2); }
+.priority-table.opp-border      { border-color: rgba(8,145,178,0.15); }
+
+/* FOOTER */
+footer {
+  padding: 48px 0 32px;
+  text-align: center;
+  background: var(--blue-deep);
+  color: #E2E8F0;
+  margin-top: 40px;
+}
+footer .kerkar {
+  font-size: 13px; color: #fff;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 6px; font-weight: 700;
+}
+footer .tag-line {
+  font-size: 11.5px; color: #CBD5E1;
+  letter-spacing: 0.08em;
+}
+footer .doc-meta-line {
+  margin-top: 18px; font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .header-stats { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+  .container { padding: 0 18px; }
+  .score-wrap { flex-direction: column; }
+  .header-stats { --stat-cols: 2; }
+}
+
+@media print {
+  .tab-bar-wrap { display: none; }
+  body { font-size: 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .container { padding: 0 8mm; max-width: 100%; }
+  .page-header { padding: 16mm 8mm 10mm; }
+  .page-header::before { display: none; }
+  section { padding: 12mm 0 8mm; border-bottom: 1px solid var(--line) !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-inner">
+      <div class="brand-row">
+        <div class="brand-mark">KM</div>
+        <div>
+          <div class="brand-name">Kerkar Media</div>
+          <div class="brand-tag">Digital Growth Agency</div>
+        </div>
+      </div>
+      <div class="badge">Technical SEO Audit — June 2026</div>
+      <h1>FPA Website — <span class="accent">Technical SEO Dashboard</span></h1>
+      <p class="page-sub">Full-site crawl of <strong>fpa.edu.in</strong> powered by Screaming Frog SEO Spider. 4,152 URLs analysed across all pages, assets, and response codes. Issues are scored and prioritised to guide remediation.</p>
+      <div class="header-stats">
+        <div>
+          <div class="hs-val">4,152</div>
+          <div class="hs-lbl">Total URLs Crawled</div>
+          <div class="hs-sub">All resource types</div>
+        </div>
+        <div>
+          <div class="hs-val red">5</div>
+          <div class="hs-lbl">Critical Issues</div>
+          <div class="hs-sub">Requires immediate fix</div>
+        </div>
+        <div>
+          <div class="hs-val amber">23</div>
+          <div class="hs-lbl">Warnings</div>
+          <div class="hs-sub">Should be addressed</div>
+        </div>
+        <div>
+          <div class="hs-val" style="color:var(--med)">23</div>
+          <div class="hs-lbl">Opportunities</div>
+          <div class="hs-sub">Quick wins available</div>
+        </div>
+        <div>
+          <div class="hs-val" style="color:var(--high)">62</div>
+          <div class="hs-lbl">SEO Health Score</div>
+          <div class="hs-sub">Out of 100</div>
+        </div>
+        <div>
+          <div class="hs-val green">June 9, 2026</div>
+          <div class="hs-lbl">Audit Date</div>
+          <div class="hs-sub">Screaming Frog v21</div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <span><strong>Client:</strong> Film and Photography Academy (FPA)</span>
+        <span><strong>Domain:</strong> fpa.edu.in</span>
+        <span><strong>Prepared by:</strong> Kerkar Media</span>
+        <span><strong>Crawl Engine:</strong> Screaming Frog SEO Spider</span>
+        <span><strong>Status:</strong> Active — Remediation Required</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SCORE SECTION -->
+<div class="score-section">
+  <div class="container">
+    <div class="score-wrap">
+      <!-- Gauge -->
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#E2E8F0" stroke-width="14" stroke-linecap="round"/>
+          <!-- Score arc: 62% of 180deg = 111.6deg. Arc length for r=70: pi*70 = 219.9. 62% = 136.3px -->
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#E2E8F0" stroke-width="14" stroke-linecap="round"/>
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#D97706" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="219.9" stroke-dashoffset="83.6"/>
+        </svg>
+        <div class="gauge-num">62<span class="gauge-denom">/100</span></div>
+        <div class="gauge-label">SEO Health Score</div>
+      </div>
+
+      <!-- Grade -->
+      <div class="score-grade">
+        <div class="score-grade-val">C+</div>
+        <div class="score-grade-label">Needs Improvement</div>
+      </div>
+
+      <!-- Breakdown -->
+      <div class="score-breakdown">
+        <h3>Score Breakdown</h3>
+        <div class="score-bar-row">
+          <div class="score-bar-item">
+            <div class="score-bar-label">Base Score</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:100%; background:var(--good)"></div></div>
+            <div class="score-bar-count" style="color:var(--good)">+100</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label">Critical Issues (5 × −3)</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:15%; background:var(--critical)"></div></div>
+            <div class="score-bar-count" style="color:var(--critical)">−15</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label">Warnings (23 × −1)</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:23%; background:var(--high)"></div></div>
+            <div class="score-bar-count" style="color:var(--high)">−23</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label"><strong>Final Score</strong></div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:62%; background:var(--high)"></div></div>
+            <div class="score-bar-count" style="color:var(--high); font-size:14px; font-weight:700">62</div>
+          </div>
+        </div>
+        <div class="score-formula" style="margin-top:20px">
+          <strong>Scoring formula:</strong> 100 − (Critical Issues × 3) − (Warnings × 1) = 100 − 15 − 23 = <strong>62</strong>. Opportunities are tracked but do not affect the score.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY TAB BAR -->
+<nav class="tab-bar-wrap">
+  <div class="container">
+    <div class="tab-bar">
+      <a href="#overview" class="tab-btn active">Overview <span class="tab-meta">Summary</span></a>
+      <a href="#critical" class="tab-btn">Critical Issues <span class="tab-meta">5 issues · −15 pts</span></a>
+      <a href="#warnings" class="tab-btn">Warnings <span class="tab-meta">23 warnings · −23 pts</span></a>
+      <a href="#opportunities" class="tab-btn">Opportunities <span class="tab-meta">23 items</span></a>
+      <a href="#remediation" class="tab-btn">Remediation Priority <span class="tab-meta">Action Plan</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="sec-num">01 — Overview</div>
+    <h2>Site Health <span class="accent">at a Glance</span></h2>
+    <p class="sec-lede">The crawl of fpa.edu.in discovered 4,152 URLs. The site scores 62/100 on the Kerkar Media SEO Health Index, indicating moderate technical debt that, once resolved, can meaningfully improve crawlability and organic visibility.</p>
+
+    <div class="grid-4">
+      <div class="kpi-box">
+        <div class="kpi-lbl">Total URLs</div>
+        <div class="kpi-val">4,152</div>
+        <div class="kpi-sub">Crawled in full</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Broken Links (4xx)</div>
+        <div class="kpi-val red">3</div>
+        <div class="kpi-sub">Internal client errors</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Canonicalised URLs</div>
+        <div class="kpi-val amber">1,943</div>
+        <div class="kpi-sub">83% of crawled pages</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Missing Meta Desc.</div>
+        <div class="kpi-val amber">96</div>
+        <div class="kpi-sub">4.1% of total URLs</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Images Missing Alt</div>
+        <div class="kpi-val red">569</div>
+        <div class="kpi-sub">Missing attr + text</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Large Images (>100kB)</div>
+        <div class="kpi-val amber">406</div>
+        <div class="kpi-sub">38.4% of all images</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">URL Parameters</div>
+        <div class="kpi-val amber">1,931</div>
+        <div class="kpi-sub">49.3% of URLs</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Noindex Directives</div>
+        <div class="kpi-val amber">46</div>
+        <div class="kpi-sub">Pages blocked from index</div>
+      </div>
+    </div>
+
+    <h3>Key Findings Summary</h3>
+
+    <div class="callout critical">
+      <div class="callout-title">🔴 Critical — Fix Immediately</div>
+      <p>3 internal broken links (4xx), 28 pagination URLs not in anchor tags, 12 URLs containing spaces, and 569 images missing alt attributes/text are degrading accessibility and crawl efficiency right now.</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">🟡 High Priority — Fix This Month</div>
+      <p>1,943 canonicalised URLs (83% of all pages) need review. 2,336 protocol-relative resource links expose security gaps. 46 noindex pages and 4 blocked robots.txt URLs should be audited carefully to ensure nothing important is de-indexed.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🔵 Quick Wins — Content & Structure</div>
+      <p>96 pages are missing meta descriptions, 120 have titles over the pixel limit, and 2,010 pages use non-descriptive anchor text (e.g. "click here"). These are low-effort, high-impact fixes for click-through rates.</p>
+    </div>
+
+    <h3>Issue Distribution by Category</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Critical</th>
+          <th>Warnings</th>
+          <th>Opportunities</th>
+          <th>Total Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Response Codes</strong></td><td><span class="tag tag-critical">1</span></td><td>3</td><td>—</td><td>4</td></tr>
+        <tr><td><strong>Images</strong></td><td><span class="tag tag-critical">2</span></td><td>—</td><td>3</td><td>5</td></tr>
+        <tr><td><strong>URL Structure</strong></td><td><span class="tag tag-critical">1</span></td><td>5</td><td>1</td><td>7</td></tr>
+        <tr><td><strong>Pagination</strong></td><td><span class="tag tag-critical">1</span></td><td>1</td><td>—</td><td>2</td></tr>
+        <tr><td><strong>Canonicals</strong></td><td>—</td><td>2</td><td>—</td><td>2</td></tr>
+        <tr><td><strong>Directives (Noindex/Nofollow)</strong></td><td>—</td><td>2</td><td>—</td><td>2</td></tr>
+        <tr><td><strong>Security</strong></td><td>—</td><td>3</td><td>—</td><td>3</td></tr>
+        <tr><td><strong>Page Titles</strong></td><td>—</td><td>—</td><td>6</td><td>6</td></tr>
+        <tr><td><strong>Meta Descriptions</strong></td><td>—</td><td>—</td><td>6</td><td>6</td></tr>
+        <tr><td><strong>Headings (H1/H2)</strong></td><td>—</td><td>4</td><td>4</td><td>8</td></tr>
+        <tr><td><strong>Links / Anchor Text</strong></td><td>—</td><td>2</td><td>2</td><td>4</td></tr>
+        <tr><td><strong>Content</strong></td><td>—</td><td>—</td><td>3</td><td>3</td></tr>
+        <tr style="background:rgba(37,99,235,0.06)!important; font-weight:600">
+          <td><strong>TOTAL</strong></td>
+          <td><strong>5</strong></td>
+          <td><strong>23</strong></td>
+          <td><strong>25</strong></td>
+          <td><strong>53</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 2: CRITICAL ISSUES -->
+<section id="critical">
+  <div class="container">
+    <div class="sec-num">02 — Critical Issues</div>
+    <h2>Issues Requiring <span class="accent">Immediate Action</span></h2>
+    <p class="sec-lede">These 5 issues are classified as <strong>"Issue"</strong> severity in Screaming Frog — they represent broken functionality, missing accessibility attributes, or structural failures that directly harm SEO rankings, crawl budget, and user experience. Each unresolved critical issue deducts <strong>3 points</strong> from the health score.</p>
+
+    <div class="priority-header critical-bg">
+      <span class="tag tag-critical">CRITICAL</span>
+      <h3>5 Critical Issues Found</h3>
+      <span class="count-badge">−15 points from score</span>
+    </div>
+    <table class="priority-table critical-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:24%">Description</th>
+          <th style="width:24%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="issue-name">Response Codes: Internal Client Error (4xx)</div>
+          </td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">3</span></td>
+          <td><span class="pct">0.07%</span></td>
+          <td class="issue-desc">Internal broken links returning 4xx errors (typically 404 Page Not Found). These waste crawl budget and create dead-ends for users and search engines.</td>
+          <td class="issue-fix">Identify the 3 broken URLs using the Screaming Frog inlinks tab. Update internal links to correct destinations or implement 301 redirects.</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">Images: Missing Alt Text</div>
+          </td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">303</span></td>
+          <td><span class="pct">28.64%</span></td>
+          <td class="issue-desc">Images have an alt attribute present but the attribute value is empty. This is an accessibility failure and prevents search engines from understanding image content.</td>
+          <td class="issue-fix">Add descriptive, keyword-relevant alt text to all 303 images. Prioritise images on key landing pages. Decorative images should use alt="".</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">Images: Missing Alt Attribute</div>
+          </td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">266</span></td>
+          <td><span class="pct">25.14%</span></td>
+          <td class="issue-desc">Images are missing the alt attribute entirely — not just empty. This violates WCAG accessibility standards and is a missed SEO signal opportunity.</td>
+          <td class="issue-fix">Add alt attributes with descriptive text to all 266 images. This is a developer task — bulk-export the list from Screaming Frog and pass to the dev team.</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">URL: Contains Space</div>
+          </td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">12</span></td>
+          <td><span class="pct">0.31%</span></td>
+          <td class="issue-desc">12 URLs contain literal spaces, which are unsafe characters. These can break link sharing, cause incorrect encoding, and result in 404 errors in some browsers.</td>
+          <td class="issue-fix">Rename these URLs replacing spaces with hyphens. Implement 301 redirects from the old spaced URLs to the corrected versions.</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">Pagination: Pagination URL Not in Anchor Tag</div>
+          </td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">28</span></td>
+          <td><span class="pct">1.20%</span></td>
+          <td class="issue-desc">28 paginated URLs referenced in rel="next"/"prev" attributes are not linked via standard HTML anchor tags. This means Google cannot crawl between paginated pages and PageRank cannot flow.</td>
+          <td class="issue-fix">Ensure all paginated URLs are linked to via standard &lt;a href=""&gt; tags on the page. This allows search engines to crawl and pass PageRank across the paginated series.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: WARNINGS -->
+<section id="warnings">
+  <div class="container">
+    <div class="sec-num">03 — Warnings</div>
+    <h2>Warnings to <span class="accent">Address Soon</span></h2>
+    <p class="sec-lede">These 23 warnings are important issues that won't immediately break the site but will hurt crawlability, indexation, security, and rankings if left unresolved. Each unresolved warning deducts <strong>1 point</strong> from the health score.</p>
+
+    <!-- High Priority Warnings -->
+    <div class="priority-header warning-bg" style="margin-top:0">
+      <span class="tag tag-warning">WARNING</span>
+      <h3>High Priority Warnings</h3>
+      <span class="count-badge">5 warnings</span>
+    </div>
+    <table class="priority-table warning-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:24%">Description</th>
+          <th style="width:24%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Canonicals: Canonicalised</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">1,943</span></td>
+          <td><span class="pct">83.07%</span></td>
+          <td class="issue-desc">83% of all pages have a canonical pointing to a different URL. While canonicals are legitimate, this high ratio may indicate internal linking to non-canonical URLs throughout the site.</td>
+          <td class="issue-fix">Audit internal links and update them to point directly to canonical URLs rather than their non-canonical equivalents. This improves crawl efficiency.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Directives: Noindex</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">46</span></td>
+          <td><span class="pct">1.18%</span></td>
+          <td class="issue-desc">46 pages have a noindex directive, instructing search engines not to index them. These need to be reviewed — any important pages accidentally noindexed will be invisible in search results.</td>
+          <td class="issue-fix">Review all 46 noindex pages. Remove the directive from any pages that should be indexed. Keep it only for truly non-indexable pages (e.g. thank-you pages, internal tools).</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Response Codes: Blocked by Robots.txt</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">4</span></td>
+          <td><span class="pct">0.10%</span></td>
+          <td class="issue-desc">4 internal URLs are blocked by robots.txt. If these pages contain content Google should index, this is a critical indexation failure.</td>
+          <td class="issue-fix">Review the robots.txt file. If these URLs should be crawlable, update the disallow rules. Also remove internal links to pages that should remain blocked.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Directives: Nofollow</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">8</span></td>
+          <td><span class="pct">0.21%</span></td>
+          <td class="issue-desc">8 pages have a meta nofollow directive, preventing PageRank from flowing to linked pages. This is usually applied by mistake alongside noindex.</td>
+          <td class="issue-fix">Remove nofollow from pages that should pass PageRank. Only keep it where absolutely intended (e.g. login pages, admin areas).</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Pagination: Non-Indexable</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">21</span></td>
+          <td><span class="pct">0.90%</span></td>
+          <td class="issue-desc">21 paginated URLs are non-indexable (noindex or canonicalised to page 1). Google recommends all pages in a paginated series be indexable and accessible.</td>
+          <td class="issue-fix">Ensure paginated pages are indexable and have self-referencing canonicals — not canonicals pointing to the first page in the series.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Medium Priority Warnings -->
+    <div class="priority-header warning-bg">
+      <span class="tag tag-warning">WARNING</span>
+      <h3>Medium Priority Warnings</h3>
+      <span class="count-badge">3 warnings</span>
+    </div>
+    <table class="priority-table warning-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:24%">Description</th>
+          <th style="width:24%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Canonicals: Missing</div></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="url-count">62</span></td>
+          <td><span class="pct">2.65%</span></td>
+          <td class="issue-desc">62 pages have no canonical tag at all, leaving Google to choose which version to index. This can lead to ranking unpredictability when multiple URL variants exist.</td>
+          <td class="issue-fix">Add self-referencing canonical tags to all 62 pages. This is typically a CMS template change — add the canonical tag globally to all page types.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H1: Multiple</div></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="url-count">48</span></td>
+          <td><span class="pct">2.05%</span></td>
+          <td class="issue-desc">48 pages have more than one H1 tag. While HTML5 allows multiple H1s, best practice is one H1 per page for clear document structure and SEO clarity.</td>
+          <td class="issue-fix">Audit the 48 pages and consolidate to a single H1 per page. Additional headings should use H2–H6 tags in a logical hierarchy.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Content: Soft 404 Pages</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">3</span></td>
+          <td><span class="pct">0.13%</span></td>
+          <td class="issue-desc">3 pages return a 200 status code but appear to be error pages (containing "Page Not Found" or similar text). Google may treat these as low-quality pages.</td>
+          <td class="issue-fix">Configure these pages to properly return a 404 or 410 HTTP status code. Update all internal links pointing to these URLs.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Low Priority Warnings -->
+    <div class="priority-header warning-bg">
+      <span class="tag tag-warning">WARNING</span>
+      <h3>Low Priority Warnings</h3>
+      <span class="count-badge">15 warnings</span>
+    </div>
+    <table class="priority-table warning-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:48%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Security: Protocol-Relative Resource Links</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">2,336</span></td>
+          <td><span class="pct">59.59%</span></td>
+          <td class="issue-fix">Update all resource links (images, JS, CSS) to include the full HTTPS scheme (e.g. https://example.com/file.js instead of //example.com/file.js).</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">URL: Parameters</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">1,931</span></td>
+          <td><span class="pct">49.26%</span></td>
+          <td class="issue-fix">Use Google Search Console's URL Parameters tool to indicate parameter handling. Where possible, refactor key pages to use static, clean URL structures.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">URL: Underscores (via parameters)</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">1,931</span></td>
+          <td><span class="pct">49.26%</span></td>
+          <td class="issue-fix">Replace underscores with hyphens in new URL slugs. For existing URLs, only change if the SEO benefit outweighs redirect management costs.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Links: Non-Descriptive Anchor Text (Internal)</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">2,010</span></td>
+          <td><span class="pct">85.93%</span></td>
+          <td class="issue-fix">Replace generic anchor text like "click here" or "learn more" with descriptive, keyword-relevant text that contextualises the destination page.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H2: Multiple</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">205</span></td>
+          <td><span class="pct">8.76%</span></td>
+          <td class="issue-fix">Review pages for logical heading hierarchy. Multiple H2s are allowed but should follow a structured H1 → H2 → H3 flow.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H2: Non-Sequential</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">107</span></td>
+          <td><span class="pct">4.57%</span></td>
+          <td class="issue-fix">Ensure heading levels descend sequentially (H1 → H2 → H3). Fix any pages where H3 appears before H2 in the document structure.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Security: Unsafe Cross-Origin Links</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">110</span></td>
+          <td><span class="pct">2.81%</span></td>
+          <td class="issue-fix">Add rel="noopener" or rel="noreferrer" to all external links that use target="_blank" to prevent security and performance issues on legacy browsers.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Security: Bad Content Type</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">296</span></td>
+          <td><span class="pct">7.55%</span></td>
+          <td class="issue-fix">Ensure each resource is served with the correct MIME type in the Content-Type header. This is typically a server configuration fix.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">URL: Repetitive Path</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">63</span></td>
+          <td><span class="pct">1.61%</span></td>
+          <td class="issue-fix">Review for incorrect relative linking that may be causing infinite URL paths. Fix the linking logic to prevent URL bloat.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Response Codes: Internal Redirection (3xx)</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">14</span></td>
+          <td><span class="pct">0.34%</span></td>
+          <td class="issue-fix">Update all internal links to point directly to the final destination URL rather than the redirecting URL, reducing redirect hops.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Links: Pages With High External Outlinks</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">27</span></td>
+          <td><span class="pct">1.15%</span></td>
+          <td class="issue-fix">Review the 27 pages and ensure external links are to credible, relevant sources. Remove or nofollow any links to untrusted domains.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">URL: Uppercase Characters</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">13</span></td>
+          <td><span class="pct">0.33%</span></td>
+          <td class="issue-fix">Convert URLs to lowercase and implement 301 redirects from uppercase versions. Add server-side rules to enforce lowercase URLs going forward.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H2: Missing</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">1</span></td>
+          <td><span class="pct">0.04%</span></td>
+          <td class="issue-fix">Add a logical H2 heading to the identified page to improve document structure and SEO context for search engines.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Response Codes: External Client Error (4xx)</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">3</span></td>
+          <td><span class="pct">0.07%</span></td>
+          <td class="issue-fix">Review the 3 external broken links. Update or remove links to external pages that no longer exist.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Links: Internal Nofollow Outlinks</div></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="url-count">1</span></td>
+          <td><span class="pct">0.04%</span></td>
+          <td class="issue-fix">Review the single internal nofollow link. If the destination should receive PageRank, remove the nofollow attribute.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 4: OPPORTUNITIES -->
+<section id="opportunities">
+  <div class="container">
+    <div class="sec-num">04 — Opportunities</div>
+    <h2>Quick Wins & <span class="accent">Optimisation Opportunities</span></h2>
+    <p class="sec-lede">Opportunities do not affect the health score but represent low-effort, high-impact improvements that can lift organic CTR, on-page relevance signals, and page experience. Prioritise the Medium items first.</p>
+
+    <!-- Medium Priority -->
+    <div class="priority-header opp-bg" style="margin-top:0">
+      <span class="tag tag-opp">OPPORTUNITY</span>
+      <h3>Medium Priority — SEO Impact</h3>
+      <span class="count-badge">8 items</span>
+    </div>
+    <table class="priority-table opp-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:56%">Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Images: Over 100 kB</div></td>
+          <td><span class="url-count">406</span></td>
+          <td><span class="pct">38.37%</span></td>
+          <td class="issue-fix">Compress and optimise all 406 oversized images using WebP format. Use lazy loading for below-fold images. This is the single biggest page speed improvement available.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Titles: Duplicate</div></td>
+          <td><span class="url-count">55</span></td>
+          <td><span class="pct">2.35%</span></td>
+          <td class="issue-fix">Write unique, keyword-targeted titles for all 55 pages with duplicate titles. Each page should communicate a distinct topic or offering.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Content: Low Content Pages</div></td>
+          <td><span class="url-count">79</span></td>
+          <td><span class="pct">3.38%</span></td>
+          <td class="issue-fix">Expand thin pages with meaningful, descriptive content relevant to the page topic. Aim for at least 200–300 words on important landing pages.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Titles: Below 30 Characters</div></td>
+          <td><span class="url-count">78</span></td>
+          <td><span class="pct">3.33%</span></td>
+          <td class="issue-fix">Expand short page titles to include primary keywords and USPs. Use the full ~60 character limit to maximise SERP real estate.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Titles: Over 60 Characters</div></td>
+          <td><span class="url-count">117</span></td>
+          <td><span class="pct">5.00%</span></td>
+          <td class="issue-fix">Trim the 117 long page titles to under 60 characters so they don't get truncated in search results. Keep the primary keyword near the front.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Titles: Over 561 Pixels</div></td>
+          <td><span class="url-count">120</span></td>
+          <td><span class="pct">5.13%</span></td>
+          <td class="issue-fix">Trim titles to stay within Google's ~561px pixel width limit to prevent SERP truncation.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Titles: Below 200 Pixels</div></td>
+          <td><span class="url-count">11</span></td>
+          <td><span class="pct">0.47%</span></td>
+          <td class="issue-fix">Expand these very short titles to take advantage of available SERP space for additional keywords and USPs.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Images: Missing Size Attributes</div></td>
+          <td><span class="url-count">319</span></td>
+          <td><span class="pct">30.15%</span></td>
+          <td class="issue-fix">Add width and height attributes to all 319 images in HTML. This prevents layout shift (CLS) — a Core Web Vital and ranking factor.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Low Priority -->
+    <div class="priority-header opp-bg">
+      <span class="tag tag-opp">OPPORTUNITY</span>
+      <h3>Low Priority — Content & Structure</h3>
+      <span class="count-badge">15 items</span>
+    </div>
+    <table class="priority-table opp-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:56%">Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Meta Description: Missing</div></td>
+          <td><span class="url-count">96</span></td>
+          <td><span class="pct">4.10%</span></td>
+          <td class="issue-fix">Write unique, compelling meta descriptions for all 96 pages. These directly influence CTR in search results — especially for branded and informational queries.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Meta Description: Over 155 Characters</div></td>
+          <td><span class="url-count">120</span></td>
+          <td><span class="pct">5.13%</span></td>
+          <td class="issue-fix">Trim meta descriptions to under 155 characters to prevent SERP truncation. Place the key value proposition and call-to-action early.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H1: Duplicate</div></td>
+          <td><span class="url-count">90</span></td>
+          <td><span class="pct">3.85%</span></td>
+          <td class="issue-fix">Write unique H1s for all 90 pages with duplicates. A unique H1 helps search engines distinguish pages and improves topical relevance signals.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Links: Internal Outlinks With No Anchor Text</div></td>
+          <td><span class="url-count">209</span></td>
+          <td><span class="pct">8.94%</span></td>
+          <td class="issue-fix">Add descriptive anchor text to all 209 links currently lacking it (e.g. image links without alt text). This helps pass contextual signals to linked pages.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H2: Duplicate</div></td>
+          <td><span class="url-count">317</span></td>
+          <td><span class="pct">13.55%</span></td>
+          <td class="issue-fix">Write unique H2 subheadings across pages to help search engines and users differentiate page sections and topics.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H1: Over 70 Characters</div></td>
+          <td><span class="url-count">56</span></td>
+          <td><span class="pct">2.39%</span></td>
+          <td class="issue-fix">Shorten verbose H1 tags to be clear and concise. Focus on the primary keyword and user intent — ideally under 60–70 characters.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H2: Over 70 Characters</div></td>
+          <td><span class="url-count">101</span></td>
+          <td><span class="pct">4.32%</span></td>
+          <td class="issue-fix">Tighten long H2 headings for readability and scannability. Clear, concise section headings improve UX and heading structure signals.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Titles: Same as H1</div></td>
+          <td><span class="url-count">79</span></td>
+          <td><span class="pct">3.38%</span></td>
+          <td class="issue-fix">Where page title = H1, consider using the title for a broader/different keyword angle and the H1 for the exact on-page topic. Not always an issue but worth reviewing.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">URL: Over 115 Characters</div></td>
+          <td><span class="url-count">131</span></td>
+          <td><span class="pct">3.34%</span></td>
+          <td class="issue-fix">For new pages, use shorter, descriptive URL slugs. Avoid changing existing long URLs unless there's a strong SEO justification and proper 301 redirects are in place.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Content: Readability Difficult</div></td>
+          <td><span class="url-count">74</span></td>
+          <td><span class="pct">3.16%</span></td>
+          <td class="issue-fix">Simplify sentence structure on the 74 pages with difficult readability scores. Shorter sentences and simpler vocabulary improve user engagement and dwell time.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Content: Readability Very Difficult</div></td>
+          <td><span class="url-count">6</span></td>
+          <td><span class="pct">0.26%</span></td>
+          <td class="issue-fix">Prioritise rewriting the 6 "very difficult" readability pages. These are likely key informational pages that would benefit most from clearer writing.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Meta Description: Over 985 Pixels</div></td>
+          <td><span class="url-count">96</span></td>
+          <td><span class="pct">4.10%</span></td>
+          <td class="issue-fix">Trim meta descriptions to stay within Google's pixel width limit to ensure full display in search snippets.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Meta Description: Below 70 Characters</div></td>
+          <td><span class="url-count">4</span></td>
+          <td><span class="pct">0.17%</span></td>
+          <td class="issue-fix">Expand these 4 very short meta descriptions. Use the available space to communicate benefits, differentiators, and a clear call to action.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Meta Description: Below 400 Pixels</div></td>
+          <td><span class="url-count">4</span></td>
+          <td><span class="pct">0.17%</span></td>
+          <td class="issue-fix">Same as above — expand descriptions to leverage the full available SERP snippet space for better click-through rates.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Images: Alt Text Over 100 Characters</div></td>
+          <td><span class="url-count">2</span></td>
+          <td><span class="pct">0.19%</span></td>
+          <td class="issue-fix">Trim these 2 verbose alt text entries to be concise and descriptive (under 100 characters). Avoid keyword stuffing in alt attributes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: REMEDIATION PRIORITY -->
+<section id="remediation">
+  <div class="container">
+    <div class="sec-num">05 — Remediation Priority</div>
+    <h2>Recommended <span class="accent">Action Plan</span></h2>
+    <p class="sec-lede">A phased remediation approach based on score impact, effort, and SEO value. Completing Phase 1 alone would restore approximately <strong>11 points</strong>, bringing the score to <strong>73/100 (B grade)</strong>.</p>
+
+    <h3>Phase 1 — Immediate (Week 1–2) · Score Impact: +11</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>Type</th><th>Est. URLs</th><th>Score Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Fix 3 internal broken links (4xx)</strong></td><td><span class="tag tag-critical">Critical</span></td><td>3</td><td>+3</td><td>Low</td></tr>
+        <tr><td><strong>Fix pagination URLs missing anchor tags</strong></td><td><span class="tag tag-critical">Critical</span></td><td>28</td><td>+3</td><td>Medium</td></tr>
+        <tr><td><strong>Rename URLs containing spaces</strong></td><td><span class="tag tag-critical">Critical</span></td><td>12</td><td>+3</td><td>Low</td></tr>
+        <tr><td><strong>Review &amp; fix 46 noindex pages</strong></td><td><span class="tag tag-warning">Warning</span></td><td>46</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Review 4 robots.txt-blocked URLs</strong></td><td><span class="tag tag-warning">Warning</span></td><td>4</td><td>+1</td><td>Low</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase 2 — Short Term (Month 1) · Score Impact: +12</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>Type</th><th>Est. URLs</th><th>Score Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Add alt text to 303 images missing alt text</strong></td><td><span class="tag tag-critical">Critical</span></td><td>303</td><td>+3</td><td>Medium</td></tr>
+        <tr><td><strong>Add alt attribute to 266 images missing entirely</strong></td><td><span class="tag tag-critical">Critical</span></td><td>266</td><td>+3</td><td>Medium</td></tr>
+        <tr><td><strong>Audit canonicalised URLs (83%)</strong></td><td><span class="tag tag-warning">Warning</span></td><td>1,943</td><td>+1</td><td>High</td></tr>
+        <tr><td><strong>Fix 62 pages with missing canonical tags</strong></td><td><span class="tag tag-warning">Warning</span></td><td>62</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Fix soft 404 pages (3 URLs)</strong></td><td><span class="tag tag-warning">Warning</span></td><td>3</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Fix 21 non-indexable paginated URLs</strong></td><td><span class="tag tag-warning">Warning</span></td><td>21</td><td>+1</td><td>Medium</td></tr>
+        <tr><td><strong>Remove nofollow from 8 pages</strong></td><td><span class="tag tag-warning">Warning</span></td><td>8</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Reduce to single H1 on 48 pages</strong></td><td><span class="tag tag-warning">Warning</span></td><td>48</td><td>+1</td><td>Medium</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase 3 — Medium Term (Month 2–3) · Score Impact: +15</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>Type</th><th>Est. URLs</th><th>Score Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Update protocol-relative links to HTTPS</strong></td><td><span class="tag tag-warning">Warning</span></td><td>2,336</td><td>+1</td><td>Medium</td></tr>
+        <tr><td><strong>Add rel="noopener" to 110 external links</strong></td><td><span class="tag tag-warning">Warning</span></td><td>110</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Fix bad content-type headers (296 URLs)</strong></td><td><span class="tag tag-warning">Warning</span></td><td>296</td><td>+1</td><td>Medium</td></tr>
+        <tr><td><strong>Update internal links from redirects (3xx)</strong></td><td><span class="tag tag-warning">Warning</span></td><td>14</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Write 96 missing meta descriptions</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>96</td><td>CTR lift</td><td>Medium</td></tr>
+        <tr><td><strong>Compress 406 oversized images (WebP)</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>406</td><td>Speed lift</td><td>Medium</td></tr>
+        <tr><td><strong>Fix H2 sequential order (107 pages)</strong></td><td><span class="tag tag-warning">Warning</span></td><td>107</td><td>+1</td><td>Medium</td></tr>
+        <tr><td><strong>Add image size attributes (319 images)</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>319</td><td>CLS lift</td><td>Medium</td></tr>
+        <tr><td><strong>Fix duplicate page titles (55 pages)</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>55</td><td>CTR lift</td><td>Medium</td></tr>
+        <tr><td><strong>Review high external outlink pages</strong></td><td><span class="tag tag-warning">Warning</span></td><td>27</td><td>+1</td><td>Low</td></tr>
+        <tr><td><strong>Fix URL uppercase (13 URLs)</strong></td><td><span class="tag tag-warning">Warning</span></td><td>13</td><td>+1</td><td>Low</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:32px">
+      <div class="callout-title">Projected Score After Full Remediation</div>
+      <p>If all 28 warnings and 5 critical issues are resolved, the site would score <strong>100/100</strong>. Completing Phases 1 &amp; 2 alone would bring the score to approximately <strong>85/100 (A grade)</strong> — representing a meaningful SEO improvement that should positively impact organic visibility for fpa.edu.in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="kerkar">Kerkar Media</div>
+    <div class="tag-line">Digital Growth · SEO · Performance Marketing</div>
+    <div class="doc-meta-line">Technical SEO Dashboard · fpa.edu.in · Prepared by Kerkar Media · June 2026</div>
+    <div class="doc-meta-line" style="margin-top:8px; color:#64748B">Powered by Screaming Frog SEO Spider · 4,152 URLs crawled · Score: 62/100</div>
+  </div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const setActive = () => {
+    let cur = sections[0]?.id;
+    for (const s of sections) {
+      if (window.scrollY + 120 >= s.offsetTop) cur = s.id;
+    }
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + cur));
+  };
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>

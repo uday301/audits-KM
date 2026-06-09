@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Customer Story: Suresh Dani Classes — Kerkar Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#003DCC;
+    --blue-deep:#001A5C;
+    --black:#070A12;
+    --ink:#1D1D1C;
+    --gray:#565755;
+    --line:#E9E9E8;
+    --n50:#F4F4F4;
+    --n300:#BCBDBB;
+    --white:#fff;
+    --display:'DM Sans',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --ui:'Outfit',system-ui,sans-serif;
+    --maxw:1440px;
+    --pad:80px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:var(--white);line-height:1.5;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  .container{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  /* ---------- Header ---------- */
+  header.site{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--line)}
+  .hdr{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;gap:24px}
+  .logo{font-family:var(--display);font-weight:700;font-size:22px;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
+  .logo b{color:var(--blue)}
+  .hdr-nav{display:flex;gap:24px;font-family:var(--ui);font-size:14px;color:var(--ink)}
+  .hdr-nav a:hover{color:var(--blue)}
+  .hdr-right{display:flex;align-items:center;gap:22px}
+  .hdr-phone{font-family:var(--ui);font-size:14px;color:var(--ink);white-space:nowrap}
+  .btn-blue{background:var(--blue);color:#fff;font-family:var(--ui);font-weight:500;font-size:16px;line-height:24px;padding:12px 20px;border-radius:10px;white-space:nowrap;transition:background .15s ease}
+  .btn-blue:hover{background:#0030a3}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;color:#fff;overflow:hidden;
+    background:
+      radial-gradient(120% 140% at 82% -20%, rgba(83,128,255,.55) 0%, rgba(0,61,204,0) 45%),
+      linear-gradient(135deg, var(--blue) 0%, #0026a0 42%, var(--blue-deep) 100%);
+    border-bottom:1px solid var(--line)}
+  .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;opacity:.5;pointer-events:none}
+  .hero-inner{position:relative;z-index:1;padding-top:80px;padding-bottom:168px}
+  .hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:40px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 16px 8px 12px;font-size:14px;line-height:20px;color:var(--ink)}
+  .eyebrow b{color:var(--blue);font-weight:700}
+  .eyebrow .sq{width:16px;height:16px;border-radius:4px;background:var(--ink)}
+  h1.hero-h1{font-family:var(--display);font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1.08;letter-spacing:-.02em;max-width:18ch;margin-top:32px}
+  .hero-badge{width:80px;height:80px;border:1px solid rgba(255,255,255,.6);border-radius:14px;display:grid;place-items:center;flex:none;color:#fff;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.04em;text-align:center}
+  .hero-stats{display:flex;gap:64px;margin-top:72px}
+  .hstat{flex:1 1 0;min-width:0}
+  .hstat .lbl{font-family:var(--body);font-weight:500;font-size:16px;line-height:24px;color:#fff}
+  .hstat .num{font-family:var(--display);font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1.1;letter-spacing:-.02em;color:#fff;margin:8px 0}
+  .hstat .desc{font-size:14px;line-height:20px;color:var(--n50)}
+
+  /* ---------- Company panel (overlaps hero) ---------- */
+  .company-wrap{position:relative;z-index:5;margin-top:-104px}
+  .company{background:#fff;border:1px solid var(--line);border-radius:4px;box-shadow:0 4px 12px rgba(70,70,70,.16);
+    display:flex;gap:64px;align-items:flex-start;padding:32px}
+  .company .cell .k{font-family:var(--display);font-weight:500;font-size:24px;line-height:32px;letter-spacing:-.02em;color:var(--ink)}
+  .company .cell .v{font-size:18px;line-height:28px;color:var(--gray);margin-top:8px}
+  .company .divider{align-self:stretch;width:1px;background:var(--line)}
+  .company .about{flex:1 1 0;min-width:0}
+  .note{font-size:12.5px;color:#0a9b48;font-weight:600;margin-top:10px}
+
+  /* ---------- Generic section ---------- */
+  section.block{padding-top:80px;padding-bottom:0}
+  .block-title{font-family:var(--display);font-weight:500;font-size:clamp(26px,3.4vw,40px);line-height:1.2;letter-spacing:-.02em;color:var(--ink);max-width:26ch;margin-bottom:48px}
+
+  /* ---------- Quote rows ---------- */
+  .quote{border:1px solid var(--line);border-radius:4px;display:flex;align-items:stretch;gap:64px;overflow:hidden;margin-top:80px}
+  .quote.media-left{flex-direction:row}
+  .quote .media{flex:1 1 0;min-width:0;min-height:300px;position:relative;
+    background:linear-gradient(135deg,#0026a0,var(--blue-deep));display:grid;place-items:center;color:#fff}
+  .quote .media .play{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;backdrop-filter:blur(2px)}
+  .quote .media .slot-label{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,.85);font-weight:600}
+  .quote .body{flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:80px 56px}
+  .quote .qt{font-family:var(--display);font-weight:500;letter-spacing:-.02em;color:var(--ink)}
+  .quote.big .qt{font-size:clamp(24px,2.7vw,40px);line-height:1.2}
+  .quote.mid .qt{font-size:clamp(22px,2.2vw,32px);line-height:1.25}
+  .quote .by{font-size:16px;line-height:24px;color:var(--gray)}
+  .quote .qt.placeholder{outline:2px dashed #0a9b48;outline-offset:6px;border-radius:6px}
+
+  /* ---------- Challenge / Solution / Results ---------- */
+  .csr{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .csr .card{border:1px solid var(--line);border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:32px;background:#fff}
+  .csr .ico{width:56px;height:56px;border:1px solid var(--line);border-radius:4px;display:grid;place-items:center;background:#fff}
+  .csr .ico svg{width:30px;height:30px;stroke:var(--blue)}
+  .csr .ct{font-family:var(--display);font-weight:500;font-size:24px;line-height:32px;letter-spacing:-.02em;color:var(--ink);margin-bottom:12px}
+  .csr .cp{font-size:16px;line-height:24px;color:var(--gray)}
+  .csr .cp strong{color:var(--ink);font-weight:600}
+
+  .source{font-size:12.5px;color:var(--gray);margin-top:20px}
+
+  /* ---------- CTA band ---------- */
+  .cta-wrap{padding-top:80px;padding-bottom:80px}
+  .cta{position:relative;overflow:hidden;border-radius:4px;color:#fff;
+    background:radial-gradient(120% 160% at 85% -30%, rgba(83,128,255,.5), rgba(0,61,204,0) 50%),
+      linear-gradient(135deg,var(--blue) 0%,#0026a0 45%,var(--blue-deep) 100%);
+    display:flex;align-items:stretch}
+  .cta::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;opacity:.5;pointer-events:none}
+  .cta .left{position:relative;z-index:1;flex:1 1 0;min-width:0;padding:48px;display:flex;flex-direction:column;gap:40px;justify-content:center;border-right:1px solid rgba(255,255,255,.5)}
+  .cta h2{font-family:var(--display);font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.2;letter-spacing:-.02em}
+  .cta .sub{font-size:16px;line-height:24px;color:var(--n50);margin-top:-24px}
+  .cta .left .btn-white{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--blue);font-family:var(--body);font-weight:500;font-size:16px;line-height:24px;padding:16px 16px 16px 20px;border-radius:10px;transition:transform .15s ease}
+  .cta .left .btn-white:hover{transform:translateY(-2px)}
+  .cta .right{position:relative;z-index:1;flex:1 1 0;min-width:0;padding:48px 80px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+  .cta .right h3{font-family:var(--display);font-weight:700;font-size:20px;line-height:28px;letter-spacing:-.01em}
+  .cta .right ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .cta .right li{display:flex;align-items:center;gap:8px;font-size:14px;line-height:20px}
+  .cta .right li svg{width:16px;height:16px;flex:none;stroke:#fff}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:var(--black);color:var(--n50)}
+  .ft-top{display:flex;gap:120px;padding-top:80px;padding-bottom:80px;border-bottom:1px solid rgba(255,255,255,.15)}
+  .ft-brand{width:320px;flex:none;display:flex;flex-direction:column;gap:40px}
+  .ft-brand .logo{font-size:24px;color:#fff}
+  .ft-contact{display:flex;flex-direction:column;gap:16px;font-size:14px;line-height:20px;color:var(--n50)}
+  .ft-contact .row{display:flex;gap:8px;align-items:flex-start}
+  .ft-contact .row svg{width:20px;height:20px;flex:none;stroke:var(--n50)}
+  .ft-social{display:flex;gap:20px}
+  .ft-social a{width:20px;height:20px;color:#fff}
+  .ft-social svg{width:20px;height:20px;fill:#fff}
+  .ft-cols{flex:1 1 0;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+  .ft-col h4{font-family:var(--body);font-weight:700;font-size:16px;line-height:24px;color:#fff;margin-bottom:20px}
+  .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:20px}
+  .ft-col a:hover{color:#fff}
+  .ft-bottom{display:flex;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px;font-size:14px;line-height:20px;color:#fff}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1080px){
+    :root{--pad:40px}
+    .hdr-nav{display:none}
+    .hero-stats{gap:32px}
+    .ft-top{gap:48px;flex-wrap:wrap}
+    .ft-brand{width:100%}
+  }
+  @media (max-width:820px){
+    :root{--pad:24px}
+    .hero-inner{padding-bottom:140px}
+    .hero-stats{flex-direction:column;gap:32px;margin-top:48px}
+    .hero-badge{display:none}
+    .company{flex-direction:column;gap:28px}
+    .company .divider{display:none;width:100%;height:1px}
+    .csr{grid-template-columns:1fr}
+    .quote,.quote.media-left{flex-direction:column}
+    .quote .body{padding:40px 28px}
+    .quote .media{min-height:220px}
+    .cta{flex-direction:column}
+    .cta .left{border-right:none;border-bottom:1px solid rgba(255,255,255,.5);padding:36px 24px}
+    .cta .right{padding:36px 24px}
+    .hdr-phone{display:none}
+    .ft-bottom{flex-direction:column;gap:8px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site">
+  <div class="container hdr">
+    <!-- Swap wordmark for KM logo: /wp-content/uploads/2024/09/KerkarMedia-1-scaled-1.webp -->
+    <a href="https://kerkarmedia.com/" class="logo">Kerkar<b>Media</b></a>
+    <nav class="hdr-nav" aria-label="Primary">
+      <a href="https://kerkarmedia.com/seo-company-in-mumbai/">SEO &amp; Lead Generation</a>
+      <a href="https://kerkarmedia.com/media-buying-and-planning/">Revenue Marketing &amp; CRO</a>
+      <a href="https://kerkarmedia.com/website-development-company-mumbai/">UX &amp; Interactive</a>
+      <a href="#">Technology</a>
+      <a href="https://kerkarmedia.com/about/">Who We Are</a>
+    </nav>
+    <div class="hdr-right">
+      <a href="tel:+919372848796" class="hdr-phone">+91-9372848796</a>
+      <a href="https://kerkarmedia.com/why-kerkar-media/" class="btn-blue">Get A Proposal</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-top">
+      <div>
+        <span class="eyebrow"><span class="sq"></span><span><b>Customer Story:</b> Suresh Dani Classes</span></span>
+        <h1 class="hero-h1">How Suresh Dani Classes more than doubled its organic search clicks with Kerkar Media SEO</h1>
+      </div>
+      <div class="hero-badge">SDC</div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <p class="lbl">Organic Search Clicks</p>
+        <p class="num">+128%</p>
+        <p class="desc">Total Google search clicks more than doubled in six months — from 4,660 to 10,620 across all devices.</p>
+      </div>
+      <div class="hstat">
+        <p class="lbl">Search Impressions</p>
+        <p class="num">+127%</p>
+        <p class="desc">Visibility in search results grew from 753K to 1.71M impressions over the same period.</p>
+      </div>
+      <div class="hstat">
+        <p class="lbl">Non-Brand Clicks</p>
+        <p class="num">+168%</p>
+        <p class="desc">Clicks from non-brand searches rose 663 → 1,774 — new students, not just the brand name.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPANY PANEL ===================== -->
+<div class="container company-wrap">
+  <div class="company">
+    <div class="cell">
+      <div class="k">Industry</div>
+      <div class="v">Education · Test-Prep Coaching</div>
+    </div>
+    <div class="cell">
+      <div class="k">Engagement</div>
+      <div class="v">SEO</div>
+    </div>
+    <div class="divider"></div>
+    <div class="about">
+      <div class="k">About</div>
+      <div class="v">Suresh Dani Classes is a Mumbai-based junior-college coaching institute preparing students for FYJC admissions, 11th &amp; 12th board exams, and competitive entrance tests including NEET and MHT-CET.</div>
+      <div class="note">↳ Confirm the About copy with SDC before publishing.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== QUOTE 1 ===================== -->
+<div class="container">
+  <div class="quote big media-left">
+    <div class="media" role="img" aria-label="Client testimonial media placeholder">
+      <div class="play" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span class="slot-label">PLACEHOLDER · add SDC photo or video</span>
+    </div>
+    <div class="body">
+      <p class="qt placeholder">Add a verified quote from the Suresh Dani Classes team — one line on what the visibility growth has meant for enquiries or admissions.</p>
+      <p class="by">— Name, Role, Suresh Dani Classes</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 1 ===================== -->
+<section class="container block">
+  <h2 class="block-title">Capturing the searches students actually make</h2>
+  <div class="csr">
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div>
+        <p class="ct">Challenge</p>
+        <p class="cp">SDC’s organic traffic leaned heavily on brand searches. The decision-stage journeys Mumbai students run — choosing an FYJC college, comparing streams, calculating an MHT-CET percentile — weren’t bringing them to the site.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div>
+        <p class="ct">Solution</p>
+        <p class="cp">Kerkar Media built a cluster of high-intent guide content mapped to the student decision journey — FYJC science &amp; commerce college guides, an MHT-CET percentile explainer, government medical college lists and stream-specific college pages — with on-page and technical optimisation behind it.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div>
+        <p class="ct">Results</p>
+        <p class="cp">Non-brand clicks rose <strong>+168%</strong> (663 → 1,774). Six new content pages went from near zero to a combined <strong>≈3,900 clicks a month</strong> — FYJC Science Colleges (0 → 1,149), FYJC Commerce (80 → 982), MHT-CET Percentile (0 → 649) and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 2 ===================== -->
+<section class="container block">
+  <h2 class="block-title">Climbing into the positions that earn the click</h2>
+  <div class="csr">
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div>
+        <p class="ct">Challenge</p>
+        <p class="cp">The site ranked for strong informational queries but sat outside the first page on desktop — an average position near 21 — so the impressions rarely converted into visits.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div>
+        <p class="ct">Solution</p>
+        <p class="cp">We prioritised pages by intent-to-effort ratio and improved titles, on-page structure, internal linking and content depth to move them from page two into striking distance on page one.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div>
+        <p class="ct">Results</p>
+        <p class="cp">Desktop average position improved from <strong>20.9 to 8.7</strong> and mobile from 6.6 to 5.2. Impressions grew <strong>+127%</strong> (753K → 1.71M) and total clicks <strong>+128%</strong> (4,660 → 10,620).</p>
+      </div>
+    </div>
+  </div>
+  <p class="source">Source: Google Search Console — last 6 months vs. previous 6 months, period ending 9 June 2026. Web search, all devices.</p>
+</section>
+
+<!-- ===================== QUOTE 2 ===================== -->
+<div class="container" style="margin-top:0">
+  <div class="quote mid" style="margin-top:80px">
+    <div class="body">
+      <p class="qt placeholder">Add a second verified SDC quote here — ideally on working with Kerkar Media or the impact on student enquiries.</p>
+      <p class="by">— Name, Role, Suresh Dani Classes</p>
+    </div>
+    <div class="media" role="img" aria-label="Client image placeholder">
+      <span class="slot-label">PLACEHOLDER · add SDC team / centre photo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CTA BAND ===================== -->
+<div class="container cta-wrap">
+  <div class="cta">
+    <div class="left">
+      <div>
+        <h2>Discover The Best Way To Generate Qualified Leads</h2>
+      </div>
+      <p class="sub">Get clear, actionable strategies you can put to work right away. No fluff, just results.</p>
+      <a href="https://kerkarmedia.com/why-kerkar-media/" class="btn-white">
+        Book Your Free Lead Audit
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="right">
+      <h3>Your Digital Lead Growth Report includes:</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>What your buyers search for.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>How to boost your online presence.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Opportunities your competitors take.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>A clear plan for steady leads.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="container ft-top">
+    <div class="ft-brand">
+      <span class="logo">Kerkar<b style="color:#5b86ff">Media</b></span>
+      <div class="ft-contact">
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.97.36 1.92.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.84.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+919372848796">+91 9372848796</a></div>
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:customer.relations@kerkarmedia.com">customer.relations@kerkarmedia.com</a></div>
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>805, SP-TBI, Bhavan’s Campus, Old D N Nagar, Munshi Nagar, Andheri West, Mumbai, Maharashtra 400058</span></div>
+      </div>
+      <div class="ft-social">
+        <a href="https://www.facebook.com/kerkarmedia" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9H16l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="https://www.instagram.com/kerkarmedia" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-.9 0-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.8-.3 1.7-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 .9.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.8.3 1.7.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.8.3-1.7.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-.9-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.8-.3-1.7-.3-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8a3.1 3.1 0 1 0 0-6.2 3.1 3.1 0 0 0 0 6.2zm6.2-8.2a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+        <a href="https://x.com/kerkarmedia/" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.2 2.3h3.3l-7.2 8.3 8.5 11.1h-6.6l-5.2-6.8-5.9 6.8H1.8l7.7-8.8L1.3 2.3h6.8l4.7 6.2 5.4-6.2zm-1.2 17.5h1.8L7.1 4.1H5.2L17 19.8z"/></svg></a>
+        <a href="https://www.linkedin.com/company/kerkarmedia/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.7H9.2V8.9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.3a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V8.9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="ft-cols">
+      <div class="ft-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="https://kerkarmedia.com/">Home</a></li>
+          <li><a href="https://kerkarmedia.com/about/">About Us</a></li>
+          <li><a href="https://kerkarmedia.com/blogs/">Blogs</a></li>
+          <li><a href="https://kerkarmedia.com/contact-kerkar-media/">Contact Us</a></li>
+          <li><a href="https://kerkarmedia.com/kerkar-media-reviews/">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="https://kerkarmedia.com/seo-company-in-mumbai/">SEO Company In Mumbai</a></li>
+          <li><a href="https://kerkarmedia.com/media-buying-and-planning/">Performance Marketing</a></li>
+          <li><a href="https://kerkarmedia.com/amazon-marketing/">Amazon Marketing Services</a></li>
+          <li><a href="https://kerkarmedia.com/website-development-company-mumbai/">Website Design &amp; Development</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>RESOURCES</h4>
+        <ul>
+          <li><a href="https://kerkarmedia.com/blogs/">Case Studies</a></li>
+          <li><a href="https://kerkarmedia.com/blogs/">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>INDUSTRIES</h4>
+        <ul>
+          <li><a href="https://kerkarmedia.com/seo-for-manufacturers/">SEO For Manufacturing</a></li>
+          <li><a href="https://kerkarmedia.com/seo-company-for-real-estate/">SEO For Real Estate</a></li>
+          <li><a href="#">SEO For EduTech</a></li>
+          <li><a href="https://kerkarmedia.com/seo-company-for-doctors/">SEO For Healthcare</a></li>
+          <li><a href="#">SEO For Plumbing</a></li>
+          <li><a href="https://kerkarmedia.com/seo-company-for-automotive-industry/">SEO For Automotive</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container ft-bottom">
+    <span>©Kerkar Media 2026. All Rights Reserved.</span>
+    <span>Privacy Policy . Terms of Service</span>
+  </div>
+</footer>
+
+</body>
+</html>

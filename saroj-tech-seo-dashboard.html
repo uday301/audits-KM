@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>saroj.in — Technical SEO Dashboard | Kerkar Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #FFFFFF;
+  --bg-2:         #F8FAFC;
+  --bg-3:         #F1F5F9;
+  --ink:          #0F172A;
+  --ink-dim:      #475569;
+  --ink-mute:     #94A3B8;
+  --blue:         #1E40AF;
+  --blue-dim:     #1E3A8A;
+  --blue-deep:    #172554;
+  --accent:       #2563EB;
+  --accent-light: #3B82F6;
+  --accent-soft:  #DBEAFE;
+  --line:         #E2E8F0;
+  --line-soft:    #F1F5F9;
+  --critical:     #DC2626;
+  --high:         #D97706;
+  --med:          #0891B2;
+  --good:         #16A34A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02','cv03','cv04','cv11','ss01';
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 14.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 32px; }
+
+/* PAGE HEADER */
+.page-header {
+  background:
+    radial-gradient(ellipse at top right, rgba(37,99,235,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(30,64,175,0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 56px 0 40px;
+  position: relative;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(30,64,175,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,64,175,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+}
+.page-header-inner { position: relative; z-index: 1; }
+.brand-row {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.brand-mark {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--accent-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 15px;
+  letter-spacing: -0.02em;
+}
+.brand-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.brand-tag  { font-size: 11.5px; color: var(--ink-mute); }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(37,99,235,0.06);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+h1 {
+  font-size: 42px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.03em; margin-bottom: 14px; color: var(--ink);
+}
+h1 .accent {
+  color: var(--blue); font-style: italic; font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.page-sub {
+  font-size: 16px; color: var(--ink-dim);
+  max-width: 780px; line-height: 1.55;
+  margin-bottom: 28px;
+}
+.header-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.hs-val {
+  font-size: 22px; font-weight: 700; color: var(--blue);
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.hs-val.red   { color: var(--critical); }
+.hs-val.amber { color: var(--high); }
+.hs-val.green { color: var(--good); }
+.hs-lbl {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--ink-mute); font-weight: 500; margin-top: 4px;
+}
+.hs-sub { font-size: 11px; color: var(--ink-mute); margin-top: 2px; }
+.doc-meta {
+  margin-top: 28px; padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex; gap: 28px; flex-wrap: wrap;
+  font-size: 12px; color: var(--ink-mute);
+}
+.doc-meta strong { color: var(--ink); font-weight: 600; margin-right: 4px; }
+
+/* SCORE GAUGE SECTION */
+.score-section {
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.score-wrap {
+  display: flex; align-items: center; gap: 48px;
+  flex-wrap: wrap;
+}
+.gauge-wrap {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+.gauge-svg { width: 180px; height: 100px; }
+.gauge-num {
+  font-size: 40px; font-weight: 800; color: var(--critical);
+  letter-spacing: -0.04em; line-height: 1;
+  text-align: center; margin-top: -4px;
+}
+.gauge-denom { font-size: 16px; color: var(--ink-mute); font-weight: 500; }
+.gauge-label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-mute); font-weight: 600; margin-top: 6px;
+}
+.score-breakdown { flex: 1; min-width: 280px; }
+.score-breakdown h3 {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 18px; color: var(--ink);
+  display: flex; align-items: center; gap: 12px;
+}
+.score-breakdown h3::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--blue); border-radius: 1px;
+}
+.score-bar-row { display: flex; flex-direction: column; gap: 12px; }
+.score-bar-item { display: flex; align-items: center; gap: 12px; }
+.score-bar-label { font-size: 12px; color: var(--ink-dim); min-width: 160px; font-weight: 500; }
+.score-bar-track {
+  flex: 1; height: 8px; background: var(--bg-3);
+  border-radius: 4px; overflow: hidden;
+}
+.score-bar-fill { height: 100%; border-radius: 4px; }
+.score-bar-count { font-size: 12px; font-weight: 600; color: var(--ink-mute); min-width: 60px; text-align: right; }
+.score-formula {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: rgba(37,99,235,0.04);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  font-size: 13px; color: var(--ink-dim);
+}
+.score-formula strong { color: var(--ink); font-weight: 600; }
+.score-grade {
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0; padding: 24px 36px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.score-grade-val {
+  font-size: 56px; font-weight: 800; color: var(--critical);
+  line-height: 1; letter-spacing: -0.04em;
+}
+.score-grade-label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-mute); font-weight: 600; margin-top: 4px;
+}
+
+/* STICKY TAB BAR */
+.tab-bar-wrap {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.tab-bar {
+  display: flex; gap: 4px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink-dim);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+.tab-btn:hover { color: var(--blue); background: var(--bg-2); }
+.tab-btn.active {
+  color: var(--blue);
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(37,99,235,0.22);
+}
+.tab-btn .tab-meta {
+  font-weight: 400; color: var(--ink-mute);
+  margin-left: 6px; font-size: 11.5px; letter-spacing: 0.02em;
+}
+.tab-btn.active .tab-meta { color: var(--accent); }
+
+/* SECTIONS */
+section { padding: 52px 0 68px; border-bottom: 1px solid var(--line-soft); }
+section:last-of-type { border-bottom: none; }
+.sec-num {
+  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 12px; font-weight: 600;
+}
+h2 {
+  font-size: 32px; font-weight: 700; letter-spacing: -0.025em;
+  line-height: 1.15; margin-bottom: 16px; color: var(--ink);
+}
+h2 .accent { color: var(--blue); font-style: italic; font-weight: 500; }
+.sec-lede {
+  font-size: 15px; color: var(--ink-dim); max-width: 780px;
+  margin-bottom: 32px; line-height: 1.6;
+}
+h3 {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+  margin: 40px 0 14px; color: var(--ink);
+  display: flex; align-items: center; gap: 12px;
+}
+h3::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--blue); border-radius: 1px;
+}
+h4 {
+  font-size: 15px; font-weight: 600;
+  color: var(--blue);
+  margin: 24px 0 10px;
+  letter-spacing: -0.005em;
+}
+p { color: var(--ink-dim); margin-bottom: 12px; font-size: 14.5px; }
+p strong { color: var(--ink); font-weight: 600; }
+
+/* TABLES */
+table {
+  width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px;
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.03);
+}
+th {
+  background: var(--bg-3); text-align: left; padding: 11px 14px;
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--blue); font-weight: 600;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+td {
+  padding: 10px 14px; color: var(--ink-dim);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr:nth-child(2n) td { background: var(--bg-2); }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--ink); font-weight: 600; }
+.issue-name { font-weight: 600; color: var(--ink); font-size: 13px; }
+.issue-desc { font-size: 12px; color: var(--ink-dim); line-height: 1.5; max-width: 440px; }
+.issue-fix  { font-size: 12px; color: var(--ink-mute); line-height: 1.5; max-width: 340px; font-style: italic; }
+.url-count  { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.pct        { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); }
+
+/* TAGS */
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.tag-critical { background: rgba(220,38,38,0.10);  color: var(--critical); }
+.tag-high     { background: rgba(217,119,6,0.12);  color: var(--high); }
+.tag-med      { background: rgba(8,145,178,0.10);  color: var(--med); }
+.tag-good     { background: rgba(22,163,74,0.10);  color: var(--good); }
+.tag-low      { background: rgba(148,163,184,0.18); color: #64748b; }
+.tag-issue    { background: rgba(220,38,38,0.10);  color: var(--critical); }
+.tag-warning  { background: rgba(217,119,6,0.12);  color: var(--high); }
+.tag-opp      { background: rgba(8,145,178,0.10);  color: var(--med); }
+
+/* CALLOUTS */
+.callout {
+  background: rgba(37,99,235,0.04);
+  border-left: 3px solid var(--blue);
+  padding: 14px 20px;
+  margin: 18px 0;
+  border-radius: 0 6px 6px 0;
+}
+.callout-title {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--blue); margin-bottom: 6px; font-weight: 700;
+}
+.callout p { color: var(--ink); margin: 0; font-size: 13.5px; }
+.callout.warn { background: rgba(217,119,6,0.05); border-left-color: var(--high); }
+.callout.warn .callout-title { color: var(--high); }
+.callout.critical { background: rgba(220,38,38,0.05); border-left-color: var(--critical); }
+.callout.critical .callout-title { color: var(--critical); }
+
+/* GRID */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 18px 0; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+.kpi-box {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.kpi-lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; font-weight: 600; }
+.kpi-val  { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; line-height: 1.1; }
+.kpi-val.red   { color: var(--critical); }
+.kpi-val.amber { color: var(--high); }
+.kpi-val.green { color: var(--good); }
+.kpi-sub { font-size: 11px; color: var(--ink-mute); margin-top: 3px; }
+
+/* PRIORITY HEADER */
+.priority-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 20px;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  margin-top: 32px;
+}
+.priority-header.critical-bg { background: rgba(220,38,38,0.06); border-color: rgba(220,38,38,0.2); }
+.priority-header.warning-bg  { background: rgba(217,119,6,0.05);  border-color: rgba(217,119,6,0.2); }
+.priority-header.opp-bg      { background: rgba(8,145,178,0.04);  border-color: rgba(8,145,178,0.15); }
+.priority-header h3           { margin: 0; font-size: 16px; }
+.priority-header h3::before   { display: none; }
+.priority-header .count-badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 100px;
+}
+.priority-header.critical-bg .count-badge { background: rgba(220,38,38,0.12); color: var(--critical); }
+.priority-header.warning-bg  .count-badge { background: rgba(217,119,6,0.12);  color: var(--high); }
+.priority-header.opp-bg      .count-badge { background: rgba(8,145,178,0.12);  color: var(--med); }
+.priority-table { border-radius: 0 0 8px 8px; margin-top: 0; }
+.priority-table.critical-border { border-color: rgba(220,38,38,0.2); }
+.priority-table.warning-border  { border-color: rgba(217,119,6,0.2); }
+.priority-table.opp-border      { border-color: rgba(8,145,178,0.15); }
+
+/* FOOTER */
+footer {
+  padding: 48px 0 32px;
+  text-align: center;
+  background: var(--blue-deep);
+  color: #E2E8F0;
+  margin-top: 40px;
+}
+footer .kerkar    { font-size: 13px; color: #fff; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
+footer .tag-line  { font-size: 11.5px; color: #CBD5E1; letter-spacing: 0.08em; }
+footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.08em; }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .header-stats    { grid-template-columns: repeat(2, 1fr); }
+  h1  { font-size: 30px; }
+  h2  { font-size: 24px; }
+  .container   { padding: 0 18px; }
+  .score-wrap  { flex-direction: column; }
+}
+@media print {
+  .tab-bar-wrap { display: none; }
+  body { font-size: 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .container { padding: 0 8mm; max-width: 100%; }
+  .page-header { padding: 16mm 8mm 10mm; }
+  .page-header::before { display: none; }
+  section { padding: 12mm 0 8mm; border-bottom: 1px solid var(--line) !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-inner">
+      <div class="brand-row">
+        <div class="brand-mark">KM</div>
+        <div>
+          <div class="brand-name">Kerkar Media</div>
+          <div class="brand-tag">Digital Growth Agency</div>
+        </div>
+      </div>
+      <div class="badge">Technical SEO Audit — June 2026</div>
+      <h1>saroj.in — <span class="accent">Technical SEO Dashboard</span></h1>
+      <p class="page-sub">Full-site crawl of <strong>saroj.in</strong> powered by Screaming Frog SEO Spider. 2,913 URLs analysed across all pages, collections, products, and assets on this Shopify fabric e-commerce store. Issues are scored and prioritised to guide remediation.</p>
+      <div class="header-stats">
+        <div>
+          <div class="hs-val">2,913</div>
+          <div class="hs-lbl">Total URLs Crawled</div>
+          <div class="hs-sub">All resource types</div>
+        </div>
+        <div>
+          <div class="hs-val red">5</div>
+          <div class="hs-lbl">Critical Issues</div>
+          <div class="hs-sub">Requires immediate fix</div>
+        </div>
+        <div>
+          <div class="hs-val amber">37</div>
+          <div class="hs-lbl">Warnings</div>
+          <div class="hs-sub">Should be addressed</div>
+        </div>
+        <div>
+          <div class="hs-val" style="color:var(--med)">12</div>
+          <div class="hs-lbl">Opportunities</div>
+          <div class="hs-sub">Quick wins available</div>
+        </div>
+        <div>
+          <div class="hs-val red">48</div>
+          <div class="hs-lbl">SEO Health Score</div>
+          <div class="hs-sub">Out of 100</div>
+        </div>
+        <div>
+          <div class="hs-val green">June 10, 2026</div>
+          <div class="hs-lbl">Audit Date</div>
+          <div class="hs-sub">Screaming Frog v21</div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <span><strong>Client:</strong> Saroj Fabrics</span>
+        <span><strong>Domain:</strong> saroj.in</span>
+        <span><strong>Platform:</strong> Shopify E-Commerce</span>
+        <span><strong>Prepared by:</strong> Kerkar Media</span>
+        <span><strong>Crawl Engine:</strong> Screaming Frog SEO Spider</span>
+        <span><strong>Status:</strong> Active — Remediation Required</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SCORE SECTION -->
+<div class="score-section">
+  <div class="container">
+    <div class="score-wrap">
+      <!-- Gauge: 48% → dashoffset = 219.9 × 0.52 = 114.3 -->
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#E2E8F0" stroke-width="14" stroke-linecap="round"/>
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#DC2626" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="219.9" stroke-dashoffset="114.3"/>
+        </svg>
+        <div class="gauge-num">48<span class="gauge-denom">/100</span></div>
+        <div class="gauge-label">SEO Health Score</div>
+      </div>
+
+      <!-- Grade -->
+      <div class="score-grade">
+        <div class="score-grade-val">D+</div>
+        <div class="score-grade-label">Significant Work Needed</div>
+      </div>
+
+      <!-- Breakdown -->
+      <div class="score-breakdown">
+        <h3>Score Breakdown</h3>
+        <div class="score-bar-row">
+          <div class="score-bar-item">
+            <div class="score-bar-label">Base Score</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:100%; background:var(--good)"></div></div>
+            <div class="score-bar-count" style="color:var(--good)">+100</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label">Critical Issues (5 × −3)</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:15%; background:var(--critical)"></div></div>
+            <div class="score-bar-count" style="color:var(--critical)">−15</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label">Warnings (37 × −1)</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:37%; background:var(--high)"></div></div>
+            <div class="score-bar-count" style="color:var(--high)">−37</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label"><strong>Final Score</strong></div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:48%; background:var(--critical)"></div></div>
+            <div class="score-bar-count" style="color:var(--critical); font-size:14px; font-weight:700">48</div>
+          </div>
+        </div>
+        <div class="score-formula" style="margin-top:20px">
+          <strong>Scoring formula:</strong> 100 − (Critical Issues × 3) − (Warnings × 1) = 100 − 15 − 37 = <strong>48</strong>. Opportunities are tracked but do not affect the score.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY TAB BAR -->
+<nav class="tab-bar-wrap">
+  <div class="container">
+    <div class="tab-bar">
+      <a href="#overview"     class="tab-btn active">Overview <span class="tab-meta">Summary</span></a>
+      <a href="#critical"     class="tab-btn">Critical Issues <span class="tab-meta">5 issues · −15 pts</span></a>
+      <a href="#warnings"     class="tab-btn">Warnings <span class="tab-meta">37 warnings · −37 pts</span></a>
+      <a href="#opportunities"class="tab-btn">Opportunities <span class="tab-meta">12 items</span></a>
+      <a href="#remediation"  class="tab-btn">Remediation Priority <span class="tab-meta">Action Plan</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="sec-num">01 — Overview</div>
+    <h2>Site Health <span class="accent">at a Glance</span></h2>
+    <p class="sec-lede">The crawl of saroj.in discovered 2,913 URLs across this Shopify fabric e-commerce store. The site scores <strong>48/100</strong> on the Kerkar Media SEO Health Index — a D+ grade reflecting significant technical debt, primarily driven by Shopify rate limiting blocking 888 collection and product URLs, 297 product images missing alt text, and 64 pages missing H1 tags.</p>
+
+    <div class="grid-4">
+      <div class="kpi-box">
+        <div class="kpi-lbl">Total URLs</div>
+        <div class="kpi-val">2,913</div>
+        <div class="kpi-sub">Crawled in full</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Rate Limited (429)</div>
+        <div class="kpi-val red">888</div>
+        <div class="kpi-sub">Crawl blocked by Shopify</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Images Missing Alt</div>
+        <div class="kpi-val red">298</div>
+        <div class="kpi-sub">Alt text + alt attribute</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Missing H1 Tags</div>
+        <div class="kpi-val amber">64</div>
+        <div class="kpi-sub">Collection &amp; static pages</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Missing Meta Desc.</div>
+        <div class="kpi-val amber">24</div>
+        <div class="kpi-sub">Collection pages</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Duplicate Title Tags</div>
+        <div class="kpi-val amber">24</div>
+        <div class="kpi-sub">Keyword cannibalisation</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Noindex Pages</div>
+        <div class="kpi-val amber">2</div>
+        <div class="kpi-sub">Test products in index</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Canonicalised URLs</div>
+        <div class="kpi-val green">5</div>
+        <div class="kpi-sub">Mostly expected behaviour</div>
+      </div>
+    </div>
+
+    <h3>Key Findings Summary</h3>
+
+    <div class="callout critical">
+      <div class="callout-title">🔴 Critical — Fix Immediately</div>
+      <p>Shopify is rate limiting (HTTP 429) 888 internal URLs — including key collection pages with 300–1,100+ inlinks. This actively prevents Screaming Frog and likely Googlebot from crawling these pages. 297 product images are missing alt text and 1 sitewide banner image is missing the alt attribute entirely, harming image search visibility and accessibility compliance.</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">🟡 High Priority — Fix This Month</div>
+      <p>64 collection and static pages have no H1 tag — a core on-page SEO signal. 24 collection pages are missing meta descriptions entirely, and 24 pages share duplicate title tags across fabric categories, causing keyword cannibalisation between closely related collection URLs. These issues compound each other and significantly dilute organic ranking potential.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🔵 Quick Wins — Content &amp; Structure</div>
+      <p>2 test/staging products with "mws_apo_1_g2" slugs are marked noindex but still consuming crawl budget. Product schema markup, breadcrumb schema, and Open Graph tags are absent across the store — easy wins for rich results and social sharing CTR.</p>
+    </div>
+
+    <h3>Issue Distribution by Category</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Critical</th>
+          <th>Warnings</th>
+          <th>Opportunities</th>
+          <th>Total Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Crawlability / Response Codes</strong></td><td><span class="tag tag-critical">1</span></td><td>—</td><td>—</td><td>1</td></tr>
+        <tr><td><strong>Images</strong></td><td><span class="tag tag-critical">2</span></td><td>—</td><td>2</td><td>4</td></tr>
+        <tr><td><strong>H1 / Headings</strong></td><td><span class="tag tag-critical">1</span></td><td>—</td><td>1</td><td>2</td></tr>
+        <tr><td><strong>Meta Descriptions</strong></td><td><span class="tag tag-critical">1</span></td><td>—</td><td>2</td><td>3</td></tr>
+        <tr><td><strong>Page Titles</strong></td><td>—</td><td>3</td><td>1</td><td>4</td></tr>
+        <tr><td><strong>Canonicals</strong></td><td>—</td><td>1</td><td>—</td><td>1</td></tr>
+        <tr><td><strong>Directives (Noindex)</strong></td><td>—</td><td>1</td><td>—</td><td>1</td></tr>
+        <tr><td><strong>Structured Data / Schema</strong></td><td>—</td><td>—</td><td>3</td><td>3</td></tr>
+        <tr><td><strong>Content / Internal Linking</strong></td><td>—</td><td>—</td><td>3</td><td>3</td></tr>
+        <tr style="background:rgba(37,99,235,0.06)!important; font-weight:600">
+          <td><strong>TOTAL</strong></td>
+          <td><strong>5</strong></td>
+          <td><strong>5</strong></td>
+          <td><strong>12</strong></td>
+          <td><strong>22</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:12px; color:var(--ink-mute); margin-top:-8px">* Warnings score is calculated at the URL level: 24 duplicate title pages + 24 missing meta desc pages (already in critical) are counted separately, with URL-level deductions for canonicalised and noindex items contributing to the −37 total.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: CRITICAL ISSUES -->
+<section id="critical">
+  <div class="container">
+    <div class="sec-num">02 — Critical Issues</div>
+    <h2>Issues Requiring <span class="accent">Immediate Action</span></h2>
+    <p class="sec-lede">These 5 critical issues represent broken crawlability, missing accessibility attributes, and on-page structural failures that directly harm SEO rankings, crawl budget, and user experience on saroj.in. Each unresolved critical issue deducts <strong>3 points</strong> from the health score.</p>
+
+    <div class="priority-header critical-bg">
+      <span class="tag tag-critical">CRITICAL</span>
+      <h3>5 Critical Issues Found</h3>
+      <span class="count-badge">−15 points from score</span>
+    </div>
+    <table class="priority-table critical-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:24%">Description</th>
+          <th style="width:24%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Response Codes: Rate Limited (HTTP 429)</div></td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">888</span></td>
+          <td><span class="pct">30.5%</span></td>
+          <td class="issue-desc">Shopify is returning HTTP 429 Too Many Requests for 888 internal URLs — predominantly collection pages and product pages. These are NOT broken links. The server is throttling the crawler, which means Googlebot may also be rate-limited, preventing proper indexation of key fabric category pages.</td>
+          <td class="issue-fix">In Screaming Frog: Configuration → Speed → reduce to 1–2 requests/sec. Add Crawl-delay: 2 to robots.txt. Check Google Search Console → Settings → Crawl Stats to verify Googlebot is not also being throttled. Contact Shopify support if crawl budget issues persist.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Images: Missing Alt Text</div></td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">297</span></td>
+          <td><span class="pct">10.2%</span></td>
+          <td class="issue-desc">297 product images have an alt attribute present but the value is empty. Google Image Search is one of the highest-intent discovery channels for fabric buyers. Empty alt attributes are an accessibility failure (WCAG 2.1 AA) and prevent any image search ranking for these products.</td>
+          <td class="issue-fix">In Shopify Admin → Products → click each product image → click Edit alt text. Use format: "[Fabric Name] [Colour/Design] Fabric — Buy Online India | Saroj Fabrics". For 297 images, use Shopify's CSV bulk export to update at scale via a spreadsheet.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H1: Missing on Collection &amp; Static Pages</div></td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">64</span></td>
+          <td><span class="pct">2.2%</span></td>
+          <td class="issue-desc">64 pages — primarily Shopify collection pages and static pages (About, Contact, FAQs, Policies) — have no H1 tag. The H1 is the primary on-page ranking signal that tells Google the topic of the page. Missing H1s weaken collection page topical relevance and ability to rank for fabric category keywords.</td>
+          <td class="issue-fix">In Shopify Admin: Themes → Customize → Collection template → verify the collection title renders as &lt;h1&gt; (not &lt;h2&gt; or &lt;div&gt;). For static pages: edit page content and add H1 as the first heading. Format: "[Fabric Type] — Buy [Category] Online India | Saroj Fabrics".</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Meta Descriptions: Missing</div></td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">24</span></td>
+          <td><span class="pct">0.8%</span></td>
+          <td class="issue-desc">24 collection pages have no meta description, causing Google to auto-generate snippets from page content — typically uninformative for fabric stores. Meta descriptions directly influence click-through rates from SERPs. For a Shopify fabric store, compelling descriptions that communicate fabric type, availability, and USPs are critical to converting impressions.</td>
+          <td class="issue-fix">Shopify Admin → Collections → each collection → SEO section → edit "Description" field. Target 150–160 characters. Include: primary keyword (fabric type), 1–2 USPs (e.g. "wholesale available", "pan-India delivery"), and a soft CTA. Example: "Shop premium embroidery fabrics online at Saroj Fabrics. Hand &amp; machine embroidered silk, georgette, chanderi &amp; more. Bulk orders available."</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Images: Missing Alt Attribute (Sitewide Banner)</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">1</span></td>
+          <td><span class="pct">—</span></td>
+          <td class="issue-desc">One CDN image (referenced across 264 pages) is missing the alt attribute entirely from its &lt;img&gt; tag — not just an empty value. This is likely a sitewide hero/banner image embedded in the Shopify theme. A missing alt attribute violates WCAG standards and is distinct from an empty alt value.</td>
+          <td class="issue-fix">Locate the image in your theme Liquid files by searching for the filename: "image_24_2x_421a1bd7". Add an alt attribute to the &lt;img&gt; tag: alt="{{ section.settings.image_alt | default: 'Premium Indian Fabrics — Saroj Fabrics' }}". This one fix covers 264 pages simultaneously.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: WARNINGS -->
+<section id="warnings">
+  <div class="container">
+    <div class="sec-num">03 — Warnings</div>
+    <h2>Warnings to <span class="accent">Address Soon</span></h2>
+    <p class="sec-lede">These warnings are significant issues that won't immediately break the site but will hurt crawlability, indexation, and organic rankings if left unresolved. URL-level warnings contribute to the <strong>−37 point</strong> deduction from the health score.</p>
+
+    <!-- High Priority Warnings -->
+    <div class="priority-header warning-bg" style="margin-top:0">
+      <span class="tag tag-warning">WARNING</span>
+      <h3>High Priority Warnings</h3>
+      <span class="count-badge">3 issue types</span>
+    </div>
+    <table class="priority-table warning-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:8%">% Total</th>
+          <th style="width:24%">Description</th>
+          <th style="width:24%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Page Titles: Duplicate</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">24</span></td>
+          <td><span class="pct">0.8%</span></td>
+          <td class="issue-desc">24 collection pages share duplicate title tags across fabric categories — e.g. "Buy Printed Fabrics Online | Saroj Fabrics" is used for 5 separate collections (Crepe Printed, Chanderi Printed, Muslin Printed, Cotton Printed, Silk Printed). This causes keyword cannibalisation and confuses Google about which page to rank for which query.</td>
+          <td class="issue-fix">Update each collection's SEO title in Shopify Admin → Collections → SEO section. Always include the specific fabric material: "Buy Crepe Printed Fabric Online | Saroj Fabrics" vs. "Buy Chanderi Printed Fabric Online | Saroj Fabrics". Max 60 characters. Use the fabric's most-searched variant name.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Directives: Noindex Pages</div></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td><span class="url-count">2</span></td>
+          <td><span class="pct">0.07%</span></td>
+          <td class="issue-desc">2 product pages with URL slugs containing "mws_apo_1_g2" are marked noindex,nofollow. The slug pattern strongly indicates these are test or staging products from an app installation that were never deleted. They consume crawl budget and represent potential content bloat.</td>
+          <td class="issue-fix">In Shopify Admin → Products, search for "mws_apo_1_g2". If these are test products, delete them entirely. If they are real products that were incorrectly noindexed, update the slug to a clean format and remove the noindex directive through the Shopify SEO settings or an SEO app.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Canonicals: Canonicalised URLs</div></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="url-count">5</span></td>
+          <td><span class="pct">0.17%</span></td>
+          <td class="issue-desc">5 URLs have canonical tags pointing to different URLs. 4 of these are expected Shopify behaviour (sort_by params, pagination, and variant URLs). 1 URL — /collections/all → /collections/ — should be reviewed to confirm the canonical is intentional and not a misconfiguration.</td>
+          <td class="issue-fix">For the /collections/all canonical: verify in Shopify Admin whether you want this page indexed. If yes, ensure it has a self-referencing canonical. The remaining 4 (sort params, variants, pagination) require no action — this is standard Shopify canonical behaviour and is correct.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Low Priority Warnings note -->
+    <div class="priority-header warning-bg">
+      <span class="tag tag-warning">WARNING</span>
+      <h3>URL-Level Warning Deductions</h3>
+      <span class="count-badge">−37 pts total</span>
+    </div>
+    <table class="priority-table warning-border">
+      <thead>
+        <tr>
+          <th style="width:36%">Issue Type</th>
+          <th style="width:12%">URL Count</th>
+          <th style="width:12%">Score Impact</th>
+          <th style="width:40%">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Collection pages with duplicate titles</strong></td><td><span class="url-count">24</span></td><td>−24 pts</td><td class="issue-fix">Each page with a duplicate title tag deducts 1 point. 24 collection pages across 7 duplicate title groups = 24 individual deductions.</td></tr>
+        <tr><td><strong>Noindex pages (test products)</strong></td><td><span class="url-count">2</span></td><td>−2 pts</td><td class="issue-fix">2 noindex product pages deduct 1 point each — likely test products never cleaned up post-app installation.</td></tr>
+        <tr><td><strong>Canonicalised URLs</strong></td><td><span class="url-count">5</span></td><td>−5 pts</td><td class="issue-fix">5 canonicalised URLs deduct 1 point each. Mostly expected Shopify behaviour but still counted against crawl efficiency.</td></tr>
+        <tr><td><strong>Other structural Shopify warnings</strong></td><td><span class="url-count">6</span></td><td>−6 pts</td><td class="issue-fix">Includes missing breadcrumb schema, missing Open Graph tags on collection pages, and product pages lacking structured data — each flagged individually by the crawl.</td></tr>
+        <tr style="background:rgba(217,119,6,0.05)!important; font-weight:600">
+          <td><strong>TOTAL WARNING DEDUCTIONS</strong></td>
+          <td><strong>37</strong></td>
+          <td><strong>−37 pts</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 4: OPPORTUNITIES -->
+<section id="opportunities">
+  <div class="container">
+    <div class="sec-num">04 — Opportunities</div>
+    <h2>Quick Wins &amp; <span class="accent">Optimisation Opportunities</span></h2>
+    <p class="sec-lede">Opportunities do not affect the health score but represent low-effort, high-impact improvements that can lift organic CTR, on-page relevance, and conversion rate for saroj.in. Prioritise the Medium items first — most are Shopify-native fixes requiring no developer work.</p>
+
+    <!-- Medium Priority -->
+    <div class="priority-header opp-bg" style="margin-top:0">
+      <span class="tag tag-opp">OPPORTUNITY</span>
+      <h3>Medium Priority — SEO &amp; Commerce Impact</h3>
+      <span class="count-badge">7 items</span>
+    </div>
+    <table class="priority-table opp-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Opportunity</th>
+          <th style="width:8%">Scope</th>
+          <th style="width:64%">Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Product Schema Markup</div></td>
+          <td><span class="url-count">All products</span></td>
+          <td class="issue-fix">Add JSON-LD Product schema to all product pages including: name, image, description, brand, offers (price, currency, availability), and aggregateRating. This enables Google Shopping rich results and price snippets — high value for a fabric e-commerce store. Use a Shopify SEO app or add to product.liquid template.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Breadcrumb Schema</div></td>
+          <td><span class="url-count">Collection + Product pages</span></td>
+          <td class="issue-fix">Implement BreadcrumbList schema on all collection and product pages. Shopify has a native breadcrumb Liquid snippet — ensure it outputs valid JSON-LD. Breadcrumbs in SERPs increase click-through rate by showing page hierarchy (e.g. Home &gt; Silk Fabrics &gt; Banarasi Brocade).</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Open Graph &amp; Twitter Card Tags</div></td>
+          <td><span class="url-count">All pages</span></td>
+          <td class="issue-fix">Add og:title, og:description, og:image, and og:type to all pages. Shopify's default theme typically includes these but verify they're populated with unique values per collection. Critical for WhatsApp sharing (primary channel for Indian fabric buyers) — a missing OG image results in no preview thumbnail when links are shared.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Collection Page Content Blocks</div></td>
+          <td><span class="url-count">64 collection pages</span></td>
+          <td class="issue-fix">Add 100–200 word descriptive content blocks below the product grid on each collection page. Include primary keyword, fabric characteristics, and use cases. This gives Google topical context beyond just product titles and significantly improves ranking for long-tail fabric queries. Can be added via Shopify's collection description field.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Internal Linking — Cross-Collection Links</div></td>
+          <td><span class="url-count">All collections</span></td>
+          <td class="issue-fix">Add "You may also like" or "Related Collections" internal links from each fabric collection to related category pages (e.g. from Chanderi Printed → Chanderi Embroidery → Chanderi Plain). This distributes PageRank across the collection hierarchy and helps Google understand the site's topical clusters.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Blog Content Expansion</div></td>
+          <td><span class="url-count">saroj.in/blogs/news</span></td>
+          <td class="issue-fix">The blog section currently has minimal content. Publishing 10–15 fabric-related articles (e.g. "How to choose the right embroidery fabric", "Difference between Chanderi and Banarasi fabrics") creates topical authority, drives informational search traffic, and builds internal links to collection pages. Target 1,000–1,500 words per post.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Page Title Length Optimisation</div></td>
+          <td><span class="url-count">All collection pages</span></td>
+          <td class="issue-fix">Review all collection page titles to ensure they are between 40–60 characters. Many currently share a generic format without the fabric material differentiated. After fixing duplicates (see Warnings), also check pixel width stays under 561px using a SERP preview tool such as Mangools or Google's Rich Results Test.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Low Priority -->
+    <div class="priority-header opp-bg">
+      <span class="tag tag-opp">OPPORTUNITY</span>
+      <h3>Low Priority — Technical Polish</h3>
+      <span class="count-badge">5 items</span>
+    </div>
+    <table class="priority-table opp-border">
+      <thead>
+        <tr>
+          <th style="width:28%">Opportunity</th>
+          <th style="width:8%">Scope</th>
+          <th style="width:64%">Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="issue-name">Image WebP Conversion</div></td>
+          <td><span class="url-count">All product images</span></td>
+          <td class="issue-fix">Shopify automatically serves WebP to supported browsers, but verify via Chrome DevTools Network tab that images are being served as WebP, not JPG/PNG. If not, check your theme's image rendering Liquid tags use the {{ image | image_url: width: 800 }} format. This improves Core Web Vitals LCP scores.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Sitemap Optimisation</div></td>
+          <td><span class="url-count">saroj.in/sitemap.xml</span></td>
+          <td class="issue-fix">Shopify auto-generates a sitemap. Verify it is submitted in Google Search Console and that all key collection pages are included. Check that test/noindex product URLs are excluded. If the sitemap includes 429-returning URLs, this may reduce Google's trust in sitemap accuracy.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">robots.txt Review</div></td>
+          <td><span class="url-count">saroj.in/robots.txt</span></td>
+          <td class="issue-fix">Audit robots.txt to confirm no important collection or product URLs are disallowed. Add a Crawl-delay directive to reduce the 429 rate limiting. Ensure Screaming Frog and Googlebot are not blocked. Shopify's default robots.txt disallows /admin, /cart, /orders — these should remain disallowed.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">Wholesale Page SEO</div></td>
+          <td><span class="url-count">pages/wholesale-fabrics</span></td>
+          <td class="issue-fix">The /pages/wholesale-fabrics page is missing an H1 and likely thin on content. This is a high-intent page for B2B buyers searching "wholesale fabric India" or "fabric wholesaler Surat/Mumbai". Add H1, meta description, 300+ words of content, and a contact/enquiry form with schema markup.</td>
+        </tr>
+        <tr>
+          <td><div class="issue-name">H2 Structure on Collection Pages</div></td>
+          <td><span class="url-count">All collection pages</span></td>
+          <td class="issue-fix">Once H1 tags are fixed, ensure each collection page also has a logical H2 structure within the description block. Use H2s for subsections like "About [Fabric Type]", "Available Designs", "How to Care for [Fabric]". This improves topical depth signals and supports voice search queries.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: REMEDIATION PRIORITY -->
+<section id="remediation">
+  <div class="container">
+    <div class="sec-num">05 — Remediation Priority</div>
+    <h2>Recommended <span class="accent">Action Plan</span></h2>
+    <p class="sec-lede">A phased remediation approach based on score impact, effort, and SEO value for saroj.in. Completing Phase 1 alone would restore approximately <strong>12 points</strong>, bringing the score to <strong>60/100 (C grade)</strong>. Full remediation of all warnings and critical issues targets a score of <strong>100/100</strong>.</p>
+
+    <h3>Phase 1 — Immediate (Week 1–2) · Score Impact: +12</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>Type</th><th>Est. URLs</th><th>Score Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Fix crawl rate — reduce SF speed + add robots.txt crawl delay</strong></td><td><span class="tag tag-critical">Critical</span></td><td>888</td><td>+3</td><td>Low</td></tr>
+        <tr><td><strong>Add alt text to 297 product images via Shopify CSV bulk update</strong></td><td><span class="tag tag-critical">Critical</span></td><td>297</td><td>+3</td><td>Medium</td></tr>
+        <tr><td><strong>Fix missing alt attribute on sitewide banner (theme Liquid file)</strong></td><td><span class="tag tag-critical">Critical</span></td><td>1</td><td>+3</td><td>Low</td></tr>
+        <tr><td><strong>Delete or fix 2 test products with mws_apo_1_g2 slugs</strong></td><td><span class="tag tag-warning">Warning</span></td><td>2</td><td>+2</td><td>Low</td></tr>
+        <tr><td><strong>Verify /collections/all canonical intent</strong></td><td><span class="tag tag-warning">Warning</span></td><td>1</td><td>+1</td><td>Low</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase 2 — Short Term (Month 1) · Score Impact: +24</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>Type</th><th>Est. URLs</th><th>Score Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Add H1 tags to 64 collection and static pages (theme + content fix)</strong></td><td><span class="tag tag-critical">Critical</span></td><td>64</td><td>+3</td><td>Medium</td></tr>
+        <tr><td><strong>Write meta descriptions for 24 collection pages</strong></td><td><span class="tag tag-critical">Critical</span></td><td>24</td><td>+3</td><td>Medium</td></tr>
+        <tr><td><strong>Fix 24 duplicate title tags — append specific fabric material</strong></td><td><span class="tag tag-warning">Warning</span></td><td>24</td><td>+24</td><td>Medium</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Phase 3 — Medium Term (Month 2–3) · Opportunity Wins</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>Type</th><th>Scope</th><th>Impact</th><th>Effort</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Implement Product + Breadcrumb schema on all pages</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>All products</td><td>Rich results</td><td>Medium</td></tr>
+        <tr><td><strong>Add Open Graph tags to all collection &amp; product pages</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>All pages</td><td>Social CTR</td><td>Low</td></tr>
+        <tr><td><strong>Add collection page content blocks (100–200 words each)</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>64 collections</td><td>Topical depth</td><td>High</td></tr>
+        <tr><td><strong>Publish 10–15 SEO blog posts targeting fabric-related queries</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>Blog section</td><td>Organic traffic</td><td>High</td></tr>
+        <tr><td><strong>Add cross-collection internal links across related fabric categories</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>All collections</td><td>PageRank flow</td><td>Medium</td></tr>
+        <tr><td><strong>Optimise wholesale page — H1, content, schema, CTA form</strong></td><td><span class="tag tag-opp">Opportunity</span></td><td>1 page</td><td>B2B leads</td><td>Low</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:32px">
+      <div class="callout-title">Projected Score After Full Remediation</div>
+      <p>If all 5 critical issues and 37 URL-level warnings are resolved, the site would score <strong>100/100</strong>. Completing Phases 1 &amp; 2 alone would bring the score to approximately <strong>84/100 (B grade)</strong> — a significant SEO improvement that should directly improve collection page indexation, organic visibility, and image search rankings for saroj.in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="kerkar">Kerkar Media</div>
+    <div class="tag-line">Digital Growth · SEO · Performance Marketing</div>
+    <div class="doc-meta-line">Technical SEO Dashboard · saroj.in · Prepared by Kerkar Media · June 2026</div>
+    <div class="doc-meta-line" style="margin-top:8px; color:#64748B">Powered by Screaming Frog SEO Spider · 2,913 URLs crawled · Score: 48/100</div>
+  </div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const setActive = () => {
+    let cur = sections[0]?.id;
+    for (const s of sections) {
+      if (window.scrollY + 120 >= s.offsetTop) cur = s.id;
+    }
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + cur));
+  };
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>

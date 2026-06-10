@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shehnai Bridal Boutique — SEO Dashboard | Wednesday, June 10, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #E8410A; --brand-dark: #b33108;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #E8410A 0%, #b33108 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .section-label { font-family: 'DM Sans'; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 8px 0 12px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  section h2 .meta { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .pill-green  { background: #DCFCE7; color: #166534; }
+  .pill-amber  { background: #FEF3C7; color: #92400E; }
+  .pill-red    { background: #FEE2E2; color: #991B1B; }
+  .pill-blue   { background: #DBEAFE; color: #1E40AF; }
+  .pill-purple { background: #EDE9FE; color: #5B21B6; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .empty-row { text-align: center; color: var(--muted); font-style: italic; padding: 24px !important; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand); }
+  .insight-card.wins     { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions  { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .split-grid { grid-template-columns: 1fr !important; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed weekly · Generated 2026-06-10T14:29:16.328Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Shehnai Bridal Boutique SEO Dashboard</strong>
+  <div class="meta">Period ending Wednesday, June 10, 2026 · shehnaibridalboutique.com · Fremont, CA</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>SEO Performance & Business Impact</h1>
+    <div class="sub">May 13, 2026 — Jun 9, 2026 · 155 organic clicks · $0 organic revenue (Search + Shopping) · 0 on-site transactions</div>
+    <div class="summary"><strong>Executive Summary:</strong> Dashboard loaded. Awaiting analysis.</div>
+  </div>
+
+  <div class="section-label">SEO Performance</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#E8410A">
+    <div class="kpi-label">Organic Clicks</div>
+    <div class="kpi-value">155</div>
+    <div class="kpi-sub">5,378 impressions · 2.88% CTR</div>
+  </div>
+  <div class="kpi" style="border-top-color:#b33108">
+    <div class="kpi-label">Organic Sessions</div>
+    <div class="kpi-value">1,105</div>
+    <div class="kpi-sub">GA4 organic channel</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Position</div>
+    <div class="kpi-value">7.3</div>
+    <div class="kpi-sub">across all tracked queries</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Domain Rating</div>
+    <div class="kpi-value">3.2</div>
+    <div class="kpi-sub">0 backlinks · 0 refdomains</div>
+  </div></div>
+
+  <div class="section-label">Business Impact & Authority</div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#16A34A">
+    <div class="kpi-label">Organic Revenue</div>
+    <div class="kpi-value">$0</div>
+    <div class="kpi-sub">Organic Search + Organic Shopping · USD · last 28d</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Organic Transactions</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">enquiry-stage · showroom/consult closes not counted</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Organic Keywords (Ahrefs)</div>
+    <div class="kpi-value">46</div>
+    <div class="kpi-sub">est traffic 84/mo</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Referring Domains</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">0 total backlinks</div>
+  </div></div>
+
+  
+  <div class="section-label">Revenue by Channel — Transparency Breakdown</div>
+  <section>
+    <h2>
+      Where Revenue Comes From
+      <span class="meta">last 28d · GA4 session-based channel attribution · USD</span>
+    </h2>
+    <div style="margin-bottom:16px; padding:14px 18px; background:#DCFCE7; border-radius:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <div>
+        <div style="font-size:12px; color:#166534; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">✓ Counted as Organic Revenue</div>
+        <div style="font-size:13px; color:#166534; margin-top:2px;">Organic Search + Organic Shopping only</div>
+      </div>
+      <div style="font-family:'DM Sans'; font-size:24px; font-weight:700; color:#166534;">$0</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Channel <span style="font-weight:400;text-transform:none;">(shown for context — not in Organic Revenue above)</span></th>
+            <th class="center">Sessions</th>
+            <th class="center">Transactions</th>
+            <th class="center">Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      Direct
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">5,318</td>
+    <td class="center">0</td>
+    <td class="center"><strong>$0</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Unassigned
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">1,597</td>
+    <td class="center">0</td>
+    <td class="center"><strong>$0</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Paid Search
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">582</td>
+    <td class="center">0</td>
+    <td class="center"><strong>$0</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Organic Social
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">112</td>
+    <td class="center">0</td>
+    <td class="center"><strong>$0</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      Referral
+      <span style="display:inline-block;background:#F1F5F9;color:#475569;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-left:6px;">CONTEXT</span>
+    </td>
+    <td class="center">32</td>
+    <td class="center">0</td>
+    <td class="center"><strong>$0</strong></td>
+  </tr></tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px; padding:12px 16px; background:#FFF7ED; border-radius:6px; font-size:12px; color:#9A3412;">
+      <strong>How to read this:</strong> The headline <strong>Organic Revenue</strong> counts only <strong>Organic Search + Organic Shopping</strong> — revenue earned through SEO. Other channels above are shown <strong>for context only</strong>. GA4 uses last-click, session-based attribution. Reminder: high-ticket bridal purchases often close after a Fremont showroom appointment or virtual consult, so GA4 understates true business impact — treat website conversions as enquiry-stage signal.
+    </div>
+  </section>
+
+  <div class="section-label">Query Mix — Branded vs Product vs Informational</div>
+  <section style="padding: 24px 28px;">
+    <div class="split-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+      <div style="border-left: 4px solid #E8410A; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
+        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">🛡 Branded</div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">23</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 14.8% of total</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+          CTR 3.05% · Pos 2.3
+        </div>
+      </div>
+
+      <div style="border-left: 4px solid #DB2777; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
+        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">💎 Product <span style="font-size:10px; color:#DB2777; font-weight:600;">(CATEGORY DEMAND)</span></div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">38</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 24.52% of total</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+          CTR 5.26% · Pos 7.6
+        </div>
+      </div>
+
+      <div style="border-left: 4px solid #7C3AED; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
+        <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">📖 Informational <span style="font-size:10px; color:#7C3AED; font-weight:600;">(TRUST + REACH)</span></div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">3</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 1.9% of total</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
+          CTR 9.38% · Pos 8.5
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:16px; padding:12px 16px; background:#FFF7ED; border-radius:6px; font-size:12px; color:#9A3412;">
+      <strong>How to read this:</strong> <strong>Branded</strong> = "shehnai bridal", "shehnai boutique" + misspellings — defending existing demand from referrals/Instagram. <strong>Product</strong> = "indian bridal lehenga", "kanjivaram saree", "bridal blouse Bay Area" — capturing category intent from new diaspora brides. <strong>Informational</strong> = drape/trend/style/ideas queries — builds top-of-funnel trust and brand discovery (Pinterest-heavy SERPs). High Product share = healthy category demand. High Informational share = strong content presence pulling brides into the funnel. Buckets are mutually exclusive.
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Search Queries
+      <span class="meta">May 13, 2026 — Jun 9, 2026 · GSC · 🛡 brand · 💎 product · 📖 info</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Query</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>shehnai bridal boutique</td>
+    <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
+    <td class="center"><strong>15</strong></td>
+    <td class="center">646</td>
+    <td class="center">2.32%</td>
+    <td class="center">2.2</td>
+  </tr>
+  <tr>
+    <td class="kw">indo western dresses</td>
+    <td class="center"><span class="pill pill-green">★ Product Winner</span></td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">435</td>
+    <td class="center">1.61%</td>
+    <td class="center">5.5</td>
+  </tr>
+  <tr>
+    <td class="kw">indo western outfits</td>
+    <td class="center"><span class="pill pill-amber">◆ Category Opportunity</span></td>
+    <td class="center"><strong>6</strong></td>
+    <td class="center">807</td>
+    <td class="center">0.74%</td>
+    <td class="center">11.5</td>
+  </tr>
+  <tr>
+    <td class="kw">indo western dress</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>5</strong></td>
+    <td class="center">608</td>
+    <td class="center">0.82%</td>
+    <td class="center">7.3</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">🛡 BRAND</span>shehnai boutique</td>
+    <td class="center"><span class="pill pill-blue">🛡 Brand Defense</span></td>
+    <td class="center"><strong>4</strong></td>
+    <td class="center">56</td>
+    <td class="center">7.14%</td>
+    <td class="center">3.4</td>
+  </tr>
+  <tr>
+    <td class="kw">indo western gowns</td>
+    <td class="center"><span class="pill pill-green">↑ Rising</span></td>
+    <td class="center"><strong>4</strong></td>
+    <td class="center">54</td>
+    <td class="center">7.41%</td>
+    <td class="center">7.2</td>
+  </tr>
+  <tr>
+    <td class="kw">jaggo outfit</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>4</strong></td>
+    <td class="center">342</td>
+    <td class="center">1.17%</td>
+    <td class="center">7.8</td>
+  </tr>
+  <tr>
+    <td class="kw">indian clothing stores near me</td>
+    <td class="center"><span class="pill pill-green">★ Product Winner</span></td>
+    <td class="center"><strong>4</strong></td>
+    <td class="center">268</td>
+    <td class="center">1.49%</td>
+    <td class="center">5.9</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#FCE7F3;color:#9D174D;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">💎 PRODUCT</span>what to wear to an indian wedding as a white person</td>
+    <td class="center"><span class="pill pill-purple">📖 Informational Win</span></td>
+    <td class="center"><strong>3</strong></td>
+    <td class="center">122</td>
+    <td class="center">2.46%</td>
+    <td class="center">9.5</td>
+  </tr>
+  <tr>
+    <td class="kw">indo western gown</td>
+    <td class="center"><span class="pill pill-green">↑ Rising</span></td>
+    <td class="center"><strong>3</strong></td>
+    <td class="center">129</td>
+    <td class="center">2.33%</td>
+    <td class="center">11.8</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Top Performing Pages
+      <span class="meta">May 13, 2026 — Jun 9, 2026 · PDP / COLL / BLOG / PAGE = page type</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th class="center">Status</th>
+            <th class="center">Clicks</th>
+            <th class="center">Impressions</th>
+            <th class="center">CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/indowestern-1" target="_blank" style="color:#E8410A;text-decoration:none">/collections/indowestern-1</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>50</strong></td>
+    <td class="center">2,778</td>
+    <td class="center">1.8%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#FEF3C7;color:#92400E;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">BLOG</span><a href="https://www.shehnaibridalboutique.com/blogs/news/how-to-dress-indian-wedding-non-indian-guest" target="_blank" style="color:#E8410A;text-decoration:none">/blogs/news/how-to-dress-indian-wedding-non-indian-gues…</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>29</strong></td>
+    <td class="center">205</td>
+    <td class="center">14.15%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://www.shehnaibridalboutique.com/" target="_blank" style="color:#E8410A;text-decoration:none">/</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>24</strong></td>
+    <td class="center">321</td>
+    <td class="center">7.48%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/sangeet-jaggo-suits" target="_blank" style="color:#E8410A;text-decoration:none">/collections/sangeet-jaggo-suits</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>14</strong></td>
+    <td class="center">620</td>
+    <td class="center">2.26%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/indian-clothing-stores-san-jose" target="_blank" style="color:#E8410A;text-decoration:none">/collections/indian-clothing-stores-san-jose</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>8</strong></td>
+    <td class="center">254</td>
+    <td class="center">3.15%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/indian-clothing-store-fremont" target="_blank" style="color:#E8410A;text-decoration:none">/collections/indian-clothing-store-fremont</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>7</strong></td>
+    <td class="center">174</td>
+    <td class="center">4.02%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/long-tops-lehengas" target="_blank" style="color:#E8410A;text-decoration:none">/collections/long-tops-lehengas</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>4</strong></td>
+    <td class="center">150</td>
+    <td class="center">2.67%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/sangeet" target="_blank" style="color:#E8410A;text-decoration:none">/collections/sangeet</a></td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>2</strong></td>
+    <td class="center">243</td>
+    <td class="center">0.82%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">COLL</span><a href="https://www.shehnaibridalboutique.com/collections/women" target="_blank" style="color:#E8410A;text-decoration:none">/collections/women</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>2</strong></td>
+    <td class="center">189</td>
+    <td class="center">1.06%</td>
+  </tr>
+  <tr>
+    <td class="kw"><span style="display:inline-block;background:#E0E7FF;color:#3730A3;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">PAGE</span><a href="https://www.shehnaibridalboutique.com/pages/schedule-your-appointment" target="_blank" style="color:#E8410A;text-decoration:none">/pages/schedule-your-appointment</a></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><strong>2</strong></td>
+    <td class="center">157</td>
+    <td class="center">1.27%</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <div class="empty">None this period</div>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <div class="empty">None this period</div>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Period</h3>
+        <div class="empty">None this period</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Shehnai Bridal Boutique SEO Dashboard · Fremont, CA · Auto-refreshed weekly · Powered by KM
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,2224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fang Oral Care — Technical SEO Dashboard | Kerkar Media</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-2: #f8fafc;
+        --bg-3: #f1f5f9;
+        --ink: #0f172a;
+        --ink-dim: #475569;
+        --ink-mute: #94a3b8;
+        --blue: #1e40af;
+        --blue-dim: #1e3a8a;
+        --blue-deep: #172554;
+        --accent: #2563eb;
+        --accent-light: #3b82f6;
+        --accent-soft: #dbeafe;
+        --line: #e2e8f0;
+        --line-soft: #f1f5f9;
+        --critical: #dc2626;
+        --high: #d97706;
+        --med: #0891b2;
+        --good: #16a34a;
+        --google: #4285f4;
+        --meta: #0866ff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        font-size: 14.5px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .container {
+        max-width: 1260px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* PAGE HEADER */
+      .page-header {
+        background:
+          radial-gradient(
+            ellipse at top right,
+            rgba(37, 99, 235, 0.08) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse at bottom left,
+            rgba(30, 64, 175, 0.06) 0%,
+            transparent 55%
+          ),
+          linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+        border-bottom: 1px solid var(--line);
+        padding: 56px 0 40px;
+        position: relative;
+      }
+      .page-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(30, 64, 175, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(30, 64, 175, 0.035) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+        mask-image: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.1) 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.1) 100%
+        );
+      }
+      .page-header-inner {
+        position: relative;
+        z-index: 1;
+      }
+      .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          var(--blue) 0%,
+          var(--accent-light) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+      }
+      .brand-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .brand-tag {
+        font-size: 11.5px;
+        color: var(--ink-mute);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 12px;
+        border: 1px solid var(--accent);
+        border-radius: 100px;
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--blue);
+        background: rgba(37, 99, 235, 0.06);
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      h1 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 14px;
+        color: var(--ink);
+      }
+      h1 .accent {
+        color: var(--blue);
+        font-style: italic;
+        font-weight: 500;
+        letter-spacing: -0.035em;
+      }
+      .page-sub {
+        font-size: 16px;
+        color: var(--ink-dim);
+        max-width: 780px;
+        line-height: 1.55;
+        margin-bottom: 28px;
+      }
+      .header-stats {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+      }
+      .hs-val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .hs-val.red {
+        color: var(--critical);
+      }
+      .hs-val.amber {
+        color: var(--high);
+      }
+      .hs-val.green {
+        color: var(--good);
+      }
+      .hs-lbl {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-mute);
+        font-weight: 500;
+        margin-top: 4px;
+      }
+      .hs-sub {
+        font-size: 11px;
+        color: var(--ink-mute);
+        margin-top: 2px;
+      }
+      .doc-meta {
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        color: var(--ink-mute);
+      }
+      .doc-meta strong {
+        color: var(--ink);
+        font-weight: 600;
+        margin-right: 4px;
+      }
+
+      /* SCORE GAUGE SECTION */
+      .score-section {
+        padding: 40px 0 32px;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-2);
+      }
+      .score-wrap {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        flex-wrap: wrap;
+      }
+      .gauge-wrap {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .gauge-svg {
+        width: 180px;
+        height: 100px;
+      }
+      .gauge-num {
+        font-size: 40px;
+        font-weight: 800;
+        color: var(--critical);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        text-align: center;
+        margin-top: -4px;
+      }
+      .gauge-denom {
+        font-size: 16px;
+        color: var(--ink-mute);
+        font-weight: 500;
+      }
+      .gauge-label {
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-mute);
+        font-weight: 600;
+        margin-top: 6px;
+      }
+      .score-breakdown {
+        flex: 1;
+        min-width: 280px;
+      }
+      .score-breakdown h3 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .score-breakdown h3::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: var(--blue);
+        border-radius: 1px;
+      }
+      .score-bar-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .score-bar-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .score-bar-label {
+        font-size: 12px;
+        color: var(--ink-dim);
+        min-width: 160px;
+        font-weight: 500;
+      }
+      .score-bar-track {
+        flex: 1;
+        height: 8px;
+        background: var(--bg-3);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .score-bar-fill {
+        height: 100%;
+        border-radius: 4px;
+      }
+      .score-bar-count {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink-mute);
+        min-width: 60px;
+        text-align: right;
+      }
+      .score-formula {
+        margin-top: 28px;
+        padding: 16px 20px;
+        background: rgba(37, 99, 235, 0.04);
+        border-left: 3px solid var(--blue);
+        border-radius: 0 6px 6px 0;
+        font-size: 13px;
+        color: var(--ink-dim);
+      }
+      .score-formula strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .score-grade {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 24px 36px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--bg);
+      }
+      .score-grade-val {
+        font-size: 56px;
+        font-weight: 800;
+        color: var(--critical);
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .score-grade-label {
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-mute);
+        font-weight: 600;
+        margin-top: 4px;
+      }
+
+      /* STICKY TAB BAR */
+      .tab-bar-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(180%) blur(12px);
+        -webkit-backdrop-filter: saturate(180%) blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      .tab-bar {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scrollbar-width: none;
+      }
+      .tab-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .tab-btn {
+        flex-shrink: 0;
+        padding: 10px 18px;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--ink-dim);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.18s;
+        white-space: nowrap;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .tab-btn:hover {
+        color: var(--blue);
+        background: var(--bg-2);
+      }
+      .tab-btn.active {
+        color: var(--blue);
+        background: rgba(37, 99, 235, 0.08);
+        border-color: rgba(37, 99, 235, 0.22);
+      }
+      .tab-btn .tab-meta {
+        font-weight: 400;
+        color: var(--ink-mute);
+        margin-left: 6px;
+        font-size: 11.5px;
+        letter-spacing: 0.02em;
+      }
+      .tab-btn.active .tab-meta {
+        color: var(--accent);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 52px 0 68px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      section:last-of-type {
+        border-bottom: none;
+      }
+      .sec-num {
+        font-size: 10.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+      h2 {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 16px;
+        color: var(--ink);
+      }
+      h2 .accent {
+        color: var(--blue);
+        font-style: italic;
+        font-weight: 500;
+      }
+      .sec-lede {
+        font-size: 15px;
+        color: var(--ink-dim);
+        max-width: 780px;
+        margin-bottom: 32px;
+        line-height: 1.6;
+      }
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 40px 0 14px;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      h3::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: var(--blue);
+        border-radius: 1px;
+      }
+      h4 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--blue);
+        margin: 24px 0 10px;
+        letter-spacing: -0.005em;
+      }
+      p {
+        color: var(--ink-dim);
+        margin-bottom: 12px;
+        font-size: 14.5px;
+      }
+      p strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* TABLES */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 20px;
+        font-size: 13px;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      }
+      th {
+        background: var(--bg-3);
+        text-align: left;
+        padding: 11px 14px;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--blue);
+        font-weight: 600;
+        border-bottom: 1px solid var(--line);
+        white-space: nowrap;
+      }
+      td {
+        padding: 10px 14px;
+        color: var(--ink-dim);
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      tbody tr:nth-child(2n) td {
+        background: var(--bg-2);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      td strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .issue-name {
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 13px;
+      }
+      .issue-desc {
+        font-size: 12px;
+        color: var(--ink-dim);
+        line-height: 1.5;
+        max-width: 440px;
+      }
+      .issue-fix {
+        font-size: 12px;
+        color: var(--ink-mute);
+        line-height: 1.5;
+        max-width: 340px;
+        font-style: italic;
+      }
+      .url-count {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .pct {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-mute);
+      }
+
+      /* TAGS */
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .tag-critical {
+        background: rgba(220, 38, 38, 0.1);
+        color: var(--critical);
+      }
+      .tag-high {
+        background: rgba(217, 119, 6, 0.12);
+        color: var(--high);
+      }
+      .tag-med {
+        background: rgba(8, 145, 178, 0.1);
+        color: var(--med);
+      }
+      .tag-good {
+        background: rgba(22, 163, 74, 0.1);
+        color: var(--good);
+      }
+      .tag-low {
+        background: rgba(148, 163, 184, 0.18);
+        color: #64748b;
+      }
+      .tag-issue {
+        background: rgba(220, 38, 38, 0.1);
+        color: var(--critical);
+      }
+      .tag-warning {
+        background: rgba(217, 119, 6, 0.12);
+        color: var(--high);
+      }
+      .tag-opp {
+        background: rgba(8, 145, 178, 0.1);
+        color: var(--med);
+      }
+
+      /* CALLOUTS */
+      .callout {
+        background: rgba(37, 99, 235, 0.04);
+        border-left: 3px solid var(--blue);
+        padding: 14px 20px;
+        margin: 18px 0;
+        border-radius: 0 6px 6px 0;
+      }
+      .callout-title {
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--blue);
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      .callout p {
+        color: var(--ink);
+        margin: 0;
+        font-size: 13.5px;
+      }
+      .callout.warn {
+        background: rgba(217, 119, 6, 0.05);
+        border-left-color: var(--high);
+      }
+      .callout.warn .callout-title {
+        color: var(--high);
+      }
+      .callout.critical {
+        background: rgba(220, 38, 38, 0.05);
+        border-left-color: var(--critical);
+      }
+      .callout.critical .callout-title {
+        color: var(--critical);
+      }
+
+      /* GRID */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin: 18px 0;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin: 18px 0;
+      }
+      .kpi-box {
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 14px 16px;
+      }
+      .kpi-lbl {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-mute);
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .kpi-val {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .kpi-val.red {
+        color: var(--critical);
+      }
+      .kpi-val.amber {
+        color: var(--high);
+      }
+      .kpi-val.green {
+        color: var(--good);
+      }
+      .kpi-sub {
+        font-size: 11px;
+        color: var(--ink-mute);
+        margin-top: 3px;
+      }
+
+      /* PRIORITY BADGE IN HEADER */
+      .priority-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 20px;
+        border-radius: 8px 8px 0 0;
+        border: 1px solid var(--line);
+        border-bottom: none;
+        margin-top: 32px;
+      }
+      .priority-header.critical-bg {
+        background: rgba(220, 38, 38, 0.06);
+        border-color: rgba(220, 38, 38, 0.2);
+      }
+      .priority-header.warning-bg {
+        background: rgba(217, 119, 6, 0.05);
+        border-color: rgba(217, 119, 6, 0.2);
+      }
+      .priority-header.opp-bg {
+        background: rgba(8, 145, 178, 0.04);
+        border-color: rgba(8, 145, 178, 0.15);
+      }
+      .priority-header h3 {
+        margin: 0;
+        font-size: 16px;
+      }
+      .priority-header h3::before {
+        display: none;
+      }
+      .priority-header .count-badge {
+        margin-left: auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 100px;
+      }
+      .priority-header.critical-bg .count-badge {
+        background: rgba(220, 38, 38, 0.12);
+        color: var(--critical);
+      }
+      .priority-header.warning-bg .count-badge {
+        background: rgba(217, 119, 6, 0.12);
+        color: var(--high);
+      }
+      .priority-header.opp-bg .count-badge {
+        background: rgba(8, 145, 178, 0.12);
+        color: var(--med);
+      }
+      .priority-table {
+        border-radius: 0 0 8px 8px;
+        margin-top: 0;
+      }
+      .priority-table.critical-border {
+        border-color: rgba(220, 38, 38, 0.2);
+      }
+      .priority-table.warning-border {
+        border-color: rgba(217, 119, 6, 0.2);
+      }
+      .priority-table.opp-border {
+        border-color: rgba(8, 145, 178, 0.15);
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 48px 0 32px;
+        text-align: center;
+        background: var(--blue-deep);
+        color: #e2e8f0;
+        margin-top: 40px;
+      }
+      footer .kerkar {
+        font-size: 13px;
+        color: #fff;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+      footer .tag-line {
+        font-size: 11.5px;
+        color: #cbd5e1;
+        letter-spacing: 0.08em;
+      }
+      footer .doc-meta-line {
+        margin-top: 18px;
+        font-size: 10.5px;
+        color: var(--ink-mute);
+        letter-spacing: 0.08em;
+      }
+
+      @media (max-width: 900px) {
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+        .header-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        h1 {
+          font-size: 30px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        .container {
+          padding: 0 18px;
+        }
+        .score-wrap {
+          flex-direction: column;
+        }
+      }
+
+      @media print {
+        .tab-bar-wrap {
+          display: none;
+        }
+        body {
+          font-size: 10pt;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .container {
+          padding: 0 8mm;
+          max-width: 100%;
+        }
+        .page-header {
+          padding: 16mm 8mm 10mm;
+        }
+        .page-header::before {
+          display: none;
+        }
+        section {
+          padding: 12mm 0 8mm;
+          border-bottom: 1px solid var(--line) !important;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+      <div class="container">
+        <div class="page-header-inner">
+          <div class="brand-row">
+            <div class="brand-mark">KM</div>
+            <div>
+              <div class="brand-name">Kerkar Media</div>
+              <div class="brand-tag">Digital Growth Agency</div>
+            </div>
+          </div>
+          <div class="badge">Technical SEO Audit — June 2026</div>
+          <h1>
+            Fang Oral Care — <span class="accent">Technical SEO Dashboard</span>
+          </h1>
+          <p class="page-sub">
+            Full-site crawl of <strong>fangoral.com</strong> powered by
+            Screaming Frog SEO Spider. 594 URLs analysed across all pages,
+            assets, and response codes. Issues are scored and prioritised to
+            guide remediation for this Shopify oral care e-commerce brand.
+          </p>
+          <div class="header-stats">
+            <div>
+              <div class="hs-val">594</div>
+              <div class="hs-lbl">Total URLs Crawled</div>
+              <div class="hs-sub">All resource types</div>
+            </div>
+            <div>
+              <div class="hs-val red">5</div>
+              <div class="hs-lbl">Critical Issues</div>
+              <div class="hs-sub">Requires immediate fix</div>
+            </div>
+            <div>
+              <div class="hs-val amber">48</div>
+              <div class="hs-lbl">Warning URLs</div>
+              <div class="hs-sub">Should be addressed</div>
+            </div>
+            <div>
+              <div class="hs-val" style="color: var(--med)">12</div>
+              <div class="hs-lbl">Opportunities</div>
+              <div class="hs-sub">Quick wins available</div>
+            </div>
+            <div>
+              <div class="hs-val red">37</div>
+              <div class="hs-lbl">SEO Health Score</div>
+              <div class="hs-sub">Out of 100</div>
+            </div>
+            <div>
+              <div class="hs-val green">June 16, 2026</div>
+              <div class="hs-lbl">Audit Date</div>
+              <div class="hs-sub">Screaming Frog v21</div>
+            </div>
+          </div>
+          <div class="doc-meta">
+            <span><strong>Client:</strong> Fang Oral Care</span>
+            <span><strong>Domain:</strong> fangoral.com</span>
+            <span><strong>Prepared by:</strong> Kerkar Media</span>
+            <span
+              ><strong>Crawl Engine:</strong> Screaming Frog SEO Spider</span
+            >
+            <span><strong>Status:</strong> Active — Remediation Required</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SCORE SECTION -->
+    <div class="score-section">
+      <div class="container">
+        <div class="score-wrap">
+          <!-- Gauge -->
+          <!-- Score 37/100. Arc length = π × 70 = 219.9px. 37% filled = 81.4px. dashoffset = 219.9 − 81.4 = 138.5 -->
+          <div class="gauge-wrap">
+            <svg
+              class="gauge-svg"
+              viewBox="0 0 180 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M 20 90 A 70 70 0 0 1 160 90"
+                fill="none"
+                stroke="#E2E8F0"
+                stroke-width="14"
+                stroke-linecap="round"
+              />
+              <path
+                d="M 20 90 A 70 70 0 0 1 160 90"
+                fill="none"
+                stroke="#DC2626"
+                stroke-width="14"
+                stroke-linecap="round"
+                stroke-dasharray="219.9"
+                stroke-dashoffset="138.5"
+              />
+            </svg>
+            <div class="gauge-num">37<span class="gauge-denom">/100</span></div>
+            <div class="gauge-label">SEO Health Score</div>
+          </div>
+
+          <!-- Grade -->
+          <div class="score-grade">
+            <div class="score-grade-val">D&minus;</div>
+            <div class="score-grade-label">Urgent Action Needed</div>
+          </div>
+
+          <!-- Breakdown -->
+          <div class="score-breakdown">
+            <h3>Score Breakdown</h3>
+            <div class="score-bar-row">
+              <div class="score-bar-item">
+                <div class="score-bar-label">Base Score</div>
+                <div class="score-bar-track">
+                  <div
+                    class="score-bar-fill"
+                    style="width: 100%; background: var(--good)"
+                  ></div>
+                </div>
+                <div class="score-bar-count" style="color: var(--good)">
+                  +100
+                </div>
+              </div>
+              <div class="score-bar-item">
+                <div class="score-bar-label">Critical Issues (5 × −3)</div>
+                <div class="score-bar-track">
+                  <div
+                    class="score-bar-fill"
+                    style="width: 15%; background: var(--critical)"
+                  ></div>
+                </div>
+                <div class="score-bar-count" style="color: var(--critical)">
+                  −15
+                </div>
+              </div>
+              <div class="score-bar-item">
+                <div class="score-bar-label">Warning URLs (48 × −1)</div>
+                <div class="score-bar-track">
+                  <div
+                    class="score-bar-fill"
+                    style="width: 48%; background: var(--high)"
+                  ></div>
+                </div>
+                <div class="score-bar-count" style="color: var(--high)">
+                  −48
+                </div>
+              </div>
+              <div class="score-bar-item">
+                <div class="score-bar-label"><strong>Final Score</strong></div>
+                <div class="score-bar-track">
+                  <div
+                    class="score-bar-fill"
+                    style="width: 37%; background: var(--critical)"
+                  ></div>
+                </div>
+                <div
+                  class="score-bar-count"
+                  style="
+                    color: var(--critical);
+                    font-size: 14px;
+                    font-weight: 700;
+                  "
+                >
+                  37
+                </div>
+              </div>
+            </div>
+            <div class="score-formula" style="margin-top: 20px">
+              <strong>Scoring formula:</strong> 100 − (Critical Issues × 3) −
+              (Warning URLs × 1) = 100 − 15 − 48 = <strong>37</strong>. Warning
+              URLs: 25 canonicalised + 15 redirects + 8 long titles.
+              Opportunities are tracked but do not affect the score.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STICKY TAB BAR -->
+    <nav class="tab-bar-wrap">
+      <div class="container">
+        <div class="tab-bar">
+          <a href="#overview" class="tab-btn active"
+            >Overview <span class="tab-meta">Summary</span></a
+          >
+          <a href="#critical" class="tab-btn"
+            >Critical Issues <span class="tab-meta">5 issues · −15 pts</span></a
+          >
+          <a href="#warnings" class="tab-btn"
+            >Warnings <span class="tab-meta">48 URLs · −48 pts</span></a
+          >
+          <a href="#opportunities" class="tab-btn"
+            >Opportunities <span class="tab-meta">12 items</span></a
+          >
+          <a href="#remediation" class="tab-btn"
+            >Remediation Priority <span class="tab-meta">Action Plan</span></a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: OVERVIEW -->
+    <section id="overview">
+      <div class="container">
+        <div class="sec-num">01 — Overview</div>
+        <h2>Site Health <span class="accent">at a Glance</span></h2>
+        <p class="sec-lede">
+          The crawl of fangoral.com discovered 594 URLs across this Shopify oral
+          care e-commerce store. The site scores 37/100 on the Kerkar Media SEO
+          Health Index — driven primarily by 95 images with missing alt text, 93
+          images missing alt attributes, a high-inlink broken product page, and
+          11 pages without H1 tags including the homepage. Resolving these
+          issues has significant upside for accessibility, image search, and
+          organic ranking.
+        </p>
+
+        <div class="grid-4">
+          <div class="kpi-box">
+            <div class="kpi-lbl">Total URLs</div>
+            <div class="kpi-val">594</div>
+            <div class="kpi-sub">Crawled in full</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Broken Links (4xx)</div>
+            <div class="kpi-val red">1</div>
+            <div class="kpi-sub">62 inlinks affected</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Canonicalised URLs</div>
+            <div class="kpi-val amber">25</div>
+            <div class="kpi-sub">Shopify collection paths</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Missing Meta Desc.</div>
+            <div class="kpi-val amber">7</div>
+            <div class="kpi-sub">Incl. our-story, blog</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Images Missing Alt Text</div>
+            <div class="kpi-val red">95</div>
+            <div class="kpi-sub">Product &amp; banner images</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Images Missing Alt Attr</div>
+            <div class="kpi-val red">93</div>
+            <div class="kpi-sub">star.png: 1,624 inlinks!</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Pages Missing H1</div>
+            <div class="kpi-val red">11</div>
+            <div class="kpi-sub">Incl. homepage</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Titles Over 60 Chars</div>
+            <div class="kpi-val amber">8</div>
+            <div class="kpi-sub">SERP truncation risk</div>
+          </div>
+        </div>
+
+        <h3>Key Findings Summary</h3>
+
+        <div class="callout critical">
+          <div class="callout-title">&#128308; Critical — Fix Immediately</div>
+          <p>
+            1 product page returning 404 with 62 inlinks
+            (/products/green-tea-mouthwash) is leaking significant link equity.
+            95 images lack alt text and 93 images are missing the alt attribute
+            entirely — including star.png used on 1,624 pages. 11 pages
+            including the homepage have no H1 tag.
+          </p>
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-title">
+            &#128993; High Priority — Fix This Month
+          </div>
+          <p>
+            7 pages are missing meta descriptions, reducing SERP click-through
+            rates. 8 page titles exceed 60 characters and will be truncated in
+            search results. 25 canonicalised collection URLs and 15 redirect
+            chains should have their internal links updated to point directly to
+            canonical URLs.
+          </p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">
+            &#128309; Quick Wins — Content &amp; Structure
+          </div>
+          <p>
+            Blog posts targeting oral care keywords need stronger H1 alignment
+            and internal linking to product pages. Adding Product, Review, and
+            FAQ schema can unlock rich results in SERPs. Consolidating
+            /collections/all and /collections/all-products would reduce
+            canonical duplication.
+          </p>
+        </div>
+
+        <h3>Issue Distribution by Category</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Critical</th>
+              <th>Warning URLs</th>
+              <th>Opportunities</th>
+              <th>Total Issues</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Response Codes (4xx)</strong></td>
+              <td><span class="tag tag-critical">1</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><strong>Images (Alt Text / Attr)</strong></td>
+              <td><span class="tag tag-critical">2</span></td>
+              <td>—</td>
+              <td>2</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td><strong>Headings (H1)</strong></td>
+              <td><span class="tag tag-critical">1</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><strong>Meta Descriptions</strong></td>
+              <td><span class="tag tag-critical">1</span></td>
+              <td>—</td>
+              <td>1</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td><strong>Canonicals</strong></td>
+              <td>—</td>
+              <td>25</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td><strong>Redirects (3xx)</strong></td>
+              <td>—</td>
+              <td>15</td>
+              <td>—</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><strong>Page Titles</strong></td>
+              <td>—</td>
+              <td>8</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td><strong>Schema / Rich Results</strong></td>
+              <td>—</td>
+              <td>—</td>
+              <td>3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td><strong>Internal Linking</strong></td>
+              <td>—</td>
+              <td>—</td>
+              <td>2</td>
+              <td>2</td>
+            </tr>
+            <tr
+              style="
+                background: rgba(37, 99, 235, 0.06) !important;
+                font-weight: 600;
+              "
+            >
+              <td><strong>TOTAL</strong></td>
+              <td><strong>5</strong></td>
+              <td><strong>48</strong></td>
+              <td><strong>12</strong></td>
+              <td><strong>20</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CRITICAL ISSUES -->
+    <section id="critical">
+      <div class="container">
+        <div class="sec-num">02 — Critical Issues</div>
+        <h2>Issues Requiring <span class="accent">Immediate Action</span></h2>
+        <p class="sec-lede">
+          These 5 critical issues represent broken functionality, missing
+          accessibility attributes, or structural failures that directly harm
+          SEO rankings, crawl budget, and user experience. Each unresolved
+          critical issue deducts <strong>3 points</strong> from the health
+          score, for a total of <strong>−15 points</strong>.
+        </p>
+
+        <div class="priority-header critical-bg">
+          <span class="tag tag-critical">CRITICAL</span>
+          <h3>5 Critical Issues Found</h3>
+          <span class="count-badge">−15 points from score</span>
+        </div>
+        <table class="priority-table critical-border">
+          <thead>
+            <tr>
+              <th style="width: 26%">Issue</th>
+              <th style="width: 8%">Priority</th>
+              <th style="width: 8%">URLs</th>
+              <th style="width: 8%">% Total</th>
+              <th style="width: 25%">Description</th>
+              <th style="width: 25%">How to Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="issue-name">Broken Product Page (404)</div>
+                <div class="issue-desc">
+                  fangoral.com/products/green-tea-mouthwash returns HTTP 404
+                  with 62 inlinks pointing to it.
+                </div>
+              </td>
+              <td><span class="tag tag-critical">Critical</span></td>
+              <td><span class="url-count">1</span></td>
+              <td><span class="pct">0.2%</span></td>
+              <td class="issue-desc">
+                62 internal links pointing to a dead URL — significant crawl
+                budget waste and link equity leak. The page may have been
+                deleted or renamed without a redirect.
+              </td>
+              <td class="issue-fix">
+                Add a 301 redirect from /products/green-tea-mouthwash to the
+                nearest live product, or restore the page. Update all 62 inlinks
+                to point to the live URL.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="issue-name">Images Missing Alt Text</div>
+                <div class="issue-desc">
+                  95 images have empty or absent alt text values across product
+                  pages, banners, and collections.
+                </div>
+              </td>
+              <td><span class="tag tag-critical">Critical</span></td>
+              <td><span class="url-count">95</span></td>
+              <td><span class="pct">—</span></td>
+              <td class="issue-desc">
+                Blank alt text fails WCAG accessibility standards and prevents
+                Google Image Search from indexing product visuals — a key
+                traffic channel for e-commerce.
+              </td>
+              <td class="issue-fix">
+                Add descriptive alt text to all 95 images in the Shopify theme
+                liquid files. Prioritise product images on high-traffic pages
+                (Banner_image2, Fang_360x.png — 62 inlinks).
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="issue-name">Images Missing Alt Attribute</div>
+                <div class="issue-desc">
+                  93 images have no alt attribute at all in the HTML — including
+                  star.png used on 1,624 pages.
+                </div>
+              </td>
+              <td><span class="tag tag-critical">Critical</span></td>
+              <td><span class="url-count">93</span></td>
+              <td><span class="pct">—</span></td>
+              <td class="issue-desc">
+                Missing the alt attribute entirely (vs. empty alt text) is a
+                more severe HTML error. star.png (review stars) appears on 1,624
+                pages without any alt attribute — highest-impact single fix on
+                the site.
+              </td>
+              <td class="issue-fix">
+                Add alt="" or descriptive alt text to every &lt;img&gt; tag in
+                theme files. Decorative images (stars, icons) should have
+                alt="". Product images need descriptive text.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="issue-name">Pages Missing H1 Tag</div>
+                <div class="issue-desc">
+                  11 pages have no H1, including the homepage (fangoral.com/)
+                  and the blog index.
+                </div>
+              </td>
+              <td><span class="tag tag-critical">Critical</span></td>
+              <td><span class="url-count">11</span></td>
+              <td><span class="pct">1.9%</span></td>
+              <td class="issue-desc">
+                H1 is the primary on-page keyword signal for Google. The
+                homepage, our-story, shipping, privacy, blog, affiliate,
+                get-hired, terms, search, cart, and CA privacy pages all lack
+                H1s.
+              </td>
+              <td class="issue-fix">
+                Add a unique, keyword-targeted H1 to each page. Homepage H1
+                should lead with the brand's primary value proposition (e.g.,
+                "Advanced Oral Care Products for a Healthier Smile").
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="issue-name">Pages Missing Meta Description</div>
+                <div class="issue-desc">
+                  7 pages have no meta description, including our-story,
+                  collections/all, blog index, and affiliate page.
+                </div>
+              </td>
+              <td><span class="tag tag-critical">Critical</span></td>
+              <td><span class="url-count">7</span></td>
+              <td><span class="pct">1.2%</span></td>
+              <td class="issue-desc">
+                Missing meta descriptions allow Google to auto-generate snippets
+                from page content, often producing low-CTR results. Brand and
+                collection pages especially need crafted descriptions.
+              </td>
+              <td class="issue-fix">
+                Write 150–160 character meta descriptions for all 7 pages in
+                Shopify admin (Online Store → Pages/Collections). Prioritise
+                /pages/our-story and /collections/all first.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: WARNINGS -->
+    <section id="warnings">
+      <div class="container">
+        <div class="sec-num">03 — Warnings</div>
+        <h2>Issues <span class="accent">to Resolve Soon</span></h2>
+        <p class="sec-lede">
+          These 48 warning-level URLs are not broken but represent SEO
+          inefficiencies. Each affected URL deducts
+          <strong>1 point</strong> from the health score, totalling
+          <strong>−48 points</strong>. The majority stem from Shopify's
+          collection-level URL architecture generating canonicalised duplicates.
+        </p>
+
+        <div class="priority-header warning-bg">
+          <span class="tag tag-warning">WARNING</span>
+          <h3>3 Warning Categories · 48 URLs</h3>
+          <span class="count-badge">−48 points from score</span>
+        </div>
+        <table class="priority-table warning-border">
+          <thead>
+            <tr>
+              <th style="width: 25%">Warning Type</th>
+              <th style="width: 10%">URLs</th>
+              <th style="width: 10%">Impact</th>
+              <th style="width: 28%">Description</th>
+              <th style="width: 27%">Recommended Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Canonicalised Product URLs</strong></td>
+              <td><span class="url-count">25</span></td>
+              <td><span class="tag tag-high">High</span></td>
+              <td class="issue-desc">
+                25 product URLs accessed via /collections/ paths are
+                canonicalised to their /products/ equivalents. This is a Shopify
+                default but signals that internal links are pointing to
+                non-canonical paths, diluting link equity.
+              </td>
+              <td class="issue-fix">
+                Audit internal navigation, product cards, and collection pages
+                to ensure all links use the canonical /products/ path. Update
+                any hardcoded links in theme files. Focus on
+                /collections/all-products/ and /collections/all/ which generate
+                most duplicates.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Redirect Chains (3xx)</strong></td>
+              <td><span class="url-count">15</span></td>
+              <td><span class="tag tag-high">High</span></td>
+              <td class="issue-desc">
+                15 URLs redirect — 13 internal 301s from
+                /collections/all/products/ to /products/ paths, plus 2 external
+                (YouTube 303, hCaptcha 302). Internal redirect chains dilute
+                crawl budget and slow indexing.
+              </td>
+              <td class="issue-fix">
+                Update all internal links pointing to /collections/all/products/
+                to use the final /products/ URL directly. External hCaptcha and
+                YouTube redirects are expected and can be ignored.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Page Titles Over 60 Characters</strong></td>
+              <td><span class="url-count">8</span></td>
+              <td><span class="tag tag-warning">Medium</span></td>
+              <td class="issue-desc">
+                8 pages have titles between 61–86 characters (longest: "Top 6
+                Foods &amp; Drinks That Cause Teeth Staining" blog post at 86
+                chars). Titles over ~60 chars are truncated in Google SERPs with
+                an ellipsis, hurting CTR.
+              </td>
+              <td class="issue-fix">
+                Shorten all titles to 50–60 characters. Remove the " – Fang Oral
+                Care" suffix where it causes overflow — brand name appears in
+                the favicon and URL bar anyway. Prioritise product pages
+                (teeth-whitening-pen at 81 chars).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Canonicalised URL — Sample (Top 10)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Canonicalised URL (Non-Canonical Path)</th>
+              <th>Canonical Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/teeth-whitening/products/fang-pro-teeth-whitening-strips</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/fang-pro-teeth-whitening-strips</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/teeth-whitening/products/fang-v34-teeth-whitening-strips</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/fang-v34-teeth-whitening-strips</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/toothbrushes/products/electric-toothbrush-e1</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/electric-toothbrush-e1</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/all-products/products/teeth-whitening-kit</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/teeth-whitening-kit</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/teeth-whitening-kit/ (trailing slash)</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/teeth-whitening-kit</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/floss-water-flosser/products/water-flosser</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/water-flosser</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/toothpaste/products/wild-mint-toothpaste</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/wild-mint-toothpaste</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/mix-match-save?variant=47674655047919</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/mix-match-save</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/refills/products/sonic-electric-toothbrushheads</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/sonic-electric-toothbrushheads</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/collections/all-products/products/sonic-electric-toothbrushheads-e1</code
+                >
+              </td>
+              <td>
+                <code
+                  style="
+                    font-size: 11px;
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                  "
+                  >/products/sonic-electric-toothbrushheads-e1</code
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Warning URL Deduction Summary</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Warning Type</th>
+              <th>URL Count</th>
+              <th>Deduction (× −1 per URL)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Canonicalised URLs</strong></td>
+              <td>25</td>
+              <td style="color: var(--high); font-weight: 700">−25 pts</td>
+            </tr>
+            <tr>
+              <td><strong>Redirect Chains (3xx)</strong></td>
+              <td>15</td>
+              <td style="color: var(--high); font-weight: 700">−15 pts</td>
+            </tr>
+            <tr>
+              <td><strong>Titles Over 60 Chars</strong></td>
+              <td>8</td>
+              <td style="color: var(--high); font-weight: 700">−8 pts</td>
+            </tr>
+            <tr style="background: rgba(37, 99, 235, 0.06) !important">
+              <td><strong>TOTAL WARNING DEDUCTION</strong></td>
+              <td><strong>48</strong></td>
+              <td style="color: var(--critical); font-weight: 700">−48 pts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4: OPPORTUNITIES -->
+    <section id="opportunities">
+      <div class="container">
+        <div class="sec-num">04 — Opportunities</div>
+        <h2>Growth <span class="accent">Quick Wins</span></h2>
+        <p class="sec-lede">
+          These 12 opportunities do not directly affect the health score but
+          represent high-value SEO improvements specific to oral care
+          e-commerce. Implementing them can significantly expand organic
+          visibility, improve click-through rates, and unlock rich results in
+          Google SERPs.
+        </p>
+
+        <div class="priority-header opp-bg">
+          <span class="tag tag-opp">OPPORTUNITIES</span>
+          <h3>Medium Priority — E-Commerce &amp; Content SEO</h3>
+          <span class="count-badge">7 items</span>
+        </div>
+        <table class="priority-table opp-border">
+          <thead>
+            <tr>
+              <th style="width: 28%">Opportunity</th>
+              <th style="width: 9%">Effort</th>
+              <th style="width: 9%">Impact</th>
+              <th style="width: 27%">Description</th>
+              <th style="width: 27%">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Product Schema (JSON-LD)</strong></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td><span class="tag tag-high">High</span></td>
+              <td class="issue-desc">
+                No Product schema detected on product pages. Adding it enables
+                price, availability, and review stars in Google SERPs — proven
+                to improve CTR for oral care products.
+              </td>
+              <td class="issue-fix">
+                Add Product + AggregateRating JSON-LD to all Shopify product
+                pages via theme.liquid or a dedicated schema app.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>FAQ Schema on Product Pages</strong></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td><span class="tag tag-high">High</span></td>
+              <td class="issue-desc">
+                Product pages (whitening strips, toothbrushes) typically have
+                FAQ-style content (usage, ingredients, safety). Marking it up
+                with FAQ schema unlocks accordion rich results in SERPs.
+              </td>
+              <td class="issue-fix">
+                Add FAQPage schema JSON-LD to product pages containing Q&amp;A
+                sections.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Breadcrumb Schema</strong></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td class="issue-desc">
+                Shopify generates breadcrumb-style URLs but no BreadcrumbList
+                schema is present. Adding it shows the category path in SERPs
+                (Home › Teeth Whitening › Product).
+              </td>
+              <td class="issue-fix">
+                Add BreadcrumbList JSON-LD schema to all product and collection
+                pages via theme.liquid.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Open Graph &amp; Twitter Card Meta Tags</strong></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td class="issue-desc">
+                Social sharing meta tags were not detected consistently. When
+                products are shared on WhatsApp or Instagram, no preview card
+                appears — reducing social referral clicks.
+              </td>
+              <td class="issue-fix">
+                Ensure og:title, og:description, og:image, and twitter:card tags
+                are set on all product, collection, and blog pages in Shopify.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Consolidate Duplicate Collections</strong></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td class="issue-desc">
+                /collections/all and /collections/all-products both exist, each
+                generating canonical duplicates for every product. This doubles
+                the canonical noise and dilutes crawl efficiency.
+              </td>
+              <td class="issue-fix">
+                Delete or redirect /collections/all-products to /collections/all
+                (or vice versa). Update all internal links to use only one
+                canonical collection path.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Blog-to-Product Internal Linking</strong></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-high">High</span></td>
+              <td class="issue-desc">
+                Blog posts (e.g. "Ways to Whiten Teeth Naturally") do not link
+                to relevant product pages (whitening strips, pen). This is a
+                missed opportunity to pass authority and drive conversions.
+              </td>
+              <td class="issue-fix">
+                Add 2–3 contextual product links in each blog post. "Proven Ways
+                to Whiten Teeth" should link to
+                /products/fang-pro-teeth-whitening-strips and
+                /products/teeth-whitening-pen.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Optimise Product Image Filenames</strong></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td class="issue-desc">
+                Most images have generic filenames (Banner_image2_720x.jpg,
+                TP_20_720x.jpg). Descriptive filenames help Google Image Search
+                index and rank product visuals.
+              </td>
+              <td class="issue-fix">
+                Re-upload key product images with descriptive filenames: e.g.
+                fang-electric-toothbrush-s1-white.jpg,
+                teeth-whitening-strips-v34.jpg before re-adding alt text.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="priority-header opp-bg" style="margin-top: 32px">
+          <span class="tag tag-opp">OPPORTUNITIES</span>
+          <h3>Lower Priority — Technical Polish</h3>
+          <span class="count-badge">5 items</span>
+        </div>
+        <table class="priority-table opp-border">
+          <thead>
+            <tr>
+              <th style="width: 30%">Opportunity</th>
+              <th style="width: 10%">Effort</th>
+              <th style="width: 10%">Impact</th>
+              <th style="width: 50%">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Add llms.txt for AI Search Visibility</strong></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td class="issue-fix">
+                Create /llms.txt listing key product, brand, and content pages
+                to improve citability in AI-powered search engines (Perplexity,
+                ChatGPT Search, Google AI Overviews).
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Audit Cart &amp; Search Page Indexability</strong>
+              </td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td class="issue-fix">
+                Confirm /cart and /search are noindexed in robots.txt or via
+                meta robots. These utility pages should not consume crawl budget
+                or appear in SERPs.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Trailing Slash Consistency</strong></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td class="issue-fix">
+                /products/teeth-whitening-kit/ (trailing slash) is treated as a
+                separate URL and canonicalised — update any links using the
+                trailing-slash version to use the canonical form.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Verify Hreflang Tags for Indian Market</strong></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td><span class="tag tag-med">Medium</span></td>
+              <td class="issue-fix">
+                Fangoral.com sells in India (fship.in tracking integration). If
+                targeting both Indian and international audiences, consider
+                hreflang tags or a geo-targeting signal in Google Search
+                Console.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Remove External Tracker Images from Alt Audit</strong>
+              </td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td><span class="tag tag-low">Low</span></td>
+              <td class="issue-fix">
+                11 tracking images from track.fship.in (order status icons)
+                appear in the alt attribute report. These are third-party
+                tracking pixels — add alt="" or defer via JS to remove them from
+                future audits.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 5: REMEDIATION -->
+    <section id="remediation">
+      <div class="container">
+        <div class="sec-num">05 — Remediation Priority</div>
+        <h2>Action Plan &amp; <span class="accent">Projected Impact</span></h2>
+        <p class="sec-lede">
+          A structured 3-phase remediation plan targeting fangoral.com's most
+          impactful issues. Completing Phase 1 alone can push the health score
+          from <strong>37 to 55+</strong>. Full remediation across all three
+          phases can reach <strong>80+/100</strong>.
+        </p>
+
+        <h3>Phase 1 — Immediate Action (Week 1–2)</h3>
+        <p><strong>Projected score lift: +18 pts → estimated 55/100</strong></p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 35%">Task</th>
+              <th style="width: 15%">Owner</th>
+              <th style="width: 10%">Score Impact</th>
+              <th style="width: 40%">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Fix 404 broken product page</strong></td>
+              <td>Developer</td>
+              <td style="color: var(--good); font-weight: 700">+3 pts</td>
+              <td class="issue-desc">
+                Add 301 redirect for /products/green-tea-mouthwash → nearest
+                live product. Update the 62 internal links in Shopify
+                navigation, collection pages, or blog posts pointing to the dead
+                URL.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong
+                  >2. Add alt attributes to star.png &amp; Fang.png</strong
+                >
+              </td>
+              <td>Developer</td>
+              <td style="color: var(--good); font-weight: 700">
+                +3 pts (partial)
+              </td>
+              <td class="issue-desc">
+                star.png (1,624 inlinks) and Fang.png (62 inlinks) are the
+                highest-impact images. Set alt="" for decorative star icons,
+                descriptive text for logo. This addresses the most exposed
+                missing-alt-attr records.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>3. Add H1 to homepage</strong></td>
+              <td>Content / Dev</td>
+              <td style="color: var(--good); font-weight: 700">
+                +3 pts (partial)
+              </td>
+              <td class="issue-desc">
+                Homepage H1 is the single highest-value on-page keyword signal.
+                Suggested: "Premium Oral Care Products — Electric Toothbrushes,
+                Whitening Strips &amp; More".
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong
+                  >4. Add meta descriptions to our-story &amp; blog
+                  index</strong
+                >
+              </td>
+              <td>Content</td>
+              <td style="color: var(--good); font-weight: 700">
+                +3 pts (partial)
+              </td>
+              <td class="issue-desc">
+                These are the highest-value pages missing meta descriptions.
+                /pages/our-story builds brand trust; /blogs/news drives blog
+                traffic. Write 150–160 char descriptions in Shopify admin.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>5. Shorten 3 longest product page titles</strong></td>
+              <td>Content</td>
+              <td style="color: var(--good); font-weight: 700">+3 pts</td>
+              <td class="issue-desc">
+                Fix the 3 titles over 77 chars: teeth-whitening-pen (81 chars),
+                top-6-foods blog (86 chars), oral-care-and-health blog (80
+                chars). Shorten to ≤60 chars while keeping target keyword.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Phase 2 — Short Term (Month 1)</h3>
+        <p>
+          <strong
+            >Projected additional score lift: +25 pts → estimated 80/100</strong
+          >
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 35%">Task</th>
+              <th style="width: 15%">Owner</th>
+              <th style="width: 10%">Score Impact</th>
+              <th style="width: 40%">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bulk-fix all 95 images missing alt text</strong></td>
+              <td>Developer</td>
+              <td style="color: var(--good); font-weight: 700">+3 pts</td>
+              <td class="issue-desc">
+                Work through the full 95-image list in the Excel jobsheet. Use
+                Shopify's bulk editor or a liquid template audit to add alt text
+                at the file/asset level. Prioritise product images on
+                top-selling pages.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Bulk-fix all 93 images missing alt attribute</strong>
+              </td>
+              <td>Developer</td>
+              <td style="color: var(--good); font-weight: 700">+3 pts</td>
+              <td class="issue-desc">
+                Add alt="" or descriptive alt to all remaining 93 images missing
+                the attribute. Check theme snippets: product-card.liquid,
+                slideshow.liquid, and section files are typical culprits in
+                Shopify stores.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Add H1 to all 11 missing-H1 pages</strong></td>
+              <td>Content / Dev</td>
+              <td style="color: var(--good); font-weight: 700">+3 pts</td>
+              <td class="issue-desc">
+                Complete the H1 audit: shipping-and-delivery, our-story,
+                privacy-policy, cart, search, blogs/news, affiliate-program,
+                terms, get-hired, your-ca-privacy-rights. Cart and search can
+                use generic programmatic H1s.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Complete meta description for all 7 pages</strong>
+              </td>
+              <td>Content</td>
+              <td style="color: var(--good); font-weight: 700">+3 pts</td>
+              <td class="issue-desc">
+                Add meta descriptions to all remaining 5 pages: /cart,
+                /collections/all, /pages/contact, /pages/affiliate-program,
+                /pages/get-hired. These are low-traffic but contribute to
+                overall score.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong
+                  >Update internal links to canonical /products/ URLs</strong
+                >
+              </td>
+              <td>Developer</td>
+              <td style="color: var(--good); font-weight: 700">+13 pts</td>
+              <td class="issue-desc">
+                Audit all internal navigation, product cards, and link
+                references in Shopify. Wherever /collections/all/products/ or
+                /collections/all-products/products/ is used internally, update
+                to /products/. This removes 25 canonical warnings and 13
+                internal redirect hits.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Phase 3 — Medium Term (Month 2–3)</h3>
+        <p>
+          <strong
+            >No direct score impact — opportunity wins to unlock rich results
+            and expand organic reach</strong
+          >
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 35%">Task</th>
+              <th style="width: 65%">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Implement Product + Review schema</strong></td>
+              <td class="issue-desc">
+                Add JSON-LD Product and AggregateRating schema to all product
+                pages. This enables review stars, price, and availability in
+                Google SERPs — high-impact for a product like whitening strips
+                with strong customer reviews.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Add FAQ schema to product pages</strong></td>
+              <td class="issue-desc">
+                Identify the FAQ-style content on product pages (ingredients,
+                safety, usage) and mark up with FAQPage JSON-LD. Targets People
+                Also Ask boxes and accordion rich results.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Blog-to-product internal linking campaign</strong>
+              </td>
+              <td class="issue-desc">
+                Update all 4 blog posts to include 2–3 contextual links to
+                relevant products. Estimated +15% organic conversion from
+                organic blog readers who are purchase-intent visitors.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong
+                  >Consolidate /collections/all and
+                  /collections/all-products</strong
+                >
+              </td>
+              <td class="issue-desc">
+                Redirect one to the other permanently to eliminate the duplicate
+                canonical URLs being generated for every product across both
+                collection paths.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Create llms.txt and optimise for AI search</strong>
+              </td>
+              <td class="issue-desc">
+                Add /llms.txt listing product pages, brand pages, and key blog
+                articles. Verify Open Graph and Twitter Card tags on all product
+                pages for consistent social sharing previews.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div
+          class="callout"
+          style="
+            margin-top: 32px;
+            background: rgba(37, 99, 235, 0.06);
+            border-left-color: var(--blue);
+          "
+        >
+          <div class="callout-title">
+            &#127919; Projected Score After Full Remediation
+          </div>
+          <p>
+            <strong>Current score: 37/100 (D&minus;)</strong> → After Phase 1
+            &amp; 2: <strong>~80/100 (B−)</strong> → After Phase 3
+            opportunities: potential to reach <strong>85–90/100 (A)</strong>.
+            The largest single gains come from fixing the 188 image alt issues
+            (+6 pts) and resolving 38 canonical/redirect warning URLs (+38 pts).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="kerkar">Kerkar Media</div>
+        <div class="tag-line">
+          Technical SEO Audit — fangoral.com — June 2026
+        </div>
+        <div class="doc-meta-line">
+          Prepared by Kerkar Media · Screaming Frog SEO Spider v21 · 594 URLs
+          analysed
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky tab bar: highlight active section
+      (function () {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const sections = document.querySelectorAll("section[id]");
+        function onScroll() {
+          let current = "";
+          sections.forEach((s) => {
+            if (window.scrollY >= s.offsetTop - 140) current = s.id;
+          });
+          tabs.forEach((t) => {
+            t.classList.toggle(
+              "active",
+              t.getAttribute("href") === "#" + current,
+            );
+          });
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

@@ -241,43 +241,44 @@
           font-size: 20px;
         }
       }
+
       .insight-panel {
-  background: linear-gradient(135deg, var(--km-navy) 0%, var(--km-blue) 100%);
-  border-radius: 0;
-  padding: 22px 26px;
-  margin: 0 0 24px 0;
-  color: #fff;
-}
-.insight-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  opacity: 0.9;
-  margin-bottom: 10px;
-}
-.insight-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--km-green);
-  box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.25);
-}
-.insight-text {
-  font-size: 15px;
-  line-height: 1.65;
-  margin: 0;
-}
-.insight-meta {
-  margin-top: 10px;
-  font-size: 11px;
-  opacity: 0.65;
-  letter-spacing: 0.3px;
-}
+        background: linear-gradient(135deg, var(--km-navy) 0%, var(--km-blue) 100%);
+        border-radius: 0;
+        padding: 22px 26px;
+        margin: 0 0 24px 0;
+        color: #fff;
+      }
+      .insight-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        opacity: 0.9;
+        margin-bottom: 10px;
+      }
+      .insight-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--km-green);
+        box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.25);
+      }
+      .insight-text {
+        font-size: 15px;
+        line-height: 1.65;
+        margin: 0;
+      }
+      .insight-meta {
+        margin-top: 10px;
+        font-size: 11px;
+        opacity: 0.65;
+        letter-spacing: 0.3px;
+      }
     </style>
   </head>
   <body>
@@ -340,13 +341,15 @@
           <div class="kpi-delta" id="kpiPositionDelta"></div>
         </div>
       </div>
-<div class="insight-panel" id="insightPanel">
-  <div class="insight-label">
-    <span class="insight-dot"></span> AI Insight for this period
-  </div>
-  <p class="insight-text" id="insightText">Loading insight…</p>
-  <div class="insight-meta" id="insightMeta"></div>
-</div>
+
+      <div class="insight-panel" id="insightPanel">
+        <div class="insight-label">
+          <span class="insight-dot"></span> AI Insight for this period
+        </div>
+        <p class="insight-text" id="insightText">Loading insight…</p>
+        <div class="insight-meta" id="insightMeta"></div>
+      </div>
+
       <div class="chart-container">
         <div class="chart-title">Daily Trend — Current Period</div>
         <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
@@ -653,8 +656,46 @@
         });
 
         renderChart(currentRows);
+        renderInsight(days);
       }
-renderInsight(days);
+
+      // === INSIGHTS ===
+      const DAYS_TO_WINDOW = { 7: "7d", 30: "30d", 90: "3mo", 180: "6mo", 365: "12mo" };
+      let INSIGHTS_BY_WINDOW = {};
+      let INSIGHT_GENERATED_ON = null;
+
+      async function loadInsights() {
+        const { data, error } = await sb
+          .from("gsc_insights")
+          .select("time_window,insight,generated_on")
+          .eq("client_id", CLIENT_ID)
+          .order("generated_on", { ascending: false })
+          .limit(5);
+        if (error || !data?.length) return;
+        const latest = data[0].generated_on;
+        INSIGHT_GENERATED_ON = latest;
+        INSIGHTS_BY_WINDOW = data
+          .filter((r) => r.generated_on === latest)
+          .reduce((acc, r) => {
+            acc[r.time_window] = r.insight;
+            return acc;
+          }, {});
+      }
+
+      function renderInsight(days) {
+        const key = DAYS_TO_WINDOW[days];
+        const text = INSIGHTS_BY_WINDOW[key];
+        const textEl = document.getElementById("insightText");
+        const metaEl = document.getElementById("insightMeta");
+        if (!text) {
+          textEl.textContent = "Insight not available for this period yet.";
+          metaEl.textContent = "";
+          return;
+        }
+        textEl.textContent = text;
+        metaEl.textContent = `Generated ${INSIGHT_GENERATED_ON} · Window: ${key}`;
+      }
+
       // === EVENT WIRING ===
       document
         .getElementById("windowSelect")
@@ -663,42 +704,8 @@ renderInsight(days);
         .getElementById("compareSelect")
         .addEventListener("change", render);
 
-      loadData();
-      loadInsights().then(() => render());
-
-      // Maps the dropdown's "days" value → the window key stored in gsc_insights
-const DAYS_TO_WINDOW = { 7: "7d", 30: "30d", 90: "3mo", 180: "6mo", 365: "12mo" };
-let INSIGHTS_BY_WINDOW = {};
-let INSIGHT_GENERATED_ON = null;
-
-async function loadInsights() {
-  const { data, error } = await sb
-    .from("gsc_insights")
-    .select("time_window,insight,generated_on")
-    .eq("client_id", CLIENT_ID)
-    .order("generated_on", { ascending: false })
-    .limit(5);
-  if (error || !data?.length) return;
-  const latest = data[0].generated_on;
-  INSIGHT_GENERATED_ON = latest;
-  INSIGHTS_BY_WINDOW = data
-    .filter(r => r.generated_on === latest)
-    .reduce((acc, r) => { acc[r.time_window] = r.insight; return acc; }, {});
-}
-
-function renderInsight(days) {
-  const key = DAYS_TO_WINDOW[days];
-  const text = INSIGHTS_BY_WINDOW[key];
-  const textEl = document.getElementById("insightText");
-  const metaEl = document.getElementById("insightMeta");
-  if (!text) {
-    textEl.textContent = "Insight not available for this period yet.";
-    metaEl.textContent = "";
-    return;
-  }
-  textEl.textContent = text;
-  metaEl.textContent = `Generated ${INSIGHT_GENERATED_ON} · Window: ${key}`;
-}
+      // Load insights first (so the first render has them), then load GSC data
+      loadInsights().then(loadData);
     </script>
   </body>
 </html>

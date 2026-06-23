@@ -164,6 +164,40 @@
     .ft-bottom{flex-direction:column;gap:8px}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+
+  /* ---------- Keyword wins table ---------- */
+  .kw-intro{font-size:16px;line-height:24px;color:var(--gray);max-width:70ch;margin:-24px 0 40px}
+  .kw-group{margin-bottom:48px}
+  .kw-grouphead{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:16px;flex-wrap:wrap}
+  .kw-grouptitle{font-family:var(--display);font-weight:500;font-size:22px;line-height:30px;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:center;gap:12px}
+  .kw-grouptitle .dot{width:10px;height:10px;border-radius:50%}
+  .kw-grouptitle .dot.new{background:var(--blue)}
+  .kw-grouptitle .dot.imp{background:#0a9b48}
+  .kw-groupmeta{font-family:var(--ui);font-size:13px;color:var(--gray);letter-spacing:.02em}
+  .kw-tablewrap{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
+  .kw-scroll{overflow-x:auto}
+  table.kw{width:100%;border-collapse:collapse;font-size:14px;line-height:20px;min-width:720px}
+  table.kw thead th{font-family:var(--ui);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-align:left;padding:14px 20px;background:#FAFAFA;border-bottom:1px solid var(--line);white-space:nowrap}
+  table.kw thead th.num,table.kw tbody td.num{text-align:right}
+  table.kw tbody td{padding:14px 20px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:middle}
+  table.kw tbody tr:last-child td{border-bottom:none}
+  table.kw tbody tr:hover{background:#FAFBFF}
+  .kw-term{font-weight:500;color:var(--ink)}
+  .kw-vol{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500}
+  .kw-pos{display:inline-flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+  .kw-pos .from{color:var(--n300);text-decoration:line-through;font-size:13px}
+  .kw-pos .arrow{color:var(--gray);font-size:12px}
+  .kw-pos .to{color:var(--ink);font-weight:600}
+  .kw-pos .to.top3{color:#0a9b48}
+  .kw-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-family:var(--ui);font-weight:500;font-size:12px;line-height:16px;letter-spacing:.02em;white-space:nowrap}
+  .kw-badge.new{background:#EEF2FF;color:var(--blue)}
+  .kw-badge.imp{background:#E8F7EE;color:#0a7a39}
+  .kw-badge.top1{background:#0a9b48;color:#fff}
+
+  @media (max-width:820px){
+    .kw-intro{margin:-16px 0 28px}
+    table.kw thead th,table.kw tbody td{padding:12px 14px}
+  }
 </style>
 </head>
 <body>
@@ -309,6 +343,80 @@
     </div>
   </div>
   <p class="source">Source: Google Search Console — last 6 months vs. previous 6 months, period ending 9 June 2026. Web search, all devices.</p>
+</section>
+
+<!-- ===================== SECTION 3 — KEYWORD WINS ===================== -->
+<section class="container block">
+  <h2 class="block-title">The keywords driving the climb</h2>
+  <p class="kw-intro">A snapshot of 25 high-intent keywords where Suresh Dani Classes either started ranking from scratch or moved up the page over the last six months. Together they cover the MHT-CET, FYJC college, NEET and IIT-JEE searches Mumbai students are actually running.</p>
+
+  <div class="kw-group">
+    <div class="kw-grouphead">
+      <div class="kw-grouptitle"><span class="dot new"></span>New rankings <span class="kw-groupmeta">18 keywords. Not ranking 6 months ago.</span></div>
+    </div>
+    <div class="kw-tablewrap"><div class="kw-scroll">
+      <table class="kw">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th class="num">Monthly volume</th>
+            <th class="num">Position</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw-term">mht cet cutoff</td><td class="num kw-vol">6,500</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">mht cet syllabus</td><td class="num kw-vol">4,000</td><td class="num"><span class="kw-pos"><span class="to">#14</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">cet percentile calculator</td><td class="num kw-vol">3,400</td><td class="num"><span class="kw-pos"><span class="to top3">#5</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">arts colleges in mumbai</td><td class="num kw-vol">2,900</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">best colleges in mumbai for science</td><td class="num kw-vol">2,300</td><td class="num"><span class="kw-pos"><span class="to top3">#6</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">neet cutoff 2025 mbbs govt college OBC</td><td class="num kw-vol">2,200</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">common entrance test</td><td class="num kw-vol">2,000</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">best coaching for jee</td><td class="num kw-vol">2,000</td><td class="num"><span class="kw-pos"><span class="to">#15</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">100 marks in mht cet percentile</td><td class="num kw-vol">1,900</td><td class="num"><span class="kw-pos"><span class="to top3">#10</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">best science colleges in mumbai</td><td class="num kw-vol">1,300</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">imu cet exam syllabus</td><td class="num kw-vol">1,200</td><td class="num"><span class="kw-pos"><span class="to top3">#3</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">120 marks in mht cet percentile</td><td class="num kw-vol">1,200</td><td class="num"><span class="kw-pos"><span class="to">#17</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">iit admission process</td><td class="num kw-vol">1,000</td><td class="num"><span class="kw-pos"><span class="to">#16</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">what is jee main and jee advanced</td><td class="num kw-vol">1,000</td><td class="num"><span class="kw-pos"><span class="to">#18</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">science colleges in mumbai for 11th and 12th</td><td class="num kw-vol">900</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">top 10 science colleges in mumbai</td><td class="num kw-vol">900</td><td class="num"><span class="kw-pos"><span class="to top3">#7</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+          <tr><td class="kw-term">government medical colleges in maharashtra</td><td class="num kw-vol">800</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">upsc cds exam pattern</td><td class="num kw-vol">800</td><td class="num"><span class="kw-pos"><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">how to get admission in iit</td><td class="num kw-vol">900</td><td class="num"><span class="kw-pos"><span class="to">#20</span></span></td><td><span class="kw-badge new">New</span></td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+
+  <div class="kw-group">
+    <div class="kw-grouphead">
+      <div class="kw-grouptitle"><span class="dot imp"></span>Improved rankings <span class="kw-groupmeta">7 keywords. Moved up the page.</span></div>
+    </div>
+    <div class="kw-tablewrap"><div class="kw-scroll">
+      <table class="kw">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th class="num">Monthly volume</th>
+            <th class="num">Position change</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw-term">bsc colleges in mumbai</td><td class="num kw-vol">1,700</td><td class="num"><span class="kw-pos"><span class="from">#16</span><span class="arrow">→</span><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">top colleges in mumbai for commerce</td><td class="num kw-vol">450</td><td class="num"><span class="kw-pos"><span class="from">#11</span><span class="arrow">→</span><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">physiotherapy admission process</td><td class="num kw-vol">300</td><td class="num"><span class="kw-pos"><span class="from">#52</span><span class="arrow">→</span><span class="to top3">#10</span></span></td><td><span class="kw-badge imp">+42 spots</span></td></tr>
+          <tr><td class="kw-term">neet coaching in mumbai</td><td class="num kw-vol">150</td><td class="num"><span class="kw-pos"><span class="from">#9</span><span class="arrow">→</span><span class="to top3">#7</span></span></td><td><span class="kw-badge imp">Top 10</span></td></tr>
+          <tr><td class="kw-term">neet classes in mumbai</td><td class="num kw-vol">90</td><td class="num"><span class="kw-pos"><span class="from">#8</span><span class="arrow">→</span><span class="to top3">#5</span></span></td><td><span class="kw-badge imp">Top 10</span></td></tr>
+          <tr><td class="kw-term">top commerce junior colleges in mumbai for 11th and 12th</td><td class="num kw-vol">60</td><td class="num"><span class="kw-pos"><span class="from">#5</span><span class="arrow">→</span><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+          <tr><td class="kw-term">top commerce colleges in mumbai for 11th and 12th</td><td class="num kw-vol">50</td><td class="num"><span class="kw-pos"><span class="from">#9</span><span class="arrow">→</span><span class="to top3">#1</span></span></td><td><span class="kw-badge top1">Ranked #1</span></td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+
+  <p class="source">Source: Ahrefs Site Explorer. Organic keywords for sureshdaniclasses.com, India, last 6 months vs. previous 6 months, period ending 9 June 2026.</p>
 </section>
 
 <!-- ===================== QUOTE 2 ===================== -->

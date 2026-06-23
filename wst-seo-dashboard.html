@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Western Seal Tech — Technical SEO Dashboard | Kerkar Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #FFFFFF;
+  --bg-2:         #F8FAFC;
+  --bg-3:         #F1F5F9;
+  --ink:          #0F172A;
+  --ink-dim:      #475569;
+  --ink-mute:     #94A3B8;
+  --blue:         #1E40AF;
+  --blue-dim:     #1E3A8A;
+  --blue-deep:    #172554;
+  --accent:       #2563EB;
+  --accent-light: #3B82F6;
+  --accent-soft:  #DBEAFE;
+  --line:         #E2E8F0;
+  --line-soft:    #F1F5F9;
+  --critical:     #DC2626;
+  --high:         #D97706;
+  --med:          #0891B2;
+  --good:         #16A34A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02','cv03','cv04','cv11','ss01';
+  background: var(--bg); color: var(--ink);
+  line-height: 1.6; font-size: 14.5px;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 32px; }
+
+.page-header {
+  background:
+    radial-gradient(ellipse at top right, rgba(37,99,235,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(30,64,175,0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 56px 0 40px; position: relative;
+}
+.page-header::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(30,64,175,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,64,175,0.035) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
+}
+.page-header-inner { position: relative; z-index: 1; }
+.brand-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.brand-mark { width: 38px; height: 38px; border-radius: 8px; background: linear-gradient(135deg, var(--blue) 0%, var(--accent-light) 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 15px; letter-spacing: -0.02em; }
+.brand-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.brand-tag { font-size: 11.5px; color: var(--ink-mute); }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border: 1px solid var(--accent); border-radius: 100px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); background: rgba(37,99,235,0.06); font-weight: 600; margin-bottom: 20px; }
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+h1 { font-size: 42px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 14px; color: var(--ink); }
+h1 .accent { color: var(--blue); font-style: italic; font-weight: 500; letter-spacing: -0.035em; }
+.page-sub { font-size: 16px; color: var(--ink-dim); max-width: 780px; line-height: 1.55; margin-bottom: 28px; }
+.header-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding-top: 28px; border-top: 1px solid var(--line); }
+.hs-val { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; line-height: 1.1; }
+.hs-val.red { color: var(--critical); }
+.hs-val.amber { color: var(--high); }
+.hs-val.green { color: var(--good); }
+.hs-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-mute); font-weight: 500; margin-top: 4px; }
+.hs-sub { font-size: 11px; color: var(--ink-mute); margin-top: 2px; }
+.doc-meta { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; gap: 28px; flex-wrap: wrap; font-size: 12px; color: var(--ink-mute); }
+.doc-meta strong { color: var(--ink); font-weight: 600; margin-right: 4px; }
+
+.score-section { padding: 40px 0 32px; border-bottom: 1px solid var(--line); background: var(--bg-2); }
+.score-wrap { display: flex; align-items: center; gap: 48px; flex-wrap: wrap; }
+.gauge-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+.gauge-svg { width: 180px; height: 100px; }
+.gauge-num { font-size: 40px; font-weight: 800; color: var(--high); letter-spacing: -0.04em; line-height: 1; text-align: center; margin-top: -4px; }
+.gauge-denom { font-size: 16px; color: var(--ink-mute); font-weight: 500; }
+.gauge-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-mute); font-weight: 600; margin-top: 6px; }
+.score-breakdown { flex: 1; min-width: 280px; }
+.score-breakdown h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 18px; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.score-breakdown h3::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--blue); border-radius: 1px; }
+.score-bar-row { display: flex; flex-direction: column; gap: 12px; }
+.score-bar-item { display: flex; align-items: center; gap: 12px; }
+.score-bar-label { font-size: 12px; color: var(--ink-dim); min-width: 160px; font-weight: 500; }
+.score-bar-track { flex: 1; height: 8px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+.score-bar-fill { height: 100%; border-radius: 4px; }
+.score-bar-count { font-size: 12px; font-weight: 600; color: var(--ink-mute); min-width: 60px; text-align: right; }
+.score-formula { margin-top: 28px; padding: 16px 20px; background: rgba(37,99,235,0.04); border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; font-size: 13px; color: var(--ink-dim); }
+.score-formula strong { color: var(--ink); font-weight: 600; }
+.score-grade { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding: 24px 36px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.score-grade-val { font-size: 56px; font-weight: 800; color: var(--high); line-height: 1; letter-spacing: -0.04em; }
+.score-grade-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-mute); font-weight: 600; margin-top: 4px; }
+
+.tab-bar-wrap { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--line); }
+.tab-bar { display: flex; gap: 4px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 10px 18px; font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; background: transparent; border: 1px solid transparent; color: var(--ink-dim); border-radius: 8px; cursor: pointer; transition: all 0.18s; white-space: nowrap; text-decoration: none; display: inline-block; }
+.tab-btn:hover { color: var(--blue); background: var(--bg-2); }
+.tab-btn.active { color: var(--blue); background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.22); }
+.tab-btn .tab-meta { font-weight: 400; color: var(--ink-mute); margin-left: 6px; font-size: 11.5px; }
+.tab-btn.active .tab-meta { color: var(--accent); }
+
+section { padding: 52px 0 68px; border-bottom: 1px solid var(--line-soft); }
+section:last-of-type { border-bottom: none; }
+.sec-num { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; font-weight: 600; }
+h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; color: var(--ink); }
+h2 .accent { color: var(--blue); font-style: italic; font-weight: 500; }
+.sec-lede { font-size: 15px; color: var(--ink-dim); max-width: 780px; margin-bottom: 32px; line-height: 1.6; }
+h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin: 40px 0 14px; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+h3::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--blue); border-radius: 1px; }
+h4 { font-size: 15px; font-weight: 600; color: var(--blue); margin: 24px 0 10px; }
+p { color: var(--ink-dim); margin-bottom: 12px; font-size: 14.5px; }
+p strong { color: var(--ink); font-weight: 600; }
+
+table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,23,42,0.03); }
+th { background: var(--bg-3); text-align: left; padding: 11px 14px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); font-weight: 600; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 10px 14px; color: var(--ink-dim); border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(2n) td { background: var(--bg-2); }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--ink); font-weight: 600; }
+.issue-name { font-weight: 600; color: var(--ink); font-size: 13px; }
+.issue-desc { font-size: 12px; color: var(--ink-dim); line-height: 1.5; max-width: 440px; }
+.issue-fix { font-size: 12px; color: var(--ink-mute); line-height: 1.5; max-width: 340px; font-style: italic; }
+.url-count { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.pct { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); }
+
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.tag-critical { background: rgba(220,38,38,0.10); color: var(--critical); }
+.tag-high     { background: rgba(217,119,6,0.12); color: var(--high); }
+.tag-med      { background: rgba(8,145,178,0.10); color: var(--med); }
+.tag-good     { background: rgba(22,163,74,0.10); color: var(--good); }
+.tag-low      { background: rgba(148,163,184,0.18); color: #64748b; }
+.tag-warning  { background: rgba(217,119,6,0.12); color: var(--high); }
+.tag-opp      { background: rgba(8,145,178,0.10); color: var(--med); }
+
+.callout { background: rgba(37,99,235,0.04); border-left: 3px solid var(--blue); padding: 14px 20px; margin: 18px 0; border-radius: 0 6px 6px 0; }
+.callout-title { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 6px; font-weight: 700; }
+.callout p { color: var(--ink); margin: 0; font-size: 13.5px; }
+.callout.warn { background: rgba(217,119,6,0.05); border-left-color: var(--high); }
+.callout.warn .callout-title { color: var(--high); }
+.callout.critical { background: rgba(220,38,38,0.05); border-left-color: var(--critical); }
+.callout.critical .callout-title { color: var(--critical); }
+
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+.kpi-box { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
+.kpi-lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; font-weight: 600; }
+.kpi-val { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; line-height: 1.1; }
+.kpi-val.red { color: var(--critical); }
+.kpi-val.amber { color: var(--high); }
+.kpi-val.green { color: var(--good); }
+.kpi-sub { font-size: 11px; color: var(--ink-mute); margin-top: 3px; }
+
+.priority-header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-radius: 8px 8px 0 0; border: 1px solid var(--line); border-bottom: none; margin-top: 32px; }
+.priority-header.critical-bg { background: rgba(220,38,38,0.06); border-color: rgba(220,38,38,0.2); }
+.priority-header.warning-bg  { background: rgba(217,119,6,0.05); border-color: rgba(217,119,6,0.2); }
+.priority-header.opp-bg      { background: rgba(8,145,178,0.04); border-color: rgba(8,145,178,0.15); }
+.priority-header h3 { margin: 0; font-size: 16px; }
+.priority-header h3::before { display: none; }
+.priority-header .count-badge { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+.priority-header.critical-bg .count-badge { background: rgba(220,38,38,0.12); color: var(--critical); }
+.priority-header.warning-bg .count-badge  { background: rgba(217,119,6,0.12); color: var(--high); }
+.priority-header.opp-bg .count-badge      { background: rgba(8,145,178,0.12); color: var(--med); }
+.priority-table { border-radius: 0 0 8px 8px; margin-top: 0; }
+.priority-table.critical-border { border-color: rgba(220,38,38,0.2); }
+.priority-table.warning-border  { border-color: rgba(217,119,6,0.2); }
+.priority-table.opp-border      { border-color: rgba(8,145,178,0.15); }
+
+footer { padding: 48px 0 32px; text-align: center; background: var(--blue-deep); color: #E2E8F0; margin-top: 40px; }
+footer .kerkar { font-size: 13px; color: #fff; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
+footer .tag-line { font-size: 11.5px; color: #CBD5E1; letter-spacing: 0.08em; }
+footer .doc-meta-line { margin-top: 18px; font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.08em; }
+
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .header-stats { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 30px; } h2 { font-size: 24px; }
+  .container { padding: 0 18px; }
+  .score-wrap { flex-direction: column; }
+}
+@media print {
+  .tab-bar-wrap { display: none; }
+  body { font-size: 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .container { padding: 0 8mm; max-width: 100%; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-inner">
+      <div class="brand-row">
+        <div class="brand-mark">KM</div>
+        <div>
+          <div class="brand-name">Kerkar Media</div>
+          <div class="brand-tag">Digital Growth Agency</div>
+        </div>
+      </div>
+      <div class="badge">Technical SEO Audit — June 2026</div>
+      <h1>Western Seal Tech — <span class="accent">Technical SEO Dashboard</span></h1>
+      <p class="page-sub">Full-site crawl of <strong>westernsealtech.com</strong> powered by Screaming Frog SEO Spider. 528 URLs analysed across all pages, assets, and response codes. Western Seal Tech is a B2B industrial rubber seal manufacturer with global clients across pharma, automotive, aerospace, and food processing.</p>
+      <div class="header-stats">
+        <div>
+          <div class="hs-val">528</div>
+          <div class="hs-lbl">Total URLs Crawled</div>
+          <div class="hs-sub">All resource types</div>
+        </div>
+        <div>
+          <div class="hs-val red">4</div>
+          <div class="hs-lbl">Critical Issues</div>
+          <div class="hs-sub">Requires immediate fix</div>
+        </div>
+        <div>
+          <div class="hs-val amber">33</div>
+          <div class="hs-lbl">Warning URLs</div>
+          <div class="hs-sub">Should be addressed</div>
+        </div>
+        <div>
+          <div class="hs-val" style="color:var(--med)">10</div>
+          <div class="hs-lbl">Opportunities</div>
+          <div class="hs-sub">Quick wins available</div>
+        </div>
+        <div>
+          <div class="hs-val amber">55</div>
+          <div class="hs-lbl">SEO Health Score</div>
+          <div class="hs-sub">Out of 100</div>
+        </div>
+        <div>
+          <div class="hs-val green">June 23, 2026</div>
+          <div class="hs-lbl">Audit Date</div>
+          <div class="hs-sub">Screaming Frog v21</div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <span><strong>Client:</strong> Western Seal Tech (Western Rubbers)</span>
+        <span><strong>Domain:</strong> westernsealtech.com</span>
+        <span><strong>Platform:</strong> Webflow</span>
+        <span><strong>Prepared by:</strong> Kerkar Media</span>
+        <span><strong>Crawl Engine:</strong> Screaming Frog SEO Spider</span>
+        <span><strong>Status:</strong> Active — Remediation Required</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SCORE SECTION -->
+<!-- Score 55/100. Arc = π × 70 = 219.9px. 55% filled = 120.9px. dashoffset = 219.9 − 120.9 = 99.0 -->
+<div class="score-section">
+  <div class="container">
+    <div class="score-wrap">
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#E2E8F0" stroke-width="14" stroke-linecap="round"/>
+          <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#D97706" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="219.9" stroke-dashoffset="99.0"/>
+        </svg>
+        <div class="gauge-num">55<span class="gauge-denom">/100</span></div>
+        <div class="gauge-label">SEO Health Score</div>
+      </div>
+
+      <div class="score-grade">
+        <div class="score-grade-val">D+</div>
+        <div class="score-grade-label">Needs Improvement</div>
+      </div>
+
+      <div class="score-breakdown">
+        <h3>Score Breakdown</h3>
+        <div class="score-bar-row">
+          <div class="score-bar-item">
+            <div class="score-bar-label">Base Score</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:100%; background:var(--good)"></div></div>
+            <div class="score-bar-count" style="color:var(--good)">+100</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label">Critical Issues (4 × −3)</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:12%; background:var(--critical)"></div></div>
+            <div class="score-bar-count" style="color:var(--critical)">−12</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label">Warning URLs (33 × −1)</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:33%; background:var(--high)"></div></div>
+            <div class="score-bar-count" style="color:var(--high)">−33</div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-bar-label"><strong>Final Score</strong></div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:55%; background:var(--high)"></div></div>
+            <div class="score-bar-count" style="color:var(--high); font-size:14px; font-weight:700">55</div>
+          </div>
+        </div>
+        <div class="score-formula" style="margin-top:20px">
+          <strong>Scoring formula:</strong> 100 − (Critical Issues × 3) − (Warning URLs × 1) = 100 − 12 − 33 = <strong>55</strong>. Warning URLs: 10 long titles + 8 canonicals + 15 redirects. Opportunities and informational 4xx issues are tracked but do not affect the score.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY TAB BAR -->
+<nav class="tab-bar-wrap">
+  <div class="container">
+    <div class="tab-bar">
+      <a href="#overview" class="tab-btn active">Overview <span class="tab-meta">Summary</span></a>
+      <a href="#critical" class="tab-btn">Critical Issues <span class="tab-meta">4 issues · −12 pts</span></a>
+      <a href="#warnings" class="tab-btn">Warnings <span class="tab-meta">33 URLs · −33 pts</span></a>
+      <a href="#opportunities" class="tab-btn">Opportunities <span class="tab-meta">10 items</span></a>
+      <a href="#remediation" class="tab-btn">Remediation Priority <span class="tab-meta">Action Plan</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="sec-num">01 — Overview</div>
+    <h2>Site Health <span class="accent">at a Glance</span></h2>
+    <p class="sec-lede">The crawl of westernsealtech.com discovered 528 URLs on this Webflow-built B2B industrial sealing solutions website. The site scores 55/100 on the Kerkar Media SEO Health Index. The two dominant issues are 312 images with missing alt text (a Webflow-wide configuration gap) and 29 product pages with no meta descriptions — both high-impact for search visibility and accessibility, and both fixable within the Webflow Designer without developer involvement.</p>
+
+    <div class="grid-4">
+      <div class="kpi-box">
+        <div class="kpi-lbl">Total URLs</div>
+        <div class="kpi-val">528</div>
+        <div class="kpi-sub">Crawled in full</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Images Missing Alt Text</div>
+        <div class="kpi-val red">312</div>
+        <div class="kpi-sub">All Webflow CDN images</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Missing Meta Desc.</div>
+        <div class="kpi-val red">29</div>
+        <div class="kpi-sub">Every product page</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Redirect Inlink Waste</div>
+        <div class="kpi-val red">884</div>
+        <div class="kpi-sub">/innovations links lost</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Canonicalised URLs</div>
+        <div class="kpi-val amber">8</div>
+        <div class="kpi-sub">www/non-www conflict</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Titles Over 60 Chars</div>
+        <div class="kpi-val amber">10</div>
+        <div class="kpi-sub">Max: 128 chars!</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Missing H1</div>
+        <div class="kpi-val green">0</div>
+        <div class="kpi-sub">All pages have H1 ✓</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Noindex Pages</div>
+        <div class="kpi-val green">0</div>
+        <div class="kpi-sub">Full site indexable ✓</div>
+      </div>
+    </div>
+
+    <h3>Key Findings Summary</h3>
+
+    <div class="callout critical">
+      <div class="callout-title">&#128308; Critical — Fix Immediately</div>
+      <p>312 Webflow CDN images lack alt text — including product images viewed on dozens of pages. 29 product pages have no meta description, making every product on the site invisible to SERP snippets. The /innovations-internal URL has 816 internal links pointing to a redirect → homepage — the highest link-equity leak found in the audit.</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">&#128993; High Priority — Fix This Month</div>
+      <p>8 core pages (homepage, contact, about, blog, careers, etc.) have canonical tags pointing to <code>www.westernsealtech.com</code> while the server 301-redirects www → non-www. This is a direct canonical/redirect conflict that sends contradictory signals to Google. 10 page titles exceed 60 characters, including one product page at 128 chars that functions as a paragraph, not a title.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">&#128309; Quick Wins — B2B Content &amp; Schema</div>
+      <p>No product schema (JSON-LD) found on product pages. As an industrial manufacturer, Product schema with specs, material grades, and industry certifications can unlock rich results for engineers searching for specific seal types. Blog posts targeting "inflatable seals for pharma" and similar queries should link more aggressively to product pages.</p>
+    </div>
+
+    <h3>Issue Distribution by Category</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Critical</th>
+          <th>Warning URLs</th>
+          <th>Opportunities</th>
+          <th>Total Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Images (Alt Text)</strong></td><td><span class="tag tag-critical">1</span></td><td>—</td><td>—</td><td>1</td></tr>
+        <tr><td><strong>Meta Descriptions</strong></td><td><span class="tag tag-critical">1</span></td><td>—</td><td>—</td><td>1</td></tr>
+        <tr><td><strong>Redirect Link Equity</strong></td><td><span class="tag tag-critical">1</span></td><td>15</td><td>—</td><td>2</td></tr>
+        <tr><td><strong>Canonicals (www/non-www)</strong></td><td><span class="tag tag-critical">1</span></td><td>8</td><td>—</td><td>2</td></tr>
+        <tr><td><strong>Page Titles</strong></td><td>—</td><td>10</td><td>2</td><td>3</td></tr>
+        <tr><td><strong>Schema / Rich Results</strong></td><td>—</td><td>—</td><td>3</td><td>3</td></tr>
+        <tr><td><strong>Internal Linking</strong></td><td>—</td><td>—</td><td>3</td><td>3</td></tr>
+        <tr><td><strong>URL Structure (/product/ vs /products/)</strong></td><td>—</td><td>—</td><td>2</td><td>2</td></tr>
+        <tr><td><strong>4xx (External / Informational)</strong></td><td>—</td><td>—</td><td>—</td><td>0 (info only)</td></tr>
+        <tr style="background:rgba(37,99,235,0.06)!important; font-weight:600">
+          <td><strong>TOTAL</strong></td>
+          <td><strong>4</strong></td>
+          <td><strong>33</strong></td>
+          <td><strong>10</strong></td>
+          <td><strong>17</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 2: CRITICAL ISSUES -->
+<section id="critical">
+  <div class="container">
+    <div class="sec-num">02 — Critical Issues</div>
+    <h2>Issues Requiring <span class="accent">Immediate Action</span></h2>
+    <p class="sec-lede">These 4 critical issues represent fundamental technical failures that directly limit search visibility, waste link equity, or send contradictory signals to Google. Each issue deducts <strong>3 points</strong> from the health score — a total of <strong>−12 points</strong>.</p>
+
+    <div class="priority-header critical-bg">
+      <span class="tag tag-critical">CRITICAL</span>
+      <h3>4 Critical Issues Found</h3>
+      <span class="count-badge">−12 points from score</span>
+    </div>
+    <table class="priority-table critical-border">
+      <thead>
+        <tr>
+          <th style="width:26%">Issue</th>
+          <th style="width:8%">Priority</th>
+          <th style="width:10%">Scale</th>
+          <th style="width:28%">Description</th>
+          <th style="width:28%">How to Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="issue-name">Images Missing Alt Text</div>
+            <div class="issue-desc">312 Webflow CDN images have no alt text across product, industry, and blog pages.</div>
+          </td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">312 images</span></td>
+          <td class="issue-desc">Every image on the Webflow site — product photos, industry application images, technical diagrams, and UI icons — lacks alt text. This fails WCAG 2.1 AA accessibility standards and prevents Google Image Search indexing. For a manufacturer, image search is a significant B2B discovery channel (engineers image-search product types).</td>
+          <td class="issue-fix">In Webflow Designer, select each image element → Settings panel → add descriptive alt text. Prioritise: product images (inflatable seals, silicone hoses, o-rings), the 'plus 2.png' icon (154 inlinks), Component 6.avif (24 inlinks), and all train-front images (68 inlinks each).</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">All Product Pages Missing Meta Descriptions</div>
+            <div class="issue-desc">29 product pages have no meta description — every single product URL on the site.</div>
+          </td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">29 pages</span></td>
+          <td class="issue-desc">Without meta descriptions, Google auto-generates SERP snippets from page content — often poorly. For high-intent B2B searches like "inflatable seals manufacturer" or "silicone hose supplier", a crafted meta description with specs, certifications, and a CTA can dramatically improve click-through rate from engineers evaluating vendors.</td>
+          <td class="issue-fix">In Webflow, go to each product page → SEO Settings → write a 150–160 char meta description. Prioritise: o-rings, gaskets, inflatable seals, silicone hoses. Include material grade (FDA, EPDM, FKM), application (pharma, food, automotive), and a differentiator ("ISO 9001 certified", "custom specifications available").</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">Massive Redirect Link Equity Loss</div>
+            <div class="issue-desc">/innovations-internal (816 inlinks) and /innovations (68 inlinks) both redirect to the homepage — 884 links wasted.</div>
+          </td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">884 inlinks</span></td>
+          <td class="issue-desc">These are almost certainly internal links left over from a deleted "Innovations" page or section. 816 internal links pointing to a redirect chain → homepage is the single largest link-equity waste in this audit. Every redirect loses some PageRank before passing it on.</td>
+          <td class="issue-fix">1) Search all Webflow pages for links to "/innovations-internal" and "/innovations". 2) Either restore an Innovations page (case studies, R&D content) or update all 884 links to point to the most relevant existing page (/products or a specific product). Do not leave them pointing to the homepage.</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="issue-name">www / non-www Canonical Conflict</div>
+            <div class="issue-desc">8 pages canonical to www.westernsealtech.com but the server 301-redirects www → non-www. Direct contradiction.</div>
+          </td>
+          <td><span class="tag tag-critical">Critical</span></td>
+          <td><span class="url-count">8 pages</span></td>
+          <td class="issue-desc">The canonical tag says "the authoritative version is www" but the server says "www doesn't exist, go to non-www." Googlebot receives contradictory signals: the canonical points one direction and the redirect points the other. This can cause indexing confusion for the homepage and key pages (contact, about, blog, careers).</td>
+          <td class="issue-fix">Choose one canonical version (recommend: non-www, since that's what the server serves). In Webflow Site Settings → SEO → ensure canonical URL uses non-www. Verify the Webflow project's custom domain settings are configured for non-www as primary. All canonical tags should then automatically align.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: WARNINGS -->
+<section id="warnings">
+  <div class="container">
+    <div class="sec-num">03 — Warnings</div>
+    <h2>Issues <span class="accent">to Resolve Soon</span></h2>
+    <p class="sec-lede">These 33 warning-level URLs represent SEO inefficiencies that reduce click-through rates and crawl efficiency. Each URL deducts <strong>1 point</strong> from the health score, totalling <strong>−33 points</strong>.</p>
+
+    <div class="priority-header warning-bg">
+      <span class="tag tag-warning">WARNING</span>
+      <h3>3 Warning Categories · 33 URLs</h3>
+      <span class="count-badge">−33 points from score</span>
+    </div>
+    <table class="priority-table warning-border">
+      <thead>
+        <tr>
+          <th style="width:22%">Warning Type</th>
+          <th style="width:8%">URLs</th>
+          <th style="width:10%">Impact</th>
+          <th style="width:30%">Description</th>
+          <th style="width:30%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Redirects (3xx)</strong></td>
+          <td><span class="url-count">15</span></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td class="issue-desc">15 redirect records including 2 critical high-inlink redirects (/innovations-internal + /innovations = 884 total inlinks), 1 renamed industry slug, 6 www/non-www redirects, and 4 external Google Maps 302s (expected). Internal redirects dilute link equity and slow Googlebot.</td>
+          <td class="issue-fix">Fix /innovations-internal and /innovations by updating internal links. Update /industries/pharma-industry links to /industries/pharmaceutical. The www/non-www redirects are server-level — resolve by fixing the canonical conflict. Google Maps 302s require no action.</td>
+        </tr>
+        <tr>
+          <td><strong>Canonicalised URLs</strong></td>
+          <td><span class="url-count">8</span></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td class="issue-desc">8 core pages (homepage, contact, about, blog, careers, become-a-distributor, privacy-policy, and the Case Studies blog filter) are flagged as canonicalised to their www counterparts — a direct result of the www/non-www canonical conflict identified in the Critical Issues section.</td>
+          <td class="issue-fix">Resolving Critical Issue #4 (www/non-www canonical alignment) will automatically clear all 8 canonicalised URL warnings. These are a downstream symptom, not a separate fix.</td>
+        </tr>
+        <tr>
+          <td><strong>Page Titles Over 60 Characters</strong></td>
+          <td><span class="url-count">10</span></td>
+          <td><span class="tag tag-warning">Medium</span></td>
+          <td class="issue-desc">10 pages have titles from 62 to 128 characters. The worst offender: /product/custom-molded-seals uses a 128-char product description as its title ("Precision-molded elastomer components engineered for controlled deformation, tight tolerances, and long-term sealing reliability"). Blog posts also run 86–103 chars. All will be truncated with "..." in SERPs.</td>
+          <td class="issue-fix">Rewrite all 10 page titles to ≤60 characters in Webflow. Custom-molded-seals suggested title: "Custom Moulded Rubber Seals &amp; Elastomers | Western Seal Tech". Blog posts: remove the narrative tail and keep the core keyword phrase. Inflatable seals title at 68 chars is an easy fix — drop "Manufacturer &amp; Supplier".</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Redirect Detail — High Inlink Priority First</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Redirecting URL</th>
+          <th>Code</th>
+          <th>Inlinks</th>
+          <th>Destination</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">/innovations-internal</code></td>
+          <td>301</td>
+          <td style="color:var(--critical); font-weight:700">816</td>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">/</code> (homepage)</td>
+          <td class="issue-fix">Update all 816 internal links to a relevant destination page</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">/innovations</code></td>
+          <td>301</td>
+          <td style="color:var(--high); font-weight:700">68</td>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">/</code> (homepage)</td>
+          <td class="issue-fix">Update 68 internal links — likely navigation or footer links</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">/industries/pharma-industry</code></td>
+          <td>301</td>
+          <td>7</td>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">/industries/pharmaceutical</code></td>
+          <td class="issue-fix">Update 7 internal links to use new slug directly</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">www.westernsealtech.com/*</code></td>
+          <td>301</td>
+          <td>1</td>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">westernsealtech.com/*</code></td>
+          <td class="issue-fix">Resolve by fixing www/non-www canonical alignment</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:11px; font-family:'JetBrains Mono',monospace">maps.app.goo.gl/*</code> (4 URLs)</td>
+          <td>302</td>
+          <td>1 each</td>
+          <td>Google Maps (external)</td>
+          <td class="issue-fix">No action needed — external Maps redirects are expected</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 4: OPPORTUNITIES -->
+<section id="opportunities">
+  <div class="container">
+    <div class="sec-num">04 — Opportunities</div>
+    <h2>B2B Growth <span class="accent">Quick Wins</span></h2>
+    <p class="sec-lede">These 10 opportunities are specific to Western Seal Tech's position as a B2B manufacturer targeting engineers and procurement teams across pharma, food, automotive, and aerospace industries. They don't affect the health score but can significantly expand organic reach and lead quality.</p>
+
+    <div class="priority-header opp-bg">
+      <span class="tag tag-opp">OPPORTUNITIES</span>
+      <h3>High-Impact B2B &amp; Technical SEO Wins</h3>
+      <span class="count-badge">7 items</span>
+    </div>
+    <table class="priority-table opp-border">
+      <thead>
+        <tr>
+          <th style="width:27%">Opportunity</th>
+          <th style="width:9%">Effort</th>
+          <th style="width:9%">Impact</th>
+          <th style="width:27%">Description</th>
+          <th style="width:28%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Product Schema (JSON-LD)</strong></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td class="issue-desc">No structured data found on product pages. Engineers increasingly use Google's AI Overviews and rich results to shortlist vendors. Product schema with material grade, application, and certifications can appear in these surfaces.</td>
+          <td class="issue-fix">Add Product JSON-LD schema to all product pages via Webflow custom code embed or a third-party schema app. Include: name, description, material, brand, and manufacturer fields.</td>
+        </tr>
+        <tr>
+          <td><strong>FAQ Schema on Technical Blog Posts</strong></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td class="issue-desc">Blog posts like "Why Inflatable Seals Fail Early" and "Inflatable Seals for Pharma Isolators" contain technical Q&A content that qualifies for FAQPage schema — giving accordion-style rich results in SERPs.</td>
+          <td class="issue-fix">Add FAQPage JSON-LD to blog posts containing question-answer structures. These posts rank well for engineer intent queries and rich results will significantly increase CTR.</td>
+        </tr>
+        <tr>
+          <td><strong>Consolidate /product/ and /products/ URL Patterns</strong></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td class="issue-desc">The site uses both /product/ (singular) and /products/ (plural) as URL patterns. Custom-molded-seals, spliced-vulcanised-seals, rubber-extrusions, silicone-tubing-and-hoses, and diaphragms all use /product/ while others use /products/. Inconsistent URL structure confuses crawlers.</td>
+          <td class="issue-fix">Choose one pattern (recommend /products/) and 301-redirect all /product/ URLs to their /products/ equivalents. Update internal links to use the canonical pattern. This also fixes meta description coverage.</td>
+        </tr>
+        <tr>
+          <td><strong>Blog-to-Product Internal Linking</strong></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td class="issue-desc">The technical blog posts on pharma isolators, autoclave failures, and sandblasting seals are high-quality content but don't link aggressively to relevant product pages. This wastes the authority these posts are building.</td>
+          <td class="issue-fix">Add 2–3 contextual product links within each blog post body. "Inflatable Seals for Pharma Isolators" should link to /product/inflatable-seals. "12X Lifespan" case study should link to relevant product + Contact Us.</td>
+        </tr>
+        <tr>
+          <td><strong>Add llms.txt for AI Search Visibility</strong></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td class="issue-desc">Engineers increasingly use AI-powered search (Perplexity, ChatGPT, Google AI Overviews) to research seal specifications. An llms.txt file helps AI crawlers understand which pages represent the brand's core offerings.</td>
+          <td class="issue-fix">Create /llms.txt listing key product pages, about page, certifications page, and top blog posts. This takes &lt;30 minutes and improves citability in AI-generated responses for seal-related queries.</td>
+        </tr>
+        <tr>
+          <td><strong>Add Certifications &amp; Compliance Page</strong></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="tag tag-high">High</span></td>
+          <td class="issue-desc">For pharma, food, and aerospace clients, ISO certifications, FDA compliance, and material grade certifications are primary vendor selection criteria — but a dedicated certifications page was not found in the crawl. This is a major EEAT (Expertise, Authority, Trust) gap.</td>
+          <td class="issue-fix">Create a /certifications or /quality page listing all ISO, FDA, RoHS, REACH, and industry certifications. Add schema markup (Organization) with hasCredential properties. Link from all product pages and the about page.</td>
+        </tr>
+        <tr>
+          <td><strong>HrefLang for International Audiences</strong></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td><span class="tag tag-med">Medium</span></td>
+          <td class="issue-desc">Western Seal Tech serves clients in Netherlands (Breda), US (Wilmington, DE), and India (Mumbai) — confirmed by Google Maps links on the contact page. No hreflang tags were detected, meaning Google may not serve the site to the most relevant regional audience.</td>
+          <td class="issue-fix">If content is English-only, add hreflang="en" pointing to the canonical non-www URL. If regional pages are planned, implement hreflang with regional x-default fallback. Also verify Google Search Console is set to target the correct country.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="priority-header opp-bg" style="margin-top:32px">
+      <span class="tag tag-opp">OPPORTUNITIES</span>
+      <h3>Additional Technical Improvements</h3>
+      <span class="count-badge">3 items</span>
+    </div>
+    <table class="priority-table opp-border">
+      <thead>
+        <tr>
+          <th style="width:30%">Opportunity</th>
+          <th style="width:10%">Effort</th>
+          <th style="width:60%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Open Graph &amp; Social Meta Tags</strong></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td class="issue-fix">Verify og:title, og:description, og:image are set on all product and blog pages in Webflow. When shared on LinkedIn (a key B2B channel), unfurled cards with product imagery drive significantly higher engagement.</td>
+        </tr>
+        <tr>
+          <td><strong>Shorten Blog URL Slugs</strong></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td class="issue-fix">Some blog slugs are excessively long (e.g., /blog/cost-effective-sealing-solution-for-a-space-research-organizations-reverberation-chambe — 89 chars, and notably truncated). Shorten to the core keyword phrase: /blog/sealing-space-reverberation-chamber. Add 301 redirects from old slugs.</td>
+        </tr>
+        <tr>
+          <td><strong>Audit Vimeo Embed Accessibility</strong></td>
+          <td><span class="tag tag-low">Low</span></td>
+          <td class="issue-fix">18 embedded Vimeo videos return 401 when crawled — expected for auth-gated player URLs. However, ensure each video embed has a descriptive title attribute and a text transcript or captions for accessibility compliance (WCAG 2.1 AA).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: REMEDIATION -->
+<section id="remediation">
+  <div class="container">
+    <div class="sec-num">05 — Remediation Priority</div>
+    <h2>Action Plan &amp; <span class="accent">Projected Impact</span></h2>
+    <p class="sec-lede">A 3-phase remediation plan targeting Western Seal Tech's highest-impact issues. Phase 1 alone can push the health score from <strong>55 to 76+</strong>. Phase 2 completion can reach <strong>88/100</strong>. Most Phase 1 fixes can be done directly in Webflow without a developer.</p>
+
+    <h3>Phase 1 — Immediate Action (Week 1–2)</h3>
+    <p><strong>Projected score lift: +21 pts → estimated 76/100</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:35%">Task</th>
+          <th style="width:15%">Owner</th>
+          <th style="width:10%">Score Impact</th>
+          <th style="width:40%">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Identify &amp; update /innovations-internal links</strong></td>
+          <td>Developer / Content</td>
+          <td style="color:var(--good); font-weight:700">+3 pts</td>
+          <td class="issue-desc">Use Webflow's "Find and Replace" or site search to locate all 816 links to /innovations-internal. Update to the correct destination — either a restored Innovations/Case Studies page or the Products overview. This is the single highest-impact fix in the audit.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Fix www/non-www canonical conflict</strong></td>
+          <td>Developer</td>
+          <td style="color:var(--good); font-weight:700">+3 pts + 8 warning URLs</td>
+          <td class="issue-desc">In Webflow Site Settings → SEO tab, verify the canonical URL setting. Ensure the custom domain is set to non-www as primary. This fix will automatically resolve all 8 canonicalised URL warnings (+8 pts) bringing the projected total to +11 pts from these two fixes alone.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Rewrite the 128-char title for /product/custom-molded-seals</strong></td>
+          <td>Content</td>
+          <td style="color:var(--good); font-weight:700">+1 pt</td>
+          <td class="issue-desc">Suggested: "Custom Moulded Rubber Seals &amp; Elastomers | Western Seal Tech" (58 chars). The current 128-char title acts as a description, not a title. Fix via Webflow page settings → SEO → Title field.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Write meta descriptions for top 10 product pages</strong></td>
+          <td>Content</td>
+          <td style="color:var(--good); font-weight:700">+3 pts (partial)</td>
+          <td class="issue-desc">Prioritise: inflatable seals, o-rings, gaskets, silicone hoses (single + double braid), and custom-molded seals. These are the highest-search-volume product types. Write 150–160 char descriptions mentioning material grade, application, and certification.</td>
+        </tr>
+        <tr>
+          <td><strong>5. Add alt text to 20 highest-inlink images</strong></td>
+          <td>Content / Dev</td>
+          <td style="color:var(--good); font-weight:700">+3 pts (partial)</td>
+          <td class="issue-desc">Start with: plus_2.png (154 inlinks), all train-front images (68 inlinks each), Component 6.avif (24 inlinks). These are structural/UI images visible on every page. Set to alt="" if decorative, or descriptive text if informational.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Phase 2 — Short Term (Month 1)</h3>
+    <p><strong>Projected additional score lift: +12 pts → estimated 88/100</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:35%">Task</th>
+          <th style="width:15%">Owner</th>
+          <th style="width:10%">Score Impact</th>
+          <th style="width:40%">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Complete alt text for all 312 images</strong></td>
+          <td>Developer</td>
+          <td style="color:var(--good); font-weight:700">+3 pts</td>
+          <td class="issue-desc">Work through the full 312-image list in the Excel jobsheet. In Webflow, the fastest approach is to audit the Designer panel systematically by page. Use descriptive filenames as a guide — "freepik macro photograph of multiple" images should get alt text like "close-up photograph of industrial inflatable rubber seal".</td>
+        </tr>
+        <tr>
+          <td><strong>Write meta descriptions for all 29 product pages</strong></td>
+          <td>Content</td>
+          <td style="color:var(--good); font-weight:700">+3 pts</td>
+          <td class="issue-desc">Complete the remaining 19 product page meta descriptions after Phase 1's top 10. Template: "[Product name] manufactured from [material] for [industry] applications. Custom specifications, ISO 9001 certified. Request a quote."</td>
+        </tr>
+        <tr>
+          <td><strong>Shorten remaining 9 page titles to &lt;60 chars</strong></td>
+          <td>Content</td>
+          <td style="color:var(--good); font-weight:700">+9 pts</td>
+          <td class="issue-desc">Fix the remaining 9 titles after Phase 1's custom-molded-seals fix. Blog posts: remove the wordy suffix, keep the core keyword phrase + brand. Product pages: "Inflatable Seals &amp; Gaskets | Western Seal Tech" (44 chars) replaces the 68-char version perfectly.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Phase 3 — Medium Term (Month 2–3)</h3>
+    <p><strong>No direct score impact — strategic B2B SEO wins to expand organic reach</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:35%">Task</th>
+          <th style="width:65%">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Add Product &amp; FAQ schema</strong></td><td class="issue-desc">JSON-LD Product schema on all product pages and FAQPage schema on relevant blog posts. Targets Google rich results for high-intent B2B searches. Implement via Webflow custom code embed or Semflow/Schema Pro app.</td></tr>
+        <tr><td><strong>Consolidate /product/ and /products/ URL structure</strong></td><td class="issue-desc">Redirect all /product/ (singular) pages to /products/ (plural) equivalents. Update all internal links. Creates a consistent URL structure and resolves the meta description gap for these pages.</td></tr>
+        <tr><td><strong>Build blog-to-product internal linking map</strong></td><td class="issue-desc">Systematically add 2–3 contextual product page links in each of the 10 blog posts. The pharma and automotive case study posts are high-authority pages that should pass link equity directly to product pages.</td></tr>
+        <tr><td><strong>Create Certifications &amp; Quality page</strong></td><td class="issue-desc">A dedicated /certifications page listing ISO 9001, FDA compliance, material grades (FDA silicone, EPDM, FKM/Viton, PTFE), and industry approvals. This is a critical EEAT signal for pharma and food sector procurement teams evaluating WST as a supplier.</td></tr>
+        <tr><td><strong>Add llms.txt and Open Graph tags</strong></td><td class="issue-desc">Create /llms.txt for AI search citability. Verify og:image on all product pages for LinkedIn sharing (key B2B channel). Consider adding a LinkedIn-optimised product image (1200×628px) to each product page.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:32px">
+      <div class="callout-title">&#127919; Projected Score After Full Remediation</div>
+      <p><strong>Current score: 55/100 (D+)</strong> → After Phase 1: <strong>~76/100 (C+)</strong> → After Phase 2: <strong>~88/100 (B+)</strong> → After Phase 3 opportunities: potential to reach <strong>90+/100 (A−)</strong>. The largest single gain is fixing the www/non-www canonical conflict + updating innovation redirects, which together can contribute +19 points before touching any content.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="kerkar">Kerkar Media</div>
+    <div class="tag-line">Technical SEO Audit — westernsealtech.com — June 2026</div>
+    <div class="doc-meta-line">Prepared by Kerkar Media · Screaming Frog SEO Spider v21 · 528 URLs analysed</div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.tab-btn');
+  var sections = document.querySelectorAll('section[id]');
+  function onScroll() {
+    var current = '';
+    sections.forEach(function(s) { if (window.scrollY >= s.offsetTop - 140) current = s.id; });
+    tabs.forEach(function(t) { t.classList.toggle('active', t.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+</body>
+</html>

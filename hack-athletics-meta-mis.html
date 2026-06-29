@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Hack Athletics — Meta Ads MIS | Kerkar Media</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -136,6 +137,14 @@ td strong{color:var(--ink);font-weight:600;}
 .insight-body{font-size:13px;color:var(--ink-dim);line-height:1.6;}
 .insight-action{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;font-weight:600;color:var(--blue);}
 
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;gap:10px;margin:18px 0 8px;}
+.fn-row{display:flex;align-items:center;gap:16px;}
+.fn-bar{height:46px;border-radius:6px;background:linear-gradient(135deg,var(--blue) 0%,var(--accent-light) 100%);display:flex;align-items:center;padding:0 16px;color:#fff;font-weight:700;font-size:15px;letter-spacing:-.01em;min-width:120px;transition:width .4s;}
+.fn-meta{font-size:12px;color:var(--ink-dim);}
+.fn-meta strong{color:var(--ink);}
+.fn-rate{font-size:11px;color:var(--ink-mute);font-family:'JetBrains Mono',monospace;}
+
 /* FOOTER */
 footer{padding:48px 0 32px;text-align:center;background:var(--blue-deep);color:#E2E8F0;margin-top:40px;}
 footer .kerkar{font-size:13px;color:#fff;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px;font-weight:700;}
@@ -166,35 +175,35 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
     </div>
     <div class="badge">Meta Ads · MIS Report</div>
     <h1>Hack Athletics — <span class="accent">ROAS & Revenue</span></h1>
-    <p class="page-sub">Ad-level revenue, ROAS, and spend breakdown for Meta paid social — Apr 27 to May 26, 2026. Pixel purchase conversion values attributed via 7-day click / 1-day view / 1-day engaged-view.</p>
+    <p class="page-sub">Ad-level revenue, ROAS, and spend breakdown for Meta paid social, May 30 to Jun 28, 2026. Pixel purchase conversion values attributed via 7-day click / 1-day view / 1-day engaged-view.</p>
     <div class="header-stats">
       <div>
-        <div class="hs-val">₹6,42,043</div>
+        <div class="hs-val">₹10,20,299</div>
         <div class="hs-lbl">Total Revenue</div>
         <div class="hs-sub">pixel conv. value</div>
       </div>
       <div>
-        <div class="hs-val">₹19,994</div>
+        <div class="hs-val">₹18,452</div>
         <div class="hs-lbl">Total Spend</div>
-        <div class="hs-sub">7 active ads</div>
+        <div class="hs-sub">7 ads in window</div>
       </div>
       <div>
-        <div class="hs-val">32.11×</div>
+        <div class="hs-val">55.30×</div>
         <div class="hs-lbl">Blended ROAS</div>
         <div class="hs-sub">revenue ÷ spend</div>
       </div>
       <div>
-        <div class="hs-val">171</div>
+        <div class="hs-val">223</div>
         <div class="hs-lbl">Purchases</div>
         <div class="hs-sub">pixel events</div>
       </div>
       <div>
-        <div class="hs-val">₹3,754</div>
+        <div class="hs-val">₹4,575</div>
         <div class="hs-lbl">Avg. Order Value</div>
         <div class="hs-sub">revenue ÷ purchases</div>
       </div>
       <div>
-        <div class="hs-val">₹116.9</div>
+        <div class="hs-val">₹82.74</div>
         <div class="hs-lbl">Blended CPP</div>
         <div class="hs-sub">spend ÷ purchases</div>
       </div>
@@ -202,7 +211,7 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
     <div class="doc-meta">
       <span><strong>Client:</strong> Hack Athletics</span>
       <span><strong>Platform:</strong> Meta Ads (Facebook &amp; Instagram)</span>
-      <span><strong>Period:</strong> Apr 27 – May 26, 2026</span>
+      <span><strong>Period:</strong> May 30 – Jun 28, 2026</span>
       <span><strong>Attribution:</strong> 7-day click / 1-day view / 1-day engaged-view</span>
       <span><strong>Prepared by:</strong> Kerkar Media</span>
     </div>
@@ -216,6 +225,7 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
       <a href="#overview" class="tab-btn active">Overview <span class="tab-meta">ROAS + Revenue</span></a>
       <a href="#ads" class="tab-btn">Ad Breakdown <span class="tab-meta">7 ads</span></a>
       <a href="#charts" class="tab-btn">Charts <span class="tab-meta">visual</span></a>
+      <a href="#funnel" class="tab-btn">Funnel &amp; Quality <span class="tab-meta">creative</span></a>
       <a href="#insights" class="tab-btn">Insights <span class="tab-meta">actions</span></a>
     </nav>
   </div>
@@ -226,30 +236,30 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
   <div class="container">
     <div class="sec-num">01 — Revenue Summary</div>
     <h2>Account-level <span class="accent">ROAS & revenue</span></h2>
-    <p class="sec-lede">Total revenue attributed by Meta pixel, blended ROAS, and per-ad efficiency for the 30-day reporting window.</p>
+    <p class="sec-lede">Total revenue attributed by Meta pixel, blended ROAS, and per-ad efficiency for the 30-day reporting window. Sorted by revenue generated.</p>
 
     <!-- ROAS HERO -->
     <div class="roas-hero">
       <div>
         <div class="roas-main-lbl">Blended ROAS</div>
-        <div class="roas-main-val">32.11×</div>
-        <div class="roas-main-sub">Every ₹1 spent returned ₹32.11 in revenue</div>
+        <div class="roas-main-val">55.30×</div>
+        <div class="roas-main-sub">Every ₹1 spent returned ₹55.30 in revenue</div>
       </div>
       <div class="roas-stats">
         <div>
-          <div class="roas-stat-val">₹6,42,043</div>
+          <div class="roas-stat-val">₹10,20,299</div>
           <div class="roas-stat-lbl">Total Revenue</div>
         </div>
         <div>
-          <div class="roas-stat-val">₹19,994</div>
+          <div class="roas-stat-val">₹18,452</div>
           <div class="roas-stat-lbl">Total Spend</div>
         </div>
         <div>
-          <div class="roas-stat-val">171</div>
+          <div class="roas-stat-val">223</div>
           <div class="roas-stat-lbl">Purchases</div>
         </div>
         <div>
-          <div class="roas-stat-val">₹3,754</div>
+          <div class="roas-stat-val">₹4,575</div>
           <div class="roas-stat-lbl">Avg. Order Value</div>
         </div>
       </div>
@@ -258,23 +268,23 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
     <div class="grid-4">
       <div class="kpi-box">
         <div class="kpi-lbl">Best ROAS — Ad</div>
-        <div class="kpi-val" style="color:#7C3AED;">57.04×</div>
-        <div class="kpi-sub">Vishav Video – Copy</div>
+        <div class="kpi-val" style="color:#7C3AED;">106.66×</div>
+        <div class="kpi-sub">Remarketing Catalogue</div>
       </div>
       <div class="kpi-box">
         <div class="kpi-lbl">Best Revenue — Ad</div>
-        <div class="kpi-val" style="color:var(--good);">₹2,04,249</div>
+        <div class="kpi-val" style="color:var(--good);">₹4,27,161</div>
         <div class="kpi-sub">Remarketing Catalogue</div>
       </div>
       <div class="kpi-box">
         <div class="kpi-lbl">Worst ROAS — Ad</div>
-        <div class="kpi-val" style="color:var(--critical);">15.94×</div>
+        <div class="kpi-val" style="color:var(--critical);">14.15×</div>
         <div class="kpi-sub">Shaker Bottle</div>
       </div>
       <div class="kpi-box">
         <div class="kpi-lbl">Best CPP — Ad</div>
-        <div class="kpi-val" style="color:var(--good);">₹68.6</div>
-        <div class="kpi-sub">Pickle Ball Paddle</div>
+        <div class="kpi-val" style="color:var(--good);">₹46.57</div>
+        <div class="kpi-sub">Remarketing Catalogue</div>
       </div>
     </div>
 
@@ -296,82 +306,82 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
       <tbody>
         <tr>
           <td><strong>Remarketing | ATC Catalogue</strong></td>
-          <td>59</td>
-          <td>₹4,261</td>
-          <td><strong>₹2,04,249</strong></td>
-          <td><strong style="color:var(--good);">47.94×</strong></td>
-          <td>₹72.2</td>
-          <td>₹3,462</td>
-          <td><span class="tag tag-good">Scale</span></td>
-        </tr>
-        <tr>
-          <td><strong>Lever Belt | Vishav Video – Copy</strong></td>
-          <td>12</td>
-          <td>₹1,298</td>
-          <td><strong>₹74,059</strong></td>
-          <td><strong style="color:#7C3AED;">57.04×</strong></td>
-          <td>₹108.2</td>
-          <td>₹6,172</td>
+          <td>86</td>
+          <td>₹4,005</td>
+          <td><strong>₹4,27,161</strong></td>
+          <td><strong style="color:#7C3AED;">106.66×</strong></td>
+          <td>₹46.57</td>
+          <td>₹4,967</td>
           <td><span class="tag tag-good">Scale</span></td>
         </tr>
         <tr>
           <td><strong>Lever Belt | 10mm Carbon Belt</strong></td>
-          <td>30</td>
-          <td>₹4,092</td>
-          <td><strong>₹1,56,406</strong></td>
-          <td><strong style="color:var(--good);">38.22×</strong></td>
-          <td>₹136.4</td>
-          <td>₹5,214</td>
-          <td><span class="tag tag-good">Maintain</span></td>
-        </tr>
-        <tr>
-          <td><strong>Pickle Ball Paddle | Intro Reel</strong></td>
-          <td>6</td>
-          <td>₹411</td>
-          <td><strong>₹11,967</strong></td>
-          <td><strong style="color:var(--med);">29.09×</strong></td>
-          <td>₹68.6</td>
-          <td>₹1,994</td>
-          <td><span class="tag tag-med">Revive</span></td>
-        </tr>
-        <tr>
-          <td><strong>Lever Belt | Vishav Video</strong></td>
-          <td>24</td>
-          <td>₹2,535</td>
-          <td><strong>₹61,697</strong></td>
-          <td><strong style="color:var(--med);">24.34×</strong></td>
-          <td>₹105.6</td>
-          <td>₹2,571</td>
-          <td><span class="tag tag-med">Monitor</span></td>
+          <td>58</td>
+          <td>₹3,593</td>
+          <td><strong>₹2,68,018</strong></td>
+          <td><strong style="color:#7C3AED;">74.60×</strong></td>
+          <td>₹61.95</td>
+          <td>₹4,621</td>
+          <td><span class="tag tag-good">Scale</span></td>
         </tr>
         <tr>
           <td><strong>Gym Bag | Influencer Ad</strong></td>
-          <td>24</td>
-          <td>₹3,636</td>
-          <td><strong>₹73,741</strong></td>
-          <td><strong style="color:var(--high);">20.28×</strong></td>
-          <td>₹151.5</td>
-          <td>₹3,072</td>
-          <td><span class="tag tag-high">Optimise</span></td>
+          <td>37</td>
+          <td>₹3,919</td>
+          <td><strong>₹1,55,182</strong></td>
+          <td><strong style="color:var(--good);">39.60×</strong></td>
+          <td>₹105.91</td>
+          <td>₹4,194</td>
+          <td><span class="tag tag-high">Refresh</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | Vishav Video – Copy</strong></td>
+          <td>14</td>
+          <td>₹1,582</td>
+          <td><strong>₹64,425</strong></td>
+          <td><strong style="color:var(--good);">40.73×</strong></td>
+          <td>₹112.99</td>
+          <td>₹4,602</td>
+          <td><span class="tag tag-good">Maintain</span></td>
         </tr>
         <tr>
           <td><strong>Shaker Bottle</strong></td>
-          <td>16</td>
-          <td>₹3,760</td>
-          <td><strong>₹59,925</strong></td>
-          <td><strong style="color:var(--critical);">15.94×</strong></td>
-          <td>₹235.0</td>
-          <td>₹3,745</td>
+          <td>17</td>
+          <td>₹4,017</td>
+          <td><strong>₹56,841</strong></td>
+          <td><strong style="color:var(--critical);">14.15×</strong></td>
+          <td>₹236.29</td>
+          <td>₹3,344</td>
           <td><span class="tag tag-critical">Pause?</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | Vishav Video</strong></td>
+          <td>6</td>
+          <td>₹895</td>
+          <td><strong>₹26,219</strong></td>
+          <td><strong style="color:var(--med);">29.29×</strong></td>
+          <td>₹149.22</td>
+          <td>₹4,370</td>
+          <td><span class="tag tag-med">Consolidate</span></td>
+        </tr>
+        <tr>
+          <td><strong>10mm Carbon Belt | Video Variant</strong></td>
+          <td>5</td>
+          <td>₹441</td>
+          <td><strong>₹22,454</strong></td>
+          <td><strong style="color:#7C3AED;">50.90×</strong></td>
+          <td>₹88.23</td>
+          <td>₹4,491</td>
+          <td><span class="tag tag-good">Scale test</span></td>
         </tr>
         <tr class="table-total">
           <td><strong>Total / Blended</strong></td>
-          <td><strong>171</strong></td>
-          <td><strong>₹19,994</strong></td>
-          <td><strong>₹6,42,043</strong></td>
-          <td><strong>32.11×</strong></td>
-          <td><strong>₹116.9</strong></td>
-          <td><strong>₹3,754</strong></td>
+          <td><strong>223</strong></td>
+          <td><strong>₹18,452</strong></td>
+          <td><strong>₹10,20,299</strong></td>
+          <td><strong>55.30×</strong></td>
+          <td><strong>₹82.74</strong></td>
+          <td><strong>₹4,575</strong></td>
           <td>—</td>
         </tr>
       </tbody>
@@ -380,7 +390,7 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
 
     <div class="callout">
       <div class="callout-title">Attribution note</div>
-      <p>All revenue figures use Meta's 7-day click / 1-day view / 1-day engaged-view attribution window. Actual revenue may differ slightly from Shopify/WooCommerce backend totals due to cross-device and view-through attribution. Always reconcile against store-side data for billing purposes.</p>
+      <p>All revenue figures use Meta's 7-day click / 1-day view / 1-day engaged-view attribution window. Actual revenue may differ slightly from the Shopify backend total due to cross-device and view-through attribution. Always reconcile against store-side orders for billing purposes.</p>
     </div>
   </div>
 </section>
@@ -390,69 +400,85 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
   <div class="container">
     <div class="sec-num">02 — Ad-Level Breakdown</div>
     <h2>Individual <span class="accent">ad performance</span></h2>
-    <p class="sec-lede">Revenue, ROAS, spend, and purchase data for every active ad in the account. Sorted by revenue generated.</p>
+    <p class="sec-lede">Revenue, ROAS, spend, and purchase data for every ad with delivery in the window. Sorted by revenue generated.</p>
 
-    <!-- Remarketing -->
-    <div class="ad-card">
-      <div class="ad-head">
-        <span class="ad-name">Remarketing Campaign | ATC | Catalogue Ad</span>
-        <span class="ad-status">● Active</span>
+    <!-- Remarketing — STAR -->
+    <div class="ad-card" style="border-color:#7C3AED;">
+      <div class="ad-head" style="background:linear-gradient(135deg,#4C1D95 0%,#7C3AED 100%);">
+        <span class="ad-name">⭐ Remarketing Campaign | ATC | Catalogue Ad</span>
+        <span class="ad-status">● Active — Highest ROAS & Revenue</span>
       </div>
       <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val good">₹2,04,249</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">47.94×</div></div>
-        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">59</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹4,261</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹72.2</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,462</div></div>
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val star">₹4,27,161</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val star">106.66×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">86</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹4,005</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹46.57</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val star">₹4,967</div></div>
       </div>
     </div>
 
-    <!-- Lever Belt 10mm Carbon -->
+    <!-- 10mm Carbon Belt -->
     <div class="ad-card">
       <div class="ad-head">
         <span class="ad-name">Lever Belt | 10mm Carbon Belt</span>
         <span class="ad-status">● Active</span>
       </div>
       <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val good">₹1,56,406</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">38.22×</div></div>
-        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">30</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹4,092</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val warn">₹136.4</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹5,214</div></div>
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val good">₹2,68,018</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">74.60×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">58</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹3,593</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹61.95</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹4,621</div></div>
       </div>
     </div>
 
-    <!-- Vishav Video Copy — STAR -->
-    <div class="ad-card" style="border-color:#7C3AED;">
-      <div class="ad-head" style="background:linear-gradient(135deg,#4C1D95 0%,#7C3AED 100%);">
-        <span class="ad-name">⭐ Lever Belt | Vishav Video – Copy</span>
-        <span class="ad-status">● Active — Highest ROAS</span>
+    <!-- Gym Bag — not delivering -->
+    <div class="ad-card">
+      <div class="ad-head muted">
+        <span class="ad-name">Gym Bag | Influencer Ad</span>
+        <span class="ad-status" style="color:rgba(255,255,255,.6);">● Not Delivering — Refresh?</span>
       </div>
       <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val star">₹74,059</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val star">57.04×</div></div>
-        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">12</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹1,298</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val">₹108.2</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val star">₹6,172</div></div>
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹1,55,182</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">39.60×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">37</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹3,919</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val warn">₹105.91</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹4,194</div></div>
       </div>
     </div>
 
-    <!-- Gym Bag -->
+    <!-- Vishav Video Copy -->
     <div class="ad-card">
       <div class="ad-head">
-        <span class="ad-name">Gym Bag | Influencer Ad</span>
+        <span class="ad-name">Lever Belt | Vishav Video – Copy</span>
         <span class="ad-status">● Active</span>
       </div>
       <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹73,741</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val warn">20.28×</div></div>
-        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">24</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹3,636</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val warn">₹151.5</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,072</div></div>
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹64,425</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">40.73×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">14</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹1,582</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val warn">₹112.99</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹4,602</div></div>
+      </div>
+    </div>
+
+    <!-- Shaker Bottle — warn -->
+    <div class="ad-card">
+      <div class="ad-head warn">
+        <span class="ad-name">Shaker Bottle</span>
+        <span class="ad-status">● Active — Lowest ROAS</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹56,841</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val crit">14.15×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">17</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹4,017</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val crit">₹236.29</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,344</div></div>
       </div>
     </div>
 
@@ -463,44 +489,28 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
         <span class="ad-status">● Active</span>
       </div>
       <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹61,697</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val">24.34×</div></div>
-        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">24</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹2,535</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val">₹105.6</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹2,571</div></div>
-      </div>
-    </div>
-
-    <!-- Shaker Bottle — WARN -->
-    <div class="ad-card">
-      <div class="ad-head warn">
-        <span class="ad-name">Shaker Bottle — Review Needed</span>
-        <span class="ad-status">● Active</span>
-      </div>
-      <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹59,925</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val crit">15.94×</div></div>
-        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">16</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹3,760</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val crit">₹235.0</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹3,745</div></div>
-      </div>
-    </div>
-
-    <!-- Pickle Ball -->
-    <div class="ad-card">
-      <div class="ad-head muted">
-        <span class="ad-name">Pickle Ball Paddle | Tier 1 Cities | Intro Reel</span>
-        <span class="ad-status" style="color:rgba(255,255,255,.6);">● Not Delivering — Revive?</span>
-      </div>
-      <div class="ad-body">
-        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹11,967</div></div>
-        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">29.09×</div></div>
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹26,219</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val">29.29×</div></div>
         <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">6</div></div>
-        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹411</div></div>
-        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹68.6</div></div>
-        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹1,994</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹895</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val crit">₹149.22</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹4,370</div></div>
+      </div>
+    </div>
+
+    <!-- Video Variant -->
+    <div class="ad-card">
+      <div class="ad-head">
+        <span class="ad-name">Lever Belt | 10mm Carbon Belt — Video Variant</span>
+        <span class="ad-status">● Active — Best small-spend ROAS</span>
+      </div>
+      <div class="ad-body">
+        <div><div class="ad-stat-lbl">Revenue</div><div class="ad-stat-val">₹22,454</div></div>
+        <div><div class="ad-stat-lbl">ROAS</div><div class="ad-stat-val good">50.90×</div></div>
+        <div><div class="ad-stat-lbl">Purchases</div><div class="ad-stat-val">5</div></div>
+        <div><div class="ad-stat-lbl">Spend</div><div class="ad-stat-val">₹441</div></div>
+        <div><div class="ad-stat-lbl">CPP</div><div class="ad-stat-val good">₹88.23</div></div>
+        <div><div class="ad-stat-lbl">Avg. Order</div><div class="ad-stat-val">₹4,491</div></div>
       </div>
     </div>
 
@@ -517,9 +527,9 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
     <div class="grid-2">
       <div class="chart-wrap">
         <div class="chart-title">Revenue vs Spend by Ad</div>
-        <div class="chart-sub">Revenue (blue) stacked against spend (green) — gap = profit margin</div>
+        <div class="chart-sub">Revenue (blue) stacked against spend (green) — gap = return on each ad</div>
         <div class="chart-legend">
-          <span class="leg-item"><span class="leg-dot" style="background:#1E40AF;"></span>Revenue (₹ ÷ 10 for scale)</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#1E40AF;"></span>Revenue (₹ ÷ 50 for scale)</span>
           <span class="leg-item"><span class="leg-dot" style="background:#16A34A;"></span>Spend (₹)</span>
         </div>
         <div style="position:relative;width:100%;height:260px;">
@@ -528,7 +538,7 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
       </div>
       <div class="chart-wrap">
         <div class="chart-title">ROAS by Ad</div>
-        <div class="chart-sub">Colour-coded: purple &gt;50×, green &gt;30×, amber 15–30×, red &lt;15×</div>
+        <div class="chart-sub">Colour-coded: purple &gt;50×, green &gt;30×, amber 20–30×, red &lt;20×</div>
         <div style="position:relative;width:100%;height:280px;">
           <canvas id="c2"></canvas>
         </div>
@@ -554,55 +564,147 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
   </div>
 </section>
 
-<!-- SECTION 4: INSIGHTS -->
+<!-- SECTION 4: FUNNEL & QUALITY -->
+<section id="funnel">
+  <div class="container">
+    <div class="sec-num">04 — Funnel & Creative Quality</div>
+    <h2>Account <span class="accent">funnel</span> &amp; ad rankings</h2>
+    <p class="sec-lede">The full path from impression to purchase, plus Meta's relative quality, engagement, and conversion rankings per ad.</p>
+
+    <h3>Account funnel</h3>
+    <div class="funnel">
+      <div class="fn-row">
+        <div class="fn-bar" style="width:100%;">281,173</div>
+        <div class="fn-meta"><strong>Impressions</strong></div>
+      </div>
+      <div class="fn-row">
+        <div class="fn-bar" style="width:46%;">4,453</div>
+        <div class="fn-meta"><strong>Link clicks</strong> <span class="fn-rate">· 1.58% of impressions</span></div>
+      </div>
+      <div class="fn-row">
+        <div class="fn-bar" style="width:40%;">3,895</div>
+        <div class="fn-meta"><strong>Landing page views</strong> <span class="fn-rate">· 87.5% of link clicks</span></div>
+      </div>
+      <div class="fn-row">
+        <div class="fn-bar" style="width:26%;background:linear-gradient(135deg,var(--good) 0%,#22C55E 100%);">223</div>
+        <div class="fn-meta"><strong>Purchases</strong> <span class="fn-rate">· 5.7% of LPV · 5.0% of link clicks</span></div>
+      </div>
+    </div>
+    <div class="callout good">
+      <div class="callout-title">Funnel read</div>
+      <p>The click-to-landing-page-view step is healthy at 87.5%, so the landing pages load and hold visitors. With a blended 55.30× ROAS, the funnel is converting efficiently end to end. The remaining lever is upstream creative CTR (blended 1.58%): ads with weak link CTR (Gym Bag 0.55%, Vishav Video 0.94%) are the ones capping top-of-funnel reach.</p>
+    </div>
+
+    <h3>Creative quality rankings</h3>
+    <p>Meta's relative rankings versus other advertisers competing for the same audience. "Above average" is the top 55%; "Below average" flags the bottom 35%.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Ad</th>
+          <th>Quality Ranking</th>
+          <th>Engagement Rate Ranking</th>
+          <th>Conversion Rate Ranking</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Remarketing | ATC Catalogue</strong></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | 10mm Carbon Belt</strong></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-med">Average</span></td>
+        </tr>
+        <tr>
+          <td><strong>10mm Carbon Belt | Video Variant</strong></td>
+          <td><span class="tag tag-med">Average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | Vishav Video</strong></td>
+          <td><span class="tag tag-med">Average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-med">Average</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lever Belt | Vishav Video – Copy</strong></td>
+          <td><span class="tag tag-med">Average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-med">Average</span></td>
+        </tr>
+        <tr>
+          <td><strong>Gym Bag | Influencer Ad</strong></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-good">Above average</span></td>
+          <td><span class="tag tag-critical">Below average (bottom 35%)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Shaker Bottle</strong></td>
+          <td><span class="tag tag-display">Not ranked</span></td>
+          <td><span class="tag tag-display">Not ranked</span></td>
+          <td><span class="tag tag-display">Not ranked</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: INSIGHTS -->
 <section id="insights">
   <div class="container">
-    <div class="sec-num">04 — Strategic Insights</div>
+    <div class="sec-num">05 — Strategic Insights</div>
     <h2>ROAS-led <span class="accent">recommendations</span></h2>
     <p class="sec-lede">Six data-backed actions to maximise revenue per rupee spent in the next 30 days.</p>
 
     <div class="grid-3">
       <div class="insight-item" style="border-top:3px solid #7C3AED;">
-        <div class="insight-label" style="color:#7C3AED;">01 — Star Creative</div>
-        <div class="insight-head">Vishav Video – Copy is your best ad</div>
-        <div class="insight-body">57.04× ROAS with ₹74,059 revenue on just ₹1,298 spend. This is your highest-returning creative. Budget is severely under-allocated here — this ad should be getting 3–4× more spend immediately.</div>
-        <div class="insight-action">→ Scale budget to ₹400–₹500/day</div>
+        <div class="insight-label" style="color:#7C3AED;">01 — Star Ad</div>
+        <div class="insight-head">Remarketing is the revenue engine</div>
+        <div class="insight-body">106.66× ROAS and ₹4,27,161 revenue, which is 42% of total account revenue, on just ₹4,005 spend. It also posts the lowest CPP (₹46.57) and highest AOV (₹4,967), with all three Meta rankings above average. This ad is severely under-funded for the return it delivers.</div>
+        <div class="insight-action">→ Increase budget to ₹300–₹400/day</div>
       </div>
       <div class="insight-item" style="border-top:3px solid var(--good);">
         <div class="insight-label" style="color:var(--good);">02 — Scale</div>
-        <div class="insight-head">Remarketing is your revenue engine</div>
-        <div class="insight-body">₹2,04,249 revenue at 47.94× ROAS — this single ad drives 32% of total account revenue. It targets warm audiences (ATC) which explains the superior conversion. Priority #1 for budget increases.</div>
-        <div class="insight-action">→ Increase to ₹300–₹400/day</div>
+        <div class="insight-head">10mm Carbon Belt is the volume driver</div>
+        <div class="insight-body">74.60× ROAS on ₹2,68,018 revenue, which is 26% of the account. The strongest cold-prospecting unit, with above-average quality and engagement rankings. Headroom to push spend while ROAS holds well above the account average.</div>
+        <div class="insight-action">→ Raise budget 25–30%, watch ROAS floor</div>
       </div>
       <div class="insight-item" style="border-top:3px solid var(--critical);">
         <div class="insight-label" style="color:var(--critical);">03 — Fix</div>
         <div class="insight-head">Shaker Bottle ROAS is too low</div>
-        <div class="insight-body">15.94× ROAS with the highest CPP (₹235) in the account. It spends ₹3,760 but generates the least revenue per rupee. The ₹3,760 budget freed from this ad, reallocated to Vishav Video – Copy, could generate ~₹1.5L extra revenue.</div>
+        <div class="insight-body">14.15× ROAS, the only ad under 20×, with the highest CPP (₹236.29), highest CPM (₹126.6), and lowest AOV (₹3,344). It spends ₹4,017 for the weakest return in the account and is unranked. Reallocating this budget to Remarketing could generate several lakh in additional revenue.</div>
         <div class="insight-action">→ Pause or halve budget, refresh creative</div>
       </div>
+      <div class="insight-item" style="border-top:3px solid var(--blue);">
+        <div class="insight-label" style="color:var(--blue);">04 — Opportunity</div>
+        <div class="insight-head">Video Variant is underfunded</div>
+        <div class="insight-body">50.90× ROAS on only ₹441 of spend, with the best link CTR in the account (2.51%) and an above-average conversion ranking. It has not had enough budget to prove itself at scale. A controlled scale test could surface the next winner.</div>
+        <div class="insight-action">→ Set ₹200/day, review after 7 days</div>
+      </div>
+      <div class="insight-item" style="border-top:3px solid var(--blue);">
+        <div class="insight-label" style="color:var(--blue);">05 — Consolidate</div>
+        <div class="insight-head">Keep the stronger Vishav cut</div>
+        <div class="insight-body">Vishav Video – Copy (40.73× ROAS, ₹64,425) outperforms the original Vishav Video (29.29× ROAS, ₹26,219) on the same audience and creative concept. Running both splits learning and spend. Fund the Copy variant and retire the weaker original.</div>
+        <div class="insight-action">→ Pause original, back the Copy variant</div>
+      </div>
       <div class="insight-item" style="border-top:3px solid var(--high);">
-        <div class="insight-label" style="color:var(--high);">04 — Investigate</div>
-        <div class="insight-head">Gym Bag AOV is dragging ROAS</div>
-        <div class="insight-body">20.28× ROAS despite 24 purchases — the ₹3,072 AOV is the second lowest in the account. Gym bags are a lower-price product vs lever belts. Consider bundling with accessories or testing upsell landing pages to raise AOV.</div>
-        <div class="insight-action">→ Test bundle offer / upsell page</div>
-      </div>
-      <div class="insight-item" style="border-top:3px solid var(--blue);">
-        <div class="insight-label" style="color:var(--blue);">05 — Revive</div>
-        <div class="insight-head">Pickle Ball Paddle is under-invested</div>
-        <div class="insight-body">29.09× ROAS with the lowest CPP (₹68.6) in the account — barely spent ₹411. This ad is not delivering right now but the unit economics are strong. Re-activate with ₹200/day minimum to generate meaningful data.</div>
-        <div class="insight-action">→ Re-activate + set ₹200/day</div>
-      </div>
-      <div class="insight-item" style="border-top:3px solid var(--blue);">
-        <div class="insight-label" style="color:var(--blue);">06 — AOV Opportunity</div>
-        <div class="insight-head">Vishav Video – Copy AOV = ₹6,172</div>
-        <div class="insight-body">The highest AOV in the account by far (₹6,172 vs blended ₹3,754) — customers coming through this creative are buying premium lever belts. This audience likely has higher purchase intent. Worth testing against Remarketing audiences too.</div>
-        <div class="insight-action">→ Test as Remarketing creative</div>
+        <div class="insight-label" style="color:var(--high);">06 — Refresh</div>
+        <div class="insight-head">Gym Bag has strong ROAS but is fatigued</div>
+        <div class="insight-body">39.60× ROAS and ₹1,55,182 revenue historically, yet it is currently not delivering. Link CTR is only 0.55% and the conversion-rate ranking sits in the bottom 35%, classic creative fatigue on a high-reach audience (50,789 reached). The economics justify a relaunch once the creative is refreshed.</div>
+        <div class="insight-action">→ New creative, then relaunch at ₹150–₹200/day</div>
       </div>
     </div>
 
     <div class="callout good" style="margin-top:32px;">
       <div class="callout-title">Overall assessment</div>
-      <p>A blended ROAS of 32.11× on Meta is very strong — industry benchmark for e-commerce is typically 3–5×. The account is performing well overall. The opportunity is in budget reallocation: moving spend from Shaker Bottle (15.94×) to Vishav Video – Copy (57.04×) and Remarketing (47.94×) could push blended ROAS above 40× without increasing total spend.</p>
+      <p>A blended ROAS of 55.30× on Meta is exceptional, well above the 3–5× e-commerce benchmark, with ₹10,20,299 in revenue on ₹18,452 of spend. Revenue is concentrated in Remarketing (42%) and 10mm Carbon Belt (26%), which together drive 68% of the account. The clearest win is reallocating Shaker Bottle's ₹4,017 (14.15×) toward Remarketing (106.66×) and the Video Variant (50.90×), which would lift blended ROAS further without increasing total spend.</p>
     </div>
   </div>
 </section>
@@ -612,16 +714,16 @@ footer .doc-meta-line{margin-top:18px;font-size:10.5px;color:#64748B;letter-spac
     <div class="brand-mark" style="margin:0 auto 14px;width:42px;height:42px;font-size:16px;">KM</div>
     <div class="kerkar">Kerkar Media</div>
     <div class="tag-line">Performance Marketing · SEO · Paid Social</div>
-    <div class="doc-meta-line">Client: Hack Athletics &nbsp;·&nbsp; Platform: Meta Ads &nbsp;·&nbsp; Period: Apr 27 – May 26, 2026 &nbsp;·&nbsp; Prepared by Kerkar Media</div>
+    <div class="doc-meta-line">Client: Hack Athletics &nbsp;·&nbsp; Platform: Meta Ads &nbsp;·&nbsp; Period: May 30 – Jun 28, 2026 &nbsp;·&nbsp; Prepared by Kerkar Media</div>
   </div>
 </footer>
 
 <script>
-const adLabels = ['Remarketing\nCatalogue','Lever Belt\n10mm Carbon','Vishav Video\n– Copy','Gym Bag\nInfluencer','Lever Belt\nVishav Video','Shaker Bottle','Pickle Ball\nPaddle'];
-const revenue  = [204248.99, 156406.08, 74058.75, 73740.75, 61697.15, 59924.72, 11966.55];
-const spend    = [4260.72, 4092.23, 1298.27, 3636.48, 2534.52, 3760.43, 411.36];
-const roas     = [47.94, 38.22, 57.04, 20.28, 24.34, 15.94, 29.09];
-const aov      = [3462, 5214, 6172, 3072, 2571, 3745, 1994];
+const adLabels = ['Remarketing\nCatalogue','Lever Belt\n10mm Carbon','Gym Bag\nInfluencer','Vishav Video\n– Copy','Shaker Bottle','Vishav Video','10mm Carbon\nVideo Variant'];
+const revenue  = [427160.55, 268017.86, 155182.27, 64424.95, 56841.17, 26218.57, 22454.00];
+const spend    = [4004.75, 3592.86, 3918.83, 1581.82, 4016.87, 895.29, 441.15];
+const roas     = [106.66, 74.60, 39.60, 40.73, 14.15, 29.29, 50.90];
+const aov      = [4967, 4621, 4194, 4602, 3344, 4370, 4491];
 
 const txtColor  = '#94A3B8';
 const gridColor = 'rgba(15,23,42,0.06)';
@@ -638,31 +740,31 @@ const baseOpts = {
 new Chart(document.getElementById('c1'),{
   type:'bar',
   data:{labels:adLabels,datasets:[
-    {label:'Revenue (÷10)',data:revenue.map(v=>v/10),backgroundColor:'#1E40AF',borderRadius:4},
+    {label:'Revenue (÷50)',data:revenue.map(v=>v/50),backgroundColor:'#1E40AF',borderRadius:4},
     {label:'Spend',data:spend,backgroundColor:'#16A34A',borderRadius:4}
   ]},
-  options:{...baseOpts,plugins:{...baseOpts.plugins,tooltip:{...baseOpts.plugins.tooltip,callbacks:{label:c=>c.datasetIndex===0?'Rev: ₹'+(c.raw*10).toLocaleString('en-IN'):'Spend: ₹'+c.raw.toLocaleString('en-IN')}}}}
+  options:{...baseOpts,plugins:{...baseOpts.plugins,tooltip:{...baseOpts.plugins.tooltip,callbacks:{label:c=>c.datasetIndex===0?'Rev: ₹'+Math.round(c.raw*50).toLocaleString('en-IN'):'Spend: ₹'+c.raw.toLocaleString('en-IN')}}}}
 });
 
 // C2 — ROAS
 new Chart(document.getElementById('c2'),{
   type:'bar',
   data:{labels:adLabels,datasets:[{label:'ROAS',data:roas,backgroundColor:roas.map(v=>v>=50?'#7C3AED':v>=30?'#16A34A':v>=20?'#D97706':'#DC2626'),borderRadius:4}]},
-  options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,min:0,max:65,ticks:{...baseOpts.scales.y.ticks,callback:v=>v+'×'}}}}
+  options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,min:0,max:115,ticks:{...baseOpts.scales.y.ticks,callback:v=>v+'×'}}}}
 });
 
 // C3 — Revenue doughnut
-const pieColors=['#1E40AF','#2563EB','#7C3AED','#1E3A8A','#3B82F6','#DC2626','#475569'];
+const pieColors=['#1E40AF','#2563EB','#1E3A8A','#7C3AED','#DC2626','#3B82F6','#475569'];
 new Chart(document.getElementById('c3'),{
   type:'doughnut',
-  data:{labels:['Remarketing','Lever Belt 10mm','Vishav – Copy','Gym Bag','Vishav Video','Shaker Bottle','Pickle Ball'],datasets:[{data:revenue,backgroundColor:pieColors,borderWidth:0}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'right',labels:{font:{size:10,family:'Inter'},color:'#475569',boxWidth:10,padding:6}},tooltip:{backgroundColor:'#0F172A',titleColor:'#fff',bodyColor:'#CBD5E1',padding:10,callbacks:{label:c=>' ₹'+Math.round(c.raw).toLocaleString('en-IN')+' ('+Math.round(c.raw/642042.99*100)+'%)'}}}}
+  data:{labels:['Remarketing','Lever Belt 10mm','Gym Bag','Vishav – Copy','Shaker Bottle','Vishav Video','Video Variant'],datasets:[{data:revenue,backgroundColor:pieColors,borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'right',labels:{font:{size:10,family:'Inter'},color:'#475569',boxWidth:10,padding:6}},tooltip:{backgroundColor:'#0F172A',titleColor:'#fff',bodyColor:'#CBD5E1',padding:10,callbacks:{label:c=>' ₹'+Math.round(c.raw).toLocaleString('en-IN')+' ('+Math.round(c.raw/1020299.37*100)+'%)'}}}}
 });
 
 // C4 — AOV
 new Chart(document.getElementById('c4'),{
   type:'bar',
-  data:{labels:adLabels,datasets:[{label:'AOV (₹)',data:aov,backgroundColor:aov.map(v=>v>=5000?'#7C3AED':v>=3500?'#1E40AF':'#2563EB'),borderRadius:4}]},
+  data:{labels:adLabels,datasets:[{label:'AOV (₹)',data:aov,backgroundColor:aov.map(v=>v>=4800?'#7C3AED':v>=4000?'#1E40AF':'#2563EB'),borderRadius:4}]},
   options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>'₹'+v.toLocaleString('en-IN')}}}}
 });
 

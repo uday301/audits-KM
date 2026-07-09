@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaysons Chemical Pvt. Ltd. — Google Ads Dashboard | Thursday, 9 July 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 32px; }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 28px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .section-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .section-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .trend-bar { width: 100px; height: 6px; background: #F1F5F9; border-radius: 3px; overflow: hidden; }
+  .trend-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+    section h2 { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Auto-refreshed every Monday · Generated 2026-07-09T08:57:46.705Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Jaysons Chemical Ads Dashboard</strong>
+  <div class="meta">9 Jun 2026 — 8 Jul 2026 · Customer ID 250-786-9647</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Google Ads Performance — Last 30 Days</h1>
+    <div class="sub">9 Jun 2026 — 8 Jul 2026 · 4 active Search campaigns · 0 leads · ₹0 blended CPL</div>
+    <div class="summary"><strong>Executive Summary:</strong> Spent INR 31,496 in the last 30 days and generated zero leads across all campaigns. Three out of four campaigns are budget-capped but delivering no conversions despite 107 clicks at a blended CPC of INR 294. The Gujarat location campaign has spent nothing and received only 3 impressions, indicating setup or targeting issues.</div>
+  </div>
+
+  <div class="kpi-grid">
+    
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">₹31,496</div>
+    <div class="kpi-sub">of ₹37,500 budget</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Total Clicks</div>
+    <div class="kpi-value">107</div>
+    <div class="kpi-sub">CTR 5.78%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value">1,850</div>
+    <div class="kpi-sub">last 30 days</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Leads</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">Conv. rate 0.00%</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Avg CPC</div>
+    <div class="kpi-value">₹294</div>
+    <div class="kpi-sub">blended</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Lead</div>
+    <div class="kpi-value">—</div>
+    <div class="kpi-sub">blended CPL</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Budget Used</div>
+    <div class="kpi-value">84%</div>
+    <div class="kpi-sub">₹31,496 of ₹37,500</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Campaigns Live</div>
+    <div class="kpi-value">4</div>
+    <div class="kpi-sub">all Search type</div>
+  </div>
+  </div>
+
+  
+  <section>
+    <h2>
+      Performance by Product
+      <span style="font-size:12px;color:var(--muted);font-weight:400;">Spend & lead efficiency grouped by product line</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th class="center">Spend</th>
+            <th class="center">% of Spend</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Leads</th>
+            <th class="center">CPL</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw"><strong>Other</strong> <span style="font-size:11px;color:var(--muted);">(2 campaigns)</span></td>
+    <td class="center"><strong>₹20,400</strong></td>
+    <td class="center">64.8%</td>
+    <td class="center">85</td>
+    <td class="center">5.81%</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Liquor Ammonia</strong> <span style="font-size:11px;color:var(--muted);">(1 campaign)</span></td>
+    <td class="center"><strong>₹11,096</strong></td>
+    <td class="center">35.2%</td>
+    <td class="center">22</td>
+    <td class="center">5.71%</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Export / Geo</strong> <span style="font-size:11px;color:var(--muted);">(1 campaign)</span></td>
+    <td class="center"><strong>₹0</strong></td>
+    <td class="center">0%</td>
+    <td class="center">0</td>
+    <td class="center">0%</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Campaign Performance
+      <div class="section-pills">
+        
+        
+        <span class="section-pill pill-red">! Budget Capped (2)</span>
+        <span class="section-pill pill-red">◉ Review (2)</span>
+        
+      </div>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">Spend</th>
+            <th class="center">Clicks</th>
+            <th class="center">CTR</th>
+            <th class="center">Avg CPC</th>
+            <th class="center">Leads</th>
+            <th class="center">CPL</th>
+            <th class="center">Impr. Share</th>
+            <th class="center">Lost IS</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      KM | Lead Gen | Liquid Ammonia Suppliers
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="100% of monthly budget used">
+          <div class="trend-fill" style="width:100%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">100% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹12,078</strong></td>
+    <td class="center">57</td>
+    <td class="center">5.25%</td>
+    <td class="center">₹212</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">49.3%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-24.4%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Lead Gen | Liquor Ammonia Manufacturers
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="92% of monthly budget used">
+          <div class="trend-fill" style="width:92%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">92% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹11,096</strong></td>
+    <td class="center">22</td>
+    <td class="center">5.71%</td>
+    <td class="center">₹504</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">65%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-15.2%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Lead Gen | Ammonia Manufacturers India
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="92% of monthly budget used">
+          <div class="trend-fill" style="width:92%;background:#EF4444"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">92% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹8,322</strong></td>
+    <td class="center">28</td>
+    <td class="center">7.45%</td>
+    <td class="center">₹297</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">69.2%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-8.8%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | Lead Gen | Gujarat Location (Vapi/Dahej)
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="0% of monthly budget used">
+          <div class="trend-fill" style="width:0%;background:#22C55E"></div>
+        </div>
+        <span style="font-size:11px;color:var(--muted);">0% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹0</strong></td>
+    <td class="center">0</td>
+    <td class="center">0%</td>
+    <td class="center">₹0</td>
+    <td class="center"><strong style="color:#16A34A">0</strong></td>
+    <td class="center">—</td>
+    <td class="center">100%</td>
+    <td class="center">—</td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> CTR across all active campaigns is healthy at 5.78%, with 'Ammonia Manufacturers India' delivering 7.45% CTR — traffic quality and ad relevance are strong</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> Zero conversions from 107 clicks across all campaigns — conversion tracking may be broken, landing pages are failing to convert, or lead forms/CTAs are not functioning. INR 31,496 spent with no measurable return.</li><li><strong>[Urgent]</strong> 'Liquid Ammonia Suppliers' campaign spent INR 12,078 (100% of budget) with 57 clicks but zero conversions at INR 212 CPC — highest traffic volume with no leads suggests landing page or form issue specific to this funnel.</li><li><strong>[Important]</strong> 'Gujarat Location (Vapi/Dahej)' campaign has 100% impression share but zero spend and only 3 impressions in 30 days — campaign is either paused, has broken targeting, or keywords have no search volume.</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions This Period</h3>
+        <ul><li><strong>[Urgent]</strong> Audit conversion tracking immediately — verify that form submissions, WhatsApp clicks, and phone call tracking are firing correctly in Google Ads. Test each conversion action manually on all landing pages.</li><li><strong>[Urgent]</strong> Pause all campaigns until conversion tracking is confirmed working — continuing to spend INR 1,000+/day with zero attribution is burning budget with no accountability.</li><li><strong>[Important]</strong> Investigate 'Gujarat Location' campaign setup — check if keywords are too narrow, location targeting is misconfigured, or ad approval issues exist. With 100% IS and zero activity, something is fundamentally broken.</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Jaysons Chemical Ads Dashboard · Auto-generated every Monday 10:05am IST · Powered by KM
+</footer>
+
+</body>
+</html>

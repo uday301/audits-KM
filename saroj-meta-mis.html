@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saroj Fabrics — Meta Ads Dashboard | 13 Jul 2026 – 11 Aug 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --brand-blue:#003DCC; --brand-blue-dark:#035398; --text:#0F172A; --muted:#64748B; --border:#E2E8F0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Inter',sans-serif; background:#F8FAFC; color:var(--text); line-height:1.5; }
+  h1,h2,h3 { font-family:'DM Sans',sans-serif; font-weight:600; }
+  .topbar { background:var(--brand-blue); color:white; padding:8px 0; font-size:13px; text-align:center; }
+  .nav { background:white; border-bottom:1px solid var(--border); padding:16px 32px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+  .nav strong { font-family:'DM Sans'; font-size:18px; color:var(--brand-blue); }
+  .nav .meta { font-size:13px; color:var(--muted); }
+  .wrap { max-width:1280px; margin:0 auto; padding:32px; }
+  .hero { background:linear-gradient(135deg,#003DCC 0%,#035398 100%); color:white; border-radius:10px; padding:32px 40px; margin-bottom:32px; }
+  .hero h1 { font-size:28px; margin-bottom:8px; }
+  .hero .sub { opacity:0.85; font-size:14px; }
+  .hero .summary { margin-top:20px; padding:16px 20px; background:rgba(255,255,255,0.12); border-radius:8px; font-size:14px; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
+  .kpi { background:white; border-radius:10px; padding:20px; border-top:3px solid var(--brand-blue); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; }
+  .kpi-value { font-family:'DM Sans'; font-size:28px; font-weight:700; margin:6px 0; color:var(--text); }
+  .kpi-sub { font-size:12px; color:var(--muted); }
+  section { background:white; border-radius:10px; padding:28px; margin-bottom:24px; border:1px solid var(--border); }
+  section h2 { font-size:18px; margin-bottom:20px; color:var(--text); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .section-pills { display:flex; gap:8px; flex-wrap:wrap; }
+  .section-pill { font-size:12px; padding:4px 10px; border-radius:20px; font-weight:600; }
+  .pill-green { background:#DCFCE7; color:#166534; }
+  .pill-amber { background:#FEF3C7; color:#92400E; }
+  .pill-red { background:#FEE2E2; color:#991B1B; }
+  .pill { display:inline-block; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:600; white-space:nowrap; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  table th { text-align:left; padding:10px 12px; background:#F8FAFC; font-weight:600; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border); }
+  table th.center, table td.center { text-align:center; }
+  table td { padding:12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  table td.kw { font-weight:500; }
+  .insights { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .insight-card { background:#F8FAFC; border-radius:8px; padding:20px; border-left:3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color:#22C55E; }
+  .insight-card.concerns { border-left-color:#EF4444; }
+  .insight-card.actions { border-left-color:#F59E0B; }
+  .insight-card h3 { font-size:14px; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+  .insight-card ul { padding-left:18px; }
+  .insight-card li { margin-bottom:8px; font-size:13px; color:var(--text); line-height:1.6; }
+  .insight-card li strong { color:var(--brand-blue); font-weight:600; }
+  .mis-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .mis-table th { text-align:center; padding:10px 12px; background:#F8FAFC; font-weight:600; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:2px solid var(--border); }
+  .mis-table th:first-child { text-align:left; }
+  .mis-table td { padding:11px 12px; border-bottom:1px solid var(--border); }
+  .mis-table tbody tr:hover { background:#F1F5F9; }
+  .mis-table td.mis-name { font-weight:500; }
+  .mis-totals { background:#DBEAFE !important; border-top:2px solid #003DCC; }
+  .mis-totals td { padding:14px 12px; font-size:14px; border-bottom:none; }
+  .note { margin-top:14px; font-size:12px; color:var(--muted); }
+  footer { text-align:center; padding:32px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:40px; }
+  footer strong { color:var(--brand-blue); }
+  @media (max-width:768px) {
+    .kpi-grid { grid-template-columns:repeat(2,1fr); }
+    .insights { grid-template-columns:1fr; }
+    .wrap { padding:16px; }
+    section h2 { flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Campaign Performance Report · Generated 12 Aug 2026 · Source: Meta Ads Manager export</div>
+<nav class="nav">
+  <strong>Kerkar Media · Saroj Fabrics Meta Ads Dashboard</strong>
+  <div class="meta">13 Jul 2026 – 11 Aug 2026 · Saroj Texfa India Pvt. Ltd.</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Meta Ads Performance — 13 Jul 2026 – 11 Aug 2026</h1>
+    <div class="sub">13 Jul 2026 – 11 Aug 2026 · 3 of 28 campaigns spent · Mixed objectives (Sales · Awareness · Messaging)</div>
+    <div class="summary"><strong>Executive Summary:</strong> Only 3 of 28 campaigns in the account spent during this window, together deploying ₹12,670. The lone sales campaign — Remarketing / Website Visitors — returned ₹22,857 on ₹6,268 at a 3.6x ROAS (13 purchases, ₹482 CPA). A near-equal ₹6,229 funded an Ahmedabad awareness push (₹212 per 1,000 reached), and a small ₹173 Rakshabandhan messaging campaign opened 6 conversations at ₹29 each. The critical issue: all three active campaigns now read <strong>&ldquo;not delivering,&rdquo;</strong> and the other 25 are inactive — the account has effectively gone dark and needs delivery restored.</div>
+  </div>
+
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Total Spend</div><div class="kpi-value">₹12,670</div><div class="kpi-sub">3 of 28 campaigns active</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Sales Revenue</div><div class="kpi-value">₹22,857</div><div class="kpi-sub">from remarketing campaign</div>
+  </div>
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Sales ROAS</div><div class="kpi-value">3.6x</div><div class="kpi-sub">₹22,857 from ₹6,268</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Purchases</div><div class="kpi-value">13</div><div class="kpi-sub">CPA ₹482</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg Order Value</div><div class="kpi-value">₹1,758</div><div class="kpi-sub">sales campaign</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Awareness Reach</div><div class="kpi-value">29,320</div><div class="kpi-sub">Ahmedabad · CPM ₹54</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">Messaging Chats</div><div class="kpi-value">6</div><div class="kpi-sub">₹29 per conversation</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EF4444">
+    <div class="kpi-label">Currently Delivering</div><div class="kpi-value">0</div><div class="kpi-sub">all active campaigns paused</div>
+  </div>
+  </div>
+
+  <section>
+    <h2>Campaign Performance
+      <div class="section-pills">
+        <span class="section-pill pill-green">Sales (1)</span>
+        <span class="section-pill pill-blue" style="background:#DBEAFE;color:#1E40AF">Awareness (1)</span>
+        <span class="section-pill pill-amber">Messaging (1)</span>
+      </div>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr>
+          <th>Campaign</th><th class="center">Delivery</th><th class="center">Spend</th>
+          <th class="center">Results</th><th class="center">Cost / Result</th><th class="center">Revenue</th><th class="center">ROAS</th>
+        </tr></thead>
+        <tbody>
+  <tr>
+    <td class="kw">KM | Remarketing Campaign | Website Visitors<div style="font-size:11px;color:var(--muted);margin-top:4px">SALES</div></td>
+    <td class="center"><span class="pill pill-red">Not delivering</span></td>
+    <td class="center"><strong>₹6,268</strong></td>
+    <td class="center">13 purchases</td>
+    <td class="center">₹482</td>
+    <td class="center">₹22,857</td>
+    <td class="center"><strong style="color:#16A34A;font-size:15px">3.6x</strong></td>
+  </tr>
+  <tr>
+    <td class="kw">KM| Awareness Campaign | Ahmedabad<div style="font-size:11px;color:var(--muted);margin-top:4px">AWARENESS</div></td>
+    <td class="center"><span class="pill pill-red">Not delivering</span></td>
+    <td class="center"><strong>₹6,229</strong></td>
+    <td class="center">29,320 reach</td>
+    <td class="center">₹212/1k</td>
+    <td class="center">&#8212;</td>
+    <td class="center"><span style="color:var(--muted)">&#8212;</span></td>
+  </tr>
+  <tr>
+    <td class="kw">KM | Rakshabandhan Ad Campaign<div style="font-size:11px;color:var(--muted);margin-top:4px">MESSAGING</div></td>
+    <td class="center"><span class="pill pill-red">Not delivering</span></td>
+    <td class="center"><strong>₹173</strong></td>
+    <td class="center">6 chats</td>
+    <td class="center">₹29</td>
+    <td class="center">&#8212;</td>
+    <td class="center"><span style="color:var(--muted)">&#8212;</span></td>
+  </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Results differ by objective: Sales = purchases, Awareness = people reached, Messaging = conversations started. Revenue &amp; ROAS apply to the sales campaign only.</div>
+  </section>
+
+  <section>
+    <h2>Campaign Detail (MIS)
+      <span style="font-size:12px;color:var(--muted);font-weight:400">13 Jul 2026 – 11 Aug 2026 · 3 active · 25 inactive</span>
+    </h2>
+    <div style="overflow-x:auto;">
+      <table class="mis-table">
+        <thead><tr>
+          <th>Campaign</th><th>Objective</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Purchases</th><th>CPA</th>
+        </tr></thead>
+        <tbody>
+  <tr>
+    <td class="mis-name">KM | Remarketing Campaign | Website Visitors</td>
+    <td class="center"><span class="pill" style="color:#166534;background:#DCFCE7">SALES</span></td>
+    <td class="center">₹6,268</td>
+    <td class="center" style="color:#16A34A;font-weight:600">₹22,857</td>
+    <td class="center"><strong style="color:#16A34A">3.6x</strong></td>
+    <td class="center">13</td>
+    <td class="center">₹482</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM| Awareness Campaign | Ahmedabad</td>
+    <td class="center"><span class="pill" style="color:#1E40AF;background:#DBEAFE">AWARENESS</span></td>
+    <td class="center">₹6,229</td>
+    <td class="center" style="color:#16A34A;font-weight:600">&#8212;</td>
+    <td class="center">&#8212;</td>
+    <td class="center">&#8212;</td>
+    <td class="center">&#8212;</td>
+  </tr>
+  <tr>
+    <td class="mis-name">KM | Rakshabandhan Ad Campaign</td>
+    <td class="center"><span class="pill" style="color:#92400E;background:#FEF3C7">MESSAGING</span></td>
+    <td class="center">₹173</td>
+    <td class="center" style="color:#16A34A;font-weight:600">&#8212;</td>
+    <td class="center">&#8212;</td>
+    <td class="center">&#8212;</td>
+    <td class="center">&#8212;</td>
+  </tr>
+  <tr class="mis-totals">
+    <td class="mis-name"><strong>TOTAL (active)</strong></td>
+    <td class="center"><strong>&#8212;</strong></td>
+    <td class="center"><strong>₹12,670</strong></td>
+    <td class="center"><strong style="color:#16A34A">₹22,857</strong></td>
+    <td class="center"><strong style="color:#003DCC">1.8x*</strong></td>
+    <td class="center"><strong>13</strong></td>
+    <td class="center"><strong>₹482</strong></td>
+  </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">*Blended ROAS (1.8x) divides sales revenue by <em>total</em> spend across all objectives. On the sales campaign alone the return is 3.6x. The remaining 25 campaigns had zero spend and are omitted.</div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>&#127942; Wins</h3>
+        <ul>
+          <li><strong>[Important]</strong> The Remarketing / Website Visitors campaign is the account's one revenue driver — ₹22,857 from ₹6,268 at 3.6x ROAS, 13 purchases and a ₹1,758 AOV. Retargeting is converting profitably.</li>
+          <li><strong>[Worth doing]</strong> The Ahmedabad awareness campaign delivered efficient top-funnel reach — 29,320 people and 1,15,888 impressions at a low ₹54 CPM (₹212 per 1,000 reached) for ₹6,229.</li>
+          <li><strong>[Worth doing]</strong> The Rakshabandhan messaging campaign opened 6 conversations at just ₹29 each on a tiny ₹173 budget — cheap, warm festive leads.</li>
+        </ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>&#9888;&#65039; Concerns</h3>
+        <ul>
+          <li><strong>[Urgent]</strong> The account has gone dark — all 3 spending campaigns now show &ldquo;not delivering&rdquo; and the other 25 are inactive. Nothing is currently live to capture demand or feed the remarketing pool.</li>
+          <li><strong>[Important]</strong> Remarketing efficiency is only modest — 3.6x ROAS and a high ₹482 cost per purchase on a ₹278 CPM. Acceptable for retargeting, but there is no prospecting layer refilling the audience.</li>
+          <li><strong>[Important]</strong> Nearly half the spend (₹6,229) went to a pure awareness campaign with no tracked purchases, while no conversion-prospecting campaign was scaled behind it — top-heavy funnel with a weak conversion base.</li>
+        </ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>&#127919; Actions This Period</h3>
+        <ul>
+          <li><strong>[Urgent]</strong> Restore delivery — diagnose why the active campaigns flipped to &ldquo;not delivering&rdquo; (budget, schedule, or learning-phase exit) and relaunch the remarketing campaign immediately; it is the only proven earner.</li>
+          <li><strong>[Important]</strong> Build a prospecting &#8594; remarketing funnel — turn on 1&#8211;2 conversion prospecting campaigns (Fashion / Cosmetics) to feed the retargeting pool, which will otherwise starve with everything else paused.</li>
+          <li><strong>[Important]</strong> Rationalise the account — 25 dormant campaigns (many from 2020&#8211;2023) make this unmanageable. Archive the stale ones and consolidate into a lean Prospecting + Remarketing + Catalogue structure.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Saroj Fabrics Meta Ads Dashboard · Campaign Performance Report · Powered by KM
+</footer>
+
+</body>
+</html>

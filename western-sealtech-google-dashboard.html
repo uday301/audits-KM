@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Western Sealtech — Google Ads Dashboard | 2026-08-19</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --brand-blue:#003DCC; --brand-blue-dark:#035398; --light-gray:#E9E9E8; --text:#0F172A; --muted:#64748B; --border:#E2E8F0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Inter',sans-serif; background:#F8FAFC; color:var(--text); line-height:1.5; }
+  h1,h2,h3 { font-family:'DM Sans',sans-serif; font-weight:600; }
+  .topbar { background:var(--brand-blue); color:white; padding:8px 0; font-size:13px; text-align:center; }
+  .nav { background:white; border-bottom:1px solid var(--border); padding:16px 32px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:12px; }
+  .nav strong { font-family:'DM Sans'; font-size:18px; color:var(--brand-blue); }
+  .nav .meta { font-size:13px; color:var(--muted); }
+  .wrap { max-width:1280px; margin:0 auto; padding:32px; }
+  .toggle { display:flex; gap:8px; justify-content:center; margin-bottom:24px; }
+  .toggle button { font-family:'DM Sans',sans-serif; font-weight:600; font-size:14px; padding:10px 24px; border:1px solid var(--border); background:white; color:var(--muted); border-radius:8px; cursor:pointer; transition:all .15s; }
+  .toggle button.active { background:var(--brand-blue); color:white; border-color:var(--brand-blue); }
+  .hero { background:linear-gradient(135deg,#003DCC 0%,#035398 100%); color:white; border-radius:10px; padding:32px 40px; margin-bottom:32px; }
+  .hero h1 { font-size:28px; margin-bottom:8px; }
+  .hero .sub { opacity:.85; font-size:14px; }
+  .hero .summary { margin-top:20px; padding:16px 20px; background:rgba(255,255,255,0.12); border-radius:8px; font-size:14px; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
+  .kpi { background:white; border-radius:10px; padding:20px; border-top:3px solid var(--brand-blue); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+  .kpi-value { font-family:'DM Sans'; font-size:28px; font-weight:700; margin:6px 0; color:var(--text); }
+  .kpi-sub { font-size:12px; color:var(--muted); }
+  section { background:white; border-radius:10px; padding:28px; margin-bottom:24px; border:1px solid var(--border); }
+  section h2 { font-size:18px; margin-bottom:20px; color:var(--text); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .section-pills { display:flex; gap:8px; flex-wrap:wrap; }
+  .section-pill { font-size:12px; padding:4px 10px; border-radius:20px; font-weight:600; }
+  .pill-green { background:#DCFCE7; color:#166534; }
+  .pill-amber { background:#FEF3C7; color:#92400E; }
+  .pill-red { background:#FEE2E2; color:#991B1B; }
+  .pill-blue { background:#DBEAFE; color:#1E40AF; }
+  .pill { display:inline-block; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:600; white-space:nowrap; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  table th { text-align:left; padding:10px 12px; background:#F8FAFC; font-weight:600; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; border-bottom:1px solid var(--border); }
+  table th.center, table td.center { text-align:center; }
+  table td { padding:12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  table td.kw { font-weight:500; }
+  .trend-bar { width:100px; height:6px; background:#F1F5F9; border-radius:3px; overflow:hidden; }
+  .trend-fill { height:100%; border-radius:3px; transition:width .3s; }
+  .insights { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .insight-card { background:#F8FAFC; border-radius:8px; padding:20px; border-left:3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color:#22C55E; }
+  .insight-card.concerns { border-left-color:#EF4444; }
+  .insight-card.actions { border-left-color:#F59E0B; }
+  .insight-card h3 { font-size:14px; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:.5px; }
+  .insight-card ul { padding-left:18px; }
+  .insight-card li { margin-bottom:8px; font-size:13px; color:var(--text); line-height:1.6; }
+  .insight-card li strong { color:var(--brand-blue); font-weight:600; }
+  .empty { padding:20px; text-align:center; color:var(--muted); font-style:italic; font-size:13px; }
+  .banner { background:#FEF3C7; color:#92400E; border:1px solid #FDE68A; border-radius:8px; padding:12px 18px; font-size:13px; margin-bottom:24px; }
+  footer { text-align:center; padding:32px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:40px; }
+  footer strong { color:var(--brand-blue); }
+  @media (max-width:768px) { .kpi-grid { grid-template-columns:repeat(2,1fr); } .insights { grid-template-columns:1fr; } .wrap { padding:16px; } section h2 { flex-direction:column; align-items:flex-start; } }
+</style>
+</head>
+<body>
+<div class="topbar">Preview build from Google Ads export · Generated 2026-08-19 · Live auto-refresh pending API access</div>
+<nav class="nav">
+  <strong>Kerkar Media · Western Sealtech Ads Dashboard</strong>
+  <div class="meta">Western Rubbers · INR · Customer ID pending</div>
+</nav>
+<div class="wrap">
+  <div class="banner">📊 <strong>Preview board</strong> built from your 30-day and 7-day Google Ads exports. Once Google Ads API access is approved, this same page will auto-refresh weekly from n8n. Conversions read <strong>0</strong> across both windows — verify conversion tracking before scaling spend.</div>
+  <div class="toggle">
+    <button id="btn30" class="active" onclick="showWin(30)">Last 30 Days</button>
+    <button id="btn7" onclick="showWin(7)">Last 7 Days</button>
+  </div>
+  <div class="window" id="win30" style="display:block">
+  <div class="hero">
+    <h1>Google Ads Performance — Last 30 Days</h1>
+    <div class="sub">July 20, 2026 - August 18, 2026 · 8 active Search campaigns · 0 conversions · EU + US export markets</div>
+    <div class="summary"><strong>Executive Summary:</strong> Western Sealtech spent ₹45,559 at the account level over the last 30 days (₹26,030 across the 8 currently-active Search campaigns), driving 1,662 impressions and 97 clicks at a 5.84% CTR and ₹470 average CPC across European and US export markets. No conversions have been recorded yet — and with roughly 83% of active-campaign spend occurring in just the last 7 days, these campaigns are effectively one week old. The immediate priority is validating conversion tracking and letting the Maximize Conversions strategy accumulate signal, while three US/English campaigns are losing 33–59% of impression share to budget, showing demand the current caps can&#x27;t capture.</div>
+  </div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#003DCC"><div class="kpi-label">Active Campaign Spend</div><div class="kpi-value">₹26,030</div><div class="kpi-sub">account total ₹45,559</div></div>
+  <div class="kpi" style="border-top-color:#035398"><div class="kpi-label">Total Clicks</div><div class="kpi-value">65</div><div class="kpi-sub">CTR 6.34%</div></div>
+  <div class="kpi" style="border-top-color:#0EA5E9"><div class="kpi-label">Impressions</div><div class="kpi-value">1,026</div><div class="kpi-sub">active campaigns</div></div>
+  <div class="kpi" style="border-top-color:#22C55E"><div class="kpi-label">Conversions</div><div class="kpi-value">0</div><div class="kpi-sub">verify tracking</div></div>
+  <div class="kpi" style="border-top-color:#A855F7"><div class="kpi-label">Avg CPC</div><div class="kpi-value">₹400</div><div class="kpi-sub">blended</div></div>
+  <div class="kpi" style="border-top-color:#EC4899"><div class="kpi-label">Cost / Conv.</div><div class="kpi-value">—</div><div class="kpi-sub">no conv. yet</div></div>
+  <div class="kpi" style="border-top-color:#F59E0B"><div class="kpi-label">Budget Used</div><div class="kpi-value">20%</div><div class="kpi-sub">of period capacity</div></div>
+  <div class="kpi" style="border-top-color:#6366F1"><div class="kpi-label">Campaigns Live</div><div class="kpi-value">8</div><div class="kpi-sub">all Search type</div></div></div>
+  
+  <section>
+    <h2>Performance by Product <span style="font-size:12px;color:var(--muted);font-weight:400;">Spend & engagement grouped by product line</span></h2>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr><th>Product</th><th class="center">Spend</th><th class="center">% of Spend</th><th class="center">Clicks</th><th class="center">CTR</th><th class="center">Conv.</th><th class="center">CPL</th></tr></thead>
+      <tbody>  <tr>
+    <td class="kw"><strong>Inflatable Seals</strong> <span style="font-size:11px;color:var(--muted);">(6 campaigns)</span></td>
+    <td class="center"><strong>₹24,493</strong></td>
+    <td class="center">94%</td>
+    <td class="center">62</td>
+    <td class="center">6.35%</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Competitor Conquest</strong> <span style="font-size:11px;color:var(--muted);">(1 campaign)</span></td>
+    <td class="center"><strong>₹940</strong></td>
+    <td class="center">4%</td>
+    <td class="center">2</td>
+    <td class="center">50.0%</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Molded, Extrusions &amp; Diaphragms</strong> <span style="font-size:11px;color:var(--muted);">(1 campaign)</span></td>
+    <td class="center"><strong>₹597</strong></td>
+    <td class="center">2%</td>
+    <td class="center">1</td>
+    <td class="center">2.17%</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+  </tr></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>Campaign Performance <div class="section-pills"><span class="section-pill pill-amber">⚙ Optimize (1)</span><span class="section-pill pill-red">! Budget Capped (3)</span><span class="section-pill pill-red">◉ Review (4)</span></div></h2>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr><th>Campaign</th><th class="center">Status</th><th class="center">Spend</th><th class="center">Clicks</th><th class="center">CTR</th><th class="center">Avg CPC</th><th class="center">Conv.</th><th class="center">CPL</th><th class="center">Impr. Share</th><th class="center">Lost IS (budget)</th></tr></thead>
+      <tbody>  <tr>
+    <td class="kw">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="34% of period budget used"><div class="trend-fill" style="width:34%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">34% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹7,232</strong></td>
+    <td class="center">22</td>
+    <td class="center">7.8%</td>
+    <td class="center">₹329</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">10.5%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-33.2%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Aufblasbare Dichtungen | DE-CH | German | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="28% of period budget used"><div class="trend-fill" style="width:28%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">28% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹5,828</strong></td>
+    <td class="center">12</td>
+    <td class="center">5.11%</td>
+    <td class="center">₹486</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">&lt;10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-19.1%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Joints Gonflables | FR | French | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="25% of period budget used"><div class="trend-fill" style="width:25%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">25% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹5,302</strong></td>
+    <td class="center">9</td>
+    <td class="center">6.21%</td>
+    <td class="center">₹589</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">12.6%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-11.5%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Guarnizioni Gonfiabili | IT | Italian | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="13% of period budget used"><div class="trend-fill" style="width:13%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">13% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹2,747</strong></td>
+    <td class="center">11</td>
+    <td class="center">8.94%</td>
+    <td class="center">₹250</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">13.0%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-1.6%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WS | Search | Inflatable Seals | US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="19% of period budget used"><div class="trend-fill" style="width:19%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">19% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹1,734</strong></td>
+    <td class="center">4</td>
+    <td class="center">7.14%</td>
+    <td class="center">₹433</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">19.6%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-55.4%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Juntas Hinchables | ES | Spanish | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="8% of period budget used"><div class="trend-fill" style="width:8%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">8% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹1,649</strong></td>
+    <td class="center">4</td>
+    <td class="center">2.96%</td>
+    <td class="center">₹412</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">16.7%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-6.5%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WS | Search | Competitor Conquest | US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="10% of period budget used"><div class="trend-fill" style="width:10%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">10% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-amber">⚙ Optimize</span></td>
+    <td class="center"><strong>₹940</strong></td>
+    <td class="center">2</td>
+    <td class="center">50.0%</td>
+    <td class="center">₹470</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">&lt;10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-8.6%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WS | Search | Molded, Extrusions &amp; Diaphragms | US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="7% of period budget used"><div class="trend-fill" style="width:7%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">7% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹597</strong></td>
+    <td class="center">1</td>
+    <td class="center">2.17%</td>
+    <td class="center">₹597</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">13.7%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-58.7%</span></td>
+  </tr></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins"><h3>🏆 Wins</h3><ul><li><strong>[High]</strong> Inflatable Seals (English, UK/EU) is the standout engager — 282 impressions, 22 clicks and a 7.8% CTR, the strongest keyword-to-creative match in the account.</li><li><strong>[Medium]</strong> Full multilingual EU coverage is live and Eligible across French, German, Spanish and Italian, establishing broad addressable reach in target export markets from day one.</li><li><strong>[Medium]</strong> Optimization scores sit at 94–97% across all campaigns, so account structure and settings are healthy going into the scaling phase.</li></ul></div>
+      <div class="insight-card concerns"><h3>⚠️ Concerns</h3><ul><li><strong>[High]</strong> 0 conversions recorded across every campaign in both the 30-day and 7-day windows — conversion tracking must be verified (tags firing, lead/form events imported) before budgets scale.</li><li><strong>[High]</strong> Molded/Extrusions/Diaphragms (US) and Inflatable Seals (US) are losing 55–59% of impression share to budget; the English EU campaign loses 33% — capped demand left on the table.</li><li><strong>[Medium]</strong> Blended CPC of ₹470 is high relative to click volume; with no conversions yet, true cost-per-lead is still undefined and can’t be judged.</li></ul></div>
+      <div class="insight-card actions"><h3>🎯 Actions This Period</h3><ul><li><strong>[High]</strong> Audit Google Ads conversion tracking end-to-end and import the key lead/enquiry events, so Maximize Conversions has valid conversion actions to optimize toward.</li><li><strong>[High]</strong> Raise daily budgets on the three budget-capped US/EN campaigns (Molded US, Inflatable Seals US, Inflatable Seals EN) to recover the 33–59% lost impression share.</li><li><strong>[Medium]</strong> Give the multilingual EU campaigns 2–3 weeks to gather conversion data before efficiency calls; monitor search terms weekly and layer in negative keywords.</li></ul></div>
+    </div>
+  </section>
+</div>
+  <div class="window" id="win7" style="display:none">
+  <div class="hero">
+    <h1>Google Ads Performance — Last 7 Days</h1>
+    <div class="sub">August 12, 2026 - August 18, 2026 · 8 active Search campaigns · 0 conversions · EU + US export markets</div>
+    <div class="summary"><strong>Executive Summary:</strong> In the last 7 days Western Sealtech&#x27;s account spent ₹21,576 — nearly all of it through the 8 active Search campaigns — producing 885 impressions and 50 clicks at a 5.65% CTR and ₹432 average CPC. Spend has accelerated sharply versus the trailing 30 days, confirming campaigns went fully live only recently. Still 0 conversions, so this week is about tracking validation and budget recovery rather than efficiency optimization. The same three US/English campaigns continue to lose 35–59% of impression share to budget.</div>
+  </div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#003DCC"><div class="kpi-label">Active Campaign Spend</div><div class="kpi-value">₹21,576</div><div class="kpi-sub">account total ₹21,576</div></div>
+  <div class="kpi" style="border-top-color:#035398"><div class="kpi-label">Total Clicks</div><div class="kpi-value">50</div><div class="kpi-sub">CTR 5.65%</div></div>
+  <div class="kpi" style="border-top-color:#0EA5E9"><div class="kpi-label">Impressions</div><div class="kpi-value">885</div><div class="kpi-sub">active campaigns</div></div>
+  <div class="kpi" style="border-top-color:#22C55E"><div class="kpi-label">Conversions</div><div class="kpi-value">0</div><div class="kpi-sub">verify tracking</div></div>
+  <div class="kpi" style="border-top-color:#A855F7"><div class="kpi-label">Avg CPC</div><div class="kpi-value">₹432</div><div class="kpi-sub">blended</div></div>
+  <div class="kpi" style="border-top-color:#EC4899"><div class="kpi-label">Cost / Conv.</div><div class="kpi-value">—</div><div class="kpi-sub">no conv. yet</div></div>
+  <div class="kpi" style="border-top-color:#F59E0B"><div class="kpi-label">Budget Used</div><div class="kpi-value">70%</div><div class="kpi-sub">of period capacity</div></div>
+  <div class="kpi" style="border-top-color:#6366F1"><div class="kpi-label">Campaigns Live</div><div class="kpi-value">8</div><div class="kpi-sub">all Search type</div></div></div>
+  
+  <section>
+    <h2>Performance by Product <span style="font-size:12px;color:var(--muted);font-weight:400;">Spend & engagement grouped by product line</span></h2>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr><th>Product</th><th class="center">Spend</th><th class="center">% of Spend</th><th class="center">Clicks</th><th class="center">CTR</th><th class="center">Conv.</th><th class="center">CPL</th></tr></thead>
+      <tbody>  <tr>
+    <td class="kw"><strong>Inflatable Seals</strong> <span style="font-size:11px;color:var(--muted);">(6 campaigns)</span></td>
+    <td class="center"><strong>₹20,040</strong></td>
+    <td class="center">93%</td>
+    <td class="center">47</td>
+    <td class="center">5.63%</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Competitor Conquest</strong> <span style="font-size:11px;color:var(--muted);">(1 campaign)</span></td>
+    <td class="center"><strong>₹940</strong></td>
+    <td class="center">4%</td>
+    <td class="center">2</td>
+    <td class="center">50.0%</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw"><strong>Molded, Extrusions &amp; Diaphragms</strong> <span style="font-size:11px;color:var(--muted);">(1 campaign)</span></td>
+    <td class="center"><strong>₹597</strong></td>
+    <td class="center">3%</td>
+    <td class="center">1</td>
+    <td class="center">2.17%</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+  </tr></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>Campaign Performance <div class="section-pills"><span class="section-pill pill-amber">⚙ Optimize (1)</span><span class="section-pill pill-red">! Budget Capped (3)</span><span class="section-pill pill-red">◉ Review (4)</span></div></h2>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr><th>Campaign</th><th class="center">Status</th><th class="center">Spend</th><th class="center">Clicks</th><th class="center">CTR</th><th class="center">Avg CPC</th><th class="center">Conv.</th><th class="center">CPL</th><th class="center">Impr. Share</th><th class="center">Lost IS (budget)</th></tr></thead>
+      <tbody>  <tr>
+    <td class="kw">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="110% of period budget used"><div class="trend-fill" style="width:100%;background:#EF4444"></div></div>
+        <span style="font-size:11px;color:var(--muted);">110% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹5,407</strong></td>
+    <td class="center">16</td>
+    <td class="center">6.81%</td>
+    <td class="center">₹338</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">10.3%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-35.4%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Aufblasbare Dichtungen | DE-CH | German | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="99% of period budget used"><div class="trend-fill" style="width:99%;background:#EF4444"></div></div>
+        <span style="font-size:11px;color:var(--muted);">99% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹4,830</strong></td>
+    <td class="center">8</td>
+    <td class="center">4.23%</td>
+    <td class="center">₹604</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">&lt;10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-15.4%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Joints Gonflables | FR | French | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="91% of period budget used"><div class="trend-fill" style="width:91%;background:#EF4444"></div></div>
+        <span style="font-size:11px;color:var(--muted);">91% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹4,446</strong></td>
+    <td class="center">7</td>
+    <td class="center">5.43%</td>
+    <td class="center">₹635</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">12.6%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-6.7%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Guarnizioni Gonfiabili | IT | Italian | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="46% of period budget used"><div class="trend-fill" style="width:46%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">46% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹2,259</strong></td>
+    <td class="center">9</td>
+    <td class="center">7.69%</td>
+    <td class="center">₹251</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">12.9%</td>
+    <td class="center">—</td>
+  </tr>
+  <tr>
+    <td class="kw">WS | Search | Inflatable Seals | US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="83% of period budget used"><div class="trend-fill" style="width:83%;background:#F59E0B"></div></div>
+        <span style="font-size:11px;color:var(--muted);">83% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹1,734</strong></td>
+    <td class="center">4</td>
+    <td class="center">7.14%</td>
+    <td class="center">₹433</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">19.8%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-56.0%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WesternSealTech | Search | Juntas Hinchables | ES | Spanish | Phrase
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="28% of period budget used"><div class="trend-fill" style="width:28%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">28% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">◉ Review</span></td>
+    <td class="center"><strong>₹1,363</strong></td>
+    <td class="center">3</td>
+    <td class="center">2.75%</td>
+    <td class="center">₹454</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">18.8%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-3.1%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WS | Search | Competitor Conquest | US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="45% of period budget used"><div class="trend-fill" style="width:45%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">45% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-amber">⚙ Optimize</span></td>
+    <td class="center"><strong>₹940</strong></td>
+    <td class="center">2</td>
+    <td class="center">50.0%</td>
+    <td class="center">₹470</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">&lt;10%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-8.6%</span></td>
+  </tr>
+  <tr>
+    <td class="kw">WS | Search | Molded, Extrusions &amp; Diaphragms | US
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <div class="trend-bar" style="width:120px;" title="28% of period budget used"><div class="trend-fill" style="width:28%;background:#22C55E"></div></div>
+        <span style="font-size:11px;color:var(--muted);">28% budget</span>
+      </div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><strong>₹597</strong></td>
+    <td class="center">1</td>
+    <td class="center">2.17%</td>
+    <td class="center">₹597</td>
+    <td class="center"><span style="color:#94A3B8">0</span></td>
+    <td class="center">—</td>
+    <td class="center">13.8%</td>
+    <td class="center"><span style="color:#EF4444;font-weight:600">-59.1%</span></td>
+  </tr></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="insights">
+      <div class="insight-card wins"><h3>🏆 Wins</h3><ul><li><strong>[High]</strong> Inflatable Seals (English, UK/EU) again led engagement this week — 235 impressions, 16 clicks, 6.8% CTR — and the German EU campaign added 189 impressions at strong volume.</li><li><strong>[Medium]</strong> Weekly spend of ₹21,576 shows campaigns are now pacing at healthy daily volume after launch, giving the account enough traffic to start generating conversion signal.</li></ul></div>
+      <div class="insight-card concerns"><h3>⚠️ Concerns</h3><ul><li><strong>[High]</strong> Still 0 conversions in the last 7 days despite ₹21,576 spent — reinforces that conversion tracking validation is the single most urgent item.</li><li><strong>[High]</strong> Molded US (59% lost IS), Inflatable Seals US (56%) and Inflatable Seals EN (35%) remain budget-capped this week, throttling the account’s highest-intent US demand.</li></ul></div>
+      <div class="insight-card actions"><h3>🎯 Actions This Period</h3><ul><li><strong>[High]</strong> Confirm conversion tags are firing this week using Google Tag Assistant / the Conversions diagnostics before the next reporting cycle.</li><li><strong>[High]</strong> Increase daily budgets on the three US/EN capped campaigns now while intent is high, then re-measure lost IS next week.</li><li><strong>[Medium]</strong> Review this week’s search terms for the EU-language campaigns and add negatives to protect CPC as volume grows.</li></ul></div>
+    </div>
+  </section>
+</div>
+</div>
+<footer><strong>Kerkar Media</strong> · Western Sealtech Google Ads Dashboard · Preview build · Powered by KM</footer>
+<script>
+function showWin(w){
+  document.getElementById('win30').style.display = (w===30)?'block':'none';
+  document.getElementById('win7').style.display = (w===7)?'block':'none';
+  document.getElementById('btn30').classList.toggle('active', w===30);
+  document.getElementById('btn7').classList.toggle('active', w===7);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

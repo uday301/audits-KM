@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hack Athletics — SEO Dashboard | Monday, 17 August 2026</title>
+<title>Hack Athletics — SEO Dashboard | Wednesday, 19 August 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -60,39 +60,72 @@
     .wrap { padding: 16px; }
     section h2 { flex-direction: column; align-items: flex-start; }
   }
+
+  /* ── Interactive Trend Explorer (GSC daily history) ───────── */
+  .tx-controls { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+  .tx-group { display: flex; flex-direction: column; gap: 6px; }
+  .tx-group label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; }
+  .tx-controls select { padding: 9px 14px; border: 1.5px solid var(--border); border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; color: var(--text); cursor: pointer; min-width: 200px; }
+  .tx-controls select:focus { outline: 2px solid var(--brand-blue); border-color: var(--brand-blue); }
+  .tx-range { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+  .tx-range strong { color: var(--text); font-weight: 600; }
+  .tx-warn { background: #FFF8E1; border-left: 4px solid #FFA000; border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: #8A6100; display: none; }
+  .tx-warn.visible { display: block; }
+  .tx-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+  .tx-kpi { background: #F8FAFC; border: 1px solid var(--border); border-top: 3px solid var(--brand-blue); border-radius: 8px; padding: 18px; }
+  .tx-kpi .tx-k-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; }
+  .tx-kpi .tx-k-value { font-family: 'DM Sans', sans-serif; font-size: 30px; font-weight: 700; color: var(--text); line-height: 1.1; margin: 8px 0 0; }
+  .tx-delta { font-size: 12px; margin-top: 10px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .tx-delta.up { color: #16A34A; }
+  .tx-delta.down { color: #D32F2F; }
+  .tx-delta.neutral { color: var(--muted); }
+  .tx-delta .tx-prev { color: var(--muted); }
+  .tx-insight { background: linear-gradient(135deg, #001A5C 0%, #003DCC 100%); color: #fff; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px; }
+  .tx-insight-label { display: flex; align-items: center; gap: 8px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.9; margin-bottom: 10px; }
+  .tx-dot { width: 8px; height: 8px; border-radius: 50%; background: #00C853; box-shadow: 0 0 0 4px rgba(0,200,83,0.25); }
+  .tx-insight-text { font-size: 14.5px; line-height: 1.65; margin: 0; }
+  .tx-insight-meta { margin-top: 10px; font-size: 11px; opacity: 0.65; letter-spacing: 0.3px; }
+  .tx-chart-wrap { position: relative; height: 340px; }
+  .tx-loading { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; font-style: italic; }
+  .tx-note { margin-top: 16px; padding: 12px 16px; background: #EFF6FF; border-radius: 6px; font-size: 12px; color: #1E40AF; }
+  @media (max-width: 768px) {
+    .tx-kpis { grid-template-columns: repeat(2, 1fr); }
+    .tx-controls select { min-width: 100%; }
+    .tx-group { width: 100%; }
+  }
 </style>
 </head>
 <body>
 
-<div class="topbar">Auto-refreshed weekly · Generated 2026-08-17T03:32:04.480Z</div>
+<div class="topbar">Auto-refreshed weekly · Generated 2026-08-19T08:53:34.856Z</div>
 <nav class="nav">
   <strong>Kerkar Media · Hack Athletics SEO Dashboard</strong>
-  <div class="meta">Period ending Monday, 17 August 2026 · hackathletics.com</div>
+  <div class="meta">Period ending Wednesday, 19 August 2026 · hackathletics.com</div>
 </nav>
 
 <div class="wrap">
 
   <div class="hero">
     <h1>SEO Performance & Business Impact</h1>
-    <div class="sub">18 Jul 2026 — 16 Aug 2026 · 1,934 organic clicks · ₹25,84,200 organic revenue · 694 transactions</div>
-    <div class="summary"><strong>Executive Summary:</strong> Hack Athletics generated INR 25,84,200 in organic revenue from 694 transactions over the last 30 days, driven by strong branded search performance and a dominant position in gym belt-related queries. However, a critically low overall CTR of 1.93% against 1,00,060 impressions signals significant untapped traffic potential, particularly on high-volume non-branded terms. Prioritising CTR optimisation on top collection and product pages could unlock substantial revenue growth without additional ranking effort.</div>
+    <div class="sub">20 Jul 2026 — 18 Aug 2026 · 1,874 organic clicks · ₹25,90,427 organic revenue · 699 transactions</div>
+    <div class="summary"><strong>Executive Summary:</strong> Hack Athletics generated INR 25,90,427 in organic revenue from 699 transactions over the last 30 days, driven by strong branded search performance and high-intent category pages. However, a critically low overall CTR of 1.81% across 1,03,450 impressions signals significant untapped traffic potential, particularly on the weight lifting belts collection page. Closing the gap between impressions and clicks on non-branded, high-volume queries like 'gym belt' and 'lever belt' represents the single largest near-term growth lever.</div>
   </div>
 
   <div class="section-label">SEO Performance</div>
   <div class="kpi-grid">
   <div class="kpi" style="border-top-color:#003DCC">
     <div class="kpi-label">Organic Clicks</div>
-    <div class="kpi-value">1,934</div>
-    <div class="kpi-sub">1,00,060 impressions · 1.93% CTR</div>
+    <div class="kpi-value">1,874</div>
+    <div class="kpi-sub">1,03,450 impressions · 1.81% CTR</div>
   </div>
   <div class="kpi" style="border-top-color:#035398">
     <div class="kpi-label">Organic Sessions</div>
-    <div class="kpi-value">64,293</div>
+    <div class="kpi-value">64,781</div>
     <div class="kpi-sub">GA4 organic channel</div>
   </div>
   <div class="kpi" style="border-top-color:#0EA5E9">
     <div class="kpi-label">Avg Position</div>
-    <div class="kpi-value">5.2</div>
+    <div class="kpi-value">5.3</div>
     <div class="kpi-sub">across all tracked queries</div>
   </div>
   <div class="kpi" style="border-top-color:#6366F1">
@@ -105,18 +138,18 @@
   <div class="kpi-grid">
   <div class="kpi" style="border-top-color:#16A34A">
     <div class="kpi-label">Organic Revenue</div>
-    <div class="kpi-value">₹25,84,200</div>
+    <div class="kpi-value">₹25,90,427</div>
     <div class="kpi-sub">GA4 attributed · last 30d</div>
   </div>
   <div class="kpi" style="border-top-color:#22C55E">
     <div class="kpi-label">Organic Transactions</div>
-    <div class="kpi-value">694</div>
+    <div class="kpi-value">699</div>
     <div class="kpi-sub">from organic sessions</div>
   </div>
   <div class="kpi" style="border-top-color:#EC4899">
     <div class="kpi-label">Organic Keywords (Ahrefs)</div>
-    <div class="kpi-value">188</div>
-    <div class="kpi-sub">est traffic 9,597/mo</div>
+    <div class="kpi-value">185</div>
+    <div class="kpi-sub">est traffic 6,827/mo</div>
   </div>
   <div class="kpi" style="border-top-color:#A855F7">
     <div class="kpi-label">Referring Domains</div>
@@ -130,25 +163,25 @@
 
       <div style="border-left: 4px solid #003DCC; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
         <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Branded</div>
-        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">632</div>
-        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 32.7% of total</div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">576</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 30.7% of total</div>
         <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
           23 queries ·
-          16,369 impr ·
-          3.86% CTR ·
+          16,284 impr ·
+          3.54% CTR ·
           Pos 1.3
         </div>
       </div>
 
       <div style="border-left: 4px solid #16A34A; padding: 16px 20px; background: #F8FAFC; border-radius: 6px;">
         <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Non-Branded <span style="font-size:10px; color:#16A34A; font-weight:600;">(NEW CUSTOMER ACQUISITION)</span></div>
-        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">1,302</div>
-        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 67.3% of total</div>
+        <div style="font-family:'DM Sans'; font-size:28px; font-weight:700; color:var(--text);">1,298</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">clicks · 69.3% of total</div>
         <div style="font-size:12px; color:var(--muted); margin-top:8px; padding-top:8px; border-top:1px solid var(--border);">
           77 queries ·
-          83,691 impr ·
-          1.56% CTR ·
-          Pos 6
+          87,166 impr ·
+          1.49% CTR ·
+          Pos 6.1
         </div>
       </div>
 
@@ -161,7 +194,7 @@
   <section>
     <h2>
       Top Search Queries
-      <span class="meta">18 Jul 2026 — 16 Aug 2026 · GSC data</span>
+      <span class="meta">20 Jul 2026 — 18 Aug 2026 · GSC data</span>
     </h2>
     <div style="overflow-x:auto;">
       <table>
@@ -179,82 +212,82 @@
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">B</span>hack athletics</td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>426</strong></td>
-    <td class="center">11,558</td>
-    <td class="center">3.69%</td>
+    <td class="center"><strong>375</strong></td>
+    <td class="center">11,336</td>
+    <td class="center">3.31%</td>
     <td class="center">1.1</td>
   </tr>
   <tr>
     <td class="kw">gym belt</td>
     <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
-    <td class="center"><strong>164</strong></td>
-    <td class="center">31,507</td>
-    <td class="center">0.52%</td>
+    <td class="center"><strong>171</strong></td>
+    <td class="center">32,057</td>
+    <td class="center">0.53%</td>
     <td class="center">7.1</td>
   </tr>
   <tr>
     <td class="kw">gym belt for men</td>
     <td class="center"><span class="pill pill-green">↑ Rising</span></td>
-    <td class="center"><strong>156</strong></td>
-    <td class="center">9,150</td>
-    <td class="center">1.7%</td>
+    <td class="center"><strong>153</strong></td>
+    <td class="center">9,111</td>
+    <td class="center">1.68%</td>
     <td class="center">3.6</td>
   </tr>
   <tr>
     <td class="kw">hack lever belt</td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>114</strong></td>
-    <td class="center">3,011</td>
-    <td class="center">3.79%</td>
+    <td class="center"><strong>113</strong></td>
+    <td class="center">3,114</td>
+    <td class="center">3.63%</td>
     <td class="center">1.7</td>
   </tr>
   <tr>
     <td class="kw">lever belt</td>
     <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
-    <td class="center"><strong>82</strong></td>
-    <td class="center">4,228</td>
-    <td class="center">1.94%</td>
-    <td class="center">9.1</td>
+    <td class="center"><strong>91</strong></td>
+    <td class="center">7,125</td>
+    <td class="center">1.28%</td>
+    <td class="center">9</td>
   </tr>
   <tr>
     <td class="kw"><span style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:6px;">B</span>hack belt</td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>76</strong></td>
-    <td class="center">2,639</td>
-    <td class="center">2.88%</td>
+    <td class="center"><strong>69</strong></td>
+    <td class="center">2,659</td>
+    <td class="center">2.59%</td>
     <td class="center">2.2</td>
   </tr>
   <tr>
-    <td class="kw">hackethics</td>
-    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
-    <td class="center"><strong>45</strong></td>
-    <td class="center">582</td>
-    <td class="center">7.73%</td>
-    <td class="center">3.9</td>
-  </tr>
-  <tr>
     <td class="kw">hack knee sleeves</td>
-    <td class="center"><span class="pill pill-green">↑ Rising</span></td>
-    <td class="center"><strong>45</strong></td>
-    <td class="center">1,119</td>
-    <td class="center">4.02%</td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>46</strong></td>
+    <td class="center">1,148</td>
+    <td class="center">4.01%</td>
     <td class="center">1.5</td>
-  </tr>
-  <tr>
-    <td class="kw">deadlift belt</td>
-    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
-    <td class="center"><strong>43</strong></td>
-    <td class="center">5,215</td>
-    <td class="center">0.82%</td>
-    <td class="center">7.3</td>
   </tr>
   <tr>
     <td class="kw">lever belt gym</td>
     <td class="center"><span class="pill pill-green">↑ Rising</span></td>
-    <td class="center"><strong>43</strong></td>
-    <td class="center">1,648</td>
-    <td class="center">2.61%</td>
+    <td class="center"><strong>45</strong></td>
+    <td class="center">1,661</td>
+    <td class="center">2.71%</td>
     <td class="center">3.2</td>
+  </tr>
+  <tr>
+    <td class="kw">deadlift belt</td>
+    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
+    <td class="center"><strong>40</strong></td>
+    <td class="center">5,207</td>
+    <td class="center">0.77%</td>
+    <td class="center">7.4</td>
+  </tr>
+  <tr>
+    <td class="kw">hackethics</td>
+    <td class="center"><span class="pill pill-amber">◐ Low Intent</span></td>
+    <td class="center"><strong>38</strong></td>
+    <td class="center">452</td>
+    <td class="center">8.41%</td>
+    <td class="center">3.8</td>
   </tr></tbody>
       </table>
     </div>
@@ -263,7 +296,7 @@
   <section>
     <h2>
       Top Performing Pages
-      <span class="meta">18 Jul 2026 — 16 Aug 2026 · GSC data</span>
+      <span class="meta">20 Jul 2026 — 18 Aug 2026 · GSC data</span>
     </h2>
     <div style="overflow-x:auto;">
       <table>
@@ -280,74 +313,143 @@
   <tr>
     <td class="kw"><a href="https://hackathletics.com/collections/weight-lifting-belts" target="_blank" style="color:#003DCC;text-decoration:none">/collections/weight-lifting-belts</a></td>
     <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
-    <td class="center"><strong>722</strong></td>
-    <td class="center">51,268</td>
-    <td class="center">1.41%</td>
+    <td class="center"><strong>724</strong></td>
+    <td class="center">50,745</td>
+    <td class="center">1.43%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/" target="_blank" style="color:#003DCC;text-decoration:none">/</a></td>
     <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>529</strong></td>
-    <td class="center">6,555</td>
-    <td class="center">8.07%</td>
+    <td class="center"><strong>475</strong></td>
+    <td class="center">6,406</td>
+    <td class="center">7.41%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/products/hack-athletic-premium-13mm-weight-lifting-lever-belt" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletic-premium-13mm-weight-lifting-lever-be…</a></td>
-    <td class="center"><span class="pill pill-amber">◆ Opportunity</span></td>
-    <td class="center"><strong>214</strong></td>
-    <td class="center">23,331</td>
-    <td class="center">0.92%</td>
+    <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
+    <td class="center"><strong>215</strong></td>
+    <td class="center">26,945</td>
+    <td class="center">0.8%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/collections/weightlifting-belts" target="_blank" style="color:#003DCC;text-decoration:none">/collections/weightlifting-belts</a></td>
     <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
     <td class="center"><strong>111</strong></td>
-    <td class="center">3,786</td>
-    <td class="center">2.93%</td>
+    <td class="center">3,925</td>
+    <td class="center">2.83%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/collections/wrist-support" target="_blank" style="color:#003DCC;text-decoration:none">/collections/wrist-support</a></td>
     <td class="center"><span class="pill pill-green">↑ Rising</span></td>
-    <td class="center"><strong>68</strong></td>
-    <td class="center">3,421</td>
-    <td class="center">1.99%</td>
+    <td class="center"><strong>73</strong></td>
+    <td class="center">3,644</td>
+    <td class="center">2%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/collections/shaker-bottles" target="_blank" style="color:#003DCC;text-decoration:none">/collections/shaker-bottles</a></td>
     <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
-    <td class="center"><strong>62</strong></td>
-    <td class="center">1,054</td>
-    <td class="center">5.88%</td>
-  </tr>
-  <tr>
-    <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-performance-7mm-knee-sleeves" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-performance-7mm-knee-sleeves</a></td>
-    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
-    <td class="center"><strong>45</strong></td>
-    <td class="center">677</td>
-    <td class="center">6.65%</td>
+    <td class="center"><strong>59</strong></td>
+    <td class="center">1,205</td>
+    <td class="center">4.9%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/collections/knee-support" target="_blank" style="color:#003DCC;text-decoration:none">/collections/knee-support</a></td>
     <td class="center"><span class="pill pill-green">↑ Rising</span></td>
-    <td class="center"><strong>44</strong></td>
-    <td class="center">2,261</td>
-    <td class="center">1.95%</td>
+    <td class="center"><strong>45</strong></td>
+    <td class="center">2,314</td>
+    <td class="center">1.94%</td>
+  </tr>
+  <tr>
+    <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-performance-7mm-knee-sleeves" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-performance-7mm-knee-sleeves</a></td>
+    <td class="center"><span class="pill pill-green">★ Top Performer</span></td>
+    <td class="center"><strong>42</strong></td>
+    <td class="center">681</td>
+    <td class="center">6.17%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-premium-10mm-weight-lifting-lever-belt-power-lifting-belt-for-men-women-for-lower-back-support-multipurpose-gym-workouts-deadlifts-squats-powerlifting-4-inch-wide" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-premium-10mm-weight-lifting-lever-b…</a></td>
     <td class="center"><span class="pill pill-red">! Marketplace Leak</span></td>
-    <td class="center"><strong>39</strong></td>
-    <td class="center">3,341</td>
-    <td class="center">1.17%</td>
+    <td class="center"><strong>37</strong></td>
+    <td class="center">3,277</td>
+    <td class="center">1.13%</td>
   </tr>
   <tr>
     <td class="kw"><a href="https://hackathletics.com/products/hack-athletics-30l-duffle-gym-bag" target="_blank" style="color:#003DCC;text-decoration:none">/products/hack-athletics-30l-duffle-gym-bag</a></td>
     <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
-    <td class="center"><strong>20</strong></td>
-    <td class="center">177</td>
-    <td class="center">11.3%</td>
+    <td class="center"><strong>22</strong></td>
+    <td class="center">181</td>
+    <td class="center">12.15%</td>
   </tr></tbody>
       </table>
+    </div>
+  </section>
+
+
+  <section id="tx-explorer">
+    <h2>
+      Interactive Trend Explorer
+      <span class="meta">Google Search Console daily history · updates live</span>
+    </h2>
+
+    <div class="tx-controls">
+      <div class="tx-group">
+        <label for="txWindow">Time Range</label>
+        <select id="txWindow">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 3 months</option>
+          <option value="180">Last 6 months</option>
+          <option value="365">Last 12 months</option>
+        </select>
+      </div>
+      <div class="tx-group">
+        <label for="txCompare">Comparison</label>
+        <select id="txCompare">
+          <option value="prev" selected>vs Previous Period</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="tx-range" id="txRange"></div>
+    <div class="tx-warn" id="txWarn"></div>
+    <div class="tx-loading" id="txLoading">Loading Search Console history…</div>
+
+    <div id="txBody" style="display:none">
+      <div class="tx-kpis">
+        <div class="tx-kpi">
+          <div class="tx-k-label">Total Clicks</div>
+          <div class="tx-k-value" id="txClicks">—</div>
+          <div class="tx-delta" id="txClicksDelta"></div>
+        </div>
+        <div class="tx-kpi">
+          <div class="tx-k-label">Total Impressions</div>
+          <div class="tx-k-value" id="txImpr">—</div>
+          <div class="tx-delta" id="txImprDelta"></div>
+        </div>
+        <div class="tx-kpi">
+          <div class="tx-k-label">Avg CTR</div>
+          <div class="tx-k-value" id="txCtr">—</div>
+          <div class="tx-delta" id="txCtrDelta"></div>
+        </div>
+        <div class="tx-kpi">
+          <div class="tx-k-label">Avg Position</div>
+          <div class="tx-k-value" id="txPos">—</div>
+          <div class="tx-delta" id="txPosDelta"></div>
+        </div>
+      </div>
+
+      <div class="tx-insight">
+        <div class="tx-insight-label"><span class="tx-dot"></span> AI Insight for this period</div>
+        <p class="tx-insight-text" id="txInsight">Loading insight…</p>
+        <div class="tx-insight-meta" id="txInsightMeta"></div>
+      </div>
+
+      <div class="tx-chart-wrap"><canvas id="txChart"></canvas></div>
+
+      <div class="tx-note">
+        <strong>How to read this:</strong> This block is live and reacts to the Time Range filter above. The KPI cards, tables and Wins / Concerns / Actions elsewhere on this page are a fixed weekly snapshot and do not change with this filter. Position is impression-weighted. Search Console data lags roughly 2 days.
+      </div>
     </div>
   </section>
 
@@ -356,15 +458,15 @@
     <div class="insights">
       <div class="insight-card wins">
         <h3>🏆 Wins</h3>
-        <ul><li><strong>[Important]</strong> Branded queries ('hack athletics', 'hack belt', 'hack lever belt') collectively drive strong engagement with CTRs of 2.88%–3.79% and top-3 average positions, reflecting healthy brand equity and loyal search demand that is directly converting into INR 25,84,200 in monthly organic revenue.</li><li><strong>[Important]</strong> The homepage (hackathletics.com/) punches well above average with an 8.07% CTR across 6,555 impressions, and the knee sleeves product page delivers a 6.65% CTR, proving that well-optimised title tags and meta descriptions can significantly outperform the account average of 1.93%.</li><li><strong>[Important]</strong> Non-branded queries account for 67.3% of organic clicks, indicating the brand is successfully capturing commercial intent beyond its own name — particularly for 'gym belt for men' (avg position 3.6, rising tag), which represents a growing and high-converting traffic segment.</li></ul>
+        <ul><li><strong>[Important]</strong> The homepage is punching well above average with a 7.41% CTR across 6,406 impressions, and branded queries ('hack athletics', 'hack belt') hold positions 1.1–2.2 — confirming strong brand recall and trust that can be leveraged for non-branded ranking pushes.</li><li><strong>[Important]</strong> 'hack lever belt' delivers a 3.63% CTR at an average position of 1.7 with 3,114 impressions, making it the most efficient non-branded query — proof that product-specific, branded-hybrid terms convert and should be scaled through dedicated landing page optimisation.</li><li><strong>[Important]</strong> The knee sleeves product page (hackathletics.com/products/hack-athletics-performance-7mm-knee-sleeves) achieves a 6.17% CTR at only 681 impressions, indicating high purchase intent — expanding its impression share through category-level SEO and internal linking could meaningfully lift organic transactions.</li></ul>
       </div>
       <div class="insight-card concerns">
         <h3>⚠️ Concerns</h3>
-        <ul><li><strong>[Urgent]</strong> The /collections/weight-lifting-belts page has 51,268 impressions but only a 1.41% CTR, and the lever belt product page has 23,331 impressions at just 0.92% CTR — together these two pages are leaving an estimated 700+ monthly clicks on the table, directly impacting organic revenue potential by an estimated INR 2,00,000–3,50,000/month at current conversion rates.</li><li><strong>[Urgent]</strong> The query 'gym belt' has 31,507 impressions at an average position of 7.1 but only a 0.52% CTR, making it the single largest missed opportunity in the account. A position improvement to top 3 combined with a stronger meta title could realistically yield 5x the current 164 clicks from this term alone.</li><li><strong>[Important]</strong> The query 'lever belt' sits at position 9.1 with 4,228 impressions and a below-potential 1.94% CTR, meaning the page is barely cracking page one and losing clicks to competitors ranked above it — a focused content and link-building push could move this into the top 5 and significantly lift click volume.</li></ul>
+        <ul><li><strong>[Urgent]</strong> 'gym belt' drives 32,057 impressions (the highest of any query) but only a 0.53% CTR at position 7.1, leaving an estimated 160–200 clicks on the table daily — the weight lifting belts collection page (1.43% CTR on 50,745 impressions) needs immediate title tag, meta description, and schema optimisation to capture this volume.</li><li><strong>[Urgent]</strong> The flagship product page (hack-athletic-premium-13mm-weight-lifting-lever-belt) is tagged 'Marketplace Leak' — with 26,945 impressions but only a 0.80% CTR, search users are likely encountering and preferring marketplace listings (Amazon/Flipkart) in the same SERP, directly cannibalising organic revenue that should convert on the owned site.</li><li><strong>[Important]</strong> 'lever belt' sits at position 9 with 7,125 impressions and a 1.28% CTR — it is one ranking position away from page-one critical mass, and without active optimisation it risks stagnating in a high-competition segment where even a 3-position improvement could double clicks and add meaningful INR revenue.</li></ul>
       </div>
       <div class="insight-card actions">
         <h3>🎯 Actions This Period</h3>
-        <ul><li><strong>[Urgent]</strong> Rewrite the meta titles and descriptions for /collections/weight-lifting-belts and /products/hack-athletic-premium-13mm-weight-lifting-lever-belt immediately — incorporate high-intent modifiers ('Best Gym Belt in India', 'Free Shipping', 'Premium 13mm Lever Belt') and a clear value proposition to target a CTR of at least 3%, which at current impressions would add an estimated INR 1,80,000–2,50,000 in incremental monthly organic revenue.</li><li><strong>[Urgent]</strong> Launch a targeted content and on-page SEO sprint for 'gym belt' and 'lever belt' queries — enrich the /collections/weight-lifting-belts page with buying-guide content, comparison tables, and structured FAQ schema to improve relevance signals and push average position from 7–9 into the top 5, capturing the high-volume non-branded traffic currently converting for competitors.</li><li><strong>[Important]</strong> Build internal linking from the high-traffic homepage and weight-lifting belts collection page toward the /collections/wrist-support and /collections/knee-support pages (currently tagged 'Rising'), and develop dedicated blog content targeting 'knee sleeves for gym' and 'wrist wraps for lifting' to accelerate these categories before they plateau — projecting an additional INR 50,000–80,000/month in organic revenue within 60–90 days.</li></ul>
+        <ul><li><strong>[Urgent]</strong> Rewrite the title tag and meta description for hackathletics.com/collections/weight-lifting-belts to explicitly target 'gym belt' and 'lever belt' with a compelling value hook (e.g., price anchor, IPF approval, free shipping) — A/B test two variants within 2 weeks; even lifting CTR from 1.43% to 2.5% on 50,745 impressions would yield ~530 additional monthly clicks worth an estimated INR 19,000–25,000 in incremental revenue at current conversion rates.</li><li><strong>[Urgent]</strong> Conduct a SERP competitive audit for the flagship 13mm lever belt product page to identify why marketplace listings outperform it in CTR — implement Product schema markup with ratings, price, and availability, add a structured FAQ section targeting bottom-funnel queries, and build 5–8 internal links from the collection page to recover lost organic traffic to the owned PDP.</li><li><strong>[Important]</strong> Create a dedicated SEO-optimised blog or buying guide ('Best Lever Belt for Gym: Complete Guide') targeting 'lever belt', 'lever belt gym', and 'gym belt for men' — these three queries collectively show 39,893 impressions with sub-2% CTR and rising trajectory; a long-form content asset with strong internal links to the collection page can accelerate position improvements and capture mid-funnel traffic before competitors consolidate these rankings.</li></ul>
       </div>
     </div>
   </section>
@@ -374,6 +476,243 @@
 <footer>
   <strong>Kerkar Media</strong> · Hack Athletics SEO Dashboard · Auto-refreshed every Monday 9:35am IST · Powered by KM
 </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+/* ============================================================
+   Interactive Trend Explorer — GSC daily history from Supabase
+   Scoped to #tx-explorer. Does not touch any other section.
+   ============================================================ */
+(function () {
+  var SUPABASE_URL = "https://nxcxbgmlgdfjfodketke.supabase.co";
+  var SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Q_4iTK8rq2HxyewenrZNHQ_cO0iexW1";
+  var CLIENT_ID = "hack-athletics";
+  var STALE_AFTER_DAYS = 4;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var allRows = [];
+  var chart = null;
+  var INSIGHTS = {};
+  var INSIGHT_ON = null;
+  var DAYS_TO_WINDOW = { 7: "7d", 30: "30d", 90: "3mo", 180: "6mo", 365: "12mo" };
+
+  if (!window.supabase || !window.Chart) {
+    $("txLoading").textContent = "Could not load charting libraries. Check your network connection and refresh.";
+    return;
+  }
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+  /* ── date helpers ── */
+  function addDays(dateStr, days) {
+    var d = new Date(dateStr + "T00:00:00Z");
+    d.setUTCDate(d.getUTCDate() + days);
+    return d.toISOString().slice(0, 10);
+  }
+  function sliceWindow(rows, days, endDate) {
+    var start = addDays(endDate, -days + 1);
+    return rows.filter(function (r) { return r.snapshot_date >= start && r.snapshot_date <= endDate; });
+  }
+  function getPrevWindow(rows, days, endDate) {
+    var prevEnd = addDays(endDate, -days);
+    return { rows: sliceWindow(rows, days, prevEnd), endDate: prevEnd, startDate: addDays(prevEnd, -days + 1) };
+  }
+  function fmtDate(d) {
+    return new Date(d + "T00:00:00Z").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  }
+  function daysBetween(a, b) {
+    return Math.round((new Date(b + "T00:00:00Z") - new Date(a + "T00:00:00Z")) / 86400000);
+  }
+
+  /* ── aggregation (impression-weighted CTR + position) ── */
+  function aggregate(rows) {
+    if (!rows.length) return null;
+    var clicks = 0, impressions = 0, weightedPos = 0;
+    for (var i = 0; i < rows.length; i++) {
+      clicks += rows[i].clicks;
+      impressions += rows[i].impressions;
+      weightedPos += (rows[i].avg_position || 0) * rows[i].impressions;
+    }
+    return {
+      clicks: clicks,
+      impressions: impressions,
+      ctr: impressions ? clicks / impressions : 0,
+      position: impressions ? weightedPos / impressions : 0,
+      days: rows.length
+    };
+  }
+
+  /* ── formatting ── */
+  function fmtNum(n) {
+    if (n >= 1e7) return (n / 1e7).toFixed(2) + " Cr";
+    if (n >= 1e5) return (n / 1e5).toFixed(2) + " L";
+    if (n >= 1e3) return (n / 1e3).toFixed(1) + "K";
+    return Math.round(n).toLocaleString("en-IN");
+  }
+  function fmtPct(n) { return (n * 100).toFixed(2) + "%"; }
+  function fmtPos(n) { return n.toFixed(1); }
+
+  /* ── delta renderer ── */
+  function renderDelta(elId, current, previous, opts) {
+    opts = opts || {};
+    var el = $(elId);
+    if (previous == null || previous === 0) {
+      el.className = "tx-delta neutral";
+      el.innerHTML = "<span>No prior data</span>";
+      return;
+    }
+    var pct = ((current - previous) / previous) * 100;
+    var isGood = opts.lowerIsBetter ? pct < 0 : pct > 0;
+    var isFlat = Math.abs(pct) < 0.05;
+    var sign = pct > 0 ? "+" : "";
+    var arrow = isFlat ? "→" : pct > 0 ? "▲" : "▼";
+    var f = opts.formatter || fmtNum;
+    el.className = "tx-delta " + (isFlat ? "neutral" : isGood ? "up" : "down");
+    el.innerHTML = "<span>" + arrow + "</span> " + sign + pct.toFixed(1) + "% <span class=\"tx-prev\">vs " + f(previous) + "</span>";
+  }
+
+  /* ── chart ── */
+  function renderChart(rows) {
+    if (chart) chart.destroy();
+    var ctx = $("txChart").getContext("2d");
+    chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: rows.map(function (r) { return r.snapshot_date; }),
+        datasets: [
+          { label: "Clicks", data: rows.map(function (r) { return r.clicks; }), borderColor: "#003DCC", backgroundColor: "rgba(0,61,204,0.08)", fill: true, yAxisID: "y", tension: 0.3, borderWidth: 2, pointRadius: rows.length > 60 ? 0 : 2, pointHoverRadius: 5 },
+          { label: "Impressions", data: rows.map(function (r) { return r.impressions; }), borderColor: "#00C853", backgroundColor: "rgba(0,200,83,0.04)", fill: true, yAxisID: "y1", tension: 0.3, borderWidth: 2, pointRadius: rows.length > 60 ? 0 : 2, pointHoverRadius: 5 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { position: "top", align: "end", labels: { font: { family: "Inter", size: 12 } } },
+          tooltip: {
+            backgroundColor: "#001A5C", padding: 12,
+            titleFont: { family: "Inter", weight: "600" }, bodyFont: { family: "Inter" },
+            callbacks: { label: function (c) { return c.dataset.label + ": " + c.parsed.y.toLocaleString("en-IN"); } }
+          }
+        },
+        scales: {
+          x: { ticks: { maxTicksLimit: 12, font: { family: "Inter", size: 11 }, color: "#64748B" }, grid: { display: false } },
+          y: { type: "linear", position: "left", title: { display: true, text: "Clicks", font: { family: "Inter", size: 11, weight: "600" }, color: "#003DCC" }, ticks: { font: { family: "Inter", size: 11 }, color: "#64748B" }, grid: { color: "#F1F5F9" } },
+          y1: { type: "linear", position: "right", title: { display: true, text: "Impressions", font: { family: "Inter", size: 11, weight: "600" }, color: "#00C853" }, ticks: { font: { family: "Inter", size: 11 }, color: "#64748B" }, grid: { drawOnChartArea: false } }
+        }
+      }
+    });
+  }
+
+  /* ── insights ── */
+  function renderInsight(days) {
+    var key = DAYS_TO_WINDOW[days];
+    var text = INSIGHTS[key];
+    if (!text) {
+      $("txInsight").textContent = "No AI insight has been generated for this period yet.";
+      $("txInsightMeta").textContent = "";
+      return;
+    }
+    $("txInsight").textContent = text;
+    $("txInsightMeta").textContent = "Generated " + fmtDate(INSIGHT_ON) + " · Window: " + key;
+  }
+
+  function loadInsights() {
+    return sb.from("gsc_insights")
+      .select("time_window,insight,generated_on")
+      .eq("client_id", CLIENT_ID)
+      .order("generated_on", { ascending: false })
+      .limit(10)
+      .then(function (res) {
+        if (res.error || !res.data || !res.data.length) return;
+        INSIGHT_ON = res.data[0].generated_on;
+        res.data.forEach(function (r) {
+          if (r.generated_on === INSIGHT_ON) INSIGHTS[r.time_window] = r.insight;
+        });
+      })
+      .catch(function () {});
+  }
+
+  /* ── main render ── */
+  function render() {
+    if (!allRows.length) return;
+    var days = parseInt($("txWindow").value, 10);
+    var compareMode = $("txCompare").value;
+
+    var latestDate = allRows[allRows.length - 1].snapshot_date;
+    var earliestDate = allRows[0].snapshot_date;
+
+    var currentRows = sliceWindow(allRows, days, latestDate);
+    var currentStart = currentRows.length ? currentRows[0].snapshot_date : latestDate;
+
+    var prevRows = [], prevInfo = null;
+    if (compareMode === "prev") {
+      prevInfo = getPrevWindow(allRows, days, latestDate);
+      prevRows = prevInfo.rows;
+    }
+
+    var rangeText = "Current: <strong>" + fmtDate(currentStart) + " → " + fmtDate(latestDate) + "</strong> (" + currentRows.length + " days)";
+    if (compareMode === "prev") {
+      rangeText += " · Previous: <strong>" + fmtDate(prevInfo.startDate) + " → " + fmtDate(prevInfo.endDate) + "</strong> (" + prevRows.length + " days)";
+    }
+    $("txRange").innerHTML = rangeText;
+
+    /* warnings — staleness first, then coverage */
+    var warn = $("txWarn");
+    var msgs = [];
+    var todayUTC = new Date().toISOString().slice(0, 10);
+    var lag = daysBetween(latestDate, todayUTC);
+    if (lag > STALE_AFTER_DAYS) {
+      msgs.push("⚠ Search Console data is current only to <strong>" + fmtDate(latestDate) + "</strong> (" + lag + " days ago). The daily feed may have stopped; figures below are not up to date.");
+    }
+    if (compareMode === "prev" && prevInfo.startDate < earliestDate) {
+      msgs.push("⚠ The previous period starts before our earliest stored day (" + fmtDate(earliestDate) + "), so the comparison understates previous totals.");
+    } else if (currentRows.length < days) {
+      msgs.push("⚠ This window holds only " + currentRows.length + " days of data (requested " + days + ").");
+    }
+    if (msgs.length) { warn.innerHTML = msgs.join("<br>"); warn.classList.add("visible"); }
+    else { warn.classList.remove("visible"); }
+
+    var cur = aggregate(currentRows);
+    var prv = prevRows.length ? aggregate(prevRows) : null;
+
+    $("txClicks").textContent = fmtNum(cur.clicks);
+    $("txImpr").textContent = fmtNum(cur.impressions);
+    $("txCtr").textContent = fmtPct(cur.ctr);
+    $("txPos").textContent = fmtPos(cur.position);
+
+    renderDelta("txClicksDelta", cur.clicks, prv && prv.clicks);
+    renderDelta("txImprDelta", cur.impressions, prv && prv.impressions);
+    renderDelta("txCtrDelta", cur.ctr, prv && prv.ctr, { formatter: fmtPct });
+    renderDelta("txPosDelta", cur.position, prv && prv.position, { lowerIsBetter: true, formatter: fmtPos });
+
+    renderChart(currentRows);
+    renderInsight(days);
+  }
+
+  /* ── data load ── */
+  function loadData() {
+    return sb.from("gsc_snapshots")
+      .select("snapshot_date, clicks, impressions, avg_ctr, avg_position")
+      .eq("client_id", CLIENT_ID)
+      .order("snapshot_date", { ascending: true })
+      .then(function (res) {
+        if (res.error) { $("txLoading").textContent = "Could not load data: " + res.error.message; return; }
+        if (!res.data || !res.data.length) { $("txLoading").textContent = "No Search Console history stored for " + CLIENT_ID + " yet."; return; }
+        allRows = res.data;
+        $("txLoading").style.display = "none";
+        $("txBody").style.display = "block";
+        render();
+      })
+      .catch(function (e) { $("txLoading").textContent = "Could not load data: " + e.message; });
+  }
+
+  $("txWindow").addEventListener("change", render);
+  $("txCompare").addEventListener("change", render);
+  loadInsights().then(loadData);
+})();
+</script>
 
 </body>
 </html>

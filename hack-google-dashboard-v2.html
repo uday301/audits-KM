@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hack Athletics · Google Ads Dashboard v2 (7d vs 30d) | Wednesday, 2 September 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #003DCC; --brand-blue-dark: #035398;
+    --light-gray: #E9E9E8; --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
+    --up: #16A34A; --up-bg: #DCFCE7; --down: #DC2626; --down-bg: #FEE2E2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text); line-height: 1.5; }
+  h1, h2, h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+  .topbar { background: var(--brand-blue); color: white; padding: 8px 0; font-size: 13px; text-align: center; }
+  .nav { background: white; border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav strong { font-family: 'DM Sans'; font-size: 18px; color: var(--brand-blue); }
+  .nav .meta { font-size: 13px; color: var(--muted); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px; }
+  .hero { background: linear-gradient(135deg, #003DCC 0%, #035398 100%); color: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 24px; }
+  .hero h1 { font-size: 26px; margin-bottom: 8px; }
+  .hero .sub { opacity: 0.85; font-size: 14px; }
+  .hero .summary { margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.12); border-radius: 8px; font-size: 14px; }
+
+  .verdict { border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; border-left: 5px solid; background: white; border: 1px solid var(--border); }
+  .verdict.v-up { border-left-color: var(--up); }
+  .verdict.v-down { border-left-color: var(--down); }
+  .verdict.v-flat { border-left-color: var(--brand-blue); }
+  .verdict .badge { display: inline-block; font-family: 'DM Sans'; font-weight: 700; font-size: 13px; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; }
+  .verdict.v-up .badge { background: var(--up-bg); color: var(--up); }
+  .verdict.v-down .badge { background: var(--down-bg); color: var(--down); }
+  .verdict.v-flat .badge { background: #DBEAFE; color: var(--brand-blue); }
+  .verdict h2 { font-size: 20px; margin-bottom: 8px; }
+  .verdict p { font-size: 14px; color: var(--text); margin-bottom: 10px; }
+  .verdict .reco { background: #F8FAFC; border-radius: 8px; padding: 14px 16px; font-size: 14px; border: 1px solid var(--border); }
+  .verdict .reco strong { color: var(--brand-blue); }
+
+  .chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
+  .chip-up { background: var(--up-bg); color: var(--up); }
+  .chip-down { background: var(--down-bg); color: var(--down); }
+  .chip-flat { background: #F1F5F9; color: var(--muted); }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 10px; padding: 20px; border-top: 3px solid var(--brand-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-family: 'DM Sans'; font-size: 26px; font-weight: 700; margin: 6px 0; color: var(--text); }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+
+  section { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; border: 1px solid var(--border); }
+  section h2 { font-size: 18px; margin-bottom: 6px; color: var(--text); }
+  section .sec-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table th { text-align: left; padding: 10px 12px; background: #F8FAFC; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  table th.center, table td.center { text-align: center; }
+  table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table td.kw { font-weight: 500; }
+  .sub-line { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .cmp-table td.cmp-metric { font-weight: 600; }
+  .cmp-table td.cmp-cur { font-weight: 700; font-size: 15px; }
+  .cmp-table td.cmp-base { color: var(--muted); }
+  .cmp-table tbody tr:hover { background: #F8FAFC; }
+  .prev7 { margin-top: 16px; padding: 12px 16px; background: #F8FAFC; border-radius: 8px; font-size: 13px; color: var(--text); border: 1px solid var(--border); }
+
+  .pill-green { background: #DCFCE7; color: #166534; }
+  .pill-amber { background: #FEF3C7; color: #92400E; }
+  .pill-red { background: #FEE2E2; color: #991B1B; }
+  .pill-blue { background: #DBEAFE; color: #1E40AF; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .trend-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 12px; white-space: nowrap; }
+  .t-up { background: var(--up-bg); color: var(--up); }
+  .t-down { background: var(--down-bg); color: var(--down); }
+  .t-flat { background: #F1F5F9; color: var(--muted); }
+  .t-paused { background: #E2E8F0; color: #475569; }
+
+  .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .insight-card { background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 3px solid var(--brand-blue); }
+  .insight-card.wins { border-left-color: #22C55E; }
+  .insight-card.concerns { border-left-color: #EF4444; }
+  .insight-card.actions { border-left-color: #F59E0B; }
+  .insight-card h3 { font-size: 14px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .insight-card ul { padding-left: 18px; }
+  .insight-card li { margin-bottom: 8px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .insight-card li strong { color: var(--brand-blue); font-weight: 600; }
+  .empty { padding: 20px; text-align: center; color: var(--muted); font-style: italic; font-size: 13px; }
+
+  .method { font-size: 12px; color: var(--muted); background: #F8FAFC; border: 1px dashed var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 24px; }
+  .method strong { color: var(--text); }
+
+  footer { text-align: center; padding: 32px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer strong { color: var(--brand-blue); }
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .insights { grid-template-columns: 1fr; }
+    .wrap { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">7-day vs 30-day comparison · Auto-refreshed every Monday · Generated 2026-09-02T09:39:32.791Z</div>
+<nav class="nav">
+  <strong>Kerkar Media · Hack Athletics Ads Dashboard v2</strong>
+  <div class="meta">Customer ID 223-688-6303</div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Google Ads Performance: Last 7 Days vs Last 30 Days</h1>
+    <div class="sub">7-day window 24 Aug to 30 Aug · 30-day baseline 3 Aug to 1 Sept · 2 active campaigns</div>
+    <div class="summary"><strong>Executive Summary:</strong> The last 7 days show a significant decline compared to the 30 day baseline. ROAS dropped 33.9% from 34.74x to 22.97x, while daily spend increased 23.4% to INR 4,249 but daily revenue fell 18.4% to INR 97,618. The main driver is PMax_09/03/25 campaign efficiency collapse, with conversion rate down 24.7% and CPA up 53.5%.</div>
+  </div>
+
+  <div class="verdict v-down">
+    <span class="badge">↘ Declining</span>
+    <h2>Performance deteriorating with efficiency down 34% week over week</h2>
+    <p>ROAS fell from 34.74x to 22.97x in the last 7 days, driven primarily by PMax_09/03/25 which saw ROAS drop 36.9% and conversion rate decline 24.7%. The prior 7 day window showed even stronger performance at 44.36x ROAS, confirming this is a worsening trend, not a blip. Both campaigns are budget capped at 100% utilization while spending more inefficiently.</p>
+    <div class="reco"><strong>Recommendation:</strong> Immediately reduce PMax_09/03/25 daily budget from INR 3,000 to INR 2,200 and reallocate the INR 800 savings to KM Lever Belt campaign which maintains better efficiency and shows growth momentum with revenue per day up 4.1%.</div>
+  </div>
+
+  <div class="method">
+    <strong>How to read this:</strong> The 7-day window is lag-adjusted, it ends 30 Aug and excludes the 2 most recent days so Performance Max and Shopping conversions have time to land. Volume metrics (spend, revenue, purchases) are compared as daily averages so a 7-day window is never judged against a 30-day total. Rate metrics (ROAS, CPA, AOV, CTR) are compared directly.
+  </div>
+
+  <div class="kpi-grid">
+    
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">ROAS (7d)</div>
+    <div class="kpi-value">22.97x</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 33.9%</span> vs 30d avg · 34.74x baseline</div>
+  </div>
+  <div class="kpi" style="border-top-color:#22C55E">
+    <div class="kpi-label">Revenue / day (7d)</div>
+    <div class="kpi-value">₹97,618</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 18.4%</span> vs 30d avg · ₹6,83,329 total</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Purchases / day (7d)</div>
+    <div class="kpi-value">28.5</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 14.4%</span> vs 30d avg · 199.7 total</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">AOV (7d)</div>
+    <div class="kpi-value">₹3,422</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 4.6%</span> vs 30d avg · blended</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost / Purchase (7d)</div>
+    <div class="kpi-value">₹149</div>
+    <div class="kpi-sub"><span class="chip chip-down">▲ 44.7%</span> vs 30d avg · blended CPA</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Spend / day (7d)</div>
+    <div class="kpi-value">₹4,249</div>
+    <div class="kpi-sub"><span class="chip chip-flat">+23.4%</span> vs 30d avg · ₹29,743 total</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">CTR (7d)</div>
+    <div class="kpi-value">2.27%</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 13%</span> vs 30d avg · 4,464 clicks</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Conv. Rate (7d)</div>
+    <div class="kpi-value">4.47%</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 21.2%</span> vs 30d avg · click to purchase</div>
+  </div>
+  </div>
+
+  <section>
+    <h2>Account Comparison · 7-Day vs 30-Day</h2>
+    <div class="sec-sub">Last 7 days (24 Aug to 30 Aug) measured against the 30-day baseline (3 Aug to 1 Sept)</div>
+    <div style="overflow-x:auto;">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="center">Last 7 Days</th>
+            <th class="center">30-Day Baseline</th>
+            <th class="center">Change</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td class="cmp-metric">ROAS</td>
+    <td class="center cmp-cur">22.97x</td>
+    <td class="center cmp-base">34.74x</td>
+    <td class="center"><span class="chip chip-down">▼ 33.9%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">Revenue / day</td>
+    <td class="center cmp-cur">₹97,618</td>
+    <td class="center cmp-base">₹1,19,611</td>
+    <td class="center"><span class="chip chip-down">▼ 18.4%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">Spend / day</td>
+    <td class="center cmp-cur">₹4,249</td>
+    <td class="center cmp-base">₹3,443</td>
+    <td class="center"><span class="chip chip-flat">+23.4%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">Purchases / day</td>
+    <td class="center cmp-cur">28.5</td>
+    <td class="center cmp-base">33.3</td>
+    <td class="center"><span class="chip chip-down">▼ 14.4%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">AOV</td>
+    <td class="center cmp-cur">₹3,422</td>
+    <td class="center cmp-base">₹3,588</td>
+    <td class="center"><span class="chip chip-down">▼ 4.6%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">Cost / Purchase</td>
+    <td class="center cmp-cur">₹149</td>
+    <td class="center cmp-base">₹103</td>
+    <td class="center"><span class="chip chip-down">▲ 44.7%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">CTR</td>
+    <td class="center cmp-cur">2.27%</td>
+    <td class="center cmp-base">2.61%</td>
+    <td class="center"><span class="chip chip-down">▼ 13%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">Avg CPC</td>
+    <td class="center cmp-cur">₹7</td>
+    <td class="center cmp-base">₹6</td>
+    <td class="center"><span class="chip chip-down">▲ 16.7%</span></td>
+  </tr><tr>
+    <td class="cmp-metric">Conv. Rate</td>
+    <td class="center cmp-cur">4.47%</td>
+    <td class="center cmp-base">5.67%</td>
+    <td class="center"><span class="chip chip-down">▼ 21.2%</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+    
+  <div class="prev7">
+    <strong>Trend check (last 7 vs prior 7, 17 Aug to 23 Aug):</strong>
+    ROAS <span class="chip chip-down">▼ 48.2%</span> ·
+    Revenue/day <span class="chip chip-down">▼ 14.6%</span> ·
+    Purchases/day <span class="chip chip-down">▼ 14.2%</span> ·
+    AOV <span class="chip chip-down">▼ 0.6%</span>
+  </div>
+  </section>
+
+  <section>
+    <h2>Campaign Comparison</h2>
+    <div class="sec-sub">Per-campaign 7-day performance against the 30-day baseline · sorted by 30-day spend</div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="center">Status</th>
+            <th class="center">7d Trend</th>
+            <th class="center">ROAS 7d</th>
+            <th class="center">ROAS 30d</th>
+            <th class="center">Δ ROAS</th>
+            <th class="center">Revenue/day 7d</th>
+            <th class="center">Δ Rev</th>
+            <th class="center">Purchases 7d</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr>
+    <td class="kw">
+      PMax_09/03/25
+      <div class="sub-line">PMax · 98% budget (30d) · 100% (7d)</div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><span class="trend-tag t-down">▼ Declining</span></td>
+    <td class="center"><strong style="color:#16A34A">21.81x</strong></td>
+    <td class="center" style="color:var(--muted)">34.55x</td>
+    <td class="center"><span class="chip chip-down">▼ 36.9%</span></td>
+    <td class="center">₹79,313<div class="sub-line">₹1,02,029 avg</div></td>
+    <td class="center"><span class="chip chip-down">▼ 22.3%</span></td>
+    <td class="center">164.4<div class="sub-line">23.5/day</div></td>
+  </tr>
+  <tr>
+    <td class="kw">
+      KM | PMax | Lever Belt
+      <div class="sub-line">PMax · 98% budget (30d) · 100% (7d)</div>
+    </td>
+    <td class="center"><span class="pill pill-red">! Budget Capped</span></td>
+    <td class="center"><span class="trend-tag t-down">▼ Declining</span></td>
+    <td class="center"><strong style="color:#16A34A">29.88x</strong></td>
+    <td class="center" style="color:var(--muted)">35.89x</td>
+    <td class="center"><span class="chip chip-down">▼ 16.7%</span></td>
+    <td class="center">₹18,305<div class="sub-line">₹17,583 avg</div></td>
+    <td class="center"><span class="chip chip-up">▲ 4.1%</span></td>
+    <td class="center">35.3<div class="sub-line">5/day</div></td>
+  </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="sec-sub">Based on the last 7 days against the 30-day baseline</div>
+    <div class="insights">
+      <div class="insight-card wins">
+        <h3>🏆 Wins</h3>
+        <ul><li><strong>[Important]</strong> KM Lever Belt campaign grew daily revenue 4.1% from INR 17,583 to INR 18,305 while maintaining 29.88x ROAS, showing product specific targeting is working despite account level decline</li></ul>
+      </div>
+      <div class="insight-card concerns">
+        <h3>⚠️ Concerns</h3>
+        <ul><li><strong>[Urgent]</strong> PMax_09/03/25 conversion rate collapsed 24.7% from baseline, driving CPA up 53.5% from INR 101 to INR 155 while burning budget at 100% utilization, directly causing INR 22,756 daily revenue loss</li><li><strong>[Urgent]</strong> AOV declined 4.6% account wide from INR 3,588 to INR 3,422, with PMax_09/03/25 showing 3.6% drop and Lever Belt down 13.1%, indicating lower value purchases or discounting pressure</li><li><strong>[Important]</strong> Both campaigns hitting 100% budget utilization in last 7 days while efficiency metrics worsen, spending more into deteriorating performance with CTR down 13% and CPC up 16.7%</li></ul>
+      </div>
+      <div class="insight-card actions">
+        <h3>🎯 Actions Next 7 Days</h3>
+        <ul><li><strong>[Urgent]</strong> Cut PMax_09/03/25 daily budget from INR 3,000 to INR 2,200 immediately to stop inefficient spend, and increase KM Lever Belt from INR 500 to INR 1,300 to capitalize on its 29.88x ROAS and positive revenue trend</li><li><strong>[Urgent]</strong> Refresh all asset groups in PMax_09/03/25 within 48 hours, focusing on high AOV products like lever belts and premium apparel to reverse the 3.6% AOV decline and improve conversion quality</li><li><strong>[Important]</strong> Review and tighten audience signals in PMax_09/03/25 to target previous purchasers and high intent gym goers, addressing the 24.7% conversion rate drop and 37.3% decline versus prior week</li></ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Kerkar Media</strong> · Hack Athletics Ads Dashboard v2 · 7-day vs 30-day · Auto-generated every Monday 9am IST · Powered by KM
+</footer>
+
+</body>
+</html>

@@ -1,485 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Superfoodslove — Meta Ads Dashboard | 1 Aug 2026 – 28 Aug 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Superfoodslove · Meta Ads Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --brand-blue:#003DCC; --brand-blue-dark:#035398; --text:#0F172A; --muted:#64748B; --border:#E2E8F0; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Inter',sans-serif; background:#F8FAFC; color:var(--text); line-height:1.5; }
-  h1,h2,h3 { font-family:'DM Sans',sans-serif; font-weight:600; }
-  .topbar { background:var(--brand-blue); color:white; padding:8px 0; font-size:13px; text-align:center; }
-  .nav { background:white; border-bottom:1px solid var(--border); padding:16px 32px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
-  .nav strong { font-family:'DM Sans'; font-size:18px; color:var(--brand-blue); }
-  .nav .meta { font-size:13px; color:var(--muted); }
-  .wrap { max-width:1280px; margin:0 auto; padding:32px; }
-  .hero { background:linear-gradient(135deg,#003DCC 0%,#035398 100%); color:white; border-radius:10px; padding:32px 40px; margin-bottom:32px; }
-  .hero h1 { font-size:28px; margin-bottom:8px; }
-  .hero .sub { opacity:0.85; font-size:14px; }
-  .hero .summary { margin-top:20px; padding:16px 20px; background:rgba(255,255,255,0.12); border-radius:8px; font-size:14px; }
-  .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
-  .kpi { background:white; border-radius:10px; padding:20px; border-top:3px solid var(--brand-blue); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
-  .kpi-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; }
-  .kpi-value { font-family:'DM Sans'; font-size:28px; font-weight:700; margin:6px 0; color:var(--text); }
-  .kpi-sub { font-size:12px; color:var(--muted); }
-  section { background:white; border-radius:10px; padding:28px; margin-bottom:24px; border:1px solid var(--border); }
-  section h2 { font-size:18px; margin-bottom:20px; color:var(--text); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
-  .section-pills { display:flex; gap:8px; flex-wrap:wrap; }
-  .section-pill { font-size:12px; padding:4px 10px; border-radius:20px; font-weight:600; }
-  .pill-green { background:#DCFCE7; color:#166534; }
-  .pill-amber { background:#FEF3C7; color:#92400E; }
-  .pill-red { background:#FEE2E2; color:#991B1B; }
-  .pill { display:inline-block; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:600; white-space:nowrap; }
-  .insights { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .insight-card { background:#F8FAFC; border-radius:8px; padding:20px; border-left:3px solid var(--brand-blue); }
-  .insight-card.wins { border-left-color:#22C55E; }
-  .insight-card.concerns { border-left-color:#EF4444; }
-  .insight-card.actions { border-left-color:#F59E0B; }
-  .insight-card h3 { font-size:14px; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
-  .insight-card ul { padding-left:18px; }
-  .insight-card li { margin-bottom:8px; font-size:13px; color:var(--text); line-height:1.6; }
-  .insight-card li strong { color:var(--brand-blue); font-weight:600; }
-  .mis-table { width:100%; border-collapse:collapse; font-size:13px; }
-  .mis-table th { text-align:center; padding:10px 12px; background:#F8FAFC; font-weight:600; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; border-bottom:2px solid var(--border); position:sticky; top:0; }
-  .mis-table th:first-child { text-align:left; }
-  .mis-table td { padding:10px 12px; border-bottom:1px solid var(--border); }
-  .mis-table td.center { text-align:center; }
-  .mis-table tbody tr:nth-child(even) { background:#FAFBFC; }
-  .mis-table tbody tr:hover { background:#F1F5F9; }
-  .mis-table td.mis-name { font-weight:500; max-width:300px; }
-  .mis-totals { background:#DBEAFE !important; border-top:2px solid #003DCC; }
-  .mis-totals td { padding:14px 12px; font-size:14px; border-bottom:none; }
-  .note { margin-top:14px; font-size:12px; color:var(--muted); }
-  footer { text-align:center; padding:32px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); margin-top:40px; }
-  footer strong { color:var(--brand-blue); }
-  @media (max-width:768px) {
-    .kpi-grid { grid-template-columns:repeat(2,1fr); }
-    .insights { grid-template-columns:1fr; }
-    .wrap { padding:16px; }
-    section h2 { flex-direction:column; align-items:flex-start; }
-  }
-</style>
-</head>
-<body>
-
-<div class="topbar">Campaign Performance Report · Generated 29 Aug 2026 · Source: Meta Ads Manager export</div>
-<nav class="nav">
-  <strong>Kerkar Media · Superfoodslove Meta Ads Dashboard</strong>
-  <div class="meta">1 Aug 2026 – 28 Aug 2026 · OnCorp Ad Account</div>
-</nav>
-
+:root{--brand-blue:#003DCC;--brand-blue-dark:#035398;--ink:#0b1220;--muted:#5b6577;--line:#e6e9f0;--bg:#f4f6fb;--card:#fff;--green:#12924a;--amber:#c07d00;--red:#c62525;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.kpi-val,.pill,.stat{font-family:'DM Sans',sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.topbar{background:var(--brand-blue-dark);color:#dbe4ff;font-size:12.5px;letter-spacing:.03em;padding:7px 0}
+.topbar .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:'DM Sans';font-weight:800;font-size:16px;color:var(--brand-blue)}
+.brand span{color:var(--muted);font-weight:600}
+.navmeta{font-size:12.5px;color:var(--muted)}
+.hero{background:linear-gradient(135deg,var(--brand-blue) 0%,var(--brand-blue-dark) 60%,#022e6e 100%);color:#fff;padding:44px 0 40px}
+.hero h1{font-size:31px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.hero .sub{color:#c8d6ff;margin-top:8px;font-size:14.5px;font-weight:500}
+.summary{margin-top:20px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;font-size:14.5px;color:#eaf0ff;max-width:940px}
+.summary b{color:#fff}
+.section{padding:34px 0 8px}
+.section h2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.section .lead{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-30px;position:relative;z-index:5}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;box-shadow:0 6px 20px rgba(3,61,204,.06)}
+.kpi .label{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.kpi .kpi-val{font-size:25px;font-weight:800;margin-top:6px;letter-spacing:-.02em;color:var(--ink)}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:3px}
+.kpi.accent{background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark));border:none;color:#fff}
+.kpi.accent .label,.kpi.accent .sub{color:#cdd9ff}.kpi.accent .kpi-val{color:#fff}
+.kpi.na .kpi-val{color:#aeb6c4}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13px}
+.tablewrap{overflow:auto;border-radius:14px;border:1px solid var(--line)}
+.scroll{max-height:560px}
+thead th{background:#f0f4ff;color:#2a3652;text-align:left;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;z-index:2}
+tbody td{padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#f9fbff}
+.cname{font-weight:600;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num-strong{font-weight:800;color:var(--brand-blue)}
+.total-row td{background:#f0f4ff;font-weight:800;position:sticky;bottom:0}
+.pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:11.5px;font-weight:700}
+.pill-scale{background:#e5f6ec;color:var(--green)}
+.pill-maintain{background:#fdf2df;color:var(--amber)}
+.pill-fix{background:#fbe6e6;color:var(--red)}
+.databanner{margin:16px 0 0;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600}
+.banner-amber{background:#fff6e5;border:1px solid #f2d79a;color:#8a5a00}
+.banner-red{background:#fdeaea;border:1px solid #eeb3b3;color:#a01e1e}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.insight-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;border-top:4px solid}
+.insight-card h3{font-size:14.5px;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.ic-wins{border-top-color:var(--green)}.ic-concerns{border-top-color:var(--red)}.ic-actions{border-top-color:var(--brand-blue)}
+.insight-card li{list-style:none;font-size:13px;color:#33404f;padding:8px 0;border-bottom:1px dashed var(--line);line-height:1.5}
+.insight-card li:last-child{border-bottom:none}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:6px;margin-right:6px;text-transform:uppercase;letter-spacing:.03em}
+.t-urgent{background:#fbe6e6;color:var(--red)}.t-important{background:#fdf2df;color:var(--amber)}.t-worth{background:#e5f0ff;color:var(--brand-blue)}.t-low{background:#eef0f4;color:var(--muted)}
+footer{margin-top:40px;background:var(--brand-blue-dark);color:#c8d6ff;text-align:center;padding:20px;font-size:12.5px}
+footer b{color:#fff}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.hero h1{font-size:25px}}
+</style></head><body>
+<div class="topbar"><div class="wrap"><span>KERKAR MEDIA · PERFORMANCE MARKETING</span><span>Meta Ads · Reporting Period 11 Aug – 9 Sep 2026</span></div></div>
+<nav><div class="wrap"><div class="brand">Kerkar Media <span>· Superfoodslove Meta Ads Dashboard</span></div><div class="navmeta">Generated 10 Sep 2026</div></div></nav>
+<header class="hero"><div class="wrap">
+<h1>Superfoodslove — Meta Ads Performance</h1>
+<div class="sub">11 August – 9 September 2026 · Website Conversions (Purchases) · 32 campaigns with spend</div>
+<div class="summary">Over the 30-day window the OnCorp / Superfoodslove account spent <b>₹4,88,339</b> across <b>32 delivering campaigns</b> and generated <b>₹17,19,124</b> in purchase value from <b>710 purchases</b> — a blended <b>3.52x ROAS</b> at a <b>₹688</b> cost per purchase and <b>₹2,421</b> average order value. The new <b>Abdeali creator batch</b> is the standout, and <b>11 campaigns</b> cleared the 4x scale line while <b>11</b> sit below 2.5x and need attention.</div>
+</div></header>
 <div class="wrap">
-
-  <div class="hero">
-    <h1>Meta Ads Performance — 1 Aug 2026 – 28 Aug 2026</h1>
-    <div class="sub">31 campaigns · Blended ROAS 3.48x · Website Conversions</div>
-    <div class="summary"><strong>Executive Summary:</strong> Across 31 campaigns the account spent ₹3,98,837 and generated ₹13,89,932 in revenue at a blended 3.48x ROAS — 588 purchases at a ₹678 cost per purchase and ₹2,364 average order value, healthy DTC economics at scale. 10 campaigns clear 4x and 12 sit below 2.5x, so the opportunity is reallocation: the Abdeali &ldquo;Protein Trial – Static&rdquo; creative hit 10.1x while a cluster of Super Cleanse and Protein-angle campaigns burned budget under 2x. 4 campaigns spent with zero purchases and one ad is currently rejected.</div>
-  </div>
-
-  <div class="kpi-grid">
-  <div class="kpi" style="border-top-color:#22C55E">
-    <div class="kpi-label">Revenue</div><div class="kpi-value">₹13,89,932</div><div class="kpi-sub">derived from spend × ROAS</div>
-  </div>
-  <div class="kpi" style="border-top-color:#003DCC">
-    <div class="kpi-label">Blended ROAS</div><div class="kpi-value">3.48x</div><div class="kpi-sub">₹13,89,932 from ₹3,98,837</div>
-  </div>
-  <div class="kpi" style="border-top-color:#035398">
-    <div class="kpi-label">Purchases</div><div class="kpi-value">588</div><div class="kpi-sub">across 31 campaigns</div>
-  </div>
-  <div class="kpi" style="border-top-color:#0EA5E9">
-    <div class="kpi-label">Avg Order Value</div><div class="kpi-value">₹2,364</div><div class="kpi-sub">blended AOV</div>
-  </div>
-  <div class="kpi" style="border-top-color:#A855F7">
-    <div class="kpi-label">Total Spend</div><div class="kpi-value">₹3,98,837</div><div class="kpi-sub">CPM ₹589</div>
-  </div>
-  <div class="kpi" style="border-top-color:#EC4899">
-    <div class="kpi-label">Cost per Purchase</div><div class="kpi-value">₹678</div><div class="kpi-sub">blended CPA</div>
-  </div>
-  <div class="kpi" style="border-top-color:#F59E0B">
-    <div class="kpi-label">Frequency</div><div class="kpi-value">3.26</div><div class="kpi-sub">2,07,312 reach · 6,76,705 impr</div>
-  </div>
-  <div class="kpi" style="border-top-color:#6366F1">
-    <div class="kpi-label">Campaigns Live</div><div class="kpi-value">31</div><div class="kpi-sub">10 scaling · 12 to fix</div>
-  </div>
-  </div>
-
-  <section>
-    <h2>Campaign Performance
-      <div class="section-pills">
-        <span class="section-pill pill-green">&#8593; Scale (10)</span>
-        <span class="section-pill pill-amber">&#8594; Maintain (9)</span>
-        <span class="section-pill pill-red">&#8595; Fix (12)</span>
-      </div>
-    </h2>
-    <div style="overflow-x:auto; max-height:720px; overflow-y:auto;">
-      <table class="mis-table">
-        <thead><tr>
-          <th>Campaign</th><th>Status</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Purch</th><th>CPA</th><th>AOV</th>
-        </tr></thead>
-        <tbody>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Protein RM Ad">Protein RM Ad</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹38,184</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹1,42,905</td>
-    <td class="center"><strong style="color:#16A34A">3.74x</strong></td>
-    <td class="center">57</td>
-    <td class="center">₹670</td>
-    <td class="center">₹2,507</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Remarketing campaign">Remarketing campaign</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹32,699</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹1,08,874</td>
-    <td class="center"><strong style="color:#16A34A">3.33x</strong></td>
-    <td class="center">48</td>
-    <td class="center">₹681</td>
-    <td class="center">₹2,268</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | PCOS Carousel  Campaign">PCOS Carousel Campaign</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹32,632</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹1,41,219</td>
-    <td class="center"><strong style="color:#16A34A">4.33x</strong></td>
-    <td class="center">57</td>
-    <td class="center">₹572</td>
-    <td class="center">₹2,478</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Advantage+ shopping campaign | Hyperthyroid Campaign">Hyperthyroid Campaign</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹27,110</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹1,21,173</td>
-    <td class="center"><strong style="color:#16A34A">4.47x</strong></td>
-    <td class="center">48</td>
-    <td class="center">₹565</td>
-    <td class="center">₹2,524</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Advantage+ shopping campaign | Hair Growth Bundle  | Reason You Should Not Buy">Hair Growth Bundle | Reason You Should Not Buy</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹24,391</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹71,427</td>
-    <td class="center"><strong style="color:#16A34A">2.93x</strong></td>
-    <td class="center">28</td>
-    <td class="center">₹871</td>
-    <td class="center">₹2,551</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Advantage+ shopping campaign | Protein Collagen  Campaign | Program Carousel  Campaign">Protein Collagen Campaign | Program Carousel Campaign</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹21,820</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹71,568</td>
-    <td class="center"><strong style="color:#16A34A">3.28x</strong></td>
-    <td class="center">29</td>
-    <td class="center">₹752</td>
-    <td class="center">₹2,468</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Cleanse Ad Campaign | Hypothyroid">Super Cleanse Ad Campaign | Hypothyroid</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹19,038</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹27,004</td>
-    <td class="center"><strong style="color:#991B1B">1.42x</strong></td>
-    <td class="center">28</td>
-    <td class="center">₹680</td>
-    <td class="center">₹964</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Cleanse Ad Campaign">Super Cleanse Ad Campaign</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹19,037</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹47,151</td>
-    <td class="center"><strong style="color:#991B1B">2.48x</strong></td>
-    <td class="center">35</td>
-    <td class="center">₹544</td>
-    <td class="center">₹1,347</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | Before After Hair">Protein Collagen | Before After Hair</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹19,008</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹72,545</td>
-    <td class="center"><strong style="color:#16A34A">3.82x</strong></td>
-    <td class="center">28</td>
-    <td class="center">₹679</td>
-    <td class="center">₹2,591</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Cleanse | Isabgol">Super Cleanse | Isabgol</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹14,147</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹32,380</td>
-    <td class="center"><strong style="color:#991B1B">2.29x</strong></td>
-    <td class="center">23</td>
-    <td class="center">₹615</td>
-    <td class="center">₹1,408</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Nature">Protein | Nature</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹13,707</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹26,002</td>
-    <td class="center"><strong style="color:#991B1B">1.90x</strong></td>
-    <td class="center">11</td>
-    <td class="center">₹1,246</td>
-    <td class="center">₹2,364</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen Feedback Ad">Protein Collagen Feedback Ad</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹13,662</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹78,494</td>
-    <td class="center"><strong style="color:#16A34A">5.75x</strong></td>
-    <td class="center">25</td>
-    <td class="center">₹546</td>
-    <td class="center">₹3,140</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | PCOS">Protein Collagen | PCOS</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹13,640</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹48,834</td>
-    <td class="center"><strong style="color:#16A34A">3.58x</strong></td>
-    <td class="center">19</td>
-    <td class="center">₹718</td>
-    <td class="center">₹2,570</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Hair Feedback">Protein | Hair Feedback</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹13,600</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹55,632</td>
-    <td class="center"><strong style="color:#16A34A">4.09x</strong></td>
-    <td class="center">25</td>
-    <td class="center">₹544</td>
-    <td class="center">₹2,225</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | Facts About Hair Growth">Protein Collagen | Facts About Hair Growth</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹13,577</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹30,248</td>
-    <td class="center"><strong style="color:#991B1B">2.23x</strong></td>
-    <td class="center">13</td>
-    <td class="center">₹1,044</td>
-    <td class="center">₹2,327</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | Covid Hairfall">Protein Collagen | Covid Hairfall</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹13,576</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹55,829</td>
-    <td class="center"><strong style="color:#16A34A">4.11x</strong></td>
-    <td class="center">21</td>
-    <td class="center">₹646</td>
-    <td class="center">₹2,659</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Advantage+ shopping campaign | 2-week high protein fat loss program  | Detailed Program">2-week high protein fat loss program | Detailed Program</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹13,570</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹71,149</td>
-    <td class="center"><strong style="color:#16A34A">5.24x</strong></td>
-    <td class="center">29</td>
-    <td class="center">₹468</td>
-    <td class="center">₹2,453</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Skin Epigenetics">Protein | Skin Epigenetics</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹13,403</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹31,286</td>
-    <td class="center"><strong style="color:#991B1B">2.33x</strong></td>
-    <td class="center">12</td>
-    <td class="center">₹1,117</td>
-    <td class="center">₹2,607</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Herbs | Nani's Formulation">Super Herbs | Nani's Formulation</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹8,148</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹14,966</td>
-    <td class="center"><strong style="color:#991B1B">1.84x</strong></td>
-    <td class="center">6</td>
-    <td class="center">₹1,358</td>
-    <td class="center">₹2,494</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Nothing Like Vegan Collagen">Protein | Nothing Like Vegan Collagen</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹8,141</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹32,654</td>
-    <td class="center"><strong style="color:#16A34A">4.01x</strong></td>
-    <td class="center">10</td>
-    <td class="center">₹814</td>
-    <td class="center">₹3,265</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Protein Trial - Static | Abdeali |">Protein Trial - Static | Abdeali</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹4,210</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹42,674</td>
-    <td class="center"><strong style="color:#16A34A">10.14x</strong></td>
-    <td class="center">10</td>
-    <td class="center">₹421</td>
-    <td class="center">₹4,267</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Protein Static | Abdeali">Protein Static | Abdeali</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹3,575</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹18,855</td>
-    <td class="center"><strong style="color:#16A34A">5.27x</strong></td>
-    <td class="center">5</td>
-    <td class="center">₹715</td>
-    <td class="center">₹3,771</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Hair Protein Video | Abdeali">Hair Protein Video | Abdeali</td>
-    <td class="center"><span class="pill pill-green">&#8593; Scale</span></td>
-    <td class="center">₹3,481</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹15,144</td>
-    <td class="center"><strong style="color:#16A34A">4.35x</strong></td>
-    <td class="center">5</td>
-    <td class="center">₹696</td>
-    <td class="center">₹3,029</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Protein Trial | Abdeali |">Protein Trial | Abdeali</td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹3,333</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹9,760</td>
-    <td class="center"><strong style="color:#16A34A">2.93x</strong></td>
-    <td class="center">6</td>
-    <td class="center">₹555</td>
-    <td class="center">₹1,627</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | ATC">ATC<div style="font-size:10px;color:var(--muted);margin-top:2px">inactive</div></td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹2,907</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹11,335</td>
-    <td class="center"><strong style="color:#16A34A">3.90x</strong></td>
-    <td class="center">3</td>
-    <td class="center">₹969</td>
-    <td class="center">₹3,778</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | skin Protein Video | Abdeali">skin Protein Video | Abdeali<div style="font-size:10px;color:#991B1B;margin-top:2px">rejected</div></td>
-    <td class="center"><span class="pill pill-amber">&#8594; Maintain</span></td>
-    <td class="center">₹2,297</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹7,493</td>
-    <td class="center"><strong style="color:#16A34A">3.26x</strong></td>
-    <td class="center">4</td>
-    <td class="center">₹574</td>
-    <td class="center">₹1,873</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Super Cleanse | Video - Women| Abdeali">Super Cleanse | Video - Women| Abdeali</td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹1,859</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹3,330</td>
-    <td class="center"><strong style="color:#991B1B">1.79x</strong></td>
-    <td class="center">3</td>
-    <td class="center">₹620</td>
-    <td class="center">₹1,110</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="OnCorp | Website Conv | Super Cleanse | Video | Abdeali">Super Cleanse | Video | Abdeali<div style="font-size:10px;color:var(--muted);margin-top:2px">inactive</div></td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹1,339</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹0</td>
-    <td class="center"><strong style="color:#991B1B">0.00x</strong></td>
-    <td class="center">0</td>
-    <td class="center">&#8212;</td>
-    <td class="center">&#8212;</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Protein Collagen | Hair | Video - Women | Abdeali">Protein Collagen | Hair | Video - Women | Abdeali<div style="font-size:10px;color:var(--muted);margin-top:2px">inactive</div></td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹960</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹0</td>
-    <td class="center"><strong style="color:#991B1B">0.00x</strong></td>
-    <td class="center">0</td>
-    <td class="center">&#8212;</td>
-    <td class="center">&#8212;</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Protein Collagen | Hair+skin | Video - Women | Abdeali">Protein Collagen | Hair+skin | Video - Women | Abdeali<div style="font-size:10px;color:var(--muted);margin-top:2px">inactive</div></td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹931</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹0</td>
-    <td class="center"><strong style="color:#991B1B">0.00x</strong></td>
-    <td class="center">0</td>
-    <td class="center">&#8212;</td>
-    <td class="center">&#8212;</td>
-  </tr>
-  <tr>
-    <td class="mis-name" title="On Corp | Website Conv | Protein Collagen | Hair+skin | Video - Women | Abdeali">Protein Collagen | Hair+skin | Video - Women | Abdeali<div style="font-size:10px;color:var(--muted);margin-top:2px">inactive</div></td>
-    <td class="center"><span class="pill pill-red">&#8595; Fix</span></td>
-    <td class="center">₹855</td>
-    <td class="center" style="color:#16A34A;font-weight:600">₹0</td>
-    <td class="center"><strong style="color:#991B1B">0.00x</strong></td>
-    <td class="center">0</td>
-    <td class="center">&#8212;</td>
-    <td class="center">&#8212;</td>
-  </tr>
-  <tr class="mis-totals">
-    <td class="mis-name"><strong>TOTAL · 31 campaigns</strong></td>
-    <td class="center"><strong>&#8212;</strong></td>
-    <td class="center"><strong>₹3,98,837</strong></td>
-    <td class="center"><strong style="color:#16A34A">₹13,89,932</strong></td>
-    <td class="center"><strong style="color:#003DCC">3.48x</strong></td>
-    <td class="center"><strong>588</strong></td>
-    <td class="center"><strong>₹678</strong></td>
-    <td class="center"><strong>₹2,364</strong></td>
-  </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="note">Status graded on ROAS: ≥4x Scale · 2.5–4x Maintain · &lt;2.5x Fix. Revenue is derived as spend × the Purchase ROAS reported per campaign. Campaign names shortened; hover for the full name.</div>
-  </section>
-
-  <section>
-    <h2>Insights · Wins / Concerns / Actions</h2>
-    <div class="insights">
-      <div class="insight-card wins">
-        <h3>&#127942; Wins</h3>
-        <ul>
-          <li><strong>[Important]</strong> Account delivered ₹13,89,932 on ₹3,98,837 = 3.48x blended ROAS, 588 purchases at ₹678 CPA and ₹2,364 AOV — profitable DTC performance across 31 live campaigns.</li>
-          <li><strong>[Important]</strong> Standout creatives are well above breakeven — Abdeali &ldquo;Protein Trial – Static&rdquo; at 10.1x, Protein Collagen Feedback Ad at 5.7x, and the 2-week fat-loss Detailed Program at 5.2x — clear scale candidates.</li>
-          <li><strong>[Worth doing]</strong> The biggest-spend campaigns hold up — PCOS Carousel (57 purchases, 4.3x), Hyperthyroid (4.5x) and Protein RM (3.7x) each stay above breakeven at volume.</li>
-        </ul>
-      </div>
-      <div class="insight-card concerns">
-        <h3>&#9888;&#65039; Concerns</h3>
-        <ul>
-          <li><strong>[Urgent]</strong> 12 campaigns sit below 2.5x ROAS — the worst offenders are Super Cleanse Hypothyroid (1.42x on ₹19,038), Protein Nature (1.90x, ₹1,246 CPA) and Skin Epigenetics (2.33x). Together they drag the blended figure down.</li>
-          <li><strong>[Important]</strong> 4 campaigns spent with zero purchases (the inactive Abdeali video set) and one ad — skin Protein Video — is <strong>recently rejected</strong> yet still spent ₹2,297. That is wasted or non-compliant delivery.</li>
-          <li><strong>[Worth doing]</strong> CPMs are steep — blended ₹589, with several Advantage+ campaigns over ₹900 — so CPA swings ~3x between campaigns. Auction costs make creative efficiency the main lever.</li>
-        </ul>
-      </div>
-      <div class="insight-card actions">
-        <h3>&#127919; Actions This Period</h3>
-        <ul>
-          <li><strong>[Urgent]</strong> Pause or rework the sub-2.5x cluster (Super Cleanse Hypothyroid, Protein Nature, Skin Epigenetics, Super Herbs) and kill the 0-purchase Abdeali videos — that frees ~₹60–70k to move into the 4x+ winners.</li>
-          <li><strong>[Important]</strong> Scale the efficiency frontier — push fresh budget into Protein Trial – Static (10x) and the 5x+ Feedback / 2-week / Protein Static creatives, watching frequency as you raise spend.</li>
-          <li><strong>[Important]</strong> Fix delivery hygiene — resubmit or replace the rejected skin Protein Video ad, and consolidate the many overlapping Protein-Collagen angles so the Advantage+ auction isn't bidding against itself.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
+<div class="kpi-grid">
+<div class="kpi accent"><div class="label">Revenue (Purchase Value)</div><div class="kpi-val">₹17,19,124</div><div class="sub">710 purchases</div></div>
+<div class="kpi"><div class="label">Blended ROAS</div><div class="kpi-val">3.52x</div><div class="sub">Return on ad spend</div></div>
+<div class="kpi"><div class="label">Total Spend</div><div class="kpi-val">₹4,88,339</div><div class="sub">CPM ₹619</div></div>
+<div class="kpi"><div class="label">Avg. Order Value</div><div class="kpi-val">₹2,421</div><div class="sub">Per purchase</div></div>
+<div class="kpi"><div class="label">Purchases</div><div class="kpi-val">710</div><div class="sub">Website pixel purchases</div></div>
+<div class="kpi"><div class="label">Cost / Purchase</div><div class="kpi-val">₹688</div><div class="sub">Blended CPA</div></div>
+<div class="kpi"><div class="label">Frequency</div><div class="kpi-val">3.24</div><div class="sub">7,88,673 impr · 2,43,348 reach</div></div>
+<div class="kpi"><div class="label">Campaigns Live</div><div class="kpi-val">32</div><div class="sub">of 187 total in account</div></div>
 </div>
 
-<footer>
-  <strong>Kerkar Media</strong> · Superfoodslove Meta Ads Dashboard · Campaign Performance Report · Powered by KM
-</footer>
+<section class="section"><h2>Campaign Performance</h2><p class="lead">All 32 campaigns that delivered in the window, ranked by spend. Scroll for the full list. Status graded on ROAS (Scale ≥4x · Maintain 2.5–4x · Fix &lt;2.5x). Names shortened — hover for the full campaign name.</p>
+<div class="tablewrap scroll"><table><thead><tr><th>Campaign</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Purch.</th><th>CPA</th><th>AOV</th><th>Impr.</th><th>Freq.</th><th>CPM</th><th>CTR</th><th>Status</th></tr></thead><tbody>
+<tr><td class="cname" title="OnCorp | Website Conv | Protein RM Ad">Protein RM Ad</td><td>41,619</td><td>1,39,723</td><td class="num-strong">3.36x</td><td>59</td><td>705</td><td>2,368</td><td>54,746</td><td>4.76</td><td>760</td><td>1.64%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="OnCorp | Remarketing campaign">Remarketing campaign</td><td>36,265</td><td>1,00,676</td><td class="num-strong">2.78x</td><td>46</td><td>788</td><td>2,189</td><td>1,11,207</td><td>6.67</td><td>326</td><td>0.60%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | PCOS Carousel  Campaign">PCOS Carousel  Campaign</td><td>36,002</td><td>1,53,179</td><td class="num-strong">4.25x</td><td>55</td><td>655</td><td>2,785</td><td>1,12,889</td><td>5.05</td><td>319</td><td>0.69%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Advantage+ shopping campaign | Hyperthyroid Campaign">Hyperthyroid Campaign</td><td>29,749</td><td>1,09,234</td><td class="num-strong">3.67x</td><td>45</td><td>661</td><td>2,427</td><td>57,456</td><td>5.25</td><td>518</td><td>0.86%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Advantage+ shopping campaign | Hair Growth Bundle  | Reason You Should Not Buy">Hair Growth Bundle  | Reason You Should Not Buy</td><td>27,024</td><td>90,587</td><td class="num-strong">3.35x</td><td>30</td><td>901</td><td>3,020</td><td>41,837</td><td>3.41</td><td>646</td><td>1.39%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Advantage+ shopping campaign | Protein Collagen  Campaign | Program Carousel  Campaign">Protein Collagen  Campaign | Program Carousel  Campaign</td><td>24,038</td><td>94,570</td><td class="num-strong">3.93x</td><td>36</td><td>668</td><td>2,627</td><td>26,969</td><td>3.45</td><td>891</td><td>1.88%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | Before After Hair">Protein Collagen | Before After Hair</td><td>21,023</td><td>50,740</td><td class="num-strong">2.41x</td><td>21</td><td>1,001</td><td>2,416</td><td>22,051</td><td>2.53</td><td>953</td><td>2.20%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Cleanse Ad Campaign | Hypothyroid">Super Cleanse Ad Campaign | Hypothyroid</td><td>20,897</td><td>24,980</td><td class="num-strong">1.20x</td><td>27</td><td>774</td><td>925</td><td>33,147</td><td>1.81</td><td>630</td><td>4.52%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Cleanse Ad Campaign">Super Cleanse Ad Campaign</td><td>20,842</td><td>51,500</td><td class="num-strong">2.47x</td><td>36</td><td>579</td><td>1,431</td><td>20,100</td><td>1.82</td><td>1,037</td><td>3.16%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Cleanse | Isabgol">Super Cleanse | Isabgol</td><td>15,554</td><td>35,303</td><td class="num-strong">2.27x</td><td>23</td><td>676</td><td>1,535</td><td>21,557</td><td>2.04</td><td>722</td><td>2.16%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Skin Epigenetics">Protein | Skin Epigenetics</td><td>15,178</td><td>34,372</td><td class="num-strong">2.26x</td><td>13</td><td>1,168</td><td>2,644</td><td>15,029</td><td>1.30</td><td>1,010</td><td>5.09%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | Covid Hairfall">Protein Collagen | Covid Hairfall</td><td>15,082</td><td>62,359</td><td class="num-strong">4.13x</td><td>20</td><td>754</td><td>3,118</td><td>14,254</td><td>2.10</td><td>1,058</td><td>3.07%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Nature">Protein | Nature</td><td>15,038</td><td>27,942</td><td class="num-strong">1.86x</td><td>12</td><td>1,253</td><td>2,328</td><td>12,248</td><td>1.33</td><td>1,228</td><td>3.75%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen Feedback Ad">Protein Collagen Feedback Ad</td><td>14,975</td><td>75,888</td><td class="num-strong">5.07x</td><td>27</td><td>555</td><td>2,811</td><td>21,608</td><td>3.16</td><td>693</td><td>0.99%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Advantage+ shopping campaign | 2-week high protein fat loss program  | Detailed Program">2-week high protein fat loss program  | Detailed Program</td><td>14,948</td><td>62,940</td><td class="num-strong">4.21x</td><td>29</td><td>515</td><td>2,170</td><td>14,458</td><td>2.23</td><td>1,034</td><td>2.86%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | Facts About Hair Growth">Protein Collagen | Facts About Hair Growth</td><td>14,932</td><td>53,299</td><td class="num-strong">3.57x</td><td>21</td><td>711</td><td>2,538</td><td>20,455</td><td>1.63</td><td>730</td><td>2.78%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein Collagen | PCOS">Protein Collagen | PCOS</td><td>14,923</td><td>44,040</td><td class="num-strong">2.95x</td><td>17</td><td>878</td><td>2,591</td><td>27,405</td><td>2.71</td><td>545</td><td>1.81%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Hair Feedback">Protein | Hair Feedback</td><td>14,912</td><td>57,606</td><td class="num-strong">3.86x</td><td>24</td><td>621</td><td>2,400</td><td>23,627</td><td>4.31</td><td>631</td><td>1.39%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Protein Trial - Static | Abdeali |">Protein Trial - Static | Abdeali |</td><td>14,370</td><td>1,20,459</td><td class="num-strong">8.38x</td><td>43</td><td>334</td><td>2,801</td><td>28,566</td><td>6.01</td><td>503</td><td>1.19%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Super Plant Protein Video | Abdeali">Super Plant Protein Video | Abdeali</td><td>11,918</td><td>62,556</td><td class="num-strong">5.25x</td><td>20</td><td>596</td><td>3,128</td><td>10,514</td><td>3.44</td><td>1,134</td><td>2.10%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Protein Static | Abdeali">Protein Static | Abdeali</td><td>11,283</td><td>50,698</td><td class="num-strong">4.49x</td><td>17</td><td>664</td><td>2,982</td><td>21,060</td><td>5.10</td><td>536</td><td>1.18%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Hair Protein Video | Abdeali">Hair Protein Video | Abdeali</td><td>10,569</td><td>29,036</td><td class="num-strong">2.75x</td><td>13</td><td>813</td><td>2,234</td><td>14,953</td><td>3.41</td><td>707</td><td>2.53%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Protein Trial | Abdeali |">Protein Trial | Abdeali |</td><td>10,432</td><td>63,248</td><td class="num-strong">6.06x</td><td>23</td><td>454</td><td>2,750</td><td>18,029</td><td>3.62</td><td>579</td><td>1.57%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Protein | Nothing Like Vegan Collagen">Protein | Nothing Like Vegan Collagen</td><td>9,020</td><td>29,968</td><td class="num-strong">3.32x</td><td>8</td><td>1,128</td><td>3,746</td><td>8,838</td><td>2.30</td><td>1,021</td><td>1.88%</td><td><span class="pill pill-maintain">Maintain</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Advantage+ shopping campaign | Super Herbs | Nani's Formulation">Super Herbs | Nani's Formulation</td><td>8,985</td><td>15,871</td><td class="num-strong">1.77x</td><td>7</td><td>1,284</td><td>2,267</td><td>12,015</td><td>2.15</td><td>748</td><td>1.97%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | skin Protein Video | Abdeali">skin Protein Video | Abdeali</td><td>7,743</td><td>44,338</td><td class="num-strong">5.73x</td><td>18</td><td>430</td><td>2,463</td><td>9,844</td><td>2.29</td><td>787</td><td>2.50%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Super Cleanse | Video - Women| Abdeali">Super Cleanse | Video - Women| Abdeali</td><td>5,765</td><td>27,115</td><td class="num-strong">4.70x</td><td>17</td><td>339</td><td>1,595</td><td>7,789</td><td>1.59</td><td>740</td><td>3.24%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="OnCorp | Website Conv | Super Cleanse | Video | Abdeali">Super Cleanse | Video | Abdeali</td><td>1,339</td><td>0</td><td class="num-strong">0.00x</td><td>0</td><td>—</td><td>—</td><td>1,644</td><td>1.43</td><td>814</td><td>1.34%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Super Plant Protein | Static | Abdeali">Super Plant Protein | Static | Abdeali</td><td>1,168</td><td>6,895</td><td class="num-strong">5.90x</td><td>3</td><td>389</td><td>2,298</td><td>1,550</td><td>1.86</td><td>754</td><td>1.68%</td><td><span class="pill pill-scale">Scale</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Protein Collagen | Hair | Video - Women | Abdeali">Protein Collagen | Hair | Video - Women | Abdeali</td><td>960</td><td>0</td><td class="num-strong">0.00x</td><td>0</td><td>—</td><td>—</td><td>930</td><td>1.34</td><td>1,033</td><td>1.51%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Protein Collagen | Hair+skin | Video - Women | Abdeali">Protein Collagen | Hair+skin | Video - Women | Abdeali</td><td>931</td><td>0</td><td class="num-strong">0.00x</td><td>0</td><td>—</td><td>—</td><td>931</td><td>1.29</td><td>1,001</td><td>1.07%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr><td class="cname" title="On Corp | Website Conv | Protein Collagen | Hair+skin | Video - Women | Abdeali">Protein Collagen | Hair+skin | Video - Women | Abdeali</td><td>855</td><td>0</td><td class="num-strong">0.00x</td><td>0</td><td>—</td><td>—</td><td>967</td><td>1.43</td><td>884</td><td>1.65%</td><td><span class="pill pill-fix">Fix</span></td></tr>
+<tr class="total-row"><td>TOTAL — 32 campaigns</td><td>4,88,339</td><td>17,19,124</td><td class="num-strong">3.52x</td><td>710</td><td>688</td><td>2,421</td><td>7,88,673</td><td>3.24</td><td>619</td><td>1.67%</td><td>—</td></tr></tbody></table></div>
+<div class="databanner banner-amber">Note: 155 campaigns in this account had zero spend / no delivery in the window and are excluded from the totals above. Four small creative-test campaigns spent under ₹1,400 each with no recorded purchases yet (early learning).</div>
+</section>
 
-</body>
-</html>
+<section class="section"><h2>Insights &amp; Recommendations</h2><p class="lead">Data-driven read on the 11 Aug – 9 Sep window.</p>
+<div class="insights">
+<div class="insight-card ic-wins"><h3>✅ Wins</h3>
+<li>The <b>Abdeali creator batch</b> (9 ads) is the top performer — ₹77,334 spend returned ₹4,04,345 at a blended <b>5.23x ROAS</b>, led by Protein Trial – Static at 8.38x.</li>
+<li><b>PCOS Carousel</b> is the best-scaled workhorse: ₹36,002 spend at a strong <b>4.25x ROAS</b> and 55 purchases — the highest volume in the account.</li>
+<li>Account-wide efficiency is healthy: blended <b>3.52x ROAS</b> and ₹2,421 AOV across 710 purchases.</li>
+<li><b>11 campaigns</b> cleared the 4x scale threshold — a broad base of winners rather than one hero campaign.</li>
+</div>
+<div class="insight-card ic-concerns"><h3>⚠️ Concerns</h3>
+<li><b>11 campaigns</b> are below 2.5x ROAS and dragging the blend, worst being Super Cleanse | Hypothyroid at just <b>1.20x</b> on ₹20,897.</li>
+<li>Frequency sits at <b>3.24</b> account-wide — fine now, but the older evergreen ads risk fatigue if scaled without fresh creative.</li>
+<li>Spend is spread thin across 32 campaigns; several low-ROAS lines are burning budget that could shift to proven winners.</li>
+<li>A large tail of 155 paused/inactive campaigns clutters the account and makes reporting noisy.</li>
+</div>
+<div class="insight-card ic-actions"><h3>🎯 Actions</h3>
+<li><span class="tag t-urgent">Urgent</span>Scale the Abdeali batch (Protein Trial – Static 8.38x, Skin Protein 5.73x) — clearest headroom in the account.</li>
+<li><span class="tag t-important">Important</span>Pause or rework the sub-2.5x lines (Super Cleanse Hypothyroid 1.20x, Nani's Formulation 1.77x, Protein Nature 1.86x) and reallocate to PCOS Carousel &amp; Protein RM.</li>
+<li><span class="tag t-important">Important</span>Refresh creative on the high-spend evergreen belt of Advantage+ campaigns to pre-empt fatigue.</li>
+<li><span class="tag t-worth">Worth doing</span>Give the four new creative tests a fair 7-day learning window, then keep only those clearing 3x.</li>
+<li><span class="tag t-low">Low priority</span>Archive the 155 dormant campaigns to declutter the account and speed future reporting.</li>
+</div>
+</div>
+</section>
+</div>
+<footer><b>Kerkar Media</b> · Meta Ads Dashboard · Superfoodslove (OnCorp) · 11 Aug – 9 Sep 2026 &nbsp;·&nbsp; Powered by KM</footer>
+</body></html>

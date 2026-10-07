@@ -1,147 +1,44 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hack Athletics Meta Ads Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--brand-blue:#003DCC;--brand-blue-dark:#035398;--ink:#0b1220;--muted:#5a6b85;--line:#e5eaf2;--bg:#f6f8fc;--green:#0f9d58;--amber:#c47f00;--red:#cc2936;--green-bg:#e7f6ed;--amber-bg:#fdf3e0;--red-bg:#fdeaec}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.kpi-value{font-family:'DM Sans','Inter',sans-serif}
-.topbar{height:4px;background:linear-gradient(90deg,var(--brand-blue),var(--brand-blue-dark))}
-nav{background:#fff;border-bottom:1px solid var(--line);padding:16px 28px;font-weight:700;font-size:14px;letter-spacing:.2px;position:sticky;top:0;z-index:20}
-nav .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand-blue);margin-right:9px;vertical-align:middle}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px 56px}
-.hero{background:linear-gradient(135deg,var(--brand-blue) 0%,var(--brand-blue-dark) 100%);color:#fff;padding:44px 20px 52px;margin-bottom:-34px}
-.hero-in{max-width:1180px;margin:0 auto;padding:0 20px}
-.hero h1{margin:0 0 8px;font-size:34px;line-height:1.2;font-weight:700}
-.hero .sub{opacity:.88;font-size:14px;font-weight:500;letter-spacing:.3px;margin-bottom:22px}
-.summary{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:18px 20px;font-size:14.5px;line-height:1.7;max-width:900px}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 34px}
-.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;box-shadow:0 1px 3px rgba(11,18,32,.05)}
-.kpi-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.kpi-value{font-size:27px;font-weight:700;line-height:1.15;letter-spacing:-.5px}
-.kpi-sub{font-size:12.5px;color:var(--muted);margin-top:5px}
-.kpi.accent{background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark));border-color:transparent;color:#fff}
-.kpi.accent .kpi-label,.kpi.accent .kpi-sub{color:rgba(255,255,255,.82)}
-section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 26px 22px;margin-bottom:24px;box-shadow:0 1px 3px rgba(11,18,32,.05)}
-section h2{margin:0 0 4px;font-size:19px;font-weight:700}
-section .desc{color:var(--muted);font-size:13.5px;margin:0 0 18px}
-.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:660px}
-thead th{background:#f2f6fc;color:#334;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;text-align:left;padding:11px 12px;border-bottom:2px solid var(--line);white-space:nowrap}
-tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
-tbody tr:last-child td{border-bottom:none}
-tbody tr:hover{background:#fafcff}
-.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.strong{font-weight:700}
-.cname{font-weight:600;max-width:270px}
-.mis-table table{min-width:1050px}
-.total-row td{background:#f2f6fc;font-weight:700;border-top:2px solid var(--line);border-bottom:none}
-.pill{display:inline-block;padding:4px 11px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
-.pill-green{background:var(--green-bg);color:var(--green)}
-.pill-amber{background:var(--amber-bg);color:var(--amber)}
-.pill-red{background:var(--red-bg);color:var(--red)}
-.databanner{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-bottom:20px;border-left:4px solid}
-.banner-amber{background:var(--amber-bg);border-color:var(--amber);color:#6b4600}
-.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.insight-card{border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;background:#fff}
-.insight-card h3{margin:0 0 12px;font-size:14px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-.insight-card ul{margin:0;padding-left:18px}
-.insight-card li{font-size:13.5px;margin-bottom:11px;line-height:1.6}
-.wins{border-top:3px solid var(--green)} .wins h3{color:var(--green)}
-.concerns{border-top:3px solid var(--amber)} .concerns h3{color:var(--amber)}
-.actions{border-top:3px solid var(--brand-blue)} .actions h3{color:var(--brand-blue)}
-.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-right:6px;vertical-align:1px}
-.t-urgent{background:var(--red-bg);color:var(--red)}
-.t-important{background:var(--amber-bg);color:var(--amber)}
-.t-worth{background:#e8eefc;color:var(--brand-blue)}
-.t-low{background:#eef1f5;color:var(--muted)}
-.foot{text-align:center;color:var(--muted);font-size:12.5px;padding:28px 20px 10px}
-.foot strong{color:var(--brand-blue)}
-.note{font-size:12.5px;color:var(--muted);margin-top:14px}
-@media(max-width:940px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.hero h1{font-size:26px}}
-@media(max-width:520px){.kpi-grid{grid-template-columns:1fr}.wrap{padding:0 14px 40px}}
-</style></head><body>
-<div class="topbar"></div>
-<nav><span class="dot"></span>Kerkar Media &middot; Hack Athletics Meta Ads Dashboard</nav>
-
-<div class="hero"><div class="hero-in">
-<h1>Meta Ads Performance</h1>
-<div class="sub">24 Aug 2026 to 22 Sep 2026 &nbsp;&middot;&nbsp; 30 days &nbsp;&middot;&nbsp; Generated 23 September 2026</div>
-<div class="summary">
-Meta delivered <strong>&#8377;11,99,583 in tracked revenue on &#8377;23,802 of spend</strong>, a blended return of <strong>50.4x</strong> across 5 delivering campaigns and 297 purchases at an average order value of &#8377;4,039. Growth is concentrated in the lever belt and remarketing pair, which together drove 73% of revenue on 60% of spend. The accessory lines, backpack and shaker bottle, still return 30x but convert far fewer clicks per rupee, so the clearest lever this month is shifting budget toward the belt funnel while 7 dormant campaigns sit unspent.
-</div>
-</div></div>
-
-<div class="wrap">
-
-<div class="kpi-grid" style="padding-top:48px">
-  <div class="kpi accent"><div class="kpi-label">Revenue</div><div class="kpi-value">&#8377;11,99,583</div><div class="kpi-sub">Purchases conversion value</div></div>
-  <div class="kpi"><div class="kpi-label">Blended ROAS</div><div class="kpi-value">50.4x</div><div class="kpi-sub">Across all delivering campaigns</div></div>
-  <div class="kpi"><div class="kpi-label">Purchases</div><div class="kpi-value">297</div><div class="kpi-sub">5.3% of link clicks</div></div>
-  <div class="kpi"><div class="kpi-label">Average Order Value</div><div class="kpi-value">&#8377;4,039</div><div class="kpi-sub">Blended across all products</div></div>
-  <div class="kpi"><div class="kpi-label">Total Spend</div><div class="kpi-value">&#8377;23,802</div><div class="kpi-sub">CPM &#8377;67</div></div>
-  <div class="kpi"><div class="kpi-label">Cost per Purchase</div><div class="kpi-value">&#8377;80</div><div class="kpi-sub">CPC &#8377;4.25</div></div>
-  <div class="kpi"><div class="kpi-label">Frequency</div><div class="kpi-value">3.2</div><div class="kpi-sub">1,09,889 people reached</div></div>
-  <div class="kpi"><div class="kpi-label">Campaigns Live</div><div class="kpi-value">5 <span style="font-size:16px;color:var(--muted);font-weight:500">of 12</span></div><div class="kpi-sub">7 dormant, zero spend</div></div>
-</div>
-
-<section>
-<h2>Campaign Performance</h2>
-<p class="desc">Ranked by revenue. Status graded on ROAS: 40x and above is Scale, 15x to 40x is Maintain, below 15x is Fix.</p>
-<div class="tbl-scroll"><table>
-<thead><tr><th>Campaign</th><th>Delivery</th><th class="num">Spend</th><th class="num">Revenue</th><th class="num">ROAS</th><th class="num">Purchases</th><th class="num">CPA</th><th>Status</th></tr></thead>
-<tbody><tr><td class="cname" title="KM | Website Con | Lever Belt | 10mm Carbon Belt">Lever Belt | 10mm Carbon Belt</td><td>Active</td><td class="num">8,586</td><td class="num">4,80,953</td><td class="num strong">56.0x</td><td class="num">125</td><td class="num">69</td><td><span class="pill pill-green">Scale</span></td></tr><tr><td class="cname" title="KM | Remarketing Campaign">Remarketing Campaign</td><td>Active</td><td class="num">5,600</td><td class="num">4,00,215</td><td class="num strong">71.5x</td><td class="num">93</td><td class="num">60</td><td><span class="pill pill-green">Scale</span></td></tr><tr><td class="cname" title="KM | Website Conversion | BACKPACK">BACKPACK</td><td>Active</td><td class="num">4,904</td><td class="num">1,47,942</td><td class="num strong">30.2x</td><td class="num">37</td><td class="num">133</td><td><span class="pill pill-amber">Maintain</span></td></tr><tr><td class="cname" title="KM | Website Con | Shaker Bottle">Shaker Bottle</td><td>Active</td><td class="num">4,262</td><td class="num">1,28,043</td><td class="num strong">30.0x</td><td class="num">35</td><td class="num">122</td><td><span class="pill pill-amber">Maintain</span></td></tr><tr><td class="cname" title="KM | Website Con | Lever Belt | Influencer Video – Copy">Lever Belt | Influencer Video – Copy</td><td>Paused</td><td class="num">451</td><td class="num">42,431</td><td class="num strong">94.1x</td><td class="num">7</td><td class="num">64</td><td><span class="pill pill-green">Scale</span></td></tr></tbody>
-</table></div>
-<p class="note">Dormant campaigns with zero spend are excluded from totals: 13mm Story, Catalogue Sales, Sales Campaign, Pickle Ball Paddle, Lever Belt | Influencer Video, Lever Belt | 10mm Signature Belt, Gym Bag.</p>
-</section>
-
-<section class="mis-table">
-<h2>Campaign Detail (MIS)</h2>
-<p class="desc">Delivery and funnel metrics per campaign, with account totals.</p>
-<div class="tbl-scroll"><table>
-<thead><tr><th>Campaign</th><th class="num">Impressions</th><th class="num">Reach</th><th class="num">Freq</th><th class="num">CPM</th><th class="num">CTR</th><th class="num">CPC</th><th class="num">Link clicks</th><th class="num">Add to cart</th><th class="num">Checkout</th><th class="num">CVR</th><th class="num">AOV</th></tr></thead>
-<tbody><tr><td class="cname" title="KM | Website Con | Lever Belt | 10mm Carbon Belt">Lever Belt | 10mm Carbon Belt</td><td class="num">1,22,231</td><td class="num">24,315</td><td class="num">5.03</td><td class="num">70</td><td class="num">2.47%</td><td class="num">3</td><td class="num">3014</td><td class="num">599</td><td class="num">944</td><td class="num">4.15%</td><td class="num">3,848</td></tr><tr><td class="cname" title="KM | Remarketing Campaign">Remarketing Campaign</td><td class="num">82,786</td><td class="num">17,970</td><td class="num">4.61</td><td class="num">68</td><td class="num">2.03%</td><td class="num">3</td><td class="num">1677</td><td class="num">503</td><td class="num">749</td><td class="num">5.55%</td><td class="num">4,303</td></tr><tr><td class="cname" title="KM | Website Conversion | BACKPACK">BACKPACK</td><td class="num">64,403</td><td class="num">26,299</td><td class="num">2.45</td><td class="num">76</td><td class="num">0.66%</td><td class="num">12</td><td class="num">426</td><td class="num">130</td><td class="num">202</td><td class="num">8.69%</td><td class="num">3,998</td></tr><tr><td class="cname" title="KM | Website Con | Shaker Bottle">Shaker Bottle</td><td class="num">79,260</td><td class="num">38,620</td><td class="num">2.05</td><td class="num">54</td><td class="num">0.55%</td><td class="num">10</td><td class="num">434</td><td class="num">137</td><td class="num">212</td><td class="num">8.06%</td><td class="num">3,658</td></tr><tr><td class="cname" title="KM | Website Con | Lever Belt | Influencer Video – Copy">Lever Belt | Influencer Video – Copy</td><td class="num">5,086</td><td class="num">2,685</td><td class="num">1.89</td><td class="num">89</td><td class="num">1.02%</td><td class="num">9</td><td class="num">52</td><td class="num">34</td><td class="num">55</td><td class="num">13.46%</td><td class="num">6,062</td></tr><tr class="total-row"><td>TOTAL</td><td class="num">3,53,766</td><td class="num">1,09,889</td><td class="num">3.22</td><td class="num">67</td><td class="num">1.58%</td><td class="num">4.25</td><td class="num">5603</td><td class="num">1403</td><td class="num">2162</td><td class="num">5.30%</td><td class="num">4,039</td></tr></tbody>
-</table></div>
-</section>
-
-<section>
-<h2>Insights</h2>
-<p class="desc">What worked, what needs attention, and what to do next.</p>
-<div class="insights">
-
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hack Athletics Meta Ads Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--brand-blue:#003DCC;--brand-blue-dark:#035398;--ink:#0f172a;--mut:#64748b;--bg:#f4f7fb;--card:#fff;--line:#e2e8f0}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--ink)}
+.topbar{background:#0b1b4d;color:#cbd5e1;font-size:12px;padding:6px 24px}
+nav{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--brand-blue)}
+.hero{background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark));color:#fff;padding:44px 24px}
+.wrap{max-width:1200px;margin:0 auto}h1{font-family:'DM Sans',sans-serif;margin:0 0 6px;font-size:32px}.sub{opacity:.85;margin-bottom:18px}
+.summary{background:rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;line-height:1.6;font-size:15px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-26px auto 0;max-width:1200px;padding:0 24px}
+.kpi{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 4px 14px rgba(15,23,42,.08)}
+.kpi .l{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}.kpi .v{font-family:'DM Sans',sans-serif;font-size:26px;font-weight:700;color:var(--brand-blue);margin:4px 0}.kpi .s{font-size:12px;color:var(--mut)}
+section{max-width:1200px;margin:34px auto;padding:0 24px}h2{font-family:'DM Sans',sans-serif;font-size:22px}
+.tw{overflow-x:auto;background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(15,23,42,.06)}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}
+th{background:#eef3ff;color:var(--brand-blue-dark);font-weight:600}.total td{font-weight:700;background:#f1f5f9}
+.pill{padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600}.scale{background:#dcfce7;color:#166534}.maintain{background:#fef3c7;color:#92400e}.fix{background:#fee2e2;color:#991b1b}
+.databanner{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;border-radius:10px;padding:12px 16px;font-size:14px;margin-bottom:14px}
+.ins{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.insight-card{background:#fff;border-radius:12px;padding:18px;border-top:4px solid}
+.wins{border-color:#16a34a}.concerns{border-color:#dc2626}.actions{border-color:var(--brand-blue)}.insight-card h3{margin:0 0 8px;font-family:'DM Sans',sans-serif}.insight-card li{margin-bottom:9px;font-size:14px;line-height:1.5}
+footer{text-align:center;color:var(--mut);padding:30px;font-size:13px}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.ins{grid-template-columns:1fr}h1{font-size:24px}}</style></head><body>
+<div class="topbar">Kerkar Media · Performance Marketing</div><nav>Kerkar Media · Hack Athletics Meta Ads Dashboard</nav>
+<div class="hero"><div class="wrap"><h1>Hack Athletics Meta Ads Dashboard</h1><div class="sub">7 Sep 2026 to 6 Oct 2026 · Generated 7 Oct 2026</div>
+<div class="summary">Hack Athletics spent ₹23,637 over the period and generated ₹9,66,749 in purchase value from 250 purchases, a blended ROAS of 40.9x at ₹95 per purchase and ₹3,867 AOV. The Remarketing campaign led with 56.4x ROAS, followed by the 10mm Carbon Belt at 50.0x (now inactive). Shaker Bottle (37.0x) and Backpack (19.8x) trail, with Backpack the clear weak spot at ₹194 per purchase.</div></div></div>
+<div class="kpi-grid"><div class="kpi"><div class="l">Revenue</div><div class="v">₹9,66,749</div><div class="s">Purchases conversion value</div></div><div class="kpi"><div class="l">Blended ROAS</div><div class="v">40.9x</div><div class="s">Revenue ÷ spend</div></div><div class="kpi"><div class="l">Purchases</div><div class="v">250</div><div class="s">CVR 5.10% of link clicks</div></div><div class="kpi"><div class="l">AOV</div><div class="v">₹3,867</div><div class="s">Revenue ÷ purchases</div></div><div class="kpi"><div class="l">Total Spend</div><div class="v">₹23,637</div><div class="s">CPM ₹70</div></div><div class="kpi"><div class="l">Cost per Purchase</div><div class="v">₹95</div><div class="s">Spend ÷ purchases</div></div><div class="kpi"><div class="l">Frequency</div><div class="v">n/a</div><div class="s">Account reach not deduplicated; see campaign table</div></div><div class="kpi"><div class="l">Campaigns Live</div><div class="v">3</div><div class="s">4 with spend, 8 dormant</div></div></div>
+<section><div class="databanner">Account-level frequency is not shown because reach is not additive across campaigns. Per-campaign frequency is in the MIS table. 8 campaigns had zero spend and are excluded from totals.</div>
+<h2>Campaign Performance</h2><div class="tw"><table><tr><th>Campaign</th><th>Revenue</th><th>ROAS</th><th>Purchases</th><th>Cost / Purchase</th><th>Status</th></tr><tr><td title="KM | Remarketing Campaign">Remarketing Campaign</td><td>₹3,33,025</td><td>56.4x</td><td>76</td><td>₹78</td><td><span class="pill scale">Scale</span></td></tr><tr><td title="KM | Website Con | Lever Belt | 10mm Carbon Belt">Lever Belt | 10mm Carbon Belt (paused)</td><td>₹2,99,132</td><td>50.0x</td><td>83</td><td>₹72</td><td><span class="pill scale">Scale</span></td></tr><tr><td title="KM | Website Con | Shaker Bottle">Shaker Bottle</td><td>₹2,19,387</td><td>37.0x</td><td>61</td><td>₹97</td><td><span class="pill maintain">Maintain</span></td></tr><tr><td title="KM | Website Conversion | BACKPACK">BACKPACK</td><td>₹1,15,206</td><td>19.8x</td><td>30</td><td>₹194</td><td><span class="pill maintain">Maintain</span></td></tr></table></div></section>
+<section><h2>Campaign Detail (MIS)</h2><div class="tw"><table><tr><th>Campaign</th><th>Spend</th><th>Impressions</th><th>Link Clicks</th><th>CTR (link)</th><th>LP Views</th><th>Add to Cart</th><th>Checkouts</th><th>Purchases</th><th>Revenue</th><th>AOV</th><th>CPM</th><th>Freq.</th></tr><tr><td title="KM | Remarketing Campaign">Remarketing Campaign</td><td>₹5,907</td><td>82,688</td><td>1,743</td><td>2.11%</td><td>1,551</td><td>421</td><td>527</td><td>76</td><td>₹3,33,025</td><td>₹4,382</td><td>₹71</td><td>5.33</td></tr><tr><td title="KM | Website Con | Lever Belt | 10mm Carbon Belt">Lever Belt | 10mm Carbon Belt (paused)</td><td>₹5,977</td><td>83,289</td><td>2,118</td><td>2.54%</td><td>1,852</td><td>394</td><td>541</td><td>83</td><td>₹2,99,132</td><td>₹3,604</td><td>₹72</td><td>4.84</td></tr><tr><td title="KM | Website Con | Shaker Bottle">Shaker Bottle</td><td>₹5,930</td><td>1,03,690</td><td>587</td><td>0.57%</td><td>565</td><td>263</td><td>366</td><td>61</td><td>₹2,19,387</td><td>₹3,597</td><td>₹57</td><td>3.40</td></tr><tr><td title="KM | Website Conversion | BACKPACK">BACKPACK</td><td>₹5,822</td><td>69,692</td><td>452</td><td>0.65%</td><td>352</td><td>116</td><td>165</td><td>30</td><td>₹1,15,206</td><td>₹3,840</td><td>₹84</td><td>2.59</td></tr><tr class="total"><td>TOTAL</td><td>₹23,637</td><td>3,39,359</td><td>4,900</td><td>1.44%</td><td>4,320</td><td>1,194</td><td>1,599</td><td>250</td><td>₹9,66,749</td><td>₹3,867</td><td>₹70</td><td>n/a</td></tr></table></div></section>
+<section><h2>Insights</h2><div class="ins">
 <div class="insight-card wins"><h3>Wins</h3><ul>
-<li><strong>10mm Carbon Belt is the revenue engine.</strong> &#8377;4,80,953 on &#8377;8,586, a 56x return with 125 purchases at &#8377;69 each. It carries 40% of account revenue and holds a 2.5% link CTR, the strongest cold traffic response in the account.</li>
-<li><strong>Remarketing returns 71x on a modest budget.</strong> &#8377;5,600 produced &#8377;4,00,215 and 93 purchases at &#8377;60, with the highest AOV of the scaled campaigns at &#8377;4,303. The retargeting pool is converting efficiently and is not yet budget constrained.</li>
-<li><strong>The account is winning on cheap traffic.</strong> A blended CPM of &#8377;67 and CPC of &#8377;4.25 across 3,53,766 impressions keeps acquisition cost low, which is what lets a &#8377;80 cost per purchase sit against a &#8377;4,039 average order value.</li>
-<li><strong>Checkout intent is healthy across the account.</strong> 1,403 adds to cart and 2,162 checkouts initiated from 5,603 link clicks, so roughly one in four clicks reaches cart. Purchase CVR of 5.3% on link clicks is well ahead of typical sporting goods benchmarks.</li>
-</ul></div>
-
+<li><b>[Important]</b> Remarketing is the top earner: ₹3,33,025 revenue at 56.4x ROAS and ₹78 per purchase from 76 purchases.</li>
+<li><b>[Important]</b> The 10mm Carbon Belt delivered 50.0x ROAS and 83 purchases on ₹5,977, at ₹72 per purchase and ₹3,604 AOV.</li>
+<li><b>[Worth doing]</b> Spend is evenly split (₹5,800 to ₹5,980 per campaign), making ROAS differences a clean like-for-like comparison.</li></ul></div>
 <div class="insight-card concerns"><h3>Concerns</h3><ul>
-<li><strong>The influencer video variant was paused while returning 94x.</strong> It spent only &#8377;451 and returned &#8377;42,431 with the highest AOV in the account, &#8377;6,062, before delivery stopped. This is the single best efficiency in the file and it is currently off.</li>
-<li><strong>Accessory campaigns buy expensive clicks.</strong> Backpack sits at &#8377;12 CPC and 0.66% CTR, shaker bottle at &#8377;10 and 0.55%. Both are roughly four times the cost per click of the belt campaigns, so each purchase costs &#8377;133 and &#8377;122 against the belt's &#8377;69.</li>
-<li><strong>Belt and remarketing frequency is climbing.</strong> Carbon Belt is at 5.0 and remarketing at 4.6 impressions per person over 30 days. Creative fatigue usually shows up past 4x, so cost per purchase on these two will start drifting up without a refresh.</li>
-<li><strong>7 of 12 campaigns spent nothing.</strong> Pickle ball paddle, gym bag, 10mm signature belt and the catalogue and sales campaigns all sat at zero delivery for the full window, so whole product lines received no paid support.</li>
-</ul></div>
-
+<li><b>[Urgent]</b> Backpack runs at 19.8x ROAS with ₹194 cost per purchase and ₹84 CPM, roughly 2.5x the cost per purchase of the leaders.</li>
+<li><b>[Important]</b> Shaker Bottle link CTR is only 0.57% and frequency 3.40, with 61 purchases at ₹97 each.</li>
+<li><b>[Important]</b> The 10mm Carbon Belt campaign, the second best performer, shows as inactive, so its returns are no longer being captured.</li></ul></div>
 <div class="insight-card actions"><h3>Actions</h3><ul>
-<li><span class="tag t-urgent">Urgent</span><strong>Restart the influencer video variant with a real budget.</strong> It proved &#8377;42,431 on &#8377;451. Relaunch at &#8377;500 per day and watch CPA for the first 72 hours before scaling further.</li>
-<li><span class="tag t-important">Important</span><strong>Shift accessory budget into the belt funnel.</strong> Moving roughly &#8377;3,000 of the monthly accessory spend to Carbon Belt and remarketing, at their current returns, is worth around &#8377;1.5L to &#8377;2L in incremental revenue against the same money on backpack and shaker.</li>
-<li><span class="tag t-important">Important</span><strong>Refresh creative on the two fatiguing campaigns.</strong> Carbon Belt and remarketing both need new hooks before frequency pushes past 5x. Use the influencer format that just delivered 94x as the template.</li>
-<li><span class="tag t-worth">Worth doing</span><strong>Rebuild the accessory angle rather than the budget.</strong> Backpack and shaker convert well once people click, at 8.7% and 8.1%, so the problem is the creative hook, not the offer. Test bundle framing with a belt purchase.</li>
-<li><span class="tag t-worth">Worth doing</span><strong>Decide on the dormant campaigns.</strong> Either fund the 10mm signature belt and gym bag properly or archive them so the account view reflects what is actually running.</li>
-<li><span class="tag t-low">Low priority</span><strong>Reconcile Meta revenue against Shopify.</strong> Reported figures use a 7 day click, 1 day view window, so confirm the 50.4x blended return against backend sales before it goes into a board deck.</li>
-</ul></div>
-
-</div>
-</section>
-
-</div>
-<div class="foot">Kerkar Media &middot; Hack Athletics Meta Ads Dashboard &middot; 24 Aug 2026 to 22 Sep 2026<br>
-Source: Meta Ads Manager campaign export. Attribution: 7 day click, 1 day view or 1 day engaged view.<br><br>
-Powered by <strong>KM</strong></div>
-</body></html>
+<li><b>[Urgent]</b> Review Backpack creative and audience, or shift part of its budget to Remarketing and the Carbon Belt.</li>
+<li><b>[Important]</b> Reactivate or replace the 10mm Carbon Belt campaign.</li>
+<li><b>[Worth doing]</b> Refresh Shaker Bottle creatives to lift CTR.</li>
+<li><b>[Low priority]</b> Archive the 8 dormant campaigns with zero spend.</li></ul></div></div></section>
+<footer>Powered by KM</footer></body></html>

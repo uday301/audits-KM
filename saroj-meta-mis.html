@@ -1,307 +1,70 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Saroj Fabrics Meta Ads Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--brand-blue:#003DCC;--brand-blue-dark:#035398;--ink:#0d1b2a;--muted:#5b6b7f;
---line:#e3e8ef;--bg:#f5f7fb;--card:#fff;--green:#0f9d58;--amber:#e8930c;--red:#d93025;}
+:root{--brand-blue:#003DCC;--brand-blue-dark:#035398;--ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--bg:#f8fafc;--green:#15803d;--red:#b91c1c}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.kpi-val{font-family:'DM Sans',sans-serif}
-.topbar{height:4px;background:linear-gradient(90deg,var(--brand-blue),var(--brand-blue-dark))}
-nav{background:var(--card);border-bottom:1px solid var(--line);padding:14px 28px;font-weight:600;font-size:14px;
-letter-spacing:.2px;position:sticky;top:0;z-index:20}
-nav .dot{color:var(--brand-blue)}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px 56px}
-.hero{background:linear-gradient(135deg,var(--brand-blue) 0%,var(--brand-blue-dark) 100%);color:#fff;
-padding:44px 28px 40px;margin-bottom:26px}
-.hero .wrap{padding-bottom:0}
-.hero h1{font-size:31px;font-weight:700;letter-spacing:-.4px}
-.hero .sub{opacity:.88;font-size:14px;margin-top:6px;font-weight:500}
-.summary{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:10px;
-padding:18px 20px;margin-top:22px;font-size:14.5px;max-width:960px}
-.summary strong{font-weight:600}
-.databanner{border-radius:8px;padding:13px 16px;margin:18px 0;font-size:13.5px;border-left:4px solid}
-.databanner.red{background:#fdecea;border-color:var(--red);color:#7f1d17}
-.databanner.amber{background:#fff6e5;border-color:var(--amber);color:#7a4c00}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 32px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:17px 18px}
-.kpi .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:600}
-.kpi-val{font-size:26px;font-weight:700;margin-top:7px;letter-spacing:-.5px}
-.kpi .sub{font-size:12px;color:var(--muted);margin-top:4px}
-.kpi.accent{border-color:var(--brand-blue);box-shadow:0 0 0 1px var(--brand-blue) inset}
-.kpi.accent .kpi-val{color:var(--brand-blue)}
-.kpi.dim .kpi-val{color:var(--muted)}
-section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
-section h2{font-size:17px;font-weight:700;margin-bottom:4px}
-section .shead{font-size:13px;color:var(--muted);margin-bottom:16px}
-.tscroll{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
-th{text-align:right;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
-font-weight:600;padding:9px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
-td{text-align:right;padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
-th:first-child,td:first-child{text-align:left}
-.cname{max-width:270px;overflow:hidden;text-overflow:ellipsis}
-.cname .obj{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-top:1px}
-tr.total td{background:#f0f4fb;font-weight:700;border-top:2px solid var(--brand-blue);border-bottom:none}
-.roas{font-weight:700}
-.na{color:#9aa7b6}
-.pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.2px}
-.pill.scale{background:#e4f5ea;color:var(--green)}
-.pill.maintain{background:#fdf3e0;color:#a56a00}
-.pill.fix{background:#fdecea;color:var(--red)}
-.pill.paused{background:#eef1f5;color:var(--muted)}
-.mis-table td,.mis-table th{padding:9px 7px;font-size:11.6px}
-.grid3 table{min-width:0}
-.grid3 .mis-table td,.grid3 .mis-table th{padding:9px 6px;font-size:12px}
-.grid3{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.insight-card{border-radius:11px;padding:19px 20px;border:1px solid var(--line);background:var(--card)}
-.insight-card h3{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.insight-card h3::before{content:"";width:9px;height:9px;border-radius:50%}
-.wins{background:#f4fbf6;border-color:#cfe9d9} .wins h3::before{background:var(--green)}
-.concerns{background:#fff8ef;border-color:#f3e0c0} .concerns h3::before{background:var(--amber)}
-.actions{background:#f4f7fd;border-color:#d4def3} .actions h3::before{background:var(--brand-blue)}
-.insight-card ul{list-style:none}
-.insight-card li{font-size:13px;padding:8px 0;border-top:1px solid rgba(0,0,0,.06);line-height:1.5}
-.insight-card li:first-child{border-top:none;padding-top:0}
-.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
-padding:2px 7px;border-radius:4px;margin-right:6px;vertical-align:1px}
-.t-urgent{background:var(--red);color:#fff} .t-imp{background:var(--amber);color:#fff}
-.t-worth{background:var(--brand-blue);color:#fff} .t-low{background:#dde3ea;color:var(--muted)}
-.fnote{font-size:12px;color:var(--muted);margin-top:13px;line-height:1.6}
-footer{text-align:center;padding:26px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);background:var(--card)}
-footer strong{color:var(--brand-blue)}
-@media(max-width:980px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
-@media(max-width:560px){.kpi-grid{grid-template-columns:1fr}.hero h1{font-size:24px}.wrap{padding:0 14px 40px}}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+h1,h2,h3,.kv{font-family:'DM Sans',sans-serif}
+.topbar{background:var(--brand-blue-dark);color:#fff;font-size:12px;padding:6px 24px}
+nav{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;font-weight:600;color:var(--brand-blue)}
+.hero{background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark));color:#fff;padding:48px 24px}
+.wrap{max-width:1100px;margin:0 auto}
+.hero h1{font-size:34px;margin-bottom:6px}.hero .sub{opacity:.85;margin-bottom:18px}
+.summary{background:rgba(255,255,255,.12);border-radius:12px;padding:18px 20px;font-size:15px}
+section{padding:28px 0}
+section h2{font-size:22px;margin-bottom:14px;color:var(--brand-blue-dark)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.kl{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.kv{font-size:28px;font-weight:700;color:var(--brand-blue)}
+.ks{font-size:12px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+th{background:#eef2ff;text-align:left;padding:10px 12px;font-size:12px;text-transform:uppercase;color:var(--brand-blue-dark)}
+td{padding:10px 12px;border-top:1px solid var(--line)}
+.num{text-align:right}tr.total td{font-weight:700;background:#f8fafc}
+.pill{padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.pill.green{background:#dcfce7;color:var(--green)}
+.scroll{overflow-x:auto}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.insight-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;border-top:4px solid var(--mut)}
+.insight-card.wins{border-top-color:var(--green)}.insight-card.concerns{border-top-color:var(--red)}.insight-card.actions{border-top-color:var(--brand-blue)}
+.insight-card h3{margin-bottom:10px;font-size:16px}.insight-card li{margin:0 0 10px 18px;font-size:14px}
+.tag{font-weight:600;color:var(--brand-blue-dark)}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:28px}
+@media(max-width:800px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.hero h1{font-size:26px}}
 </style></head><body>
-<div class="topbar"></div>
-<nav>Kerkar Media <span class="dot">&middot;</span> Saroj Fabrics Meta Ads Dashboard</nav>
-
+<div class="topbar">Reporting period: 21 Sep 2026 to 20 Oct 2026 &nbsp;|&nbsp; Generated 21 Oct 2026</div>
+<nav>Kerkar Media &middot; Saroj Fabrics Meta Ads Dashboard</nav>
 <div class="hero"><div class="wrap">
-<h1>Meta Ads Performance</h1>
-<div class="sub">Saroj Texfab India Pvt. Ltd. &middot; 14 Jul to 12 Aug 2026 (30 days) &middot; Account act_440052393413340</div>
-<div class="summary">
-The account spent <strong>&#8377;12,712</strong> across three campaigns running on three different objectives and
-returned <strong>&#8377;22,857</strong> in tracked purchase revenue from <strong>13 orders</strong>.
-All revenue came from a single campaign. The Remarketing campaign turned <strong>&#8377;6,292</strong>
-into <strong>&#8377;22,857</strong>, a sales ROAS of <strong>3.63x</strong> at
-<strong>&#8377;484</strong> per order. The Awareness campaign absorbed a near identical
-<strong>&#8377;6,243</strong>, or 49.11% of total budget, and produced reach and video views
-but no site traffic and no orders. Delivery stopped entirely on 12 Aug 2026 with account balance at zero.
-</div></div></div>
-
+<h1>Saroj Fabrics Meta Ads Dashboard</h1>
+<div class="sub">Saroj Texfa India Pvt. Ltd. &middot; 21 Sep 2026 to 20 Oct 2026</div>
+<div class="summary">Saroj ran one active campaign over the last 30 days, a remarketing campaign targeting website visitors. It spent &#8377;1,630 and generated &#8377;7,350 in purchase value from 4 purchases, a 4.51x ROAS. Average order value was &#8377;1,838 and cost per purchase was &#8377;408. The campaign reached 1,772 people across 3,413 impressions at a frequency of 1.93.</div>
+</div></div>
 <div class="wrap">
-
-<div class="databanner red"><strong>Delivery halted.</strong> Spend collapsed to &#8377;42 on 12 Aug 2026
-from a 29 day average of &#8377;437 per day, and the account has recorded zero spend and zero impressions
-since. The export notes account balance &#8377;0 with the spend cap equal to amount already spent. Two campaigns are
-still set to ACTIVE but are not delivering. This is a billing or spend cap block, not a performance pause.</div>
-
-<div class="databanner amber"><strong>One data note.</strong> Account level Reach and Frequency could not be
-de-duplicated by the export tool, so those two cells read n/a in the total row. Campaign level reach is shown and is
-reliable for the two single ad campaigns. The Awareness figure is the sum of its three ads and will slightly overstate
-unique people. Everything else, including spend, impressions, clicks and revenue, reconciles to the paisa across all
-nine source files.</div>
-
-<div class="kpi-grid">
-<div class="kpi accent"><div class="lbl">Purchase Revenue</div><div class="kpi-val">&#8377;22,857</div>
-<div class="sub">13 orders, all from Remarketing</div></div>
-<div class="kpi accent"><div class="lbl">Sales ROAS</div><div class="kpi-val">3.63x</div>
-<div class="sub">Blended 1.80x across all spend<sup>1</sup></div></div>
-<div class="kpi"><div class="lbl">Cost per Purchase</div><div class="kpi-val">&#8377;484</div>
-<div class="sub">AOV &#8377;1,758</div></div>
-<div class="kpi"><div class="lbl">Total Spend</div><div class="kpi-val">&#8377;12,712</div>
-<div class="sub">CPM &#8377;90 across 1,40,864 impressions</div></div>
-<div class="kpi"><div class="lbl">Remarketing Traffic</div><div class="kpi-val">715</div>
-<div class="sub">link clicks at &#8377;8.80, 3.16% CTR</div></div>
-<div class="kpi"><div class="lbl">Awareness Reach</div><div class="kpi-val">35,894</div>
-<div class="sub">CPM &#8377;54, 872 ThruPlays</div></div>
-<div class="kpi"><div class="lbl">Messaging Conversations</div><div class="kpi-val">21</div>
-<div class="sub">6 from Rakshabandhan at &#8377;29 each</div></div>
-<div class="kpi dim"><div class="lbl">Campaigns Delivering</div><div class="kpi-val">0 of 3</div>
-<div class="sub">2 active but blocked, 1 paused</div></div>
-</div>
-
-<section>
-<h2>Campaign Performance</h2>
-<div class="shead">Graded on sales ROAS. Awareness and messaging campaigns carry no revenue by design and are judged on their own objective below.</div>
-<div class="tscroll"><table>
-<thead><tr><th>Campaign</th><th>Spend</th><th>Impressions</th><th>Link Clicks</th><th>Purchases</th><th>Revenue</th><th>ROAS</th><th>Verdict</th></tr></thead>
-<tbody>
-<tr>
-<td class="cname" title="Remarketing | Website Visitors"><strong>Remarketing | Website Visitors</strong><span class="obj">Sales</span></td>
-<td>6,292</td><td>22,650</td><td>715</td>
-<td>13</td>
-<td>22,857</td>
-<td class="roas">3.63x</td>
-<td><span class="pill maintain">Maintain</span></td></tr>
-<tr>
-<td class="cname" title="Awareness | Ahmedabad"><strong>Awareness | Ahmedabad</strong><span class="obj">Awareness</span></td>
-<td>6,243</td><td>1,16,170</td><td>68</td>
-<td><span class=na>0</span></td>
-<td><span class=na>0</span></td>
-<td class="roas"><span class=na>n/a</span></td>
-<td><span class="pill fix">Reallocate</span></td></tr>
-<tr>
-<td class="cname" title="Rakshabandhan | Messages"><strong>Rakshabandhan | Messages</strong><span class="obj">Engagement</span></td>
-<td>177</td><td>2,044</td><td>20</td>
-<td><span class=na>0</span></td>
-<td><span class=na>0</span></td>
-<td class="roas"><span class=na>n/a</span></td>
-<td><span class="pill paused">Paused</span></td></tr>
-</tbody></table></div>
-<div class="fnote"><sup>1</sup> Blended ROAS divides total purchase revenue by total account spend including the
-awareness and messaging budgets. It understates the sales engine and is shown only for budget level context.
-Sales ROAS of 3.63x is the figure to judge the conversion campaign on.</div>
-</section>
-
-<section>
-<h2>Campaign Detail (MIS)</h2>
-<div class="shead">Full metric set per campaign for the 30 day window.</div>
-<div class="tscroll"><table class="mis-table">
-<thead><tr><th>Campaign</th><th>Days</th><th>Spend</th><th>Impr.</th><th>Reach</th><th>Freq.</th><th>CPM</th>
-<th>Clicks</th><th>Link Clk</th><th>Link CTR</th><th>CPC</th><th>LPV</th><th>ATC</th><th>Chkout</th>
-<th>Purch.</th><th>Revenue</th></tr></thead>
-<tbody>
-<tr><td class="cname"><strong>Remarketing | Website Visitors</strong></td><td>30</td><td>6,292</td>
-<td>22,650</td><td>5,742</td><td>3.94</td>
-<td>278</td><td>827</td><td>715</td>
-<td>3.16%</td><td>9</td>
-<td>559</td><td>86</td><td>46</td><td>13</td>
-<td>22,857</td></tr>
-<tr><td class="cname"><strong>Awareness | Ahmedabad</strong></td><td>30</td><td>6,243</td>
-<td>1,16,170</td><td>35,894</td><td>3.24</td>
-<td>54</td><td>160</td><td>68</td>
-<td>0.06%</td><td>92</td>
-<td>0</td><td>0</td><td>0</td><td>0</td>
-<td>0</td></tr>
-<tr><td class="cname"><strong>Rakshabandhan | Messages</strong></td><td>2</td><td>177</td>
-<td>2,044</td><td>1,711</td><td>1.19</td>
-<td>86</td><td>64</td><td>20</td>
-<td>0.98%</td><td>9</td>
-<td>4</td><td>0</td><td>0</td><td>0</td>
-<td>0</td></tr>
-<tr class="total"><td><strong>TOTAL</strong></td><td>30</td><td>12,712</td>
-<td>1,40,864</td><td class="na">n/a</td><td class="na">n/a</td><td>90</td>
-<td>1,051</td><td>803</td><td>0.57%</td>
-<td>16</td><td>563</td><td>86</td><td>46</td>
-<td>13</td><td>22,857</td></tr>
-</tbody></table></div>
-<div class="fnote">LPV is landing page views, ATC is adds to cart. The Awareness campaign uses a Get Directions call
-to action rather than a website link, so it records no landing page views by design. Reach is not additive across
-campaigns, so the total row shows n/a rather than a misleading sum.</div>
-</section>
-
-<section>
-<h2>Where the Money Went</h2>
-<div class="shead">Placement, audience and geography breakdowns from the same reconciled source data.</div>
-<div class="tscroll"><table class="mis-table">
-<thead><tr><th>Placement</th><th>Spend</th><th>Share</th><th>Impressions</th><th>CPM</th><th>Link Clicks</th><th>LPV</th></tr></thead>
-<tbody>
-<tr><td class='cname'>Instagram Stories</td><td>8,031</td><td>63.18%</td><td>53,555</td><td>150</td><td>753</td><td>561</td></tr>
-<tr><td class='cname'>Instagram Reels</td><td>4,611</td><td>36.27%</td><td>86,684</td><td>53</td><td>36</td><td>0</td></tr>
-<tr><td class='cname'>Feed</td><td>70</td><td>0.55%</td><td>617</td><td>113</td><td>14</td><td>2</td></tr>
-</tbody></table></div>
-<div class="fnote">Instagram Stories carries the entire Remarketing campaign and delivered 561 of the
-account's 563 landing page views and 753 of its 803 link clicks. Instagram Reels took &#8377;4,611 at a low CPM but produced
-zero landing page views, because that inventory ran almost entirely under the reach optimised Awareness campaign.</div>
-
-<div class="grid3" style="margin-top:26px">
-<div><h2 style="font-size:15px;margin-bottom:10px">Remarketing Audience</h2>
-<div class="tscroll"><table class="mis-table">
-<thead><tr><th>Age and Gender</th><th>Spend</th><th>Impr.</th><th>Link Clicks</th><th>LPV</th><th>CPC</th></tr></thead>
-<tbody>
-<tr><td class='cname'>25-34 Female</td><td>1,905</td><td>6,292</td><td>233</td><td>189</td><td>8</td></tr>
-<tr><td class='cname'>35-44 Female</td><td>1,688</td><td>2,755</td><td>160</td><td>144</td><td>11</td></tr>
-<tr><td class='cname'>45-54 Female</td><td>1,279</td><td>1,574</td><td>111</td><td>89</td><td>12</td></tr>
-<tr><td class='cname'>55-64 Female</td><td>443</td><td>320</td><td>28</td><td>18</td><td>16</td></tr>
-<tr><td class='cname'>18-24 Female</td><td>425</td><td>3,818</td><td>85</td><td>65</td><td>5</td></tr>
-<tr><td class='cname'>25-34 Male</td><td>185</td><td>2,591</td><td>38</td><td>20</td><td>5</td></tr>
-<tr><td class='cname'>18-24 Male</td><td>119</td><td>4,273</td><td>20</td><td>5</td><td>6</td></tr>
-<tr><td class='cname'>65+ Female</td><td>82</td><td>101</td><td>11</td><td>9</td><td>7</td></tr>
-</tbody></table></div></div>
-<div><h2 style="font-size:15px;margin-bottom:10px">Remarketing Geography</h2>
-<div class="tscroll"><table class="mis-table">
-<thead><tr><th>State</th><th>Spend</th><th>Impr.</th><th>Link Clicks</th><th>CPC</th></tr></thead>
-<tbody>
-<tr><td class='cname'>Maharashtra</td><td>1,190</td><td>4,050</td><td>148</td><td>8</td></tr>
-<tr><td class='cname'>Karnataka</td><td>644</td><td>1,594</td><td>57</td><td>11</td></tr>
-<tr><td class='cname'>Kerala</td><td>644</td><td>2,519</td><td>69</td><td>9</td></tr>
-<tr><td class='cname'>Delhi</td><td>426</td><td>680</td><td>33</td><td>13</td></tr>
-<tr><td class='cname'>Telangana</td><td>416</td><td>836</td><td>45</td><td>9</td></tr>
-<tr><td class='cname'>Tamil Nadu</td><td>400</td><td>1,611</td><td>46</td><td>9</td></tr>
-<tr><td class='cname'>Gujarat</td><td>390</td><td>2,474</td><td>49</td><td>8</td></tr>
-<tr><td class='cname'>Uttar Pradesh</td><td>371</td><td>1,186</td><td>35</td><td>11</td></tr>
-</tbody></table></div></div>
-</div>
-</section>
-
-<section>
-<h2>Insights</h2>
-<div class="shead">Read the concerns before the wins. The account is currently not spending.</div>
-<div class="insights">
-
+<section><h2>Key Metrics</h2><div class="kpi-grid"><div class="kpi"><div class="kl">Revenue</div><div class="kv">&#8377;7,350</div><div class="ks">Purchases conversion value</div></div><div class="kpi"><div class="kl">Blended ROAS</div><div class="kv">4.51x</div><div class="ks">Revenue / spend</div></div><div class="kpi"><div class="kl">Purchases</div><div class="kv">4</div><div class="ks">Website purchases</div></div><div class="kpi"><div class="kl">AOV</div><div class="kv">&#8377;1,838</div><div class="ks">Revenue / purchases</div></div><div class="kpi"><div class="kl">Total Spend</div><div class="kv">&#8377;1,630</div><div class="ks">CPM &#8377;478</div></div><div class="kpi"><div class="kl">Cost per Purchase</div><div class="kv">&#8377;408</div><div class="ks">4 purchases</div></div><div class="kpi"><div class="kl">Frequency</div><div class="kv">1.93</div><div class="ks">Reach 1,772</div></div><div class="kpi"><div class="kl">Campaigns Live</div><div class="kv">1</div><div class="ks">27 dormant, excluded</div></div></div></section>
+<section><h2>Campaign Performance</h2><div class="scroll"><table>
+<tr><th>Campaign</th><th>Status</th><th class="num">Spend</th><th class="num">Revenue</th><th class="num">Purchases</th><th class="num">Cost / Purchase</th><th class="num">ROAS</th><th>Verdict</th></tr>
+<tr><td>Remarketing Campaign | Website Visitors</td><td><span class="pill green">Active</span></td><td class="num">&#8377;1,630</td><td class="num">&#8377;7,350</td><td class="num">4</td><td class="num">&#8377;408</td><td class="num">4.51x</td><td><span class="pill green">Scale</span></td></tr>
+</table></div></section>
+<section><h2>Campaign Detail (MIS)</h2><div class="scroll"><table>
+<tr><th>Campaign</th><th class="num">Impressions</th><th class="num">Reach</th><th class="num">Freq.</th><th class="num">CPM</th><th class="num">Link Clicks</th><th class="num">Link CTR</th><th class="num">CPC (link)</th><th class="num">Purchases</th><th class="num">Click to Purchase</th><th class="num">AOV</th><th class="num">Spend</th></tr>
+<tr><td>Remarketing Campaign | Website Visitors</td><td class="num">3,413</td><td class="num">1,772</td><td class="num">1.93</td><td class="num">&#8377;478</td><td class="num">90</td><td class="num">2.64%</td><td class="num">&#8377;18.11</td><td class="num">4</td><td class="num">4.44%</td><td class="num">&#8377;1,838</td><td class="num">&#8377;1,630</td></tr>
+<tr class="total"><td>TOTAL</td><td class="num">3,413</td><td class="num">1,772</td><td class="num">1.93</td><td class="num">&#8377;478</td><td class="num">90</td><td class="num">2.64%</td><td class="num">&#8377;18.11</td><td class="num">4</td><td class="num">4.44%</td><td class="num">&#8377;1,838</td><td class="num">&#8377;1,630</td></tr>
+</table></div></section>
+<section><h2>Insights</h2><div class="insights">
 <div class="insight-card wins"><h3>Wins</h3><ul>
-<li><strong>Remarketing is genuinely profitable.</strong> &#8377;6,292 produced &#8377;22,857
-from 13 orders, a 3.63x return at &#8377;484 per order against an AOV of &#8377;1,758.</li>
-<li><strong>The landing experience holds up.</strong> 78.18% of the 715 link clicks became landing
-page views, which means clicks are arriving rather than bouncing at load. Site speed and link setup are not the problem.</li>
-<li><strong>The funnel converts at the bottom.</strong> 86 adds to cart and 46 checkouts
-initiated turned into 13 orders, a 28.26% checkout to purchase rate and 15.12% from cart.</li>
-<li><strong>Women aged 25 to 54 are the buying core.</strong> They took &#8377;4,872 of Remarketing spend and
-delivered 504 of 715 link clicks, 70.49% of traffic from 77.43% of budget.</li>
-<li><strong>Best single day was 19 Jul 2026.</strong> &#8377;6,896 of revenue from 4 orders on
-&#8377;300 of Remarketing spend, a same day return of 23.02x.</li>
-</ul></div>
-
+<li>The Website Visitors remarketing campaign returned 4.51x ROAS, turning &#8377;1,630 into &#8377;7,350.</li>
+<li>About 4.4% of link clicks ended in a purchase, a strong rate for warm traffic.</li>
+<li>Link CTR of 2.64% and a frequency of 1.93 show the audience is engaged and not fatigued.</li></ul></div>
 <div class="insight-card concerns"><h3>Concerns</h3><ul>
-<li><strong>The account has stopped delivering.</strong> Spend fell to &#8377;42 on 12 Aug 2026 from an
-average of &#8377;437 per day, and nothing has run since. Every day blocked is roughly
-&#8377;762 of foregone revenue at the current Remarketing rate.</li>
-<li><strong>Half the budget bought no measurable outcome.</strong> Awareness took &#8377;6,243,
-or 49.11% of spend, for 1,16,170 impressions, 68 link clicks, zero landing page views
-and zero orders. It is a Get Directions campaign, so store walk ins are the intended result, but nothing in this
-account measures them.</li>
-<li><strong>Remarketing frequency is high and the pool is small.</strong> 3.94 impressions per person against
-a reach of only 5,742. The Dec 2024 website visitor audience is being shown the same single video
-repeatedly and will fatigue.</li>
-<li><strong>One ad carries everything.</strong> A single creative, the Priyanka HELLO10 video, is the entire sales
-engine. There is no second ad running, so there is no test and no fallback when it tires.</li>
-<li><strong>Awareness spend concentrates in one ad.</strong> Ad 8 took &#8377;5,730 of the campaign's
-&#8377;6,243, so Ads 4 and 7 never got enough delivery to be judged.</li>
-<li><strong>Revenue is lumpy.</strong> Only 6 of 30 days recorded a purchase, so the 3.63x
-rests on a thin base of 13 orders and should be treated as directional.</li>
-</ul></div>
-
+<li><span class="tag">[Important]</span> The whole result rests on 4 purchases from one campaign, so ROAS can swing sharply month to month.</li>
+<li><span class="tag">[Important]</span> Spend of &#8377;1,630 in 30 days is very small, which caps both reach (1,772 people) and revenue.</li>
+<li><span class="tag">[Worth doing]</span> CPM of &#8377;478 is high, typical of a small remarketing pool.</li></ul></div>
 <div class="insight-card actions"><h3>Actions</h3><ul>
-<li><span class="tag t-urgent">Urgent</span><strong>Clear the billing block.</strong> Top up the account and check
-the spend cap, which currently equals amount spent. Nothing else on this list matters until delivery resumes.</li>
-<li><span class="tag t-urgent">Urgent</span><strong>Restart Remarketing first.</strong> It is the only campaign with
-proven return. Resume at the &#8377;200 daily budget, confirm spend for 48 hours, then raise it in steps while
-watching cost per order against the &#8377;484 benchmark.</li>
-<li><span class="tag t-imp">Important</span><strong>Move the Awareness budget.</strong> Shift most of the
-&#8377;6,243 into prospecting that can be measured, or into widening the remarketing pool. If the store
-visit goal is real, it needs offline conversion tracking or a footfall measure before it earns budget again.</li>
-<li><span class="tag t-imp">Important</span><strong>Refresh the remarketing audience.</strong> Replace the Dec 2024
-visitor list with a rolling 30 and 180 day window, and add cart abandoners and content viewers as separate ad sets to
-pull frequency down from 3.94.</li>
-<li><span class="tag t-worth">Worth doing</span><strong>Add two creatives against the control.</strong> Run a product
-led cut and an offer led cut alongside the Priyanka video so there is a successor ready before performance decays.</li>
-<li><span class="tag t-worth">Worth doing</span><strong>Extend beyond Stories.</strong> All 715 remarketing
-link clicks came from one placement. Test Reels and Feed inside the sales campaign, where the conversion objective can
-judge them properly.</li>
-<li><span class="tag t-low">Low priority</span><strong>Decide on messaging.</strong> Rakshabandhan produced
-6 conversations at &#8377;29 in two days before it stopped. Either commit a real test budget
-or retire the format.</li>
-</ul></div>
-
-</div></section>
-
-</div>
-<footer>Powered by <strong>Kerkar Media</strong> &middot; Report generated 25 Sep 2026 &middot;
-Source: Meta Ads account act_440052393413340 via Supermetrics, 14 Jul to 12 Aug 2026</footer>
-</body></html>
+<li><span class="tag">[Important]</span> Scale the remarketing budget gradually while ROAS stays above 4x.</li>
+<li><span class="tag">[Important]</span> Add a prospecting campaign so the remarketing pool keeps refilling.</li>
+<li><span class="tag">[Worth doing]</span> Review the 27 dormant campaigns in the account and archive those no longer needed.</li></ul></div>
+</div></section></div>
+<footer>Powered by KM</footer></body></html>

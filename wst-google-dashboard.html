@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Western Seal Tech · Google Ads Dashboard | Monday, 2 November 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--brand-blue:#003DCC;--brand-blue-dark:#035398;--text:#0F172A;--muted:#64748B;--border:#E2E8F0;--up:#16A34A;--up-bg:#DCFCE7;--down:#DC2626;--down-bg:#FEE2E2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F8FAFC;color:var(--text);line-height:1.5}
+h1,h2,h3{font-family:'DM Sans',sans-serif;font-weight:600}
+.topbar{background:var(--brand-blue);color:#fff;padding:8px 0;font-size:13px;text-align:center}
+.nav{background:#fff;border-bottom:1px solid var(--border);padding:16px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav strong{font-family:'DM Sans';font-size:18px;color:var(--brand-blue)}.nav .meta{font-size:13px;color:var(--muted)}
+.wrap{max-width:1280px;margin:0 auto;padding:32px}
+.hero{background:linear-gradient(135deg,#003DCC 0%,#035398 100%);color:#fff;border-radius:10px;padding:32px 40px;margin-bottom:24px}
+.hero h1{font-size:26px;margin-bottom:8px}.hero .sub{opacity:.85;font-size:14px}
+.hero .summary{margin-top:20px;padding:16px 20px;background:rgba(255,255,255,.12);border-radius:8px;font-size:14px}
+.verdict{border-radius:10px;padding:24px 28px;margin-bottom:24px;background:#fff;border:1px solid var(--border);border-left:5px solid var(--brand-blue)}
+.verdict.v-up{border-left-color:var(--up)}.verdict.v-down{border-left-color:var(--down)}
+.verdict .badge{display:inline-block;font-family:'DM Sans';font-weight:700;font-size:13px;padding:4px 12px;border-radius:20px;margin-bottom:10px;background:#DBEAFE;color:var(--brand-blue)}
+.verdict.v-up .badge{background:var(--up-bg);color:var(--up)}.verdict.v-down .badge{background:var(--down-bg);color:var(--down)}
+.verdict h2{font-size:20px;margin-bottom:8px}.verdict p{font-size:14px;margin-bottom:10px}
+.verdict .reco{background:#F8FAFC;border-radius:8px;padding:14px 16px;font-size:14px;border:1px solid var(--border)}.verdict .reco strong{color:var(--brand-blue)}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:12px;white-space:nowrap}
+.chip-up{background:var(--up-bg);color:var(--up)}.chip-down{background:var(--down-bg);color:var(--down)}.chip-flat{background:#F1F5F9;color:var(--muted)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.kpi{background:#fff;border-radius:10px;padding:20px;border-top:3px solid var(--brand-blue);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.kpi-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.kpi-value{font-family:'DM Sans';font-size:26px;font-weight:700;margin:6px 0}.kpi-sub{font-size:12px;color:var(--muted)}
+section{background:#fff;border-radius:10px;padding:28px;margin-bottom:24px;border:1px solid var(--border)}
+section h2{font-size:18px;margin-bottom:6px}section .sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;padding:10px 12px;background:#F8FAFC;font-weight:600;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+th.center,td.center{text-align:center}td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle}
+td.kw{font-weight:500}.sub-line{font-size:11px;color:var(--muted);margin-top:4px;font-weight:400}.na{color:#94A3B8}
+tr.row-win td{background:#F0FDF4}
+.cmp-table td.cmp-metric{font-weight:600}.cmp-table td.cmp-cur{font-weight:700;font-size:15px}.cmp-table td.cmp-base{color:var(--muted)}
+.prev7{margin-top:16px;padding:12px 16px;background:#F8FAFC;border-radius:8px;font-size:13px;border:1px solid var(--border)}
+.pill{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill-green{background:#DCFCE7;color:#166534}.pill-amber{background:#FEF3C7;color:#92400E}.pill-red{background:#FEE2E2;color:#991B1B}.pill-blue{background:#DBEAFE;color:#1E40AF}
+.trend-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;white-space:nowrap}
+.t-up{background:var(--up-bg);color:var(--up)}.t-down{background:var(--down-bg);color:var(--down)}.t-flat{background:#F1F5F9;color:var(--muted)}.t-paused{background:#E2E8F0;color:#475569}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.insight-card{background:#F8FAFC;border-radius:8px;padding:20px;border-left:3px solid var(--brand-blue)}
+.insight-card.wins{border-left-color:#22C55E}.insight-card.concerns{border-left-color:#EF4444}.insight-card.actions{border-left-color:#F59E0B}
+.insight-card h3{font-size:14px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.insight-card ul{padding-left:18px}.insight-card li{margin-bottom:8px;font-size:13px;line-height:1.6}.insight-card li strong{color:var(--brand-blue);font-weight:600}
+.empty{padding:20px;text-align:center;color:var(--muted);font-style:italic;font-size:13px}
+.method{font-size:12px;color:var(--muted);background:#F8FAFC;border:1px dashed var(--border);border-radius:8px;padding:14px 16px;margin-bottom:24px}.method strong{color:var(--text)}
+.alert{background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;border-radius:8px;padding:14px 16px;margin-bottom:24px;font-size:14px}
+footer{text-align:center;padding:32px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:40px}footer strong{color:var(--brand-blue)}
+@media(max-width:768px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.wrap{padding:16px}}
+</style></head><body>
+<div class="topbar">7-day vs 30-day comparison · Auto-refreshed every Monday · Generated Monday, 2 November 2026</div>
+<nav class="nav"><strong>Kerkar Media · Western Seal Tech Google Ads</strong><div class="meta">Customer ID 304-030-5022 · INR</div></nav>
+<div class="wrap">
+  
+  <div class="hero">
+    <h1>Google Ads Performance: Last 7 Days vs Last 30 Days</h1>
+    <div class="sub">7-day window 25 Oct to 31 Oct · 30-day baseline 3 Oct to 1 Nov · 2 active Search campaigns · lead generation</div>
+    <div class="summary"><strong>Executive Summary:</strong> Dashboard loaded. Automated analysis unavailable this week, the figures below are live.</div>
+  </div>
+  <div class="verdict v-flat">
+    <span class="badge">→ Stable</span>
+    <h2>Stable against the 30-day baseline</h2>
+    <p></p>
+    
+  </div>
+  <div class="method"><strong>How to read this:</strong> A lead is an enquiry or catalogue form submitted on westernsealtech.com after an ad click. The 7-day window ends 31 Oct and skips the most recent 1 day so form fills have time to record. Spend, clicks and leads are compared as daily averages, so 7 days are never judged against a 30-day total. Rates (CTR, CPC, cost per lead) are compared directly. <em>Lead volume is still low, so a single extra lead moves the percentages a lot. Click quality, CPC and search terms are the better signal for now.</em></div>
+  <div class="kpi-grid">
+  <div class="kpi" style="border-top-color:#16A34A">
+    <div class="kpi-label">Leads (7d)</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 100%</span> vs 30d avg · 2 in 30 days</div>
+  </div>
+  <div class="kpi" style="border-top-color:#EC4899">
+    <div class="kpi-label">Cost per Lead (7d)</div>
+    <div class="kpi-value"><span class="na">n/a</span></div>
+    <div class="kpi-sub"><span class="chip chip-up">▼ 100%</span> vs 30d avg · ₹14,808 baseline</div>
+  </div>
+  <div class="kpi" style="border-top-color:#A855F7">
+    <div class="kpi-label">Spend / day (7d)</div>
+    <div class="kpi-value">₹2,115</div>
+    <div class="kpi-sub"><span class="chip chip-flat">+114.3%</span> vs 30d avg · ₹14,807 total</div>
+  </div>
+  <div class="kpi" style="border-top-color:#003DCC">
+    <div class="kpi-label">Clicks / day (7d)</div>
+    <div class="kpi-value">3.1</div>
+    <div class="kpi-sub"><span class="chip chip-up">▲ 72.2%</span> vs 30d avg · 22 clicks</div>
+  </div>
+  <div class="kpi" style="border-top-color:#F59E0B">
+    <div class="kpi-label">CTR (7d)</div>
+    <div class="kpi-value">8.63%</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 12.1%</span> vs 30d avg · 255 impressions</div>
+  </div>
+  <div class="kpi" style="border-top-color:#0EA5E9">
+    <div class="kpi-label">Avg CPC (7d)</div>
+    <div class="kpi-value">₹673</div>
+    <div class="kpi-sub"><span class="chip chip-down">▲ 22.8%</span> vs 30d avg · ₹548 baseline</div>
+  </div>
+  <div class="kpi" style="border-top-color:#6366F1">
+    <div class="kpi-label">Conv. Rate (7d)</div>
+    <div class="kpi-value">0%</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 100%</span> vs 30d avg · click to enquiry</div>
+  </div>
+  <div class="kpi" style="border-top-color:#035398">
+    <div class="kpi-label">Impression Share (7d)</div>
+    <div class="kpi-value">33.4%</div>
+    <div class="kpi-sub"><span class="chip chip-down">▼ 0.3%</span> vs 30d avg · 28.1% lost to budget</div>
+  </div></div>
+  <section>
+    <h2>Account Comparison · 7-Day vs 30-Day</h2>
+    <div class="sec-sub">Last 7 days (25 Oct to 31 Oct) against the 30-day baseline (3 Oct to 1 Nov)</div>
+    <div style="overflow-x:auto"><table class="cmp-table"><thead><tr><th>Metric</th><th class="center">Last 7 Days</th><th class="center">30-Day Baseline</th><th class="center">Change</th></tr></thead><tbody><tr><td class="cmp-metric">Leads / day</td><td class="center cmp-cur">0</td><td class="center cmp-base">0.07</td><td class="center"><span class="chip chip-down">▼ 100%</span></td></tr><tr><td class="cmp-metric">Cost per lead</td><td class="center cmp-cur"><span class="na">n/a</span></td><td class="center cmp-base">₹14,808</td><td class="center"><span class="chip chip-up">▼ 100%</span></td></tr><tr><td class="cmp-metric">Spend / day</td><td class="center cmp-cur">₹2,115</td><td class="center cmp-base">₹987</td><td class="center"><span class="chip chip-flat">+114.3%</span></td></tr><tr><td class="cmp-metric">Clicks / day</td><td class="center cmp-cur">3.1</td><td class="center cmp-base">1.8</td><td class="center"><span class="chip chip-up">▲ 72.2%</span></td></tr><tr><td class="cmp-metric">CTR</td><td class="center cmp-cur">8.63%</td><td class="center cmp-base">9.82%</td><td class="center"><span class="chip chip-down">▼ 12.1%</span></td></tr><tr><td class="cmp-metric">Avg CPC</td><td class="center cmp-cur">₹673</td><td class="center cmp-base">₹548</td><td class="center"><span class="chip chip-down">▲ 22.8%</span></td></tr><tr><td class="cmp-metric">Conv. rate</td><td class="center cmp-cur">0%</td><td class="center cmp-base">3.7%</td><td class="center"><span class="chip chip-down">▼ 100%</span></td></tr><tr><td class="cmp-metric">Impression share</td><td class="center cmp-cur">33.4%</td><td class="center cmp-base">33.5%</td><td class="center"><span class="chip chip-down">▼ 0.3%</span></td></tr><tr><td class="cmp-metric">Lost IS (budget)</td><td class="center cmp-cur">28.1%</td><td class="center cmp-base">19.8%</td><td class="center"></td></tr></tbody></table></div>
+    <div class="prev7"><strong>Trend check (last 7 vs prior 7, 18 Oct to 24 Oct):</strong>
+  Clicks/day <span class="chip chip-up">▲ 244.4%</span> · CTR <span class="chip chip-up">▲ 22.2%</span> · CPC <span class="chip chip-down">▲ 9.1%</span> · Leads 0 prior vs 0 now</div>
+  </section>
+  <section>
+    <h2>Campaigns</h2>
+    <div class="sec-sub">Last 7 days with the 30-day figure underneath · sorted by 30-day spend</div>
+    <div style="overflow-x:auto"><table><thead><tr><th>Campaign</th><th class="center">Status</th><th class="center">7d Trend</th><th class="center">Spend</th><th class="center">Clicks</th><th class="center">CTR</th><th class="center">CPC</th><th class="center">Leads</th><th class="center">CPL (30d)</th></tr></thead><tbody><tr>
+    <td class="kw">WS | Search | Inflatable Seals | US<div class="sub-line">Search · ₹2,000/day budget · 43% used (30d) · 26% IS lost to budget</div></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><span class="trend-tag t-up">▲ More traffic</span></td>
+    <td class="center">₹10,276<div class="sub-line">₹18,222 30d</div></td>
+    <td class="center">13<div class="sub-line">26 30d</div></td>
+    <td class="center">8.02%<div class="sub-line">7.56% 30d</div></td>
+    <td class="center">₹790<div class="sub-line">₹701 30d</div></td>
+    <td class="center"><strong>0</strong><div class="sub-line">0 30d</div></td>
+    <td class="center"><span class="na">n/a</span></td>
+  </tr><tr>
+    <td class="kw">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact<div class="sub-line">Search · ₹1,000/day budget · 60% used (30d) · 9.4% IS lost to budget</div></td>
+    <td class="center"><span class="pill pill-blue">✓ Maintain</span></td>
+    <td class="center"><span class="trend-tag t-up">▲ More traffic</span></td>
+    <td class="center">₹4,531<div class="sub-line">₹11,393 30d</div></td>
+    <td class="center">9<div class="sub-line">28 30d</div></td>
+    <td class="center">9.68%<div class="sub-line">13.59% 30d</div></td>
+    <td class="center">₹503<div class="sub-line">₹407 30d</div></td>
+    <td class="center"><strong>0</strong><div class="sub-line">2 30d</div></td>
+    <td class="center">₹5,696</td>
+  </tr></tbody></table></div>
+  </section>
+  <section>
+    <h2>Countries · Last 30 Days</h2>
+    <div class="sec-sub">Where the people clicking the ads were physically located</div>
+    <div style="overflow-x:auto"><table><thead><tr><th>Country</th><th class="center">Impressions</th><th class="center">Clicks</th><th class="center">CTR</th><th class="center">Spend</th><th class="center">CPC</th><th class="center">Leads</th></tr></thead><tbody><tr>
+  <td class="kw">United States</td>
+  <td class="center">580</td><td class="center">31</td><td class="center">5.34%</td>
+  <td class="center">₹20,905<div class="sub-line">70.6% of spend</div></td>
+  <td class="center">₹674</td><td class="center"><strong>0</strong></td>
+</tr><tr>
+  <td class="kw">Italy</td>
+  <td class="center">120</td><td class="center">19</td><td class="center">15.83%</td>
+  <td class="center">₹6,138<div class="sub-line">20.7% of spend</div></td>
+  <td class="center">₹323</td><td class="center"><strong>0</strong></td>
+</tr><tr>
+  <td class="kw">Germany</td>
+  <td class="center">165</td><td class="center">22</td><td class="center">13.33%</td>
+  <td class="center">₹5,831<div class="sub-line">19.7% of spend</div></td>
+  <td class="center">₹265</td><td class="center"><strong>0</strong></td>
+</tr><tr>
+  <td class="kw">France</td>
+  <td class="center">183</td><td class="center">17</td><td class="center">9.29%</td>
+  <td class="center">₹5,750<div class="sub-line">19.4% of spend</div></td>
+  <td class="center">₹338</td><td class="center"><strong>0</strong></td>
+</tr><tr>
+  <td class="kw">United Kingdom</td>
+  <td class="center">59</td><td class="center">12</td><td class="center">20.34%</td>
+  <td class="center">₹3,867<div class="sub-line">13.1% of spend</div></td>
+  <td class="center">₹322</td><td class="center"><strong>0</strong></td>
+</tr><tr>
+  <td class="kw">Spain</td>
+  <td class="center">141</td><td class="center">14</td><td class="center">9.93%</td>
+  <td class="center">₹3,597<div class="sub-line">12.1% of spend</div></td>
+  <td class="center">₹257</td><td class="center"><strong>0</strong></td>
+</tr><tr>
+  <td class="kw">Switzerland</td>
+  <td class="center">8</td><td class="center">4</td><td class="center">50%</td>
+  <td class="center">₹2,060<div class="sub-line">7% of spend</div></td>
+  <td class="center">₹515</td><td class="center"><strong>2</strong></td>
+</tr></tbody></table></div>
+  </section>
+  <section>
+    <h2>Search Terms · Last 30 Days</h2>
+    <div class="sec-sub">What people actually typed before seeing the ads · top 25 of 200 by spend · ₹21,226 went on 38 terms with no lead yet · green rows produced a lead</div>
+    <div style="overflow-x:auto"><table><thead><tr><th>Search Term</th><th class="center">Impressions</th><th class="center">Clicks</th><th class="center">Spend</th><th class="center">CPC</th><th class="center">Leads</th></tr></thead><tbody><tr class="row-win">
+  <td class="kw">inflatable seal <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">61</td><td class="center">6</td>
+  <td class="center">₹3,230</td><td class="center">₹538</td>
+  <td class="center"><strong style="color:var(--up)">2</strong></td>
+</tr><tr>
+  <td class="kw">inflatable seal<div class="sub-line">WS | Search | Inflatable Seals | US</div></td>
+  <td class="center">49</td><td class="center">3</td>
+  <td class="center">₹2,953</td><td class="center">₹984</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">a piovan srl<div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">2</td><td class="center">2</td>
+  <td class="center">₹2,121</td><td class="center">₹1,060</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">aufblasbare dichtung <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Aufblasbare Dichtungen | DE-CH | German | Phrase</div></td>
+  <td class="center">24</td><td class="center">6</td>
+  <td class="center">₹2,084</td><td class="center">₹347</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">pneuma seals<div class="sub-line">WS | Search | Inflatable Seals | US</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹1,286</td><td class="center">₹1,286</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable rubber seal<div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">4</td><td class="center">1</td>
+  <td class="center">₹1,061</td><td class="center">₹1,061</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">rubber inflatable seals<div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹881</td><td class="center">₹881</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">joint gonflant<div class="sub-line">WesternSealTech | Search | Joints Gonflables | FR | French | Phrase</div></td>
+  <td class="center">11</td><td class="center">1</td>
+  <td class="center">₹817</td><td class="center">₹817</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable gaskets<div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">5</td><td class="center">1</td>
+  <td class="center">₹665</td><td class="center">₹665</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable bladder seal<div class="sub-line">WS | Search | Inflatable Seals | US</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹633</td><td class="center">₹633</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">western sealtech<div class="sub-line">WS | Search | Competitor Conquest | US</div></td>
+  <td class="center">2</td><td class="center">2</td>
+  <td class="center">₹562</td><td class="center">₹281</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable shaft seal<div class="sub-line">WS | Search | Inflatable Seals | US</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹519</td><td class="center">₹519</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">juntas hinchables <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Juntas Hinchables | ES | Spanish | Phrase</div></td>
+  <td class="center">3</td><td class="center">1</td>
+  <td class="center">₹515</td><td class="center">₹515</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable seal ring<div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">3</td><td class="center">1</td>
+  <td class="center">₹453</td><td class="center">₹453</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">joint gonflable pneumatique <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Joints Gonflables | FR | French | Phrase</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹452</td><td class="center">₹452</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">junta hinchable <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Juntas Hinchables | ES | Spanish | Phrase</div></td>
+  <td class="center">3</td><td class="center">1</td>
+  <td class="center">₹414</td><td class="center">₹414</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">produttori di guarnizioni in gomma<div class="sub-line">WesternSealTech | Search | Guarnizioni Gonfiabili | IT | Italian | Phrase</div></td>
+  <td class="center">2</td><td class="center">3</td>
+  <td class="center">₹406</td><td class="center">₹135</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">guarnizioni gonfiabili <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Guarnizioni Gonfiabili | IT | Italian | Phrase</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹403</td><td class="center">₹403</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">aufblasbare dichtungen hersteller<div class="sub-line">WesternSealTech | Search | Aufblasbare Dichtungen | DE-CH | German | Phrase</div></td>
+  <td class="center">4</td><td class="center">1</td>
+  <td class="center">₹402</td><td class="center">₹402</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable gasket seal<div class="sub-line">WS | Search | Inflatable Seals | US</div></td>
+  <td class="center">4</td><td class="center">1</td>
+  <td class="center">₹352</td><td class="center">₹352</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">industrial seal<div class="sub-line">WS | Search | Competitor Conquest | US</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹343</td><td class="center">₹343</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">fabricant joint caoutchouc<div class="sub-line">WesternSealTech | Search | Joints Gonflables | FR | French | Phrase</div></td>
+  <td class="center">5</td><td class="center">1</td>
+  <td class="center">₹332</td><td class="center">₹332</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">gapi sealing system<div class="sub-line">WesternSealTech | Search | Juntas Hinchables | ES | Spanish | Phrase</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹310</td><td class="center">₹310</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">inflatable seals <span class="pill pill-blue" style="font-size:10px">keyword</span><div class="sub-line">WesternSealTech | Search | Inflatable Seals | UK-FR-ES-IT-CH-DE | English | PhraseExact</div></td>
+  <td class="center">10</td><td class="center">1</td>
+  <td class="center">₹305</td><td class="center">₹305</td>
+  <td class="center">0</td>
+</tr><tr>
+  <td class="kw">cefilair<div class="sub-line">WesternSealTech | Search | Guarnizioni Gonfiabili | IT | Italian | Phrase</div></td>
+  <td class="center">2</td><td class="center">1</td>
+  <td class="center">₹290</td><td class="center">₹290</td>
+  <td class="center">0</td>
+</tr></tbody></table></div>
+  </section>
+  <section>
+    <h2>Insights · Wins / Concerns / Actions</h2>
+    <div class="sec-sub">Based on the last 7 days against the 30-day baseline</div>
+    <div class="insights">
+      <div class="insight-card wins"><h3>🏆 Wins</h3><div class="empty">None this period</div></div>
+      <div class="insight-card concerns"><h3>⚠️ Concerns</h3><div class="empty">None this period</div></div>
+      <div class="insight-card actions"><h3>🎯 Actions Next 7 Days</h3><div class="empty">None this period</div></div>
+    </div>
+  </section>
+</div>
+<footer><strong>Kerkar Media</strong> · Western Seal Tech Google Ads Dashboard · 7-day vs 30-day · Auto-generated every Monday 9:10am IST</footer>
+</body></html>
